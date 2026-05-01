@@ -187,6 +187,7 @@ function Footer() {
           <div className="font-semibold text-[#fef6f1] mb-2 sm:mb-3 text-[10px] sm:text-[11px] uppercase tracking-widest">Learn</div>
           <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-[12px]">
             <li><Link to="/guides" className="hover:text-[#fef6f1] block">Guides</Link></li>
+            <li><Link to="/faq" className="hover:text-[#fef6f1] block">FAQ</Link></li>
           </ul>
         </div>
         <div>
@@ -194,6 +195,7 @@ function Footer() {
           <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-[12px]">
             <li><Link to="/about" className="hover:text-[#fef6f1] block">About</Link></li>
             <li><Link to="/contact" className="hover:text-[#fef6f1] block">Contact</Link></li>
+            <li><Link to="/faq" className="hover:text-[#fef6f1] block">FAQ</Link></li>
             <li><Link to="/disclosure" className="hover:text-[#fef6f1] block">Disclosure</Link></li>
             <li><Link to="/privacy" className="hover:text-[#fef6f1] block">Privacy</Link></li>
           </ul>
