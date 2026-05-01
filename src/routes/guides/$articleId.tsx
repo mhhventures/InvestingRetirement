@@ -246,18 +246,18 @@ function GuideArticlePage() {
 
             <GuideFeedback guideSlug={article.slug} />
 
-            <section className="bg-[#fef6f1] border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3 flex items-center justify-between gap-3 flex-wrap">
+            <section className="bg-[#0e4d45] border border-[#0a3832] rounded p-4 sm:p-5 mb-3 flex items-center justify-between gap-3 flex-wrap shadow-md">
               <div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-[#0e4d45] mb-0.5">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-[#f5c99b] mb-1">
                   Next Step
                 </div>
-                <div className="text-xs sm:text-sm font-semibold text-black">
+                <div className="text-sm sm:text-base font-semibold text-[#fef6f1]">
                   Compare {article.relatedLabel}
                 </div>
               </div>
               <Link
                 to={article.relatedCategory as string}
-                className="inline-block text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] uppercase tracking-wide transition-colors"
+                className="inline-block text-[11px] sm:text-xs font-bold px-4 py-2 rounded-sm bg-[#fef6f1] hover:bg-white text-[#0e4d45] uppercase tracking-wide transition-colors"
               >
                 See Top Picks
               </Link>
