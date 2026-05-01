@@ -206,6 +206,14 @@ export const guides: GuideArticle[] = [
         q: "Should I budget gross including pre-tax deductions?",
         a: "No. Use what hits your bank account. Pre-tax 401(k) and HSA contributions never feel spendable, so excluding them keeps the percentages honest.",
       },
+      {
+        q: "How do I adjust 50/30/20 in a high-cost-of-living city?",
+        a: "In metros where rent alone is 40%+ of net income (SF, NYC, Boston), a 60/20/20 or 65/15/20 split is more realistic. Protect the 20% savings first, then squeeze the wants bucket before touching savings. If housing pushes above 40% of gross, the cheapest fix is almost always moving — no lifestyle tweak beats a smaller rent line.",
+      },
+      {
+        q: "Where do HSA, FSA, and 529 contributions fit?",
+        a: "Treat HSA contributions as Savings (they function as stealth retirement accounts with triple tax benefits). FSA and DCFSA are Needs (they offset healthcare and childcare costs you'd pay anyway). 529 contributions count as Savings if you're funding a specific child's education goal.",
+      },
     ],
   },
   {
@@ -244,12 +252,36 @@ export const guides: GuideArticle[] = [
           body: "Switch to annual billing on services you genuinely use. Most platforms offer 15 to 20% off when you pay yearly instead of monthly.",
         },
       },
+      {
+        heading: "The True Cost of a $15/Month Subscription",
+        paragraphs: [
+          "Small recurring charges feel harmless but compound ruthlessly. A single $15/month streaming service you don't use is a $180/year waste — but the opportunity cost is much larger if you'd invested the money instead.",
+        ],
+        bullets: [
+          "$15/month for 10 years at 7% return = $2,597 of lost growth.",
+          "$15/month for 30 years at 7% return = $18,353 of lost growth.",
+          "Five forgotten $15 subscriptions = $91,765 over 30 years in a Roth IRA.",
+          "Formula: FV = PMT × (((1 + r/12)^(12×n) - 1) / (r/12)). Use our compound interest calculator to run your own numbers.",
+        ],
+      },
+      {
+        heading: "Common Subscription Traps to Kill First",
+        bullets: [
+          "Duplicate streaming — paying for Netflix, Hulu, Disney+, Max, and Prime Video simultaneously. Rotate one at a time.",
+          "Unused SaaS seats — Adobe Creative Cloud, Microsoft 365, Canva Pro after a project ends.",
+          "App Store auto-renewals — apps trialed once and forgotten (review in iOS Settings > Apple ID > Subscriptions).",
+          "Cloud storage overlap — paying for Google One, iCloud+, Dropbox, and OneDrive at once.",
+          "Gym membership you don't visit — 67% of gym members visit fewer than 4x/month. Switch to pay-per-class.",
+          "Credit monitoring services — most are redundant with free Credit Karma and your bank's alerts.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Audit all recurring charges every 90 days.",
       "Cancel anything unused for 30+ days immediately.",
       "Call retention lines annually to negotiate fixed bills.",
       "Switch to annual billing to unlock 15-20% discounts.",
+      "A $15/month subscription = $18,000+ in lost investment growth over 30 years.",
     ],
     faqs: [
       {
@@ -259,6 +291,14 @@ export const guides: GuideArticle[] = [
       {
         q: "Are subscription tracker apps worth it?",
         a: "Yes if you have more than 10 recurring charges. Rocket Money and Truebill save most users 2-3x their cost.",
+      },
+      {
+        q: "How do I stop free trials from converting silently?",
+        a: "Use a virtual card (Privacy.com, Capital One Eno, Apple Card single-use) with a $0.01 spending limit for every trial signup. The charge auto-declines when the trial ends — no cancellation call required. For Apple/Google subscriptions, disable auto-renew in Settings the moment you start the trial.",
+      },
+      {
+        q: "Can I dispute a charge for a subscription I already cancelled?",
+        a: "Yes, if the cancellation was confirmed and they charged you anyway. File a chargeback with your card issuer under 'services not rendered' or 'cancelled subscription charged' — you have 60 days from the statement date under the Fair Credit Billing Act.",
       },
     ],
   },
@@ -300,6 +340,35 @@ export const guides: GuideArticle[] = [
           body: "Pay with a cashback credit card, buy through Rakuten for portal cashback, and use the retailer loyalty program. Triple-stacking routinely returns 8-12% on the same purchase.",
         },
       },
+      {
+        heading: "The Seasonal Buy Calendar",
+        paragraphs: [
+          "Almost every product category has a predictable low-price window tied to inventory cycles. Buying in-season is almost always 20-40% cheaper than buying when you finally 'need' it.",
+        ],
+        bullets: [
+          "January — fitness gear, winter clothing clearance, bedding (white sales), TVs (pre-Super Bowl).",
+          "February — mattresses (Presidents Day), winter sports equipment, chocolate/candy (post-Valentine's).",
+          "March-April — luggage, vacuums, laptops (tax refund promos).",
+          "May — mattresses (Memorial Day), grills, refrigerators, outdoor furniture.",
+          "July — summer clothing clearance, Amazon Prime Day (tech, appliances).",
+          "August-September — back-to-school (laptops, office supplies), summer clothes, patio furniture clearance.",
+          "October — jeans, cookware, older iPhone models (post-launch discount).",
+          "November — Black Friday/Cyber Monday (TVs, electronics, toys, appliances).",
+          "December — gift cards (bonus offers), holiday decor bought Dec 26 for next year.",
+        ],
+      },
+      {
+        heading: "The Unit Price Formula (And Why It Matters)",
+        paragraphs: [
+          "Unit price = total price ÷ quantity (oz, lb, count). It's the single most reliable grocery savings tool. Larger packages aren't always cheaper — shrinkflation and promotional pricing flip the math constantly.",
+        ],
+        bullets: [
+          "Example: a 24oz jar of peanut butter at $5.99 = $0.25/oz; a 16oz jar at $3.49 = $0.218/oz. The smaller jar wins by 13%.",
+          "Most stores print unit price on the shelf tag in tiny font — train your eye to it.",
+          "Beware mixed units (per oz vs per count vs per lb). Convert mentally to compare.",
+          "Private label (store brand) unit prices are almost always 15-40% below name brand for identical specs.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Plan meals and stick to one grocery trip per week.",
@@ -315,6 +384,14 @@ export const guides: GuideArticle[] = [
       {
         q: "Do cashback apps actually pay?",
         a: "Yes, but payouts can take 30-90 days. Stick to established apps: Rakuten, Ibotta, Capital One Shopping, and Upside.",
+      },
+      {
+        q: "What's the difference between unit price and price-per-serving?",
+        a: "Unit price measures the packaged quantity (e.g., $/oz of cereal). Price-per-serving factors in how much you actually eat. Concentrated products (laundry detergent pods, sauces) often look expensive by unit price but cheap per serving. For shelf-stable staples, unit price is more reliable.",
+      },
+      {
+        q: "Is shrinkflation real and how do I spot it?",
+        a: "Yes — manufacturers reduce package size while keeping prices flat. Compare unit price over time (not absolute price), and check the net weight printed on packaging against older photos. Cereal boxes, ice cream, toilet paper, and chip bags have shrunk 5-15% in the last three years alone.",
       },
     ],
   },
@@ -355,6 +432,30 @@ export const guides: GuideArticle[] = [
           body: "Always pay in the local currency when a card terminal asks. Dynamic Currency Conversion adds 3-7% to every swipe.",
         },
       },
+      {
+        heading: "Real Redemption Math: Points vs Cash",
+        paragraphs: [
+          "Not every point redemption is a good deal. Calculate cents-per-point (CPP) before booking: cash price ÷ points required. If CPP is below the baseline value, pay cash.",
+        ],
+        bullets: [
+          "Chase Ultimate Rewards baseline — 1.25-2.0 cents/point through Chase Travel or transfer partners.",
+          "Amex Membership Rewards baseline — 1.5-2.0 cents/point via transfer partners (Delta, Hyatt, Air France).",
+          "Hyatt points — consistently 1.7-2.5 cents/point (the most valuable hotel currency).",
+          "Hilton points — typically 0.5-0.6 cents/point (require 5-10x more points per night).",
+          "Rule of thumb: redeem for international business class (4-8 CPP) or Hyatt; pay cash for domestic economy and chain hotels (1-1.2 CPP).",
+        ],
+      },
+      {
+        heading: "Common Travel Money Mistakes",
+        bullets: [
+          "Using a debit card abroad — 3% foreign transaction fee + $3-5 ATM fee per withdrawal. Use a no-FTF credit card or Charles Schwab debit (reimburses all ATM fees).",
+          "Accepting Dynamic Currency Conversion — always decline and pay in local currency.",
+          "Buying travel insurance separately when your Chase Sapphire Preferred, Amex Platinum, or Capital One Venture X already includes it.",
+          "Booking hotels through OTAs (Expedia, Booking.com) — you forfeit elite status, often pay 5-10% more, and lose direct cancellation.",
+          "Paying airline checked-bag fees when your card issuer reimburses (Amex Platinum, Citi / AAdvantage, Delta SkyMiles cards).",
+          "Exchanging currency at airport kiosks — spreads of 10-15%. Use a no-FTF card or in-country ATM instead.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Book flights 1-3 months out, midweek departures.",
@@ -370,6 +471,14 @@ export const guides: GuideArticle[] = [
       {
         q: "Is travel insurance worth it?",
         a: "For international trips over $2,000 or anything with prepaid non-refundable costs, yes. Many premium credit cards include it for free.",
+      },
+      {
+        q: "How do I avoid foreign transaction fees?",
+        a: "Use a credit card that explicitly waives them — Chase Sapphire Preferred/Reserve, Capital One Venture/Venture X, Amex Platinum, and most travel-branded cards. For cash, use a debit card like Charles Schwab Investor Checking or Fidelity Cash Management (both reimburse all global ATM fees with no FTF).",
+      },
+      {
+        q: "What's the cheapest way to book a rental car internationally?",
+        a: "Use AutoSlash.com (auto-applies coupon codes and re-books if price drops). Decline all on-site insurance — most major credit cards include primary rental coverage abroad. Always read the fuel and drop-off terms twice.",
       },
     ],
   },
@@ -412,12 +521,52 @@ export const guides: GuideArticle[] = [
           body: "Pre-arrange financing through your credit union or bank before visiting a dealer. Dealer financing markups (1-3%) cost the average buyer $1,500-3,000 over a loan lifetime.",
         },
       },
+      {
+        heading: "New Car Depreciation: The Real Math",
+        paragraphs: [
+          "A new car loses value the moment you drive it off the lot — and the depreciation curve isn't linear. Understanding the curve is the single best argument for buying lightly used instead of new.",
+        ],
+        bullets: [
+          "Year 1 — 20-25% lost (drive-off-lot drop + first year).",
+          "Year 3 — 46% lost (vs original sticker).",
+          "Year 5 — 60% lost on average.",
+          "Year 7-8 — depreciation flattens to ~5-8%/year.",
+          "Practical implication — buying a 2-3 year old CPO vehicle skips the worst depreciation at ~25-35% off MSRP while keeping 60-70% of the factory warranty.",
+          "Example — $40K new car is worth ~$30K after year 1, ~$21.6K after year 3. Buying it at year 3 and driving it to year 10 = same years of service for ~$18K less total cost.",
+        ],
+      },
+      {
+        heading: "Total Cost of Ownership: Beyond the Sticker",
+        paragraphs: [
+          "A $35K car doesn't cost $35K. Budget for 5-year TCO: purchase price + financing + insurance + fuel + maintenance + depreciation. A 'cheap' truck can easily exceed a more expensive sedan on TCO.",
+        ],
+        bullets: [
+          "Financing — on a $35K loan at 7% APR over 60 months: $6,569 in interest.",
+          "Insurance — $1,500-2,400/year for a typical sedan; $1,800-3,000/year for SUVs/trucks.",
+          "Fuel — 25 MPG car × 12K miles/year × $3.50/gal = $1,680/year; 18 MPG truck = $2,333/year ($3,265 more over 5 years).",
+          "Maintenance — budget ~$100/month (oil, tires, brakes, fluids); German luxury doubles it.",
+          "Depreciation — typically the LARGEST cost — $14-18K on a $35K vehicle over 5 years.",
+          "Rule — total 5-year TCO is usually 1.5-2x the purchase price. Price a car by dividing TCO by months owned.",
+        ],
+      },
+      {
+        heading: "The 3-Bid Negotiation Playbook",
+        bullets: [
+          "Step 1 — identify 3 dealers within 100 miles via TrueCar, CarsDirect, or Edmunds dealer inventory.",
+          "Step 2 — email each Internet Sales Manager with exact trim/VIN/color and request 'out-the-door price including all fees, taxes, and add-ons.' Get it in writing.",
+          "Step 3 — forward the lowest bid to the other two and ask: 'Can you beat this by $500?' Repeat until all three have submitted their final best.",
+          "Step 4 — arrive at the winning dealer with pre-approved financing from your credit union (rate + term in writing).",
+          "Step 5 — refuse every add-on in the finance office: extended warranty (markup often 2-4x wholesale), GAP insurance (buy from your insurer for 50% less), fabric protection, VIN etching.",
+          "Step 6 — review the purchase contract line-by-line before signing. Walk away from any 'doc fee' over $200-300 (varies by state).",
+        ],
+      },
     ],
     keyTakeaways: [
       "Research at least an hour for any purchase over $500.",
       "Shop the calendar — timing alone often saves 15-30%.",
       "Get three quotes and be willing to walk away.",
       "Pre-arrange financing separately from the seller.",
+      "5-year TCO is typically 1.5-2x a car's sticker price — budget accordingly.",
     ],
     faqs: [
       {
@@ -427,6 +576,14 @@ export const guides: GuideArticle[] = [
       {
         q: "New vs. used cars?",
         a: "Certified pre-owned 2-3 years old usually wins. You skip the steepest depreciation curve and still get most of the warranty.",
+      },
+      {
+        q: "How much should I put as a down payment on a car?",
+        a: "20% is the traditional rule (to avoid being underwater), but with depreciation as steep as it is, aim for the 20/4/10 rule: 20% down, financed over 4 years max, with total transportation cost (payment + insurance + fuel) under 10% of gross income.",
+      },
+      {
+        q: "Is leasing ever smarter than buying?",
+        a: "Rarely for personal use. Leasing makes sense if you drive under 12K miles/year, want a new car every 3 years, can deduct it as a business expense, or want to hedge against EV technology obsolescence. For everyone else, buying and holding 8+ years is 30-50% cheaper over a lifetime.",
       },
     ],
   },
@@ -455,7 +612,20 @@ export const guides: GuideArticle[] = [
         heading: "Where to Keep It",
         paragraphs: [
           "An emergency fund has two rules: it must be safe, and it must be liquid. That rules out the stock market, real estate, and anything with withdrawal penalties.",
-          "The best home for your emergency fund is a high-yield savings account (HYSA) at an FDIC-insured bank. You earn 4-5% APY and can transfer money to checking within 1-2 business days.",
+          "The best home for your emergency fund is a high-yield savings account (HYSA) at an FDIC-insured bank. As of May 2026, top accounts pay 4.00-4.10% APY (CIT, Bread, SoFi with direct deposit) and you can transfer money to checking within 1-2 business days.",
+        ],
+      },
+      {
+        heading: "HYSA vs Money Market vs T-Bills vs I Bonds",
+        paragraphs: [
+          "Once you have more than the starter $1,000, it's worth understanding the tradeoffs between the four main 'safe cash' options. The answer for most people is still HYSA — but for large balances ($50K+), a blend can add 0.5-1% without giving up much access.",
+        ],
+        bullets: [
+          "HYSA — 4.00-4.10% APY, FDIC-insured to $250K, ACH access in 1-2 days, state-taxable interest. Best for: emergency fund core.",
+          "Money Market Account — 3.75-4.25% APY, FDIC-insured, check-writing, typically $5K+ minimums. Best for: larger balances needing quick bill-pay access.",
+          "4-week T-Bills — ~4.3-4.4% yield (May 2026), backed by US Treasury, state-tax-free (saves ~5-13% in high-tax states), roll every 4 weeks on TreasuryDirect. Best for: balances above $50K in states like CA, NY.",
+          "I Bonds — 3.11% composite rate (May 2026), inflation-protected, state-tax-free, but locked for 12 months with 3-month interest penalty if redeemed before 5 years. Best for: the SECOND half of your emergency fund, once the first half is liquid.",
+          "Tax rule — a 4% HYSA in a 24% federal + 6% state bracket delivers 2.8% after tax. A 4.3% T-bill delivers 3.27% in the same scenario. For high earners in high-tax states, T-bills can beat HYSAs even at lower headline yields.",
         ],
       },
       {
@@ -505,6 +675,14 @@ export const guides: GuideArticle[] = [
       {
         q: "Should I invest my emergency fund for higher returns?",
         a: "No. Emergencies happen when markets are down. You need the money available at face value, not a 30% loss on the exact day you need it.",
+      },
+      {
+        q: "Is FDIC insurance still reliable after the 2023 banking failures?",
+        a: "Yes. When Silicon Valley Bank, Signature Bank, and First Republic failed in 2023, 100% of insured depositors were made whole within days. The lesson isn't that FDIC is unreliable — it's that balances above $250K per bank per ownership category are what actually got wiped out (temporarily). Keep each account under the $250K limit or split across banks.",
+      },
+      {
+        q: "What's the difference between FDIC and SIPC?",
+        a: "FDIC covers bank deposit accounts (checking, savings, CDs) up to $250K. SIPC covers brokerage accounts up to $500K ($250K cash) against the brokerage failing — NOT against market losses. Emergency funds should always be in FDIC-insured accounts, not brokerage sweep accounts.",
       },
     ],
   },
@@ -561,6 +739,14 @@ export const guides: GuideArticle[] = [
       {
         q: "What about money market accounts vs. HYSAs?",
         a: "Rates are usually similar. Money markets may come with check-writing privileges, which makes them useful for larger bill payments.",
+      },
+      {
+        q: "CD ladder vs Treasury Bill ladder — which is better?",
+        a: "T-bill ladders are almost always better for taxable money. Current 4-week through 52-week Treasuries yield 4.0-4.4% (May 2026), are state-tax-free (worth 0.5-1% more to high-tax-state residents), and can be sold anytime on the secondary market. CDs offer similar yields but charge early-withdrawal penalties (3-6 months of interest) and their interest is fully state-taxable.",
+      },
+      {
+        q: "How do I build a T-bill ladder in practice?",
+        a: "Open a TreasuryDirect.gov account (free) or use your brokerage (Fidelity, Schwab, Vanguard). For a 12-month ladder with $12K: buy $1K of a 52-week T-bill each month for 12 months. After month 12, one matures monthly — reinvest at the longest term. Minimum is $100 per bill; fractional treasuries aren't available, so round down.",
       },
     ],
   },
@@ -624,6 +810,47 @@ export const guides: GuideArticle[] = [
           body: "Time in the market beats timing the market. Missing the 10 best days of the stock market over the past 20 years cuts your total return roughly in half.",
         },
       },
+      {
+        heading: "Nominal vs Real Returns: What You Actually Keep",
+        paragraphs: [
+          "The 10% average S&P 500 return you see quoted is NOMINAL — before inflation. Real returns (what your purchasing power actually grew) are 2-3 percentage points lower. Plan in real terms to avoid overestimating retirement wealth.",
+        ],
+        bullets: [
+          "S&P 500 1928-2024 — 10.1% nominal average, 7.0% real (inflation-adjusted).",
+          "Bonds (10-yr Treasury) 1928-2024 — 4.9% nominal, 1.9% real.",
+          "Cash (T-Bills) 1928-2024 — 3.3% nominal, 0.3% real — cash barely beats inflation.",
+          "Gold 1928-2024 — 4.6% nominal, 1.6% real — worse than stocks in every long window.",
+          "Planning rule — use 6-7% real (not 10% nominal) when projecting decades-out goals in today's dollars.",
+        ],
+      },
+      {
+        heading: "Historical Bear Markets You Should Expect",
+        paragraphs: [
+          "Bear markets (20%+ drawdowns) happen roughly every 5-7 years. If you plan to invest for 40 years, you will live through 6-8 of them. Knowing this in advance is how you avoid panic-selling.",
+        ],
+        bullets: [
+          "1973-74 — -48% (oil shock, stagflation), recovery: 3.5 years.",
+          "2000-2002 Dot-com — -49%, recovery: 5+ years.",
+          "2008-09 Financial Crisis — -57%, recovery: 4 years.",
+          "2020 COVID crash — -34% in 5 weeks, recovery: 5 months.",
+          "2022 — -25% (rate hikes), recovery: 18 months.",
+          "Pattern — severity doesn't predict recovery time. Short, sharp drops often recover fastest. Slow grinds (2000-02) take years.",
+          "Cost of panic — an investor who sold at the 2008 bottom and re-entered 2 years later missed 55% of the recovery.",
+        ],
+      },
+      {
+        heading: "The Expense Ratio Tax: Why Fund Fees Matter",
+        paragraphs: [
+          "Expense ratios look tiny (0.03% vs 0.75%) but compound ruthlessly over decades. A 1% difference in fees can eat 25-30% of your final balance over 40 years.",
+        ],
+        bullets: [
+          "$100K invested for 40 years at 7% nominal, 0.03% fee (VTI/FSKAX) → $1,463,000.",
+          "$100K invested for 40 years at 7% nominal, 0.50% fee (typical active fund) → $1,206,000 — 18% less.",
+          "$100K invested for 40 years at 7% nominal, 1.00% fee (advisor-managed fund) → $1,003,000 — 31% less.",
+          "Practical rule — target weighted portfolio expense ratio under 0.10%. It's achievable with any major index fund lineup.",
+          "Annuities, variable life insurance, and most actively managed mutual funds charge 1.5-3%+ — mathematically incompatible with wealth-building.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Stocks grow faster long-term; bonds smooth short-term volatility.",
@@ -647,6 +874,14 @@ export const guides: GuideArticle[] = [
       {
         q: "How do I handle a market crash emotionally?",
         a: "Have a written investment policy statement BEFORE the crash. Say: 'I will not sell during downturns. I will continue contributing monthly.' Read it during corrections. The investors who panic-sell typically lock in 30-40% losses while disciplined investors break even within 18-24 months.",
+      },
+      {
+        q: "What's the Rule of 72 and how do I use it?",
+        a: "Divide 72 by your expected annual return to estimate years to double your money. At 7% real return, money doubles every ~10.3 years. At 10% nominal, every 7.2 years. Useful for quick mental math — $50K today becomes ~$400K in 30 years at 7% (three doublings).",
+      },
+      {
+        q: "Dividends vs growth — which matters more?",
+        a: "Total return is what matters. Dividends have historically provided ~40% of the S&P 500's total return — reinvest them. Don't chase high-yield dividend stocks (often value traps with stretched balance sheets). A total-market index fund captures both dividend and growth components automatically.",
       },
     ],
   },
@@ -684,6 +919,32 @@ export const guides: GuideArticle[] = [
           body: "I will contribute $600 per month to a Roth IRA in a 3-fund index portfolio, rebalanced annually, with a target of $500,000 by age 55.",
         },
       },
+      {
+        heading: "Monthly Contribution Math by Goal and Timeline",
+        paragraphs: [
+          "Use this table to reverse-engineer your contribution from a target. Assumes 7% real annual return (stock-heavy portfolio). Our compound interest calculator runs your exact numbers.",
+        ],
+        bullets: [
+          "$100K in 10 years → $580/month.",
+          "$250K in 15 years → $788/month.",
+          "$500K in 20 years → $960/month.",
+          "$1M in 25 years → $1,235/month.",
+          "$1M in 30 years → $820/month (why starting 5 years earlier matters).",
+          "$2M in 30 years → $1,640/month.",
+          "$2M in 40 years → $790/month (why starting 10 years earlier matters even more).",
+          "Formula — PMT = FV × (r/12) / ((1 + r/12)^(12n) - 1). At r=0.07 and n=years.",
+        ],
+      },
+      {
+        heading: "Common SMART Goal Mistakes",
+        bullets: [
+          "Using nominal returns (10%) instead of real (6-7%) — overstates wealth by 40%+ over 30 years.",
+          "Ignoring contribution limits — an IRA caps at $7K/year in 2026. If your plan requires $1,500/month, you need a 401(k) or taxable account too.",
+          "Forgetting sequence-of-returns risk — hitting your number at retirement doesn't help if a 30% crash comes in year 1. Shift toward bonds 5-10 years from the goal.",
+          "Treating the target as fixed in today's dollars — $1M in 2056 buys what ~$500K buys today (assuming 2.5% inflation).",
+          "Not stress-testing the plan against missed years — miss 2-3 years of contributions and the final number drops 15-25%.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Turn every investing ambition into a SMART goal.",
@@ -699,6 +960,10 @@ export const guides: GuideArticle[] = [
       {
         q: "What if I cannot afford my target contribution?",
         a: "Start with what you can, automate it, and increase the amount every time you get a raise. Consistency matters more than size early on.",
+      },
+      {
+        q: "Should I plan in today's dollars or future dollars?",
+        a: "Always today's dollars using a REAL return rate (6-7% for stock-heavy portfolios). This automatically accounts for inflation and makes the target meaningful. 'I need $1.2M in today's purchasing power' is clearer than 'I need $2.5M nominal in 2056.'",
       },
     ],
   },
@@ -783,6 +1048,14 @@ export const guides: GuideArticle[] = [
         q: "Should I own individual bonds or a bond fund?",
         a: "A bond index fund for almost everyone. Individual bonds only make sense with portfolios above $500k and specific income-matching goals.",
       },
+      {
+        q: "How does tax-location really save 0.3-0.7% per year?",
+        a: "Bonds and REITs throw off ordinary-income distributions taxed at your marginal rate (22-37%). Held in a taxable account, that drag is 0.8-1.5% per year. Moved to a Traditional IRA or 401(k), it's zero. Swap the space with a total-market index ETF (VTI/FSKAX) — those throw off almost no taxable distributions, so the taxable account keeps most of its yield. On a $500K portfolio, that's $1,500-3,500/year saved, forever.",
+      },
+      {
+        q: "How much of my stock allocation should be international?",
+        a: "20-40% is defensible. The global market cap weight is roughly 40% international, so anything in that band is neutral. Going under 20% is a big home-country bet; over 50% is an active bet against US dominance. A simple default: 30% of stocks in VXUS or FTIHX.",
+      },
     ],
   },
   {
@@ -846,6 +1119,14 @@ export const guides: GuideArticle[] = [
         q: "Do I have to rebalance in every account separately?",
         a: "No. Rebalance at the household level across all accounts combined. Prioritize selling in tax-advantaged accounts to avoid capital gains.",
       },
+      {
+        q: "What is tax-loss harvesting and is it worth it?",
+        a: "Selling losing positions to realize a capital loss that offsets gains (or up to $3,000 of ordinary income per year). Worth 0.2-0.5% per year in after-tax returns on taxable accounts above ~$50K. Automate it with robo-advisors (Betterment, Wealthfront) or DIY at the end of each tax year. Watch for wash-sale rules: don't buy a 'substantially identical' security within 30 days on either side of the sale.",
+      },
+      {
+        q: "When should I consider I Bonds vs TIPS for inflation protection?",
+        a: "I Bonds are for individuals — $10K/year limit, 12-month lockup, state-tax-free, ideal for a 3-5 year hedge sleeve. TIPS (Treasury Inflation-Protected Securities) are better for larger allocations since they have no purchase cap and can be held via a fund (SCHP, VTIP, VAIPX). Use I Bonds first up to the $10K limit, TIPS for anything beyond.",
+      },
     ],
   },
   {
@@ -907,12 +1188,52 @@ export const guides: GuideArticle[] = [
           body: "$500/month starting at 25 becomes $1.2M by 65 at 7% returns. The same contribution starting at 35 only gets you $567K. Starting early is worth more than any stock pick.",
         },
       },
+      {
+        heading: "The 4% Rule: Where It Works and Where It Breaks",
+        paragraphs: [
+          "The Trinity Study (Bengen 1994, updated through 2024) found that a 50/50 to 75/25 stock/bond portfolio supported a 4% inflation-adjusted withdrawal for 30 years in 96%+ of historical periods. That's where '25x expenses' comes from. But the rule has known failure modes.",
+        ],
+        bullets: [
+          "Horizon sensitivity — 4% is for 30-year retirements. Early retirees (40-year horizon) should use 3.3-3.5%; 20-year horizons can safely take 5%.",
+          "Sequence-of-returns risk — a 30% drop in years 1-2 of retirement is the #1 failure driver. Solution: hold 2-3 years of expenses in bonds/cash as a 'bond tent' around retirement.",
+          "Bond-heavy portfolios fail — a 30/70 allocation historically fails ~15% of the time over 30 years because bonds can't outpace inflation + withdrawals long-term.",
+          "Dynamic SWR — Guyton-Klinger guardrails (raise 4-5% in up markets, cut to 3-3.5% in deep drawdowns) lift safe initial rates to 4.5-5% with the same 95%+ survival rate.",
+          "IRMAA & tax impact — Social Security + RMDs can push retirees into higher Medicare premium brackets ($250-500/mo extra per person above $106K MAGI). Plan Roth conversions in the 59½-73 window to flatten lifetime taxes.",
+        ],
+      },
+      {
+        heading: "The Roth Conversion Ladder (Early Retirement Tool)",
+        paragraphs: [
+          "If you want to access Traditional 401(k)/IRA funds before age 59½ without the 10% penalty, the Roth Conversion Ladder is the cleanest legal path.",
+        ],
+        bullets: [
+          "Step 1 — rollover Traditional 401(k) to a Traditional IRA after leaving your job (no tax event).",
+          "Step 2 — each year, convert one year's worth of expenses from Traditional IRA to Roth IRA. You pay ordinary income tax on each conversion — ideally in a low-income year.",
+          "Step 3 — wait 5 tax years from each conversion. The converted principal can then be withdrawn tax-free and penalty-free, even if you're under 59½.",
+          "Step 4 — repeat annually. Once the ladder is rolling, each year's expenses come from a conversion made 5 years earlier.",
+          "Bridge funding — need 5 years of taxable account or Roth contribution withdrawals (always penalty-free) to live on while the ladder fills.",
+          "Tax win — early retirees in the 12% bracket can convert hundreds of thousands of dollars at dramatically lower rates than a 22-24% working-year rate.",
+        ],
+      },
+      {
+        heading: "Starting Late: Three Realistic Scenarios",
+        paragraphs: [
+          "Behind where you 'should' be? The math still works — it just requires higher savings rates.",
+        ],
+        bullets: [
+          "Age 35 with $10K saved, $70K income — contributing 15% ($875/mo) at 7% real → $1.18M at age 65.",
+          "Age 45 with $50K saved, $85K income — contributing 25% ($1,770/mo) at 7% real → $1.02M at age 65.",
+          "Age 55 with $150K saved, $100K income — contributing 35% ($2,915/mo) at 6% real → $868K at age 65 + Social Security covers the gap. Catch-up contributions (age 50+) add $7,500/year extra to 401(k)s.",
+          "Working 3-5 years longer is the single most powerful late-start lever — it adds contributions while cutting the years the portfolio needs to support.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Target 20-25x your annual expenses by retirement.",
       "Follow the priority order: match, high-interest debt, HSA, Roth, 401(k), brokerage.",
       "Roth wins for most young investors; traditional wins for high earners near retirement.",
       "Starting 10 years earlier is worth more than any 'hot' investment.",
+      "Use 3.3-3.5% SWR for 40-year retirements; 4-5% is safe only for ~30 years.",
     ],
     faqs: [
       {
@@ -930,6 +1251,14 @@ export const guides: GuideArticle[] = [
       {
         q: "What is a Mega Backdoor Roth?",
         a: "An advanced strategy for high earners whose 401(k) plans allow after-tax contributions and in-service rollovers. You contribute up to ~$46,000 of after-tax dollars annually (above the standard $23,500 limit), then immediately roll them to a Roth account for tax-free growth. Only ~40% of plans support it — check your plan documents.",
+      },
+      {
+        q: "How do RMDs affect my tax bracket in retirement?",
+        a: "Required Minimum Distributions start at age 73 (75 if born 1960+) and force withdrawals from Traditional accounts whether you need the money or not. A $1.5M Traditional IRA forces a ~$56,600 withdrawal at age 73 — pushing many retirees into higher brackets and triggering IRMAA Medicare surcharges. Mitigate with Roth conversions between ages 59½-73 during low-income windows.",
+      },
+      {
+        q: "What's the IRMAA cliff and how do I avoid it?",
+        a: "Medicare Part B and D premiums spike when MAGI crosses thresholds (2026: $106K single / $212K married). Going $1 over can cost $800-2,400/year in extra premiums per person. Manage with tax-free Roth withdrawals, Qualified Charitable Distributions (QCDs) after 70½, and careful Roth conversion timing to stay just under the thresholds.",
       },
     ],
   },
@@ -1030,6 +1359,14 @@ export const guides: GuideArticle[] = [
         q: "Options or stocks to start?",
         a: "Stocks. Learn price action and risk management first. Options add leverage that amplifies both gains and mistakes — start there only after 1-2 years of profitable stock trading.",
       },
+      {
+        q: "How do taxes work on short-term trades?",
+        a: "Positions held under 1 year are taxed as short-term capital gains at your ordinary income rate (10-37%). Long-term gains (12+ months held) are taxed at 0/15/20%. High-frequency traders can easily lose 30-40% of gross profit to federal + state taxes. Consider trading inside a Roth IRA to eliminate all capital gains tax — the tradeoff is no loss harvesting.",
+      },
+      {
+        q: "What is the wash-sale rule and when does it apply?",
+        a: "If you sell a security at a loss and buy a 'substantially identical' security within 30 days (before OR after the sale), the loss is disallowed for that tax year — it adds to the cost basis of the new position. Applies across all accounts including IRAs (losses in your brokerage triggered by IRA buys are PERMANENTLY lost). Swap losing positions to a similar but not identical fund (e.g., VOO → IVV) to harvest losses legally.",
+      },
     ],
   },
 
@@ -1120,6 +1457,35 @@ export const guides: GuideArticle[] = [
           body: "Banks that offer 5.5% APY for 3 months then drop to 3.5% are betting on inertia — most customers don't notice and stick around. If you're going to chase a promo, calendar the day it expires and be ready to move.",
         },
       },
+      {
+        heading: "May 2026 Rate Benchmarks and 12-Month History",
+        paragraphs: [
+          "Use these as a reference point when comparing offers. APYs move roughly with the Fed Funds rate — expect the floor to drop 0.25-0.50% over the next 6 months if cuts materialize.",
+        ],
+        bullets: [
+          "CIT Platinum Savings — 4.10% APY (balances $5K+). 12-mo range: 4.55% → 4.10%.",
+          "Bread Savings — 4.00% APY. 12-mo range: 4.40% → 4.00%.",
+          "SoFi (with direct deposit) — 3.80% APY. 12-mo range: 4.30% → 3.80%.",
+          "Marcus by Goldman Sachs — 3.50% APY. 12-mo range: 4.00% → 3.50%.",
+          "Ally Online Savings — 3.10% APY. 12-mo range: 4.00% → 3.10%.",
+          "Capital One 360 Performance Savings — 3.40% APY. 12-mo range: 3.90% → 3.40%.",
+          "Big-bank 'standard' savings (Chase, BofA, Wells) — 0.01-0.05% APY. Unchanged for years.",
+          "The 4%-vs-0.01% gap on $25K balance = $1,000/year of free money. This is the largest no-risk upgrade in personal finance.",
+        ],
+      },
+      {
+        heading: "After-Tax Yield: What You Actually Keep",
+        paragraphs: [
+          "HYSA interest is taxed as ordinary income at federal + state rates. For high earners in high-tax states, T-bills often beat HYSAs on after-tax yield despite a lower headline rate.",
+        ],
+        bullets: [
+          "24% federal + 0% state (TX, FL) — 4.00% HYSA → 3.04% after-tax.",
+          "24% federal + 6% state (most states) — 4.00% HYSA → 2.80% after-tax.",
+          "32% federal + 9.3% state (CA high earner) — 4.00% HYSA → 2.35% after-tax.",
+          "Same 32% + 9.3% investor in a 4.3% T-bill (state-tax-exempt) → 2.92% after-tax — 0.57% better than HYSA despite lower headline rate.",
+          "Practical rule — if your combined marginal rate is above 30% and you have $50K+ in cash, split between HYSA (emergency liquidity) and 4-week T-bill ladder (balance).",
+        ],
+      },
     ],
     keyTakeaways: [
       "Pick an HYSA with 4%+ APY, zero fees, and FDIC insurance.",
@@ -1140,6 +1506,14 @@ export const guides: GuideArticle[] = [
       {
         q: "Does opening an HYSA hurt my credit?",
         a: "No. Most banks use a soft pull (ChexSystems) rather than a hard credit inquiry. Your credit score is unaffected.",
+      },
+      {
+        q: "How does FDIC coverage work for joint accounts?",
+        a: "Each co-owner gets $250K of coverage per bank — so a joint account gets $500K total. Revocable trust accounts with named beneficiaries get up to $250K per beneficiary (capped at 5 beneficiaries = $1.25M per owner per bank). Verify your exact coverage on FDIC's EDIE calculator.",
+      },
+      {
+        q: "What about brokerage 'sweep' accounts like Fidelity SPAXX?",
+        a: "These are money market funds (MMFs), not FDIC-insured savings. They're SIPC-covered for brokerage failure only, NOT against MMF losses (rare but possible — Reserve Primary Fund broke the buck in 2008). Yields are typically 4.0-4.3% (May 2026) and state-tax-free if the fund holds Treasuries. Good alternative for brokerage-adjacent cash; don't use for the core emergency fund.",
       },
     ],
   },
@@ -1220,6 +1594,34 @@ export const guides: GuideArticle[] = [
           "Do I value flexibility (early access, no RMDs, tax-free inheritance)? If yes, lean Roth even when the math is close.",
         ],
       },
+      {
+        heading: "The Backdoor Roth Pro-Rata Trap",
+        paragraphs: [
+          "High earners (above the $161K single / $240K married phase-out) use the Backdoor Roth: contribute $7K to a non-deductible Traditional IRA, then convert it to a Roth. It only works cleanly if you have NO other pre-tax Traditional IRA balance.",
+        ],
+        bullets: [
+          "The IRS treats ALL Traditional IRAs as one pool for the pro-rata rule. Conversion is taxed proportionally on pre-tax vs after-tax dollars across every Traditional IRA you own.",
+          "Example — $7K non-deductible contribution + $63K pre-tax Traditional IRA from an old rollover. Total = $70K; only 10% is after-tax. Converting $7K creates $6,300 of taxable income at your marginal rate (~$1,500-2,500 tax bill).",
+          "Fix — roll pre-tax Traditional IRA balances INTO your current 401(k) before doing the Backdoor Roth. 401(k) balances don't count for the pro-rata calculation.",
+          "Form 8606 — you MUST file this form every year you make a non-deductible contribution. Skipping it double-taxes the basis on future withdrawals.",
+          "Step transaction doctrine — the IRS has signaled that same-day contribute-and-convert is fine. Wait 1 day if you want to be conservative; no need to wait longer.",
+        ],
+      },
+      {
+        heading: "Tax-Bracket Break-Even Table",
+        paragraphs: [
+          "For a $7,000/year contribution over 30 years at 7% real return = $660,000 at retirement. Here's what each scenario leaves you after tax.",
+        ],
+        bullets: [
+          "Current 12% / Future 22% — Roth wins by $66K (+10%). Choose Roth.",
+          "Current 12% / Future 12% — Dead even. Choose Roth for the flexibility bonus.",
+          "Current 22% / Future 22% — Dead even. Slight Roth edge for no RMDs.",
+          "Current 24% / Future 22% — Traditional wins by $13K (+2%). Coin flip; consider split.",
+          "Current 32% / Future 22% — Traditional wins by $66K (+10%). Choose Traditional.",
+          "Current 37% / Future 24% — Traditional wins by $86K (+13%). Choose Traditional.",
+          "Young high earner rule — if you're under 35 and in the 22-24% bracket, Roth is almost always right despite the higher current rate, because your peak earning years (and tax rate) are ahead.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Roth = pay tax now, tax-free forever. Traditional = tax break now, taxed later.",
@@ -1240,6 +1642,14 @@ export const guides: GuideArticle[] = [
       {
         q: "Can I convert a Traditional IRA to a Roth?",
         a: "Yes, anytime. You pay ordinary income tax on the converted amount in the year of conversion. Smart to do in low-income years (sabbaticals, early retirement, job transitions).",
+      },
+      {
+        q: "What is the 5-year rule for Roth withdrawals?",
+        a: "Two separate 5-year clocks exist. (1) Contributions — the Roth must be open 5 tax years AND you must be 59½ to withdraw EARNINGS tax-free. Contributions themselves can be withdrawn anytime. (2) Conversions — each conversion has its own 5-year clock before the converted principal can be withdrawn penalty-free if you're under 59½. Start a Roth with $1 as early as possible to start the first clock.",
+      },
+      {
+        q: "Does a 401(k) Roth have the same rules as a Roth IRA?",
+        a: "Mostly, but with key differences. Roth 401(k)s: higher contribution limit ($23,500 in 2026), NO income phase-out, subject to RMDs at age 73 (unless rolled to Roth IRA first), and employer match goes to the Traditional side by default. Many people contribute to Roth 401(k) during work years, then roll to Roth IRA at retirement to eliminate RMDs.",
       },
     ],
   },
@@ -1342,6 +1752,45 @@ export const guides: GuideArticle[] = [
           "Paying off a collection without a 'pay for delete' letter — paid collections can still hurt scores on older FICO models.",
         ],
       },
+      {
+        heading: "Real Cost of a 50-Point Score Gap",
+        paragraphs: [
+          "Score tiers translate directly to APR. Moving from 'Good' (680) to 'Excellent' (760) saves tens of thousands over a lifetime of borrowing.",
+        ],
+        bullets: [
+          "30-year mortgage, $400K — 680 score ~7.2% APR → $978K lifetime interest. 760 score ~6.5% APR → $910K. Savings: $68,000.",
+          "60-month auto loan, $30K — 680 score ~9.5% APR → $7,576 interest. 760 score ~6.0% APR → $4,799. Savings: $2,777.",
+          "Credit card APR — 680 score averages 24-28% APR; 760+ averages 18-22%. On $5K revolving = ~$300/year difference.",
+          "Insurance — most states let insurers use credit-based scoring. Fair credit pays 30-50% more for auto insurance in many states.",
+          "Rental applications — landlords increasingly hard-require 650+ scores; 720+ typically waives extra deposits.",
+        ],
+      },
+      {
+        heading: "FICO 8 vs 9 vs 10: Which Score Lenders Actually Use",
+        paragraphs: [
+          "There's no single FICO score. Different lenders pull different versions, and your 'score' can vary 30-80 points between them.",
+        ],
+        bullets: [
+          "FICO 8 — the most common model. Used by most credit cards and auto lenders. Paid collections under $100 are ignored.",
+          "FICO 9 — less common but growing. Ignores paid collections entirely; weighs medical debt less.",
+          "FICO 10 / 10T — newest, incorporating trended data (utilization patterns over 24 months, not just current snapshot).",
+          "Mortgage FICO (2, 4, 5) — OLDER models still used for home loans. Paid collections still hurt. Medical debt fully counted. This is why mortgage pulls often score lower than your Credit Karma number.",
+          "VantageScore — a competing model (what Credit Karma shows). Directionally similar but can be 20-40 points different from FICO.",
+          "Practical — if applying for a mortgage, pull your actual mortgage tri-merge score from myFICO.com ~60 days before applying to know exactly what lenders see.",
+        ],
+      },
+      {
+        heading: "Tax Surprise: Cancelled Debt Is Taxable Income",
+        paragraphs: [
+          "If a creditor charges off $600+ of your debt (settles for less than owed, forgives a balance, or writes it off), they send you a Form 1099-C. The forgiven amount counts as ordinary income on your federal return.",
+        ],
+        bullets: [
+          "Example — settling a $10K credit card debt for $4K = $6K of taxable 1099-C income. At a 22% marginal rate, you owe $1,320 in additional tax.",
+          "Exceptions — debt cancelled in Chapter 7/13 bankruptcy, insolvency (liabilities exceeded assets immediately before forgiveness), qualified principal residence indebtedness, qualified student loan forgiveness.",
+          "Insolvency worksheet — IRS Form 982. If you can document you were insolvent at the time of cancellation, you can exclude the income.",
+          "Plan — never settle a debt in Q4 without considering the tax bill you'll owe the following April. Sometimes paying in full is cheaper after tax.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Dispute credit report errors first — fastest possible gain.",
@@ -1362,6 +1811,18 @@ export const guides: GuideArticle[] = [
       {
         q: "Will paying off an old collection help?",
         a: "Sometimes. On newer FICO models (8 and 9), paid collections are ignored. On older models used by many mortgage lenders, the account still hurts. Always ask for 'pay for delete' in writing before paying.",
+      },
+      {
+        q: "How do I write an effective dispute letter under FCRA?",
+        a: "Under the Fair Credit Reporting Act, send disputes in writing via certified mail. Include: your full name, DOB, last 4 of SSN, address; the specific account being disputed; why it's incorrect (wrong balance, wrong date, not yours, paid); copies (never originals) of supporting documents; and a clear demand that they verify or remove within 30 days. Bureaus that fail to investigate are liable for up to $1,000 in statutory damages.",
+      },
+      {
+        q: "Does paying rent build credit?",
+        a: "Yes, via opt-in services. Experian Boost (free), RentReporter ($9.95/mo), and LevelCredit ($6.95/mo) report rent and utility payments to one or more bureaus. Boost typically adds 8-13 points; rent-specific services add 10-30 points if you have a thin file. Not all mortgage lenders factor rent trade lines, so focus here is credit-building, not mortgage prep.",
+      },
+      {
+        q: "How long do negative items stay on my report?",
+        a: "Late payments: 7 years from the date of delinquency. Collections: 7 years from the original delinquency (not the date sold). Chapter 7 bankruptcy: 10 years. Chapter 13: 7 years. Hard inquiries: 2 years (but only affect score for 12 months). Tax liens: 7 years after paid. Send a dispute for anything past the reporting window — it's a legal violation to keep reporting it.",
       },
     ],
   },
