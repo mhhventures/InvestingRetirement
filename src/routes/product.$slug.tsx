@@ -72,6 +72,44 @@ function ProductDetail() {
                 { "@type": "ListItem", position: 3, name: p.name, item: `${SITE_URL}/product/${p.slug}` },
               ],
             },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: `Is ${p.name} safe and trustworthy?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `${p.name} is offered by ${p.provider}. ${
+                      p.category === "bank"
+                        ? "Deposits are FDIC-insured up to applicable limits, and the provider follows standard U.S. banking regulations."
+                        : p.category === "investing"
+                        ? "The provider is regulated by the SEC and FINRA where applicable, and client assets are typically SIPC-protected up to $500,000."
+                        : "The provider follows U.S. consumer-finance regulations and publishes a privacy policy covering user data."
+                    } Our editors rated it ${p.rating}/5 after independent testing.`,
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: `What are the fees for ${p.name}?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `${p.name} charges ${p.fees}. Minimum deposit: ${p.minDeposit}.${
+                      p.apy ? ` Current APY: ${p.apy}.` : ""
+                    }${p.bonus ? ` Welcome offer: ${p.bonus}.` : ""}`,
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: `Who is ${p.name} best for?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `${p.name} is best for ${p.bestFor.toLowerCase()}. It sits in our ${p.subcategory} category and scored ${p.rating}/5 based on ${p.reviews.toLocaleString()} user reviews plus our editorial testing.`,
+                  },
+                },
+              ],
+            },
           ],
         }
       : {
@@ -94,6 +132,39 @@ function ProductDetail() {
   const related = products
     .filter((x) => x.category === p.category && x.slug !== p.slug)
     .slice(0, 3);
+
+  const sameSubcategory = products.filter(
+    (x) => x.subcategory === p.subcategory && x.slug !== p.slug
+  );
+  const categoryHref: "/bank-accounts" | "/investing" | "/financial-apps" =
+    p.category === "bank"
+      ? "/bank-accounts"
+      : p.category === "investing"
+      ? "/investing"
+      : "/financial-apps";
+
+  const productFaqs: { q: string; a: string }[] = [
+    {
+      q: `Is ${p.name} safe and trustworthy?`,
+      a: `${p.name} is offered by ${p.provider}. ${
+        p.category === "bank"
+          ? "Deposits are FDIC-insured up to applicable limits, and the provider follows standard U.S. banking regulations."
+          : p.category === "investing"
+          ? "The provider is regulated by the SEC and FINRA where applicable, and client assets are typically SIPC-protected up to $500,000."
+          : "The provider follows U.S. consumer-finance regulations and publishes a privacy policy covering user data."
+      } Our editors rated it ${p.rating}/5 after independent testing.`,
+    },
+    {
+      q: `What are the fees for ${p.name}?`,
+      a: `${p.name} charges ${p.fees}. Minimum deposit: ${p.minDeposit}.${
+        p.apy ? ` Current APY: ${p.apy}.` : ""
+      }${p.bonus ? ` Welcome offer: ${p.bonus}.` : ""} Always review the provider's full disclosure before opening an account — rates and terms change.`,
+    },
+    {
+      q: `Who is ${p.name} best for?`,
+      a: `${p.name} is best for ${p.bestFor.toLowerCase()}. It sits in our ${p.subcategory} category and scored ${p.rating}/5 based on ${p.reviews.toLocaleString()} user reviews plus our editorial testing.`,
+    },
+  ];
 
   const author = getAuthorForCategory(p.subcategory);
   const reviewer = authors["editorial-team"];
@@ -124,7 +195,7 @@ function ProductDetail() {
             <div className="bg-white border border-[#e4d9cf] rounded mb-3 overflow-hidden">
               <div className="p-3 sm:p-4">
                 <div className="flex items-start gap-2 sm:gap-3">
-                  <ProductLogo p={p} size={48} />
+                  <ProductLogo p={p} size={48} priority />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-1.5 sm:gap-2">
                       <div>
@@ -317,6 +388,51 @@ function ProductDetail() {
                 </table>
               </section>
             )}
+
+            {/* Subcategory internal links — deep linking for SEO */}
+            {sameSubcategory.length > 0 && (
+              <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-4 sm:mb-5">
+                <div className="flex items-center justify-between gap-2 flex-wrap mb-2 sm:mb-3 border-b border-[#e4d9cf] pb-1.5">
+                  <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest">
+                    All {p.subcategory}
+                  </h2>
+                  <Link
+                    to={categoryHref}
+                    className="text-[10px] sm:text-[11px] font-semibold text-[#0e4d45] hover:underline"
+                  >
+                    View category &rarr;
+                  </Link>
+                </div>
+                <ul className="flex flex-wrap gap-1.5">
+                  {sameSubcategory.slice(0, 12).map((x) => (
+                    <li key={x.slug}>
+                      <Link
+                        to="/product/$slug"
+                        params={{ slug: x.slug }}
+                        className="inline-block text-[11px] sm:text-xs px-2 py-1 rounded-sm border border-[#e4d9cf] bg-[#fef6f1] hover:bg-[#0e4d45] hover:text-[#fef6f1] hover:border-[#0e4d45] text-black transition-colors"
+                      >
+                        {x.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {/* Visible FAQ — matches FAQPage schema */}
+            <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-4 sm:mb-5">
+              <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest border-b border-[#e4d9cf] pb-1.5 mb-3">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-3">
+                {productFaqs.map((f, i) => (
+                  <div key={i}>
+                    <h3 className="text-xs sm:text-sm font-bold text-black mb-1">{f.q}</h3>
+                    <p className="text-xs sm:text-sm text-black/75 leading-relaxed">{f.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             {/* Advertiser disclosure */}
             <section className="mt-4 sm:mt-6 text-[9px] sm:text-[10px] text-black/40 leading-snug border-t border-[#e4d9cf] pt-2 sm:pt-3">

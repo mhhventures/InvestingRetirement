@@ -131,7 +131,7 @@ function brandColor(p: Product): string {
 }
 
 // Brand logo: tries real brand icon via Clearbit; falls back to editorial monogram badge
-export function ProductLogo({ p, size = 40 }: { p: Product; size?: number }) {
+export function ProductLogo({ p, size = 40, priority = false }: { p: Product; size?: number; priority?: boolean }) {
   const logoUrl = getProductLogoUrl(p.slug, Math.max(128, size * 3));
   const [failed, setFailed] = useState(false);
 
@@ -146,7 +146,8 @@ export function ProductLogo({ p, size = 40 }: { p: Product; size?: number }) {
           alt={`${p.name} logo — ${p.provider} ${p.subcategory.toLowerCase()}`}
           width={size}
           height={size}
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
           decoding="async"
           onError={() => setFailed(true)}
           className="w-full h-full object-contain p-1"
