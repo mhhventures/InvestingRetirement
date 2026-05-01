@@ -5,6 +5,19 @@ import { useSeo, SITE_URL } from "@/lib/seo";
 import { FtcDisclosure, EditorialStandardsBadge, AuthorByline } from "@/components/eeat";
 import { getAuthorForCategory, authors } from "@/lib/authors";
 import { withUtm } from "@/lib/affiliate";
+import {
+  ReadingProgressBar,
+  TableOfContents,
+  BackToTop,
+  GuideFeedback,
+} from "@/components/guide-reading";
+
+function slugifyHeading(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 export const Route = createFileRoute("/guides/$articleId")({
   loader: async ({ params }) => {
@@ -104,8 +117,19 @@ function GuideArticlePage() {
   const reviewer = authors["editorial-team"];
   const related = guides.filter((g) => g.slug !== article.slug && g.category === article.category).slice(0, 4);
 
+  const tocHeadings = [
+    ...(howTo ? [{ id: "how-to", label: howTo.name }] : []),
+    ...article.sections.map((s) => ({
+      id: slugifyHeading(s.heading),
+      label: s.heading,
+    })),
+    ...(article.faqs.length > 0 ? [{ id: "faqs", label: "Frequently Asked Questions" }] : []),
+  ];
+
   return (
     <div>
+      <ReadingProgressBar />
+      <BackToTop />
       <FtcDisclosure variant="compact" />
 
       <div className="border-b border-[#e4d9cf] bg-[#fef6f1]">
@@ -123,15 +147,19 @@ function GuideArticlePage() {
       <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-4 sm:gap-6">
           <article className="min-w-0">
-            <header className="bg-white border border-[#e4d9cf] rounded p-4 sm:p-5 mb-3">
-              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-2">
+            <header className="bg-white border border-[#e4d9cf] rounded p-5 sm:p-6 mb-3">
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-3">
                 {article.category}
               </div>
-              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] text-black mb-2">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.08] text-black mb-3 tracking-tight">
                 {article.title}
               </h1>
-              <p className="text-sm text-black/70 leading-relaxed mb-3">{article.description}</p>
-              <div className="text-[10px] text-black/50 mb-3">{article.readTime} read</div>
+              <p className="text-base sm:text-lg text-black/70 leading-[1.6] mb-4 font-serif">
+                {article.description}
+              </p>
+              <div className="text-[10px] text-black/50 mb-3 uppercase tracking-wider">
+                {article.readTime} read
+              </div>
               <AuthorByline
                 author={author}
                 reviewedBy={reviewer}
@@ -143,18 +171,22 @@ function GuideArticlePage() {
               </div>
             </header>
 
-            <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3">
-              <p className="text-xs sm:text-sm text-black leading-relaxed">{article.intro}</p>
+            <TableOfContents headings={tocHeadings} />
+
+            <section className="bg-white border border-[#e4d9cf] rounded p-4 sm:p-6 mb-3">
+              <p className="text-base sm:text-lg text-black leading-[1.75] font-serif first-letter:font-serif first-letter:font-bold first-letter:text-5xl sm:first-letter:text-6xl first-letter:leading-none first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:text-[#0e4d45]">
+                {article.intro}
+              </p>
             </section>
 
-            <section className="bg-[#0e4d45]/5 border border-[#0e4d45]/20 rounded p-3 sm:p-4 mb-3">
-              <h2 className="text-[10px] sm:text-[11px] font-bold text-[#0e4d45] uppercase tracking-widest mb-2">
+            <section className="bg-[#0e4d45]/5 border border-[#0e4d45]/20 rounded p-4 sm:p-5 mb-3">
+              <h2 className="text-[10px] sm:text-[11px] font-bold text-[#0e4d45] uppercase tracking-widest mb-3">
                 Key Takeaways
               </h2>
-              <ul className="space-y-1.5">
+              <ul className="space-y-2.5">
                 {article.keyTakeaways.map((k) => (
-                  <li key={k} className="flex items-start gap-2 text-xs sm:text-sm">
-                    <span className="text-[#0e4d45] font-bold mt-0.5">&#10003;</span>
+                  <li key={k} className="flex items-start gap-3 text-sm sm:text-base leading-[1.6]">
+                    <span className="text-[#0e4d45] font-bold mt-0.5 shrink-0">&#10003;</span>
                     <span className="text-black">{k}</span>
                   </li>
                 ))}
@@ -162,19 +194,22 @@ function GuideArticlePage() {
             </section>
 
             {howTo && (
-              <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3">
-                <h2 className="font-serif font-bold text-lg sm:text-xl text-black border-b border-[#e4d9cf] pb-1.5 mb-3">
+              <section
+                id="how-to"
+                className="bg-white border border-[#e4d9cf] rounded p-4 sm:p-6 mb-3 scroll-mt-20"
+              >
+                <h2 className="font-serif font-bold text-xl sm:text-2xl text-black border-b border-[#e4d9cf] pb-2 mb-4 tracking-tight">
                   {howTo.name}
                 </h2>
-                <ol className="space-y-3">
+                <ol className="space-y-4">
                   {howTo.steps.map((s, i) => (
-                    <li key={i} id={`step-${i + 1}`} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#0e4d45] text-[#fef6f1] font-serif font-bold text-xs sm:text-sm flex items-center justify-center">
+                    <li key={i} id={`step-${i + 1}`} className="flex items-start gap-3 sm:gap-4 scroll-mt-20">
+                      <span className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0e4d45] text-[#fef6f1] font-serif font-bold text-sm sm:text-base flex items-center justify-center">
                         {i + 1}
                       </span>
-                      <div className="min-w-0">
-                        <h3 className="text-xs sm:text-sm font-bold text-black mb-0.5">{s.name}</h3>
-                        <p className="text-xs sm:text-sm text-black/75 leading-relaxed">{s.text}</p>
+                      <div className="min-w-0 pt-0.5">
+                        <h3 className="text-sm sm:text-base font-bold text-black mb-1">{s.name}</h3>
+                        <p className="text-sm sm:text-base text-black/80 leading-[1.7]">{s.text}</p>
                       </div>
                     </li>
                   ))}
@@ -187,20 +222,27 @@ function GuideArticlePage() {
             ))}
 
             {article.faqs.length > 0 && (
-              <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3">
-                <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest border-b border-[#e4d9cf] pb-1.5 mb-3">
+              <section
+                id="faqs"
+                className="bg-white border border-[#e4d9cf] rounded p-4 sm:p-6 mb-3 scroll-mt-20"
+              >
+                <h2 className="font-serif font-bold text-xl sm:text-2xl text-black border-b border-[#e4d9cf] pb-2 mb-4 tracking-tight">
                   Frequently Asked Questions
                 </h2>
-                <div className="space-y-3">
+                <div className="divide-y divide-[#e4d9cf]">
                   {article.faqs.map((f, i) => (
-                    <div key={i}>
-                      <h3 className="text-xs sm:text-sm font-bold text-black mb-1">{f.q}</h3>
-                      <p className="text-xs sm:text-sm text-black/75 leading-relaxed">{f.a}</p>
+                    <div key={i} className="py-3 first:pt-0 last:pb-0">
+                      <h3 className="text-base sm:text-lg font-bold text-black mb-1.5 font-serif tracking-tight">
+                        {f.q}
+                      </h3>
+                      <p className="text-sm sm:text-base text-black/80 leading-[1.7]">{f.a}</p>
                     </div>
                   ))}
                 </div>
               </section>
             )}
+
+            <GuideFeedback guideSlug={article.slug} />
 
             <section className="bg-[#fef6f1] border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3 flex items-center justify-between gap-3 flex-wrap">
               <div>
@@ -260,21 +302,36 @@ function GuideArticlePage() {
 }
 
 function SectionBlock({ section }: { section: GuideSection }) {
+  const id = section.heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
   return (
-    <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3">
-      <h2 className="text-sm sm:text-base font-bold text-black mb-2">{section.heading}</h2>
+    <section
+      id={id}
+      className="bg-white border border-[#e4d9cf] rounded p-4 sm:p-6 mb-3 scroll-mt-20"
+    >
+      <h2 className="font-serif font-bold text-xl sm:text-2xl text-black mb-3 tracking-tight leading-snug">
+        {section.heading}
+      </h2>
 
       {section.paragraphs?.map((p, i) => (
-        <p key={i} className="text-xs sm:text-sm text-black leading-relaxed mb-2 last:mb-0">
+        <p
+          key={i}
+          className="text-base sm:text-lg text-black leading-[1.75] mb-4 last:mb-0"
+        >
           {p}
         </p>
       ))}
 
       {section.bullets && section.bullets.length > 0 && (
-        <ul className="mt-2 space-y-1.5">
+        <ul className="mt-3 space-y-2.5">
           {section.bullets.map((b, i) => (
-            <li key={i} className="flex items-start gap-2 text-xs sm:text-sm">
-              <span className="text-[#0e4d45] font-bold mt-0.5">&bull;</span>
+            <li
+              key={i}
+              className="flex items-start gap-3 text-base sm:text-lg leading-[1.7]"
+            >
+              <span className="text-[#0e4d45] font-bold mt-1 shrink-0">&bull;</span>
               <span className="text-black">{b}</span>
             </li>
           ))}
@@ -282,14 +339,14 @@ function SectionBlock({ section }: { section: GuideSection }) {
       )}
 
       {section.callout && (
-        <div className="mt-3 border-l-2 border-[#0e4d45] bg-[#0e4d45]/5 px-3 py-2">
-          <div className="text-[10px] font-bold uppercase tracking-widest text-[#0e4d45] mb-0.5">
+        <aside className="mt-5 border-l-4 border-[#0e4d45] bg-[#0e4d45]/5 pl-4 sm:pl-5 pr-3 py-3 sm:py-4 rounded-r">
+          <div className="text-[10px] font-bold uppercase tracking-widest text-[#0e4d45] mb-1">
             {section.callout.title}
           </div>
-          <div className="text-xs sm:text-sm text-black leading-relaxed">
+          <div className="text-base sm:text-lg text-black leading-[1.7] font-serif italic">
             {section.callout.body}
           </div>
-        </div>
+        </aside>
       )}
 
       {section.productTable && (

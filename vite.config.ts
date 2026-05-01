@@ -55,6 +55,7 @@ export default defineConfig({
             return "forms";
           if (id.includes("@tanstack")) return "tanstack";
           if (id.includes("convex") || id.includes("better-auth")) return "auth";
+          if (id.includes("@supabase")) return "supabase";
           if (id.includes("react-dom") || id.includes("scheduler")) return "react-dom";
         },
       },
