@@ -8,7 +8,6 @@ export const Route = createFileRoute("/guides")({
 
 function GuidesLayout() {
   const matches = useMatches();
-  // If we're on a child route (e.g., /guides/$articleId), render the Outlet only
   const isChildRoute = matches.some((m) => m.routeId === "/guides/$articleId");
 
   if (isChildRoute) {
@@ -32,7 +31,6 @@ function GuidesIndex() {
   });
   return (
     <div className="bg-[#fef6f1]">
-      {/* Header */}
       <section className="border-b border-[#e4d9cf]">
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-2">
@@ -47,7 +45,6 @@ function GuidesIndex() {
         </div>
       </section>
 
-      {/* Guides Grid */}
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="grid sm:grid-cols-2 gap-4">
           {guides.map((g) => (
