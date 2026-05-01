@@ -17,12 +17,21 @@ export const Route = createFileRoute("/guides/$articleId")({
 
 function GuideArticlePage() {
   const { article } = Route.useLoaderData();
+  const articleAuthor = getAuthorForCategory(article.category);
+  const GUIDE_PUBLISHED_ISO = "2026-01-15T00:00:00Z";
+  const GUIDE_MODIFIED_ISO = "2026-04-15T00:00:00Z";
 
   useSeo({
     title: article.title,
     description: article.description,
     path: `/guides/${article.slug}`,
     type: "article",
+    article: {
+      publishedTime: GUIDE_PUBLISHED_ISO,
+      modifiedTime: GUIDE_MODIFIED_ISO,
+      author: articleAuthor.name,
+      section: article.category,
+    },
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -31,10 +40,24 @@ function GuideArticlePage() {
         description: article.description,
         mainEntityOfPage: `${SITE_URL}/guides/${article.slug}`,
         articleSection: article.category,
+        datePublished: GUIDE_PUBLISHED_ISO,
+        dateModified: GUIDE_MODIFIED_ISO,
+        image: `${SITE_URL}/images/share-image.png`,
+        author: {
+          "@type": "Person",
+          name: articleAuthor.name,
+          jobTitle: articleAuthor.title,
+          url: `${SITE_URL}/about`,
+          ...(articleAuthor.linkedin ? { sameAs: [articleAuthor.linkedin] } : {}),
+        },
         publisher: {
           "@type": "Organization",
           name: "Investing and Retirement",
           url: SITE_URL,
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_URL}/favicon.png`,
+          },
         },
       },
       {
@@ -58,7 +81,7 @@ function GuideArticlePage() {
     ],
   });
 
-  const author = getAuthorForCategory(article.category);
+  const author = articleAuthor;
   const reviewer = authors["editorial-team"];
   const related = guides.filter((g) => g.slug !== article.slug && g.category === article.category).slice(0, 4);
 

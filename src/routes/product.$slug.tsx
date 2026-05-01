@@ -42,7 +42,19 @@ function ProductDetail() {
               },
               review: {
                 "@type": "Review",
-                author: { "@type": "Organization", name: "Investing and Retirement" },
+                author: {
+                  "@type": "Person",
+                  name: "Michael Hewitt",
+                  jobTitle: "Founder & Editor-in-Chief",
+                  url: `${SITE_URL}/about`,
+                },
+                publisher: {
+                  "@type": "Organization",
+                  name: "Investing and Retirement",
+                  url: SITE_URL,
+                },
+                datePublished: "2026-01-15",
+                dateModified: "2026-04-15",
                 reviewRating: {
                   "@type": "Rating",
                   ratingValue: p.rating,

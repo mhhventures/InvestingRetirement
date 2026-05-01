@@ -219,6 +219,14 @@ function rewriteHtml(template, meta, data) {
     `<link rel="canonical" href="${esc(canonical)}" />`
   );
 
+  // hreflang self-reference (US English) + x-default
+  if (!/<link\s+rel="alternate"\s+hreflang=/.test(html)) {
+    html = html.replace(
+      /<\/head>/,
+      `    <link rel="alternate" hreflang="en-us" href="${esc(canonical)}" />\n    <link rel="alternate" hreflang="x-default" href="${esc(canonical)}" />\n  </head>`
+    );
+  }
+
   // og:url
   html = setTagContent(
     html,
@@ -271,6 +279,56 @@ function rewriteHtml(template, meta, data) {
   return html;
 }
 
+function buildBreadcrumb(meta, data) {
+  const path = meta.path;
+  const crumbs = [["/", "Home"]];
+
+  const prodMatch = path.match(/^\/product\/([^/]+)$/);
+  if (prodMatch) {
+    const p = data.products.find((x) => x.slug === prodMatch[1]);
+    if (p) {
+      const catMap = { bank: "/bank-accounts", investing: "/investing", app: "/financial-apps" };
+      const catHref = catMap[p.category] || "/reviews";
+      const catLabel = p.subcategory || "Reviews";
+      crumbs.push([catHref, catLabel]);
+      crumbs.push([null, p.name]);
+    }
+  } else {
+    const guideMatch = path.match(/^\/guides\/([^/]+)$/);
+    if (guideMatch) {
+      const g = data.guides.find((x) => x.slug === guideMatch[1]);
+      if (g) {
+        crumbs.push(["/guides", "Guides"]);
+        crumbs.push([null, g.category]);
+        crumbs.push([null, g.title]);
+      }
+    } else {
+      const calcMatch = path.match(/^\/calculators\/([^/]+)$/);
+      if (calcMatch) {
+        const c = data.calculators.find((x) => x.slug === calcMatch[1]);
+        if (c) {
+          crumbs.push(["/calculators", "Calculators"]);
+          crumbs.push([null, c.title]);
+        }
+      }
+    }
+  }
+
+  if (crumbs.length <= 1) return "";
+
+  const items = crumbs
+    .map(([href, label], i) => {
+      const sep = i > 0 ? '<span aria-hidden="true"> / </span>' : "";
+      const el = href
+        ? `<a href="${href}">${esc(label)}</a>`
+        : `<span>${esc(label)}</span>`;
+      return `${sep}${el}`;
+    })
+    .join("");
+
+  return `<nav aria-label="Breadcrumb">${items}</nav>`;
+}
+
 function buildSeoSnippet(meta, data) {
   const navLinks = [
     ["/bank-accounts", "Bank Accounts"],
@@ -297,7 +355,10 @@ function buildSeoSnippet(meta, data) {
 
   const body = bodyCopy(meta, data);
 
+  const breadcrumb = buildBreadcrumb(meta, data);
+
   return `<div id="seo-fallback" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">
+      ${breadcrumb}
       <h1>${esc(meta.h1 || meta.title)}</h1>
       <p>${esc(meta.description)}</p>
       ${body}
@@ -468,6 +529,21 @@ function contextualLinks(meta, data) {
   return [["/", "Home"]];
 }
 
+function updateSitemapLastmod() {
+  const sitemapPath = join(distDir, "sitemap.xml");
+  if (!existsSync(sitemapPath)) return;
+  const xml = readFileSync(sitemapPath, "utf8");
+  const today = new Date().toISOString().slice(0, 10);
+  // Replace existing lastmod values with today; add one if missing.
+  let updated = xml.replace(/<lastmod>[^<]*<\/lastmod>/g, `<lastmod>${today}</lastmod>`);
+  // For <url> blocks that don't have a lastmod, insert one before </url>.
+  updated = updated.replace(/<url>((?:(?!<\/url>)[\s\S])*?)<\/url>/g, (match, inner) => {
+    if (/<lastmod>/.test(inner)) return match;
+    return `<url>${inner}<lastmod>${today}</lastmod></url>`;
+  });
+  writeFileSync(sitemapPath, updated);
+}
+
 // ---------- 5. Emit files ----------
 async function main() {
   if (!existsSync(join(distDir, "index.html"))) {
@@ -476,6 +552,7 @@ async function main() {
   }
   const template = readFileSync(join(distDir, "index.html"), "utf8");
   const data = await loadData();
+  updateSitemapLastmod();
   const urls = readSitemapUrls();
 
   let written = 0;
