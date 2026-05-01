@@ -36,6 +36,30 @@ export default defineConfig({
       "tailwind-merge",
     ],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (!id.includes("node_modules")) return;
+          if (id.includes("recharts") || id.includes("d3-")) return "charts";
+          if (id.includes("framer-motion")) return "motion";
+          if (id.includes("@radix-ui")) return "radix";
+          if (id.includes("lucide-react") || id.includes("react-icons")) return "icons";
+          if (id.includes("react-day-picker") || id.includes("date-fns")) return "dates";
+          if (id.includes("embla-carousel")) return "carousel";
+          if (
+            id.includes("react-hook-form") ||
+            id.includes("@hookform") ||
+            id.includes("zod")
+          )
+            return "forms";
+          if (id.includes("@tanstack")) return "tanstack";
+          if (id.includes("convex") || id.includes("better-auth")) return "auth";
+          if (id.includes("react-dom") || id.includes("scheduler")) return "react-dom";
+        },
+      },
+    },
+  },
   server: {
     host: "0.0.0.0",
     strictPort: false,
