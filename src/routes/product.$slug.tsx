@@ -10,6 +10,8 @@ import { AuthorByline, FtcDisclosure, HowWeReview, EditorialStandardsBadge } fro
 import { RelatedGuidesForProduct } from "@/components/related-guides";
 import { getAuthorForCategory, authors } from "@/lib/authors";
 
+const RATES_VERIFIED_DATE = "Apr 22, 2026";
+
 export const Route = createFileRoute("/product/$slug")({
   component: ProductDetail,
 });
@@ -239,12 +241,14 @@ function ProductDetail() {
                     <div>
                       <div className="flex items-center gap-1 text-black/40 uppercase tracking-wide text-[10px]">APY {disc && attachTo === "apy" && <DisclosureIcon text={disc} label={`${p.name} APY disclosure`} />}</div>
                       <div className="font-bold text-[#0e4d45] text-sm">{p.apy}</div>
+                      <div className="text-[9px] text-black/40 mt-0.5">Verified {RATES_VERIFIED_DATE}</div>
                     </div>
                   )}
                   {p.bonus && (
                     <div>
                       <div className="flex items-center gap-1 text-black/40 uppercase tracking-wide text-[10px]">Bonus {disc && attachTo === "bonus" && <DisclosureIcon text={disc} label={`${p.name} bonus disclosure`} />}</div>
                       <div className="font-bold text-black text-sm">{p.bonus}</div>
+                      <div className="text-[9px] text-black/40 mt-0.5">Verified {RATES_VERIFIED_DATE}</div>
                     </div>
                   )}
                   <div>

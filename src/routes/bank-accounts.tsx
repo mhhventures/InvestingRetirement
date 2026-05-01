@@ -7,7 +7,7 @@ import { ProductCard, ProductLogo, StarRating, GradeBadge, DisclosureIcon } from
 import { getDisclosure } from "@/data/disclosures";
 import { BankSidebar } from "@/components/bank-sidebar";
 import { withUtm } from "@/lib/affiliate";
-import { useSeo, SITE_URL } from "@/lib/seo";
+import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 const APY_LAST_UPDATED = "May 1, 2026";
 
@@ -655,19 +655,31 @@ function EditorialFooter() {
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
 function BankAccounts() {
+  const all = getByCategory("bank");
   useSeo({
     title: "Best Bank Accounts 2026 — High-Yield Savings & Checking",
     description: "Compare the best high-yield savings accounts, checking accounts, and CDs. Top APYs, no-fee options, and expert reviews of SoFi, Ally, Marcus, CIT, Barclays, and more.",
     path: "/bank-accounts",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: "Best Bank Accounts",
-      url: `${SITE_URL}/bank-accounts`,
-      description: "Curated list of high-yield savings and checking accounts reviewed by our editorial team.",
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Best Bank Accounts",
+        url: `${SITE_URL}/bank-accounts`,
+        description: "Curated list of high-yield savings and checking accounts reviewed by our editorial team.",
+      },
+      buildItemListSchema({
+        name: "Best Bank Accounts 2026",
+        url: `${SITE_URL}/bank-accounts`,
+        description: "Ranked list of high-yield savings and checking accounts.",
+        items: all.slice(0, 25).map((p) => ({
+          name: p.name,
+          url: `${SITE_URL}/product/${p.slug}`,
+          description: p.tagline,
+        })),
+      }),
+    ],
   });
-  const all = getByCategory("bank");
   const [filter, setFilter] = useState<string>("All");
   const [sort, setSort] = useState<string>("default");
   const [noFees, setNoFees] = useState(false);

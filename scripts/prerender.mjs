@@ -116,6 +116,12 @@ function staticRouteMeta(path) {
       description: "Answers to common questions about our reviews, methodology, and the products we cover.",
       h1: "Frequently Asked Questions",
     },
+    "/authors/michael-hewitt": {
+      title: "Michael Hewitt — Founder & Editor-in-Chief",
+      description:
+        "Meet Michael Hewitt, founder and editor-in-chief of Investing and Retirement. 10+ years covering banking, investing, and personal finance.",
+      h1: "Michael Hewitt",
+    },
     "/newsletter": {
       title: "Newsletter — Weekly Picks & Rate Updates",
       description: "Weekly deals, rate updates, and expert picks delivered to your inbox.",

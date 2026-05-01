@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getByCategory } from "@/data/products";
 import { ProductCard } from "@/components/product-card";
 import { CategoryPage } from "@/components/category-page";
+import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/financial-apps")({
   component: FinancialApps,
@@ -10,6 +11,31 @@ export const Route = createFileRoute("/financial-apps")({
 
 function FinancialApps() {
   const all = getByCategory("app");
+  useSeo({
+    title: "Best Financial Apps 2026 — Budgeting & Credit",
+    description:
+      "Budgeting tools, cash advance apps, and credit score trackers to take control of your money. Independent reviews of every app we cover.",
+    path: "/financial-apps",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Best Financial Apps",
+        url: `${SITE_URL}/financial-apps`,
+        description: "Curated list of budgeting, credit, and money apps reviewed by our editorial team.",
+      },
+      buildItemListSchema({
+        name: "Best Financial Apps 2026",
+        url: `${SITE_URL}/financial-apps`,
+        description: "Ranked list of budgeting, credit, and cash-advance apps.",
+        items: all.slice(0, 25).map((p) => ({
+          name: p.name,
+          url: `${SITE_URL}/product/${p.slug}`,
+          description: p.tagline,
+        })),
+      }),
+    ],
+  });
   const [filter, setFilter] = useState<string>("All");
   const subs = ["All", ...Array.from(new Set(all.map((p) => p.subcategory)))];
   const filtered = filter === "All" ? all : all.filter((p) => p.subcategory === filter);

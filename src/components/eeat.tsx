@@ -54,7 +54,14 @@ export function AuthorByline({
         </div>
         <div className="leading-tight">
           <div className="font-semibold text-black text-[11px] sm:text-xs">
-            By <span className="text-[#0e4d45]">{author.name}</span>
+            By{" "}
+            <Link
+              to="/authors/$authorSlug"
+              params={{ authorSlug: author.slug }}
+              className="text-[#0e4d45] hover:underline"
+            >
+              {author.name}
+            </Link>
           </div>
           <div className="text-black/50 text-[9px] sm:text-[10px] uppercase tracking-wider">
             {author.title}
