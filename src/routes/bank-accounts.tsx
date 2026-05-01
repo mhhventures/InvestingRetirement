@@ -656,7 +656,7 @@ function EditorialFooter() {
 // ─── Main Page ───────────────────────────────────────────────────────────────
 function BankAccounts() {
   useSeo({
-    title: "Best Bank Accounts 2026 — High-Yield Savings & Checking | Investing and Retirement",
+    title: "Best Bank Accounts 2026 — High-Yield Savings & Checking",
     description: "Compare the best high-yield savings accounts, checking accounts, and CDs. Top APYs, no-fee options, and expert reviews of SoFi, Ally, Marcus, CIT, Barclays, and more.",
     path: "/bank-accounts",
     jsonLd: {

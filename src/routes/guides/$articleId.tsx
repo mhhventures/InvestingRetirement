@@ -19,7 +19,7 @@ function GuideArticlePage() {
   const { article } = Route.useLoaderData();
 
   useSeo({
-    title: `${article.title} | Investing and Retirement`,
+    title: article.title,
     description: article.description,
     path: `/guides/${article.slug}`,
     type: "article",

@@ -49,75 +49,75 @@ function esc(s) {
 function staticRouteMeta(path) {
   const map = {
     "/": {
-      title: "Investing and Retirement — Compare the Best Financial Products",
+      title: "Compare the Best Financial Products 2026",
       description:
         "Expert reviews and comparisons of the best high-yield savings accounts, checking accounts, investing apps, brokerages, and budgeting tools. Find the right financial product for your goals.",
       h1: "Compare the Best Financial Products",
     },
     "/bank-accounts": {
-      title: "Best Bank Accounts 2026 — High-Yield Savings & Checking | Investing and Retirement",
+      title: "Best Bank Accounts 2026 — High-Yield Savings & Checking",
       description:
         "Compare the best high-yield savings and checking accounts of 2026. Up-to-date APYs, fees, and bonuses — ranked by our editors after hands-on testing.",
       h1: "Best Bank Accounts",
     },
     "/investing": {
-      title: "Best Investing Apps & Brokerages 2026 | Investing and Retirement",
+      title: "Best Investing Apps & Brokerages 2026",
       description:
         "The best brokerages, robo-advisors, and retirement accounts of 2026, ranked on fees, platform, research, and account options.",
       h1: "Best Investing Apps",
     },
     "/financial-apps": {
-      title: "Best Financial Apps 2026 — Budgeting, Credit, Cash Advance | Investing and Retirement",
+      title: "Best Financial Apps 2026 — Budgeting & Credit",
       description:
         "Budgeting tools, cash advance apps, and credit score trackers to take control of your money. Independent reviews of every app we cover.",
       h1: "Best Financial Apps",
     },
     "/reviews": {
-      title: "All Financial Product Reviews | Investing and Retirement",
+      title: "All Financial Product Reviews 2026",
       description:
         "Complete reviews of every bank account, brokerage, and money app we cover. Ratings based on fees, features, and hands-on testing.",
       h1: "All Product Reviews",
     },
     "/guides": {
-      title: "Financial Guides & Articles | Investing and Retirement",
+      title: "Financial Guides & Articles — Saving, Investing, Credit",
       description:
         "Expert-written guides on saving, budgeting, investing, retirement, and credit. Clear, actionable advice to help you make smarter financial decisions.",
       h1: "Financial Guides & Articles",
     },
     "/calculators": {
-      title: "Financial Calculators | Compound Interest, Retirement, Mortgage",
+      title: "Financial Calculators — Interest, Retirement, Mortgage",
       description:
         "Free financial calculators to help you plan savings, investments, retirement, mortgages, and debt payoff. Run the numbers before you make a decision.",
       h1: "Financial Calculators",
     },
     "/about": {
-      title: "About Investing and Retirement — Our Review Methodology",
+      title: "About Us — Our Review Methodology",
       description:
         "Meet the team behind Investing and Retirement. Learn how we independently test every financial product before it is ranked.",
       h1: "About Investing and Retirement",
     },
     "/contact": {
-      title: "Contact Us | Investing and Retirement",
+      title: "Contact Us",
       description: "Have a question about a product review? Get in touch with our editorial team.",
       h1: "Contact Investing and Retirement",
     },
     "/disclosure": {
-      title: "Advertiser Disclosure | Investing and Retirement",
+      title: "Advertiser Disclosure",
       description: "How Investing and Retirement is compensated, and how that affects our product reviews and rankings.",
       h1: "Advertiser Disclosure",
     },
     "/privacy": {
-      title: "Privacy Policy | Investing and Retirement",
+      title: "Privacy Policy",
       description: "How we collect, use, and protect your information on Investing and Retirement.",
       h1: "Privacy Policy",
     },
     "/faq": {
-      title: "Frequently Asked Questions | Investing and Retirement",
+      title: "Frequently Asked Questions",
       description: "Answers to common questions about our reviews, methodology, and the products we cover.",
       h1: "Frequently Asked Questions",
     },
     "/newsletter": {
-      title: "Newsletter | Investing and Retirement",
+      title: "Newsletter — Weekly Picks & Rate Updates",
       description: "Weekly deals, rate updates, and expert picks delivered to your inbox.",
       h1: "Subscribe to Our Newsletter",
     },
@@ -135,9 +135,14 @@ function metaForUrl(url, data) {
   if (prodMatch) {
     const p = data.products.find((x) => x.slug === prodMatch[1]);
     if (!p) return null;
+    // Build title under 60 chars where possible; fall back to a shorter form
+    // for products with long names.
+    const longTitle = `${p.name} Review 2026: Rates, Fees & Features`;
+    const shortTitle = `${p.name} Review 2026`;
+    const title = longTitle.length <= 60 ? longTitle : shortTitle;
     return {
       path,
-      title: `${p.name} Review 2026 — Rates, Fees & Features | Investing and Retirement`,
+      title,
       description: `${p.tagline} Read our expert review of ${p.name} by ${p.provider} — rated ${p.rating}/5 from ${p.reviews.toLocaleString()} reviews. Best for ${p.bestFor.toLowerCase()}.`,
       h1: `${p.name} Review`,
     };
@@ -150,7 +155,7 @@ function metaForUrl(url, data) {
     if (!g) return null;
     return {
       path,
-      title: `${g.title} | Investing and Retirement`,
+      title: g.title,
       description: g.description,
       h1: g.title,
     };
@@ -163,7 +168,7 @@ function metaForUrl(url, data) {
     if (!c) return null;
     return {
       path,
-      title: `${c.title} | Investing and Retirement`,
+      title: c.title,
       description: c.description,
       h1: c.title,
     };
@@ -290,12 +295,119 @@ function buildSeoSnippet(meta, data) {
 
   const ctx = contextLinks.map(([href, label]) => `<a href="${href}">${esc(label)}</a>`).join("");
 
+  const body = bodyCopy(meta, data);
+
   return `<div id="seo-fallback" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">
       <h1>${esc(meta.h1 || meta.title)}</h1>
       <p>${esc(meta.description)}</p>
+      ${body}
       <nav aria-label="Main">${nav}</nav>
       <nav aria-label="Related">${ctx}</nav>
     </div>`;
+}
+
+function bodyCopy(meta, data) {
+  const path = meta.path;
+  const prodMatch = path.match(/^\/product\/([^/]+)$/);
+  if (prodMatch) {
+    const p = data.products.find((x) => x.slug === prodMatch[1]);
+    if (p) {
+      const pros = (p.pros || []).slice(0, 4).map((x) => `<li>${esc(x)}</li>`).join("");
+      const cons = (p.cons || []).slice(0, 3).map((x) => `<li>${esc(x)}</li>`).join("");
+      const highlights = (p.highlights || []).slice(0, 4).map((x) => `<li>${esc(x)}</li>`).join("");
+      return `
+        <h2>About ${esc(p.name)}</h2>
+        <p>${esc(p.tagline)} ${esc(p.name)} is offered by ${esc(p.provider)} and is rated ${p.rating} out of 5 based on ${p.reviews.toLocaleString()} user reviews. Category: ${esc(p.subcategory)}. Best for ${esc(p.bestFor)}.</p>
+        ${highlights ? `<h3>Highlights</h3><ul>${highlights}</ul>` : ""}
+        ${pros ? `<h3>Pros</h3><ul>${pros}</ul>` : ""}
+        ${cons ? `<h3>Cons</h3><ul>${cons}</ul>` : ""}
+        <h3>Fees & Minimums</h3>
+        <p>Monthly fee: ${esc(p.fees || "See details")}. Minimum deposit: ${esc(p.minDeposit || "See details")}.${p.apy ? ` APY: ${esc(p.apy)}.` : ""}${p.bonus ? ` Bonus: ${esc(p.bonus)}.` : ""}</p>`;
+    }
+  }
+  const guideMatch = path.match(/^\/guides\/([^/]+)$/);
+  if (guideMatch) {
+    const g = data.guides.find((x) => x.slug === guideMatch[1]);
+    if (g) {
+      const intro = g.intro ? `<p>${esc(g.intro)}</p>` : "";
+      const takeaways = (g.keyTakeaways || []).map((x) => `<li>${esc(x)}</li>`).join("");
+      const sections = (g.sections || [])
+        .slice(0, 6)
+        .map((s) => {
+          const paras = (s.paragraphs || []).map((x) => `<p>${esc(x)}</p>`).join("");
+          const bullets = (s.bullets || []).map((x) => `<li>${esc(x)}</li>`).join("");
+          return `<h2>${esc(s.heading)}</h2>${paras}${bullets ? `<ul>${bullets}</ul>` : ""}`;
+        })
+        .join("");
+      return `${intro}${sections}${takeaways ? `<h2>Key Takeaways</h2><ul>${takeaways}</ul>` : ""}`;
+    }
+  }
+
+  if (path === "/") {
+    return `
+      <h2>What we review</h2>
+      <p>Investing and Retirement publishes independent reviews of high-yield savings accounts, checking accounts, online brokerages, robo-advisors, crypto exchanges, prediction markets, budgeting apps, cash-advance apps, and credit tools. Every product is opened, funded, and tested by our editorial team before it is ranked — no paid placements, no shortcuts.</p>
+      <h2>How we rank</h2>
+      <p>Each category has its own weighted rubric covering fees, yield or returns, platform quality, account options, customer support, and trust & safety. Product pages show the exact score and letter grade we assigned, along with the pros and cons that drove the decision.</p>
+      <h2>Popular categories</h2>
+      <ul>
+        <li>High-yield savings and checking accounts from SoFi, Ally, Marcus, Barclays, CIT, Bread, LendingClub, and Amex.</li>
+        <li>Investing apps and brokerages including Fidelity, Vanguard, Schwab, Robinhood, E*TRADE, Webull, Interactive Brokers, and SoFi Invest.</li>
+        <li>Robo-advisors and retirement platforms like Betterment, Wealthfront, M1 Finance, and Acorns.</li>
+        <li>Crypto and prediction markets: Coinbase, Kraken, Gemini, Crypto.com, Kalshi, and Polymarket.</li>
+        <li>Budgeting and money apps: YNAB, Monarch Money, Rocket Money, Empower, and Credit Karma.</li>
+      </ul>`;
+  }
+  if (path === "/bank-accounts") {
+    return `
+      <h2>How we pick the best bank accounts</h2>
+      <p>We rank high-yield savings and checking accounts on APY, monthly fees, minimum balance requirements, ATM access, FDIC coverage, mobile app quality, and customer service. Rates change quickly — our rankings are reviewed weekly, and we note exactly when each APY was verified.</p>
+      <h2>What to look for</h2>
+      <ul>
+        <li>APY at or above the FDIC national average, with no promotional-only rates that collapse.</li>
+        <li>No monthly maintenance fees, no minimum balance penalties, no excess-withdrawal fees.</li>
+        <li>FDIC-insured deposits up to $250,000 per depositor, per bank, per ownership category.</li>
+        <li>Strong mobile app, fast ACH transfers, and useful tools like automatic sub-savings goals.</li>
+      </ul>`;
+  }
+  if (path === "/investing") {
+    return `
+      <h2>How we rank investing apps</h2>
+      <p>Our brokerage and robo-advisor rubric weights costs and fees (25%), platform and tools (20%), asset selection (15%), account types (10%), education and research (10%), customer support (10%), and trust and safety (10%). We open real accounts and place real trades to evaluate each platform firsthand.</p>
+      <h2>What to compare</h2>
+      <ul>
+        <li>Commission-free stock and ETF trading, options contract fees, and mutual fund access.</li>
+        <li>Retirement account support (Traditional IRA, Roth IRA, SEP IRA, Solo 401(k)).</li>
+        <li>Research quality, charting depth, and screener flexibility for active investors.</li>
+        <li>Fractional shares, dividend reinvestment, and automated portfolio tools.</li>
+      </ul>`;
+  }
+  if (path === "/financial-apps") {
+    return `
+      <h2>Budgeting, credit, and cash-advance apps</h2>
+      <p>We review the money apps most Americans actually use: budget trackers, expense categorizers, subscription cancelers, credit score monitors, and small-dollar cash-advance tools. Each app is evaluated on cost, accuracy, data security, and whether it actually changes financial behavior.</p>`;
+  }
+  if (path === "/reviews") {
+    return `
+      <h2>All reviews</h2>
+      <p>Browse every product we cover across bank accounts, investing apps, financial apps, and crypto platforms. Filter by category to narrow the list.</p>`;
+  }
+  if (path === "/guides") {
+    return `
+      <h2>Financial education you can actually use</h2>
+      <p>Our guides cover the topics most people get wrong: emergency funds, the 50/30/20 budget, Roth vs. Traditional IRAs, picking a high-yield savings account, portfolio construction, and improving credit. Every guide is written by our editorial team and reviewed for accuracy.</p>`;
+  }
+  if (path === "/calculators") {
+    return `
+      <h2>Free financial calculators</h2>
+      <p>Run the numbers on compound interest, retirement savings, mortgages, debt payoff, and emergency-fund targets. Every calculator is free, works in your browser, and never asks for personal information.</p>`;
+  }
+  if (path === "/about") {
+    return `
+      <h2>Who we are</h2>
+      <p>Investing and Retirement is an independent editorial publisher. We open real accounts at every institution we review, fund them, run transactions, and test customer service firsthand. Our scoring rubrics are public, our methodology is consistent across products, and we publish quarterly re-reviews so rankings reflect current reality.</p>`;
+  }
+  return "";
 }
 
 function contextualLinks(meta, data) {

@@ -21,7 +21,7 @@ function ProductDetail() {
   useSeo(
     p
       ? {
-          title: `${p.name} Review 2026 — Rates, Fees & Features | Investing and Retirement`,
+          title: `${p.name} Review 2026: Rates, Fees & Features`,
           description: `${p.tagline} Read our expert review of ${p.name} by ${p.provider} — rated ${p.rating}/5 from ${p.reviews.toLocaleString()} reviews. Best for ${p.bestFor.toLowerCase()}.`,
           path: `/product/${p.slug}`,
           type: "product",
@@ -63,7 +63,7 @@ function ProductDetail() {
           ],
         }
       : {
-          title: "Product Not Found | Investing and Retirement",
+          title: "Product Not Found",
           description: "The product you are looking for could not be found.",
           path: `/product/${slug}`,
           noindex: true,
