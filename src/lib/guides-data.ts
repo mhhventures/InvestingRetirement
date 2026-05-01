@@ -1032,6 +1032,44 @@ export const guides: GuideArticle[] = [
           "This single optimization can add 0.3-0.7% per year to after-tax returns — over 30 years, that's hundreds of thousands of dollars.",
         ],
       },
+      {
+        heading: "Tax Location: Three Worked Portfolios",
+        paragraphs: [
+          "Abstract rules don't move the needle until you see the dollars. Below are three portfolios — $100K, $500K, and $2M — each held in a 70/30 stock/bond allocation split across taxable, Traditional 401(k), and Roth IRA. We compare a 'naive' mirror-allocation (same 70/30 in every account) against 'optimized' placement. Assumptions: 24% federal + 6% state marginal rate, 15% long-term capital gains, bonds yield 4.5% taxable interest, stocks yield 1.5% qualified dividends + 5.5% unrealized appreciation, 30-year horizon, no rebalancing-driven capital-gains drag.",
+        ],
+        bullets: [
+          "Portfolio A — $100K (40% taxable / 30% Trad 401(k) / 30% Roth IRA).",
+          "Naive mirror — each account holds 70% stocks / 30% bonds. Bond interest in the $40K taxable portion generates ~$540/year in 30% combined-rate tax = $162/year drag. Over 30 years at 7% gross return → ending wealth after tax ≈ $636,400.",
+          "Optimized — taxable = 100% stocks (VTI/VXUS), Traditional 401(k) = 100% bonds (BND), Roth = 100% stocks (small-cap tilt). Bond income is now fully sheltered; taxable stocks generate only 1.5% qualified dividends taxed at 15% = ~$90/year drag on $40K. Ending wealth after tax ≈ $654,800.",
+          "Delta for $100K portfolio — $18,400 extra over 30 years (~0.30% annualized after-tax boost). Modest but free.",
+          "Portfolio B — $500K (40% / 30% / 30%). Same structure, 10x balance.",
+          "Naive mirror — bond interest in $200K taxable bucket = ~$2,700/year in tax drag. Over 30 years → ending wealth after tax ≈ $3,182,000.",
+          "Optimized — taxable 100% stocks, Traditional bonds-heavy, Roth stocks-heavy. Drag falls to ~$450/year. Ending wealth after tax ≈ $3,274,000.",
+          "Delta for $500K portfolio — $92,000 extra over 30 years (~0.37% annualized). Now meaningful.",
+          "Portfolio C — $2M (50% taxable / 25% Trad / 25% Roth). Large taxable bias is typical for maxed-out HSA/401(k)/IRA households.",
+          "Naive mirror — $1M taxable × 30% bonds × 4.5% yield × 30% tax = ~$4,050/year drag. REITs (if held) add another $2,000-3,000/year. Ending wealth after tax ≈ $12,728,000.",
+          "Optimized — taxable 100% broad-market stock ETFs, Traditional holds 100% bonds + any REIT sleeve, Roth holds highest-expected-return stocks. Drag shrinks to ~$800/year on qualified dividends. Ending wealth after tax ≈ $13,237,000.",
+          "Delta for $2M portfolio — $509,000 extra over 30 years (~0.70% annualized). This is why advisors call tax-location 'the free lunch of investing.'",
+          "Implementation — rebalance quarterly by directing new contributions to underweight buckets inside each account. Only sell when drift exceeds 5%, and prefer sales inside tax-advantaged accounts to avoid realizing capital gains in taxable.",
+        ],
+        callout: {
+          title: "The Scaling Rule",
+          body: "Tax-location benefit scales roughly with (a) taxable-account share of total portfolio and (b) your marginal tax rate. Below ~$50K total assets the work isn't worth it; above $500K it compounds into six figures. High earners in CA/NY/NJ see the largest gains — often 0.8-1.1% annualized after-tax lift.",
+        },
+      },
+      {
+        heading: "When Tax Location Backfires",
+        paragraphs: [
+          "The rule 'bonds in Traditional, stocks in Roth' is a default, not a law. Three situations flip the math.",
+        ],
+        bullets: [
+          "Low marginal rate today, high rate expected in retirement — young earner in 12% bracket. Putting bonds in Traditional 'saves' only 12% now but forces you to withdraw at 22-24% later. Put stocks in Traditional here; future growth is taxed at ordinary rates but the base is smaller.",
+          "Very small taxable account (under $25K) — the dollar-level drag is trivial and the operational complexity of mirroring isn't worth it. Just hold a target-date fund everywhere until balances grow.",
+          "Roth is your ONLY tax-advantaged account — if bonds only exist in taxable, municipal-bond funds (VTEB, VWIUX) often beat taxable bonds on after-tax yield for anyone in the 24%+ bracket. A 3.5% muni yield equals a ~5.0% taxable bond yield at 30% combined rate.",
+          "International stocks in Roth — the Foreign Tax Credit (worth 15-40 bps/yr) is WASTED inside a Roth because you paid no US tax to offset. Hold international index funds in TAXABLE instead to claim the credit on Schedule 3 (Form 1040).",
+          "High-yield stock ETFs (SCHD, VYM) throw off qualified dividends but at 2.5-3.5% yield — higher tax drag than broad-market. Hold these in Roth or Traditional, not taxable.",
+        ],
+      },
     ],
     keyTakeaways: [
       "Asset allocation drives 90%+ of portfolio outcomes.",
