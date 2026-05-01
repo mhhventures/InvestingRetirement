@@ -5,6 +5,8 @@ import { useSeo, SITE_URL } from "@/lib/seo";
 import { FtcDisclosure, EditorialStandardsBadge, AuthorByline } from "@/components/eeat";
 import { getAuthorForCategory, authors } from "@/lib/authors";
 import { withUtm } from "@/lib/affiliate";
+import { useState } from "react";
+import { getProductLogoUrl } from "@/lib/product-icons";
 import {
   ReadingProgressBar,
   TableOfContents,
@@ -381,16 +383,50 @@ function SectionBlock({ section }: { section: GuideSection }) {
   );
 }
 
+function RowLogo({ row }: { row: GuideProductRow }) {
+  const logoUrl = row.slug ? getProductLogoUrl(row.slug, 96) : undefined;
+  const logoUrl2x = row.slug ? getProductLogoUrl(row.slug, 192) : undefined;
+  const [failed, setFailed] = useState(false);
+
+  if (logoUrl && !failed) {
+    const srcSet =
+      logoUrl2x && logoUrl2x !== logoUrl ? `${logoUrl} 1x, ${logoUrl2x} 2x` : undefined;
+    return (
+      <div
+        className="flex items-center justify-center rounded-sm bg-white border border-[#e4d9cf] overflow-hidden shrink-0"
+        style={{ width: 48, height: 48 }}
+      >
+        <img
+          src={logoUrl}
+          srcSet={srcSet}
+          sizes="48px"
+          alt={`${row.name} logo`}
+          width={48}
+          height={48}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+          className="w-full h-full object-contain p-1"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="flex items-center justify-center rounded-sm text-[#fef6f1] font-bold text-[11px] shrink-0"
+      style={{ background: row.color, width: 48, height: 48 }}
+      aria-hidden="true"
+    >
+      {row.logoText}
+    </div>
+  );
+}
+
 function ProductRow({ row }: { row: GuideProductRow }) {
   return (
     <li className="border-b border-[#e4d9cf] last:border-b-0 px-3 py-3 flex items-start gap-3 flex-wrap sm:flex-nowrap">
-      <div
-        className="flex items-center justify-center rounded-sm text-[#fef6f1] font-bold text-[11px] shrink-0"
-        style={{ background: row.color, width: 48, height: 48 }}
-        aria-hidden="true"
-      >
-        {row.logoText}
-      </div>
+      <RowLogo row={row} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5 flex-wrap">
           <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest">
