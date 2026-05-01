@@ -3951,6 +3951,859 @@ export const guides: GuideArticle[] = [
       },
     ],
   },
+  // ===================== NEW: HOW TO INVEST =====================
+  {
+    slug: "how-to-invest-first-10k",
+    title: "How to Invest: Your First $100 to Your First $10,000",
+    category: "Investing",
+    readTime: "12 min",
+    description:
+      "A complete walkthrough from opening a brokerage to placing your first ETF trade, setting up auto-contributions, and surviving year one without rookie mistakes.",
+    relatedCategory: "/investing",
+    relatedLabel: "Investing Apps",
+    intro:
+      "Most beginner investing guides stop at 'open an account and buy an index fund.' That leaves out the parts that actually trip people up: picking a broker you won't regret in three years, choosing between a Roth IRA and a taxable account, understanding what happens when you click Buy, and knowing which 1099 forms show up in your mailbox next February. This guide walks you from $0 to a fully funded, automated portfolio — with every decision explained in plain English.",
+    sections: [
+      {
+        heading: "Step 1: Pick the Right Broker for You",
+        paragraphs: [
+          "Every major broker now charges $0 commission on stock and ETF trades, so the decision comes down to fund quality, fractional shares, auto-invest features, and cash management. Three brokers dominate for beginners for very specific reasons.",
+        ],
+        bullets: [
+          "Fidelity — best all-around. Zero-expense-ratio index funds (FZROX, FZILX), fractional shares on stocks AND ETFs, excellent Roth IRA experience, 5%+ yield on idle cash by default.",
+          "Charles Schwab — closest competitor. Strong mutual fund lineup (SWPPX, SWTSX), best customer service, excellent mobile app, but idle cash sits at ~0.45% unless you manually move it.",
+          "Vanguard — cheapest on legacy index mutual funds, but the platform feels dated and lacks fractional ETF trading. Best if you already use it for a 401(k) rollover.",
+        ],
+        callout: {
+          title: "Skip These for a First Account",
+          body: "Robinhood and Webull are fine for casual stock trades but lack mutual funds, retirement-account depth, and tax-planning tools. SoFi is strong for banking but its brokerage fund lineup is thin. M1 Finance is powerful for pie-based auto-investing but confuses beginners. Stick with Fidelity or Schwab for your first account and add others later if you have a specific reason.",
+        },
+      },
+      {
+        heading: "Step 2: Choose the Right Account Type",
+        paragraphs: [
+          "The account type matters more than the investments you hold inside it. Same S&P 500 ETF in a Roth IRA grows tax-free forever; in a taxable brokerage you pay capital gains every time you sell. For most beginners the priority order is clear.",
+        ],
+        bullets: [
+          "401(k) up to the match — if your employer matches, contribute at least enough to get the full match. It is a 50-100% instant return.",
+          "Roth IRA — $7,000/year ($8,000 if 50+) in 2026. Tax-free growth and withdrawals in retirement. Best for anyone under 35 or expecting higher future income.",
+          "401(k) to the max — $23,500 in 2026. Traditional if your current tax bracket is 24%+, Roth 401(k) if 22% or lower.",
+          "HSA if eligible — $4,300 single / $8,550 family in 2026. Triple tax-advantaged; treat it as a stealth retirement account.",
+          "Taxable brokerage — unlimited contributions, no tax break going in, but full flexibility. Use this after tax-advantaged accounts are maxed or for goals before age 59½.",
+        ],
+      },
+      {
+        heading: "Step 3: Fund the Account",
+        paragraphs: [
+          "Opening the account takes about 10 minutes online. Funding it is the step most people botch by doing a wire transfer and paying unnecessary fees.",
+        ],
+        bullets: [
+          "ACH transfer — free, 1-3 business days. Link your checking account via Plaid or manual routing/account numbers.",
+          "Wire transfer — same day but typically $15-30. Only worth it for large time-sensitive transfers.",
+          "Check deposit — mobile check deposit works but adds 5-10 business days before funds are investable.",
+          "401(k) rollover — for rollovers from old jobs, request a direct trustee-to-trustee transfer, NOT a check. A check triggers 20% mandatory withholding even if you intend to roll it.",
+          "Settlement period — after ACH deposits, cash is usually investable immediately but cannot be withdrawn back to your bank for 5-7 days.",
+        ],
+      },
+      {
+        heading: "Step 4: Understand Order Types Before You Click Buy",
+        paragraphs: [
+          "The order type determines the price you actually pay. For buy-and-hold index investing the difference is small, but understanding it prevents expensive mistakes on less-liquid stocks.",
+        ],
+        bullets: [
+          "Market order — buys immediately at the current offer price. Fine for high-volume ETFs (VOO, VTI, QQQ) where spreads are a penny. Dangerous on thinly-traded stocks where spreads can be 0.5%+.",
+          "Limit order — buys only at your specified price or lower. Use this for any stock trading under $10/share or with volume under 500K shares/day.",
+          "Stop-loss order — sells automatically if price drops to your trigger. Common in active trading; unnecessary and often harmful for long-term index investors (you sell at the worst moment).",
+          "Good-till-canceled (GTC) — keeps a limit order alive up to 90 days. Good-for-day cancels at 4pm same day.",
+          "Extended-hours trading — available 4am-8pm ET at most brokers, but spreads widen dramatically. Avoid unless you have a specific reason.",
+        ],
+        callout: {
+          title: "The Rule of Thumb",
+          body: "For ETFs with more than 1 million shares daily volume, market orders are safe. For anything else, always use a limit order set 1-2 cents above the ask price. The time you save with market orders is worth less than the slippage you'll pay over a year.",
+        },
+      },
+      {
+        heading: "Step 5: Your First Purchase — A Worked Example",
+        paragraphs: [
+          "You've opened a Roth IRA at Fidelity and transferred $1,000. Here is the exact sequence to get invested in the next 5 minutes.",
+        ],
+        bullets: [
+          "Search the ticker VTI (Vanguard Total Stock Market ETF, 0.03% expense ratio, ~$280/share).",
+          "Click Trade → Buy → VTI.",
+          "Order type: Limit. Quantity: type '1,000' in the dollar amount field (Fidelity supports fractional shares).",
+          "Limit price: look at the current ask, add 2 cents. If VTI is trading $280.12 ask, set limit at $280.14.",
+          "Time-in-force: Day. Click Preview. Confirm. Done — you now own roughly 3.57 shares of VTI.",
+          "Alternative: buy VOO (S&P 500) if you prefer US large-caps only, or a target-date fund like FDKLX (Fidelity Freedom Index 2060) for fully-hands-off glidepath investing.",
+        ],
+      },
+      {
+        heading: "Step 6: Automate Everything",
+        paragraphs: [
+          "Manual investing fails because humans forget, panic, or get busy. Automation removes the emotional layer entirely.",
+        ],
+        bullets: [
+          "Set up automatic ACH pull from checking to brokerage on the day after payday.",
+          "Schedule automatic recurring investments — most brokers let you buy fractional ETF shares on a fixed dollar schedule ($500 every 2 weeks, etc.).",
+          "Turn on dividend reinvestment (DRIP) — dividends automatically buy more shares instead of sitting as cash.",
+          "Set a calendar reminder for January: rebalance, check contribution limits, review fund choices.",
+          "Ignore the account balance between reviews. Checking daily correlates with worse returns (behavioral studies show active checkers sell more during drawdowns).",
+        ],
+      },
+      {
+        heading: "Step 7: The Year-One Checklist",
+        bullets: [
+          "Jan-Feb — expect Form 1099-DIV (dividends), 1099-B (sales), and 1099-INT (interest on cash). File with your tax return.",
+          "If you maxed your Roth IRA, confirm the contribution year on Form 5498 (mailed by May).",
+          "Review expense ratios — anything above 0.20% for a broad index fund should be replaced.",
+          "Rebalance if any position has drifted more than 5 percentage points from target (e.g., target 70% stocks, now 78% → sell some, buy bonds).",
+          "Increase automatic contributions by 1% of income each January — 'save more tomorrow' beats 'save more today' psychologically.",
+        ],
+      },
+      {
+        heading: "Beginner Mistakes That Cost Real Money",
+        bullets: [
+          "Buying individual stocks before owning a broad index fund — concentrates risk before you understand what you own.",
+          "Checking the account daily — strongly correlated with panic-selling during corrections.",
+          "Holding high-fee mutual funds from a 401(k) rollover without replacing them with index equivalents.",
+          "Skipping the Roth IRA in favor of taxable investing because the paperwork 'looks complicated' — a 15-minute setup costs nothing and saves tens of thousands over decades.",
+          "Keeping idle cash in a 0.01% broker sweep when alternatives like SPAXX (Fidelity) or SWVXX (Schwab) pay 4%+.",
+          "Selling during the first 20%+ drawdown. Every generation of investors faces one. The ones who hold through it win; the ones who sell lock in losses.",
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "Fidelity or Schwab is the right first broker for 90% of people.",
+      "Contribute to tax-advantaged accounts (401(k) match, Roth IRA) before taxable brokerage.",
+      "Use limit orders for anything under 1M daily volume.",
+      "Automate contributions and reinvest dividends — remove emotion from the loop.",
+      "Expect 1099 tax forms each February and review expense ratios annually.",
+    ],
+    faqs: [
+      {
+        q: "How much do I need to start investing?",
+        a: "You can start with $1. Fidelity, Schwab, and Robinhood support fractional shares on ETFs, so a $1 deposit can buy 1/280th of a share of VTI. The amount matters far less than starting the habit.",
+      },
+      {
+        q: "Should I lump-sum invest or dollar-cost average?",
+        a: "Lump-sum wins about two-thirds of the time because markets trend up. But DCA reduces regret risk — if you lump-sum the day before a 20% crash, you'll feel it. For amounts under 3x your monthly income, lump-sum. For larger amounts (inheritance, bonus, rollover), splitting over 3-6 months is psychologically easier without giving up much expected return.",
+      },
+      {
+        q: "Can I lose money in an index fund?",
+        a: "Yes, in any given year. VTI dropped 19% in 2022. But over rolling 20-year periods since 1926, the S&P 500 has never had a negative real return. Time horizon is the variable that matters most.",
+      },
+      {
+        q: "Do I need to pick winning stocks to do well?",
+        a: "No — and actively trying usually hurts. An S&P 500 ETF outperforms ~85% of professional managers over 20 years. Stock picking is a hobby, not a strategy.",
+      },
+      {
+        q: "What if I already have a 401(k) — do I still need a Roth IRA?",
+        a: "Yes if you can afford it. They are separate accounts with separate limits. 401(k) is $23,500 in 2026; Roth IRA is a separate $7,000. Together you can shelter $30,500/year before HSA or taxable additions.",
+      },
+      {
+        q: "How do taxes work when I sell?",
+        a: "In a taxable brokerage, selling a position held 1+ years triggers long-term capital gains at 0%, 15%, or 20% based on income. Under 1 year is short-term and taxed as ordinary income (10-37%). Inside a Roth IRA, no tax on any sale — ever.",
+      },
+    ],
+  },
+
+  // ===================== NEW: TAXES AND INHERITANCE =====================
+  {
+    slug: "taxes-and-inheritance-for-investors",
+    title: "Taxes and Inheritance for Investors",
+    category: "Investing",
+    readTime: "14 min",
+    description:
+      "Capital gains, tax-loss harvesting, step-up in basis, inherited IRAs under the SECURE Act, and the estate-planning mechanics every investor eventually needs.",
+    relatedCategory: "/investing",
+    relatedLabel: "Investing Apps",
+    intro:
+      "Most investors spend hundreds of hours picking funds and zero hours learning the tax code that determines how much of the return they actually keep. Capital gains rates, the wash-sale rule, the Net Investment Income surtax, step-up in basis, inherited IRA distribution rules, and beneficiary designations can swing your lifetime after-tax return by 20-30%. This guide covers the mechanics in plain English with dollar-for-dollar worked examples.",
+    sections: [
+      {
+        heading: "Capital Gains: The Core Mechanics",
+        paragraphs: [
+          "When you sell an investment for more than you paid, the profit is a capital gain. The tax rate depends on one thing: how long you held it.",
+        ],
+        bullets: [
+          "Short-term (held 1 year or less) — taxed as ordinary income. Rate: 10%, 12%, 22%, 24%, 32%, 35%, or 37% based on your bracket.",
+          "Long-term (held more than 1 year) — taxed at preferential rates. Rate: 0%, 15%, or 20%.",
+          "2026 long-term thresholds (single): 0% up to $48,350, 15% up to $533,400, 20% above.",
+          "2026 long-term thresholds (married filing jointly): 0% up to $96,700, 15% up to $600,050, 20% above.",
+          "Holding period counts the day after purchase through the day of sale — one day short of a year means short-term rates.",
+        ],
+        callout: {
+          title: "A Dollar Example",
+          body: "You buy 100 shares of VTI at $280 ($28,000). One year and one day later you sell at $340 ($34,000) — a $6,000 long-term gain. At the 15% bracket you pay $900 in federal tax. If you had sold one day earlier (short-term) in a 24% bracket, you'd owe $1,440 — a $540 swing for 24 hours of extra holding.",
+        },
+      },
+      {
+        heading: "The Net Investment Income Tax (NIIT) Surtax",
+        paragraphs: [
+          "High earners face an additional 3.8% surtax on investment income (dividends, interest, capital gains, rental income). The thresholds have not been indexed for inflation since 2013, so more investors hit them each year.",
+        ],
+        bullets: [
+          "Single filers: NIIT applies above $200,000 modified AGI.",
+          "Married filing jointly: NIIT applies above $250,000 modified AGI.",
+          "The 3.8% is on the LESSER of investment income or the amount above the threshold.",
+          "Effective top rate on long-term gains becomes 23.8% (20% + 3.8%); short-term becomes 40.8% (37% + 3.8%).",
+          "State taxes stack on top — California high earners pay ~37.1% on long-term gains after combining federal + NIIT + state.",
+        ],
+      },
+      {
+        heading: "Tax-Loss Harvesting: Turning Losses Into Savings",
+        paragraphs: [
+          "Tax-loss harvesting means selling a losing position to realize the loss, then using it to offset gains or up to $3,000 of ordinary income. Done right, it adds an estimated 0.3-1.0% per year to after-tax returns in taxable accounts.",
+        ],
+        bullets: [
+          "Capital losses first offset capital gains of the same type (short vs long). Net losses then offset the opposite type.",
+          "Up to $3,000 of remaining loss offsets ordinary income per year ($1,500 if married filing separately).",
+          "Excess losses carry forward indefinitely — there is no expiration.",
+          "Only available in taxable accounts; losses in IRAs and 401(k)s are not deductible.",
+        ],
+        callout: {
+          title: "Worked Example — $9,000 Harvest",
+          body: "Your brokerage shows an unrealized loss of $9,000 on an international fund. You sell it on November 15. You use $6,000 of the loss to offset a $6,000 gain from selling Apple earlier that year (tax savings: $1,620 at a 27% combined rate). The remaining $3,000 reduces your taxable wages (tax savings: $720 at 24%). Total tax saved: $2,340 — from a paper loss you were already holding.",
+        },
+      },
+      {
+        heading: "The Wash-Sale Rule — Don't Waste the Harvest",
+        paragraphs: [
+          "If you sell at a loss and buy a 'substantially identical' security within 30 days before OR after the sale, the loss is disallowed and added to the basis of the replacement. The rule exists to prevent fake losses while maintaining the same exposure.",
+        ],
+        bullets: [
+          "Window: 30 days before + day of + 30 days after = 61-day danger zone.",
+          "'Substantially identical' is undefined but clearly covers the same ticker and near-identical index funds. VOO → IVV (both track the S&P 500) is debated; most tax pros avoid it.",
+          "Wash sales across accounts count — including your IRA, your spouse's accounts, and joint accounts. An IRA-triggered wash permanently loses the deduction (basis can't be added to an IRA).",
+          "Safe swaps: VTI (total market) → SCHB (slightly different index, different sponsor) or VOO (S&P 500) → VONE (Russell 1000).",
+          "401(k) dividend reinvestments can inadvertently trigger wash sales if you hold the same fund in both accounts — audit annually.",
+        ],
+      },
+      {
+        heading: "Step-Up in Basis — The Biggest Gift in the Tax Code",
+        paragraphs: [
+          "When an investor dies, assets in taxable accounts get a 'step-up' in cost basis to the fair market value on the date of death. The heir inherits at the new basis, so all pre-death gains escape capital gains tax forever.",
+        ],
+        callout: {
+          title: "A Generational Example",
+          body: "Your mother bought $10,000 of VOO in 1995. It's worth $420,000 at her death in 2030. If she sold it the day before, the $410,000 gain would generate ~$97,580 in federal tax (23.8% at the top bracket). If instead she dies holding it, your new cost basis is $420,000. You sell the next day for $420,000 and owe $0 in capital gains. The entire $410,000 gain is permanently untaxed.",
+        },
+        bullets: [
+          "Applies to taxable brokerage accounts and real estate. Does NOT apply to Traditional IRAs, 401(k)s, or annuities (those are taxed as ordinary income to the heir).",
+          "Does apply to Roth IRAs — but those were already tax-free, so basis doesn't matter for income tax.",
+          "Community-property states (CA, TX, AZ, WA, etc.) give surviving spouses a 100% step-up on all community assets; common-law states only step up the deceased spouse's half.",
+          "Changes the investing math for anyone 65+: harvesting gains before death wastes the step-up, while gifting appreciated assets transfers the low basis (heir pays gains, beats recipient later).",
+        ],
+      },
+      {
+        heading: "The Inherited IRA 10-Year Rule (SECURE Act)",
+        paragraphs: [
+          "The SECURE Act of 2019 dramatically changed how non-spouse heirs must handle inherited retirement accounts. The old 'stretch IRA' that let heirs spread distributions over their lifetime is dead for most beneficiaries.",
+        ],
+        bullets: [
+          "Non-spouse beneficiaries must empty the inherited IRA by December 31 of the 10th year after the original owner's death.",
+          "Traditional inherited IRA withdrawals are taxed as ordinary income. Roth inherited IRA withdrawals are tax-free (but still subject to the 10-year rule).",
+          "IRS guidance in 2024 confirmed that if the original owner was already taking RMDs, annual RMDs ARE required during years 1-9 AND the account must be empty by year 10.",
+          "Exempt beneficiaries (Eligible Designated Beneficiaries) still get lifetime stretch: surviving spouses, minor children (until majority), disabled or chronically ill individuals, anyone within 10 years of the decedent's age.",
+          "Strategy: heirs in low-income years should accelerate distributions to stay under higher brackets; heirs at peak earning years should delay until retirement if possible.",
+        ],
+        callout: {
+          title: "The Tax Trap Most Heirs Walk Into",
+          body: "A 45-year-old doctor inherits a $800,000 Traditional IRA. Waiting until year 10 to withdraw lump-sum pushes her into the 37% federal bracket — roughly $296,000 in federal tax plus state. Spreading it evenly at $80,000/year over 10 years keeps her in the 24% bracket, saving ~$100,000 in total tax. The withdrawal schedule matters more than any investment decision.",
+        },
+      },
+      {
+        heading: "Beneficiary Designations Override Your Will",
+        paragraphs: [
+          "This is the most under-appreciated rule in estate planning: the beneficiary on file at your brokerage, IRA, 401(k), and life insurance company controls who inherits those assets — regardless of what your will says. A will is useless for assets with named beneficiaries.",
+        ],
+        bullets: [
+          "Audit every account annually: IRAs, 401(k)s, HSAs, life insurance, taxable brokerage TOD (transfer-on-death), annuities.",
+          "Common failure: ex-spouses left as beneficiary after divorce. Some states auto-revoke, many do not.",
+          "Primary AND contingent beneficiaries should be named. If both die before you and no contingent is named, the asset goes through probate.",
+          "For minors, name a testamentary trust or UTMA custodian — never name a minor directly (courts control the money until age 18/21).",
+          "Per stirpes vs per capita — 'per stirpes' passes a deceased beneficiary's share to their children. 'Per capita' splits equally among survivors. Get this right in the form.",
+        ],
+      },
+      {
+        heading: "Gift and Estate Tax Mechanics",
+        bullets: [
+          "Annual gift exclusion: $19,000 per recipient in 2026 ($38,000 per couple). No tax reporting required under this amount.",
+          "Lifetime estate/gift exemption: $13.99 million per individual in 2026, sunsetting to ~$7M in 2026 unless Congress acts (TCJA sunset).",
+          "Gifts above the annual exclusion eat into the lifetime exemption but generate no immediate tax.",
+          "529 superfunding: you can front-load 5 years of gifts ($95,000 single / $190,000 couple in 2026) into a 529 without touching the lifetime exemption.",
+          "Pay tuition or medical bills directly to the institution — unlimited, doesn't count against any exclusion.",
+          "Gift of appreciated stock carries your cost basis — recipient owes capital gains when they sell. Low-income recipients can pay 0% long-term rate, making gifts of appreciated stock a tax-efficient transfer.",
+        ],
+      },
+      {
+        heading: "When to Use a Trust",
+        paragraphs: [
+          "Revocable living trusts avoid probate (the court process of validating a will) and keep your estate private. They are oversold for smaller estates but genuinely useful in specific cases.",
+        ],
+        bullets: [
+          "Own real estate in multiple states — trust avoids ancillary probate in each state.",
+          "Want to control distributions after death (e.g., money doled out to heirs over time rather than lump sum).",
+          "Estate size exceeds the lifetime exemption and state inheritance tax is a concern (see list below).",
+          "Have minor children — a trust lets you specify ages, conditions, and trustees.",
+          "Skip the trust if: single state, assets under $500K, no complex family situation, and all major accounts have proper beneficiary designations. A well-funded beneficiary-TOD strategy achieves most of the same goals at zero cost.",
+        ],
+      },
+      {
+        heading: "State Inheritance and Estate Taxes",
+        paragraphs: [
+          "Twelve states plus DC impose their own estate tax, and six states impose an inheritance tax (paid by the heir). Thresholds are much lower than federal — some as low as $1-2 million.",
+        ],
+        bullets: [
+          "State estate tax states: CT, DC, HI, IL, ME, MD, MA ($2M threshold), MN, NY, OR, RI, VT, WA (progressive to 20%).",
+          "State inheritance tax states: IA (phasing out), KY, MD, NE, NJ, PA.",
+          "MD imposes BOTH estate and inheritance tax.",
+          "Spouses are universally exempt; children and grandchildren are usually exempt from inheritance tax but not estate tax.",
+          "Residency matters more than property location for most state taxes — moving to FL, TX, NV in retirement can shield estates from state-level tax entirely.",
+        ],
+      },
+      {
+        heading: "Putting It All Together: A Simple Tax-Aware Investing Playbook",
+        bullets: [
+          "Hold tax-inefficient assets (bonds, REITs, high-dividend funds, actively-traded positions) in IRAs and 401(k)s.",
+          "Hold tax-efficient assets (broad-market ETFs like VTI, VOO) in taxable accounts where step-up in basis works for you.",
+          "Tax-loss harvest every November — review red positions, swap to non-identical alternatives, bank the loss.",
+          "Review beneficiaries every January and after every major life event (marriage, divorce, birth, death).",
+          "In retirement, use Roth conversions in low-income years to fill lower brackets and reduce future RMDs.",
+          "After 65, stop harvesting gains in taxable — hold for step-up. Harvest losses still, but let gains ride to heirs.",
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "Hold investments 1+ year for long-term capital gains rates (0/15/20% vs 10-37%).",
+      "Tax-loss harvest annually — the wash-sale rule's 61-day window is the only real constraint.",
+      "Step-up in basis at death eliminates all pre-death gains in taxable accounts.",
+      "Inherited IRAs must be emptied within 10 years (SECURE Act, non-spouse beneficiaries).",
+      "Beneficiary designations override your will — audit every account annually.",
+    ],
+    faqs: [
+      {
+        q: "Do I pay capital gains tax if I reinvest dividends?",
+        a: "Yes — dividends are taxable in the year received regardless of what you do with them. Reinvested dividends increase your cost basis, which reduces capital gains when you eventually sell.",
+      },
+      {
+        q: "What happens if I sell in December but the settlement is in January?",
+        a: "For tax purposes, the trade date (not settlement date) controls. A December 30 sale is a current-year transaction even if cash settles January 2.",
+      },
+      {
+        q: "Can I gift appreciated stock to my child in college to avoid capital gains?",
+        a: "Yes — if the child is in the 0% long-term capital gains bracket (2026: under $48,350 single income), they can sell the stock and pay zero federal tax. Watch the kiddie tax if they are under 24 and a full-time student — unearned income over $2,700 is taxed at the parents' rate.",
+      },
+      {
+        q: "My parent died with a Traditional IRA — what do I do first?",
+        a: "Before touching the account, ask the custodian to title it as an 'Inherited IRA FBO [Your Name]' — do NOT roll it into your own IRA (that triggers immediate full taxation). Then plan distributions over the 10-year window to avoid bracket bunching.",
+      },
+      {
+        q: "Is a Roth IRA subject to the 10-year rule for heirs?",
+        a: "Yes — non-spouse beneficiaries must empty an inherited Roth IRA within 10 years. But all distributions are tax-free, so the rule is less painful. Strategy: let it compound all 10 years and withdraw in year 10 to maximize tax-free growth.",
+      },
+      {
+        q: "Does the wash-sale rule apply to crypto?",
+        a: "Not currently — crypto is treated as property, not securities, so wash-sale rules do not apply as of 2026. Legislation has been proposed to close this gap; assume it may change.",
+      },
+      {
+        q: "Should I convert Traditional IRA to Roth IRA?",
+        a: "It depends on your current vs expected future tax bracket. Convert when your current rate is LOWER than expected retirement rate — most commonly, in gap years between jobs, early retirement before Social Security/RMDs, or after a business loss. Never convert enough to push yourself into a higher bracket; fill to the top of your current bracket each year.",
+      },
+    ],
+  },
+
+  // ===================== NEW: OPTIONS 101 =====================
+  {
+    slug: "options-101",
+    title: "Options 101: Calls, Puts, and How They Actually Work",
+    category: "Trading",
+    readTime: "11 min",
+    description:
+      "A technical but accessible introduction to options — contracts, strike prices, expiration, intrinsic vs extrinsic value, assignment, and the real math behind payoff diagrams.",
+    relatedCategory: "/investing",
+    relatedLabel: "Trading Platforms",
+    intro:
+      "Options are contracts that let you control 100 shares of stock for a fraction of the cost of owning them outright. That leverage is the reason options can multiply wealth quickly — and also why they destroy retail accounts faster than almost any other financial product. Before you trade a single contract, you need to understand exactly what you are buying, how it is priced, and what can go wrong. This guide covers the fundamentals with actual dollar math and no hand-waving.",
+    sections: [
+      {
+        heading: "What an Options Contract Actually Is",
+        paragraphs: [
+          "An options contract gives the buyer the right — but not the obligation — to buy or sell 100 shares of a stock at a specific price, on or before a specific date. The seller of the contract takes on the obligation in exchange for the premium paid upfront.",
+        ],
+        bullets: [
+          "Call option — right to BUY 100 shares at the strike price. Bullish bet.",
+          "Put option — right to SELL 100 shares at the strike price. Bearish bet or hedge.",
+          "Strike price — the agreed-upon buy/sell price written into the contract.",
+          "Expiration — the last day the option can be exercised. Weekly, monthly, quarterly, or LEAPS (1-3 years).",
+          "Premium — the price to buy or sell the contract, quoted per share (×100 for dollar cost).",
+        ],
+        callout: {
+          title: "The 100-Share Multiplier",
+          body: "A call quoted at $2.50 costs $250 to buy (2.50 × 100 shares). A put quoted at $0.75 costs $75. This multiplier is the first place beginners misread risk — a screen showing '$1.20' is $120 per contract, not $1.20.",
+        },
+      },
+      {
+        heading: "Intrinsic Value vs Extrinsic Value",
+        paragraphs: [
+          "Every option's premium breaks down into two components. Understanding the split is the foundation of everything that follows.",
+        ],
+        bullets: [
+          "Intrinsic value — how much in-the-money the option is RIGHT NOW. A $100 call with stock at $105 has $5 of intrinsic value.",
+          "Extrinsic value (time value) — everything else. It decays to zero at expiration.",
+          "In-the-money (ITM) — call strike below stock price, or put strike above stock price. Has intrinsic value.",
+          "Out-of-the-money (OTM) — call strike above stock price, or put strike below stock price. All premium is extrinsic.",
+          "At-the-money (ATM) — strike near current price. All premium is extrinsic; highest time value.",
+        ],
+        callout: {
+          title: "A Concrete Breakdown",
+          body: "Stock XYZ trades at $102. The $100 call with 30 days to expiration costs $3.50. Intrinsic = $2 (102 - 100). Extrinsic = $1.50 (the rest). If XYZ stays flat at $102 until expiration, the call will be worth exactly $2.00 at expiry — you lose $1.50 per share to time decay ($150 per contract) without the stock moving against you.",
+        },
+      },
+      {
+        heading: "The Call Option Payoff — Worked Example",
+        paragraphs: [
+          "Assume XYZ trades at $100. You buy the 30-day $100 call for $3.00 ($300 per contract). Your max loss is $300 (the premium). Your break-even at expiration is $103 (strike + premium).",
+        ],
+        bullets: [
+          "At $95 at expiry — call expires worthless. Loss: -$300 (-100%).",
+          "At $100 at expiry — call expires worthless. Loss: -$300 (-100%).",
+          "At $103 at expiry — intrinsic value is $3, matching premium. Break-even (-$0).",
+          "At $110 at expiry — intrinsic value is $10. Profit: $700 per contract (+233%).",
+          "At $120 at expiry — intrinsic value is $20. Profit: $1,700 per contract (+567%).",
+          "Above $100 before expiry — profit also includes remaining time value.",
+        ],
+      },
+      {
+        heading: "The Put Option Payoff — Worked Example",
+        paragraphs: [
+          "Same XYZ at $100. You buy the 30-day $100 put for $2.80 ($280 per contract). Max loss is $280. Break-even at expiration is $97.20 (strike - premium).",
+        ],
+        bullets: [
+          "At $105 at expiry — put expires worthless. Loss: -$280.",
+          "At $100 at expiry — put expires worthless. Loss: -$280.",
+          "At $97.20 at expiry — break-even.",
+          "At $90 at expiry — intrinsic value is $10. Profit: $720 per contract (+257%).",
+          "At $80 at expiry — intrinsic value is $20. Profit: $1,720 per contract (+614%).",
+          "The put's max theoretical gain is capped at (strike × 100 - premium) if stock goes to zero.",
+        ],
+      },
+      {
+        heading: "Writing (Selling) Options — The Other Side of the Trade",
+        paragraphs: [
+          "When you buy a call or put, someone is writing it to you. Writers collect the premium upfront but take on the obligation to buy or deliver shares if exercised. The risk profile flips.",
+        ],
+        bullets: [
+          "Covered call — sell a call against 100 shares you already own. Max profit: premium + (strike - cost basis). Risk: capped upside if stock rallies past strike.",
+          "Cash-secured put — sell a put and hold cash equal to 100 × strike. Max profit: premium. Risk: forced to buy 100 shares at strike if assigned.",
+          "Naked call — sell a call without owning shares. Unlimited loss potential. Requires high-tier options approval and significant margin.",
+          "Naked put — sell a put without cash to buy shares. Loss capped at strike × 100 - premium (stock can only go to zero).",
+          "Assignment — if the option goes in-the-money at expiration, the buyer exercises and the writer must deliver shares (call) or buy them (put) at the strike price.",
+        ],
+        callout: {
+          title: "Why Most Retail Traders Lose",
+          body: "Buying OTM calls and puts with 0-7 days to expiration is the retail default. Theta (time decay) accelerates exponentially in the last week, so even a stock moving in the right direction can lose you money. Sellers of those same contracts are the structural winners — at the cost of defined max-profit and unlimited (or large) max-loss.",
+        },
+      },
+      {
+        heading: "Assignment, Exercise, and Settlement",
+        bullets: [
+          "Exercise — the option buyer elects to convert the contract into shares. Usually happens at or near expiration when ITM.",
+          "Assignment — the writer is randomly selected by the Options Clearing Corporation to fulfill the exercise. You cannot predict or prevent it beyond closing the contract.",
+          "Early assignment — American-style options (most single-name stocks) can be assigned any time before expiration. European-style (index options like SPX) can only be assigned at expiration.",
+          "Automatic exercise — brokers auto-exercise any option $0.01+ ITM at expiration unless you instruct otherwise.",
+          "Pin risk — when stock closes very near the strike at expiration, assignment can be unpredictable. Close positions before expiration to avoid it.",
+          "Dividends — call writers risk early assignment the day before an ex-dividend date if the call is deep ITM. Check ex-div calendars.",
+        ],
+      },
+      {
+        heading: "The Math That Prices Every Option",
+        paragraphs: [
+          "Option prices are set by five inputs. You don't need to do the math yourself (the Black-Scholes model handles it), but understanding the inputs tells you what moves your position.",
+        ],
+        bullets: [
+          "Stock price — drives intrinsic value. A $1 move in stock moves the option by delta (covered in the Greeks guide).",
+          "Strike price — fixed when you open the contract.",
+          "Time to expiration — longer = more extrinsic value, but more time decay exposure.",
+          "Implied volatility (IV) — the market's forecast of stock movement. Higher IV = more expensive options.",
+          "Risk-free rate — matters for LEAPS but negligibly for short-dated options.",
+          "Dividends — reduce call prices and increase put prices (ex-div drops the stock by the dividend amount).",
+        ],
+      },
+      {
+        heading: "Implied Volatility: The Input You'll Actually Trade",
+        paragraphs: [
+          "IV is a percentage that expresses the market's expectation of how much the stock will move, annualized. Options get expensive before earnings, FDA decisions, and macro events — and cheaper after.",
+        ],
+        bullets: [
+          "IV of 30% implies a one-standard-deviation annual move of ±30%.",
+          "IV rank / IV percentile — tells you whether current IV is high or low vs the stock's own history. Sell premium when IV rank is above 50; buy premium when below 30.",
+          "Volatility crush — IV collapses after an earnings announcement. Buying straddles the day before earnings is usually a losing trade because the move must exceed the expected move priced in.",
+          "VIX — the 'fear index' is implied volatility on SPX options, 30-day forward. VIX above 30 = elevated fear, options are expensive. VIX below 15 = complacency, options are cheap.",
+        ],
+      },
+      {
+        heading: "Your First 10 Options Trades — Rules of the Road",
+        bullets: [
+          "Trade liquid underlyings only — SPY, QQQ, AAPL, MSFT. Bid-ask spreads under 3% of premium.",
+          "Start with single-leg defined-risk trades: long calls, long puts, covered calls, cash-secured puts.",
+          "30-60 days to expiration is the beginner sweet spot — enough time for the thesis to play out, less theta decay than weeklies.",
+          "Never risk more than 2-3% of account on any single contract. Options are leverage; sizing like stocks destroys accounts.",
+          "Close at 50% profit on premium-selling strategies. Sellers give up upside for probability — take the win.",
+          "Exit before expiration week unless you specifically want to be assigned. Gamma risk explodes in the last 5 days.",
+          "Paper-trade for 30 days minimum before real money. The emotional sequence is the hardest part.",
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "One options contract controls 100 shares — the dollar risk is always premium × 100.",
+      "Premium = intrinsic value + extrinsic (time) value. Extrinsic decays to zero at expiration.",
+      "Buyers have defined risk but pay theta; sellers collect theta but face larger tail risk.",
+      "Implied volatility drives option prices as much as the stock itself — sell high IV, buy low IV.",
+      "Stick to liquid underlyings, 30-60 DTE, and 2-3% per trade until you have 30+ live trades of experience.",
+    ],
+    faqs: [
+      {
+        q: "What's the minimum account to trade options?",
+        a: "No legal minimum for Level 1-2 (covered calls, cash-secured puts, long options), though most brokers want $2,000+. Spreads and naked selling require higher approval levels and $25,000-100,000+ depending on strategy.",
+      },
+      {
+        q: "Can I lose more than I put in buying a call or put?",
+        a: "No. Long calls and puts have defined risk equal to the premium paid. The unlimited-loss scenarios apply only to writers (especially naked calls).",
+      },
+      {
+        q: "What happens if my call expires in-the-money but I don't have cash to exercise?",
+        a: "Most brokers auto-exercise and sell the resulting shares immediately at the next market open, crediting you the intrinsic value. Some brokers will close the option for cash the afternoon of expiration if you can't afford to take assignment. Set instructions in advance.",
+      },
+      {
+        q: "Are options taxed differently than stocks?",
+        a: "Short-term by default — held under a year is ordinary income rates. Exception: Section 1256 contracts (SPX, futures options) get 60/40 treatment (60% long-term, 40% short-term) regardless of holding period, which is a meaningful tax advantage for active traders.",
+      },
+      {
+        q: "Is selling covered calls 'free money'?",
+        a: "No. The premium compensates you for capped upside. In a rally, you'll leave money on the table. Over the long run, covered-call strategies have underperformed buy-and-hold on the S&P 500 — but they smooth returns and generate income, which is valuable for certain portfolios.",
+      },
+      {
+        q: "What's the difference between American and European options?",
+        a: "American-style can be exercised any time until expiration (most single-stock options). European-style can only be exercised at expiration (index options like SPX, XSP). European-style removes early-assignment risk, which is why advanced traders prefer them.",
+      },
+    ],
+  },
+
+  // ===================== NEW: THE GREEKS =====================
+  {
+    slug: "the-greeks-explained",
+    title: "The Greeks Explained: Delta, Gamma, Theta, Vega, Rho",
+    category: "Trading",
+    readTime: "10 min",
+    description:
+      "Every options trader has to understand the Greeks. Here is exactly what each one measures, how they interact, and dollar-scale examples that make the numbers click.",
+    relatedCategory: "/investing",
+    relatedLabel: "Trading Platforms",
+    intro:
+      "The Greeks are the sensitivity measures that explain why an option's price changes. Delta measures direction. Gamma measures how delta itself changes. Theta measures time decay. Vega measures volatility exposure. Rho measures interest-rate sensitivity. Every profitable options trader can tell you, in seconds, what each of their positions is exposed to — and they use the Greeks to do it.",
+    sections: [
+      {
+        heading: "Delta: Directional Exposure",
+        paragraphs: [
+          "Delta is the change in option price for a $1 change in the underlying stock. It ranges from 0 to +1 for calls and 0 to -1 for puts.",
+        ],
+        bullets: [
+          "ATM call ≈ 0.50 delta — moves $0.50 for every $1 in the stock.",
+          "Deep ITM call → 1.00 delta — behaves like 100 shares of stock.",
+          "Deep OTM call → 0.00 delta — barely moves when stock moves.",
+          "Put deltas are negative: ATM put ≈ -0.50.",
+          "Delta also approximates probability of finishing ITM: a 0.30 delta call has roughly a 30% chance of expiring in-the-money.",
+        ],
+        callout: {
+          title: "Delta in Dollars",
+          body: "You own 5 AAPL calls each with delta 0.60. Total delta = 300 (0.60 × 100 × 5). If AAPL moves up $1, your position gains approximately $300. Delta lets you answer 'how much directional risk do I have?' at a glance.",
+        },
+      },
+      {
+        heading: "Gamma: The Rate of Change of Delta",
+        paragraphs: [
+          "Gamma measures how much delta changes per $1 move in the stock. It is highest at-the-money and collapses for deep ITM or OTM options. Gamma is also highest near expiration — which is why 0DTE and weekly options behave so violently.",
+        ],
+        bullets: [
+          "Gamma is always positive for long options, always negative for short options.",
+          "Short-dated ATM options have the highest gamma — a 1% move in the stock can flip the option from 40 delta to 60 delta overnight.",
+          "High gamma = large P&L swings — good if you're right about direction, painful if wrong.",
+          "Long options benefit from convexity — gains accelerate in your favor, losses decelerate.",
+          "Short options suffer negative gamma — losses accelerate against you, which is why selling 0DTE without a stop is catastrophic in tail events.",
+        ],
+        callout: {
+          title: "Gamma Example",
+          body: "Stock at $100. ATM call has 0.50 delta and 0.10 gamma. If stock moves to $102, delta becomes approximately 0.70 (0.50 + 2 × 0.10). The option gained $1 from the first dollar move (at delta 0.50) and $1.20 from the second (at delta closer to 0.60). Total gain ~$2.20 instead of the linear $1.00 — that is convexity in action.",
+        },
+      },
+      {
+        heading: "Theta: Time Decay",
+        paragraphs: [
+          "Theta is the dollar amount your option loses per day simply from the passage of time. It is the price you pay for leverage and optionality.",
+        ],
+        bullets: [
+          "ATM 30-day option: theta might be -$0.05 per share per day = -$5 per contract per day.",
+          "Theta accelerates as expiration approaches — last week can be -$0.20+ per day.",
+          "Weekends count: Friday's theta decay includes Saturday and Sunday priced in.",
+          "Long options = negative theta (paying time premium). Short options = positive theta (collecting).",
+          "Theta is highest for ATM options because they have the most extrinsic value to decay.",
+        ],
+        callout: {
+          title: "The Theta Trap",
+          body: "You buy a 7-day ATM call for $1.50 ($150). Theta is -$0.20/day. Even if the stock moves exactly with your thesis by $1 over the week (delta gain ~$50), theta eats -$140 over 7 days. You need ~$2 of stock movement just to break even. This is why short-dated call buyers lose even when right about direction.",
+        },
+      },
+      {
+        heading: "Vega: Volatility Exposure",
+        paragraphs: [
+          "Vega is the dollar change in option price per 1 percentage-point change in implied volatility. Options expand and contract with IV — often independently of the stock moving.",
+        ],
+        bullets: [
+          "Long ATM 30-day option: vega ≈ $0.10 per 1% IV change per share = $10 per contract per 1% move.",
+          "Vega is highest for ATM and longer-dated options; near-zero for deep ITM/OTM shorts.",
+          "Long options = positive vega (benefit from IV expansion). Short options = negative vega (profit from IV crush).",
+          "Pre-earnings IV rise — stock-specific vega can add 20-40% to option prices in the two weeks before earnings.",
+          "Post-earnings IV crush — the day after earnings, IV often drops 30-50%. A +5% stock move with a -40% IV crush frequently leaves long calls unchanged or down.",
+        ],
+      },
+      {
+        heading: "Rho: Interest Rate Sensitivity",
+        paragraphs: [
+          "Rho measures option price change per 1 percentage-point change in the risk-free rate. For short-dated options it is usually negligible. For LEAPS (1-3 year options) and when rates are changing rapidly, rho becomes meaningful.",
+        ],
+        bullets: [
+          "Long calls = positive rho — higher rates slightly raise call prices (cost of carry).",
+          "Long puts = negative rho — higher rates slightly lower put prices.",
+          "Rho becomes a 5-10% factor in 2-year LEAPS when the Fed shifts 200+ bps.",
+          "Most traders safely ignore rho for options under 90 days.",
+        ],
+      },
+      {
+        heading: "The Greeks Interact — You Are Never Exposed to Just One",
+        paragraphs: [
+          "Every option has all five Greeks simultaneously. A profitable trade requires the direction (delta), the velocity (gamma), the time frame (theta), and the volatility regime (vega) to align. Understanding the combination is what separates a trader from a gambler.",
+        ],
+        bullets: [
+          "Long weekly ATM call: high positive delta, high positive gamma, very negative theta, moderate positive vega. Needs a fast move in the right direction.",
+          "Covered call: +100 delta from stock, -30 delta from sold call = +70 delta. Positive theta from the sold call collects daily. Negative vega (IV expansion hurts if forced to close).",
+          "Iron condor: near-zero delta (market-neutral), negative gamma (hurts on big moves), positive theta (collects daily), negative vega (IV expansion hurts). Profit zone is a sideways market with IV contraction.",
+          "Long LEAPS call: high positive delta (0.70+), low gamma, small theta, meaningful positive vega and rho. Behaves like stock with leverage.",
+        ],
+        callout: {
+          title: "The Greek Everyone Misses",
+          body: "Retail traders obsess over delta ('will the stock go up?') and ignore vega and theta. Earnings trades lose constantly because buyers pay for IV that collapses after the announcement — even when they correctly predict the direction. If you only learn two Greeks deeply, make them theta and vega. Delta is the obvious one; theta and vega are where profits are quietly made or lost.",
+        },
+      },
+      {
+        heading: "Reading the Greeks Tab on Your Broker",
+        paragraphs: [
+          "Every major broker displays Greeks for each option. Here's how to read the line quickly on a sample quote: AAPL Jan 17 $200 Call, Delta 0.42, Gamma 0.03, Theta -0.09, Vega 0.18.",
+        ],
+        bullets: [
+          "Delta 0.42 — if AAPL moves $1, this call gains ~$0.42 per share = $42 per contract.",
+          "Gamma 0.03 — if AAPL moves $1, delta rises to ~0.45.",
+          "Theta -0.09 — the option loses ~$9 per contract per day, all else equal.",
+          "Vega 0.18 — a 1% IV rise adds ~$18 per contract; a 1% IV drop removes ~$18.",
+          "Multiply each by contract count for position-level exposure. 10 contracts means 10× everything.",
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "Delta = directional exposure. Gamma = how fast delta changes.",
+      "Theta eats long options daily; high-gamma short-dated positions are theta-poisoned.",
+      "Vega is why earnings plays lose even when direction is right — IV crush.",
+      "All five Greeks are active on every option — never focus on delta alone.",
+      "Positive-theta strategies (covered calls, credit spreads, iron condors) win from sideways markets; long-option strategies win from fast moves.",
+    ],
+    faqs: [
+      {
+        q: "Do I need to calculate Greeks myself?",
+        a: "No. Every broker displays them in the options chain. Your job is to understand what the numbers mean and how they change your position's risk as the stock and time move.",
+      },
+      {
+        q: "What's a 'delta-neutral' trade?",
+        a: "A position with a net delta near zero — meaning it doesn't profit or lose from small directional moves. Iron condors, straddles, and strangles are common delta-neutral structures that profit from time decay or volatility changes rather than direction.",
+      },
+      {
+        q: "How do dividends affect the Greeks?",
+        a: "A declared dividend drops the stock by roughly the dividend amount on the ex-div date. Call deltas adjust down slightly; put deltas adjust up. Deep ITM calls can get early-assigned the day before ex-div if the remaining extrinsic is less than the dividend.",
+      },
+      {
+        q: "Why is my option price moving when the stock isn't?",
+        a: "Vega (IV change) and theta (time decay). If IV dropped 2% intraday, a long option with vega 0.15 loses $30 per contract before the stock moves at all. Rising IV can lift prices without any stock movement.",
+      },
+      {
+        q: "Can I see Greeks for my overall portfolio?",
+        a: "Yes — platforms like Thinkorswim, Tastytrade, and Interactive Brokers show aggregated portfolio Greeks. This is the professional view: total delta tells you directional exposure; total theta shows daily decay income or cost; total vega shows volatility sensitivity.",
+      },
+    ],
+  },
+
+  // ===================== NEW: OPTIONS STRATEGIES =====================
+  {
+    slug: "options-strategies",
+    title: "Options Strategies: Covered Calls, CSPs, Verticals, and Iron Condors",
+    category: "Trading",
+    readTime: "13 min",
+    description:
+      "The four defined-risk options strategies that cover 90% of what retail traders actually need — with break-even math, max profit/loss, and when each one shines.",
+    relatedCategory: "/investing",
+    relatedLabel: "Trading Platforms",
+    intro:
+      "Once you understand calls, puts, and the Greeks, the next step is combining them into structured trades. Four strategies handle almost every market view a retail trader needs: covered calls for income on existing stock, cash-secured puts for entering stock at a discount, vertical spreads for directional bets with capped risk, and iron condors for neutral premium collection. Each has precise break-evens and max loss — which means you can size them correctly and know exactly what you're risking on every trade.",
+    sections: [
+      {
+        heading: "Strategy 1: The Covered Call",
+        paragraphs: [
+          "A covered call means selling a call option against 100 shares of stock you already own. You collect the premium upfront. If the stock stays below the strike at expiration, you keep the premium and the shares. If it rises above the strike, your shares get called away at that strike.",
+        ],
+        bullets: [
+          "Setup: own 100+ shares of XYZ. Sell 1 call per 100 shares, typically 30-45 DTE, 0.20-0.30 delta (OTM).",
+          "Max profit: premium collected + (strike - cost basis).",
+          "Max loss: cost basis - premium collected (same downside as owning the stock, minus the premium buffer).",
+          "Break-even: cost basis - premium collected.",
+          "Best for: stocks you're long-term neutral to mildly bullish on; generating income; slight downside protection.",
+        ],
+        callout: {
+          title: "Worked Example",
+          body: "You own 100 shares of AAPL at $220 cost basis. AAPL trades $235. You sell the 45 DTE $245 call for $3.50 ($350). Three outcomes at expiration: (1) AAPL at $240 — call expires worthless, keep $350 premium plus 100 shares still worth $24,000. (2) AAPL at $245 — call expires at zero, same as above. (3) AAPL at $260 — shares called away at $245. You made $25/share capital gain + $3.50 premium = $28.50/share total ($2,850). Total gain 13%, but you missed the rally from $245 to $260 ($1,500 left on the table).",
+        },
+      },
+      {
+        heading: "Strategy 2: The Cash-Secured Put",
+        paragraphs: [
+          "A cash-secured put (CSP) means selling a put option while holding cash equal to 100 × strike. You collect premium upfront. If the stock stays above the strike, you keep the premium. If it drops below the strike, you're assigned and buy 100 shares at the strike (effectively at a discount to your entry price minus the premium).",
+        ],
+        bullets: [
+          "Setup: hold cash equal to 100 × strike. Sell 1 put per 100 shares you're willing to own, 30-45 DTE, 0.20-0.30 delta (OTM).",
+          "Max profit: premium collected.",
+          "Max loss: (strike × 100) - premium collected (happens if stock goes to zero).",
+          "Break-even: strike - premium.",
+          "Best for: stocks you want to own anyway; entering at a discount; generating income while waiting for a dip.",
+        ],
+        callout: {
+          title: "Worked Example",
+          body: "You want to own MSFT but think $410 is too expensive. MSFT trades $410. You sell the 30 DTE $395 put for $4.20 ($420), holding $39,500 in cash. Outcomes: (1) MSFT stays above $395 — put expires worthless, you keep $420 (10.6% annualized return on the $39,500 reserved). (2) MSFT drops to $390 — assigned at $395; effective cost basis = $395 - $4.20 = $390.80. You now own 100 MSFT at a 4.7% discount to where it was when you opened the trade.",
+        },
+      },
+      {
+        heading: "The Wheel: Combining Covered Calls and CSPs",
+        paragraphs: [
+          "The Wheel strategy cycles between CSPs and covered calls on the same stock. You sell CSPs until assigned, then sell covered calls until called away, then back to CSPs. Each leg collects premium.",
+        ],
+        bullets: [
+          "Stage 1: Sell CSP at strike below current price. Collect premium.",
+          "Stage 2a: If expires OTM, sell another CSP. Repeat until assigned.",
+          "Stage 2b: If assigned, you now own 100 shares. Move to Stage 3.",
+          "Stage 3: Sell covered call at or above your effective cost basis. Collect premium.",
+          "Stage 4a: If expires OTM, sell another covered call.",
+          "Stage 4b: If called away, sell CSP on same or different stock. Cycle restarts.",
+          "Works best on stocks you'd happily own at the put strike — never wheel a stock you wouldn't want delivered.",
+        ],
+      },
+      {
+        heading: "Strategy 3: Vertical Spreads",
+        paragraphs: [
+          "A vertical spread is two options of the same type and same expiration at different strikes. Sell one, buy another. Four variations cover bullish, bearish, premium-collecting, and premium-paying views.",
+        ],
+        bullets: [
+          "Bull Call Spread (debit) — buy lower-strike call, sell higher-strike call. Bullish, pay premium, cap gain and loss.",
+          "Bear Put Spread (debit) — buy higher-strike put, sell lower-strike put. Bearish, pay premium, cap gain and loss.",
+          "Bull Put Spread (credit) — sell higher-strike put, buy lower-strike put. Bullish, collect premium, cap profit at credit.",
+          "Bear Call Spread (credit) — sell lower-strike call, buy higher-strike call. Bearish, collect premium, cap profit at credit.",
+          "Width = distance between strikes. Max loss = width × 100 - credit (for credit spreads) or debit × 100 (for debit spreads).",
+        ],
+        callout: {
+          title: "Bull Put Spread Example",
+          body: "SPY trades $560. You think it'll stay above $550 for 30 days. Sell the $550 put for $4.00, buy the $545 put for $2.80. Net credit: $1.20 ($120). Max profit: $120 if SPY is above $550 at expiration. Max loss: $5 width - $1.20 credit = $3.80 × 100 = $380 if SPY is below $545 at expiration. Break-even: $550 - $1.20 = $548.80. Risk/reward: $380 to make $120 — but the probability of winning is often 70-80%, which makes the math work out in your favor long-run.",
+        },
+      },
+      {
+        heading: "Strategy 4: The Iron Condor",
+        paragraphs: [
+          "An iron condor combines a bull put spread and a bear call spread on the same underlying and expiration. You collect premium from both sides, profiting when the stock stays within a range. It's the defining strategy for neutral, high-IV environments.",
+        ],
+        bullets: [
+          "Structure: sell OTM put + buy further OTM put + sell OTM call + buy further OTM call. All same expiration.",
+          "Max profit: total net credit received (sum of both spreads' credits).",
+          "Max loss: wider spread width × 100 - credit.",
+          "Two break-evens: lower strike - net credit, upper strike + net credit.",
+          "Best entered when IV rank is above 50 — high IV inflates credits, giving wider break-evens.",
+          "Manage at 50% of max profit — close early to free up buying power and lock in the win.",
+        ],
+        callout: {
+          title: "Iron Condor Example",
+          body: "SPY at $560, IV rank 60. 45 DTE iron condor: sell $540 put for $3.00, buy $530 put for $1.50 (put spread credit: $1.50). Sell $585 call for $2.80, buy $595 call for $1.30 (call spread credit: $1.50). Total credit: $3.00 ($300). Max profit: $300 if SPY between $540 and $585 at expiration. Max loss: $10 width - $3 credit = $700. Break-evens: $537 and $588. You profit as long as SPY moves less than ±5% over 45 days.",
+        },
+      },
+      {
+        heading: "Picking the Right Strategy for the Market",
+        bullets: [
+          "Strongly bullish — long call or bull call spread (debit) if IV is low; bull put spread (credit) if IV is high.",
+          "Strongly bearish — long put or bear put spread (debit) if IV is low; bear call spread (credit) if IV is high.",
+          "Neutral with high IV — iron condor or short strangle.",
+          "Neutral with low IV — long straddle if you expect a volatility expansion (earnings, macro event).",
+          "Own 100 shares, slightly bullish — covered call.",
+          "Have cash, willing to buy dip — cash-secured put.",
+          "Binary event (earnings, FDA, Fed) — skip direction bets, consider calendar spreads to exploit IV skew.",
+        ],
+      },
+      {
+        heading: "Position Management Rules",
+        bullets: [
+          "50% rule — close credit trades at 50% of max profit. Captures most of the edge with less time risk.",
+          "21 DTE rule — roll or close short options with 21 days or less to expiration. Gamma risk accelerates past this point.",
+          "Never hold short options through earnings unless explicitly selling the IV crush.",
+          "Sizing — no single trade should risk more than 2-3% of account buying power.",
+          "Diversify by underlying and direction — 10 short put spreads on tech stocks during a sector selloff is 10 correlated losses, not diversification.",
+          "Keep a trade journal — strike selection, credit received, days held, outcome, and IV environment. Review monthly.",
+        ],
+      },
+      {
+        heading: "Tax Treatment of Options Strategies",
+        bullets: [
+          "Equity options — short-term (ordinary income) unless held over a year. Spreads treated per leg.",
+          "Section 1256 contracts (SPX, RUT, NDX index options) — 60% long-term / 40% short-term regardless of holding period. Huge advantage for active traders.",
+          "Covered calls on stock held long-term — special rules can reset holding period if the call is too deep ITM. Stick to ≤0.30 delta to stay safe.",
+          "Assigned CSPs — cost basis of new stock = strike - premium. Premium is no longer taxable income in the year collected; it's folded into basis.",
+          "Wash-sale interactions — closing a losing spread and opening a similar one within 30 days can trigger wash sales on individual legs.",
+        ],
+      },
+    ],
+    keyTakeaways: [
+      "Covered calls and CSPs generate income with defined risk — the backbone of retail options.",
+      "Vertical spreads cap both profit and loss — sizing is simple and risk is known going in.",
+      "Iron condors shine in high-IV, neutral markets — close at 50% of max profit.",
+      "Manage at 21 DTE to avoid gamma risk in the final weeks.",
+      "Index options (SPX, XSP) get 60/40 tax treatment — meaningful edge for active traders.",
+    ],
+    faqs: [
+      {
+        q: "Are these strategies actually profitable long-term?",
+        a: "Credit-premium strategies (CSP, covered call, credit spreads, iron condors) have a positive long-run expectancy because IV is typically higher than realized volatility. But the edge is small — 3-10% annually on capital deployed — and a single bad tail event can erase months of gains if sized incorrectly.",
+      },
+      {
+        q: "How much capital do I need?",
+        a: "Covered calls need 100 shares (~$3,000-$50,000 depending on stock). CSPs need strike × 100 in cash (~$2,000-$50,000). Spreads need only the width × 100 (~$100-$1,000 per trade). Start with $10,000+ for meaningful diversification across 5-8 positions.",
+      },
+      {
+        q: "What's the 'best' delta to sell?",
+        a: "Most retail premium sellers target 0.20-0.30 delta on short options. That corresponds to roughly 70-80% probability of expiring worthless. Going higher (0.40+) increases profit per trade but also the frequency of losses. Going lower (0.10-0.15) increases win rate but reduces premium to the point that commissions matter.",
+      },
+      {
+        q: "Should I ever hold to expiration?",
+        a: "Rarely. Closing at 50% max profit on credit trades captures most of the edge while removing pin risk and late-cycle gamma. Exceptions: if the position is still within a few days of expiration and far from strike (>3% OTM), letting it expire worthless saves one commission.",
+      },
+      {
+        q: "How does margin requirement work for spreads?",
+        a: "Credit spreads require buying power equal to (width × 100) - credit. A $5-wide spread with $1.20 credit requires $380 of buying power. Naked short options (uncovered) require 10-20× more margin depending on broker and account type.",
+      },
+      {
+        q: "What's the biggest mistake new options traders make?",
+        a: "Selling naked premium on meme stocks or low-liquidity names — a single gap move can take out weeks of collected credits. Stick to liquid underlyings (SPY, QQQ, IWM, mega-cap tech) and defined-risk structures until you have 100+ completed trades.",
+      },
+    ],
+  },
 ];
 
 export function getGuideBySlug(slug: string): GuideArticle | undefined {
