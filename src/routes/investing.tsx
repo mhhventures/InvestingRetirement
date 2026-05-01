@@ -6,6 +6,7 @@ import type { Product } from "@/data/products";
 import { ProductCard, ProductLogo, StarRating, GradeBadge, DisclosureIcon } from "@/components/product-card";
 import { getDisclosure } from "@/data/disclosures";
 import { CategoryPage } from "@/components/category-page";
+import { RelatedGuidesForCategory } from "@/components/related-guides";
 import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/investing")({
@@ -250,6 +251,9 @@ function Investing() {
         {rest.map((p, i) => (
           <ProductCard key={p.slug} p={p} rank={i + 2} />
         ))}
+      </div>
+      <div className="mt-6">
+        <RelatedGuidesForCategory categoryPath="/investing" />
       </div>
     </CategoryPage>
   );

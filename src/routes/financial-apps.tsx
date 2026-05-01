@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getByCategory } from "@/data/products";
 import { ProductCard } from "@/components/product-card";
 import { CategoryPage } from "@/components/category-page";
+import { RelatedGuidesForCategory } from "@/components/related-guides";
 import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/financial-apps")({
@@ -70,6 +71,9 @@ function FinancialApps() {
         {filtered.map((p, i) => (
           <ProductCard key={p.slug} p={p} rank={i + 1} />
         ))}
+      </div>
+      <div className="mt-6">
+        <RelatedGuidesForCategory categoryPath="/financial-apps" />
       </div>
     </CategoryPage>
   );

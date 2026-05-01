@@ -96,3 +96,51 @@ export function RelatedGuidesForProduct({ product }: { product: Product }) {
     </section>
   );
 }
+
+export function RelatedGuidesForCategory({
+  categoryPath,
+  limit = 6,
+}: {
+  categoryPath: "/bank-accounts" | "/investing" | "/financial-apps";
+  limit?: number;
+}) {
+  const related = guides
+    .filter((g) => g.relatedCategory === categoryPath)
+    .slice(0, limit);
+
+  if (related.length === 0) return null;
+
+  return (
+    <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-4 sm:mb-5">
+      <div className="flex items-center justify-between border-b border-[#e4d9cf] pb-1.5 mb-2 sm:mb-3">
+        <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest">
+          Related Guides
+        </h2>
+        <Link
+          to="/guides"
+          className="text-[9px] sm:text-[10px] font-semibold text-[#0e4d45] hover:underline uppercase tracking-wider"
+        >
+          All Guides &rarr;
+        </Link>
+      </div>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+        {related.map((g) => (
+          <li key={g.slug}>
+            <Link
+              to="/guides/$articleId"
+              params={{ articleId: g.slug }}
+              className="group block p-2 border border-[#e4d9cf] rounded-sm bg-[#fef6f1] hover:border-[#0e4d45] transition-colors"
+            >
+              <div className="text-[9px] text-[#0e4d45] font-bold uppercase tracking-wider mb-0.5">
+                {g.category} &middot; {g.readTime}
+              </div>
+              <div className="text-xs sm:text-sm font-semibold text-black group-hover:text-[#0e4d45] leading-snug">
+                {g.title}
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}

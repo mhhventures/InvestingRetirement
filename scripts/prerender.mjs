@@ -211,6 +211,21 @@ function rewriteHtml(template, meta, data) {
   // Title
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`);
 
+  // Robots (noindex for error/internal pages)
+  if (meta.noindex) {
+    if (/<meta\s+name="robots"[^>]*>/.test(html)) {
+      html = html.replace(
+        /<meta\s+name="robots"[^>]*>/,
+        `<meta name="robots" content="noindex,nofollow" />`
+      );
+    } else {
+      html = html.replace(
+        /<\/head>/,
+        `    <meta name="robots" content="noindex,nofollow" />\n  </head>`
+      );
+    }
+  }
+
   // Description
   html = setTagContent(
     html,
@@ -550,6 +565,60 @@ function updateSitemapLastmod() {
   writeFileSync(sitemapPath, updated);
 }
 
+function emitSplitSitemaps() {
+  const sitemapPath = join(distDir, "sitemap.xml");
+  if (!existsSync(sitemapPath)) return;
+  const xml = readFileSync(sitemapPath, "utf8");
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Extract all <url>...</url> blocks
+  const urlBlocks = [];
+  const re = /<url>([\s\S]*?)<\/url>/g;
+  let m;
+  while ((m = re.exec(xml))) {
+    const inner = m[1];
+    const locMatch = /<loc>([^<]+)<\/loc>/.exec(inner);
+    if (locMatch) urlBlocks.push({ loc: locMatch[1].trim(), block: `<url>${inner}</url>` });
+  }
+
+  const buckets = {
+    products: [],
+    guides: [],
+    calculators: [],
+    pages: [],
+  };
+  for (const u of urlBlocks) {
+    if (/\/product\//.test(u.loc)) buckets.products.push(u.block);
+    else if (/\/guides\//.test(u.loc)) buckets.guides.push(u.block);
+    else if (/\/calculators\//.test(u.loc)) buckets.calculators.push(u.block);
+    else buckets.pages.push(u.block);
+  }
+
+  const wrap = (items) =>
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.join(
+      "\n"
+    )}\n</urlset>\n`;
+
+  writeFileSync(join(distDir, "sitemap-pages.xml"), wrap(buckets.pages));
+  writeFileSync(join(distDir, "sitemap-products.xml"), wrap(buckets.products));
+  writeFileSync(join(distDir, "sitemap-guides.xml"), wrap(buckets.guides));
+  writeFileSync(join(distDir, "sitemap-calculators.xml"), wrap(buckets.calculators));
+
+  const indexItems = [
+    "sitemap-pages.xml",
+    "sitemap-products.xml",
+    "sitemap-guides.xml",
+    "sitemap-calculators.xml",
+  ]
+    .map(
+      (f) =>
+        `  <sitemap><loc>${SITE_URL}/${f}</loc><lastmod>${today}</lastmod></sitemap>`
+    )
+    .join("\n");
+  const indexXml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexItems}\n</sitemapindex>\n`;
+  writeFileSync(join(distDir, "sitemap-index.xml"), indexXml);
+}
+
 // ---------- 5. Emit files ----------
 async function main() {
   if (!existsSync(join(distDir, "index.html"))) {
@@ -559,6 +628,7 @@ async function main() {
   const template = readFileSync(join(distDir, "index.html"), "utf8");
   const data = await loadData();
   updateSitemapLastmod();
+  emitSplitSitemaps();
   const urls = readSitemapUrls();
 
   let written = 0;
@@ -575,6 +645,18 @@ async function main() {
     writeFileSync(outPath, html);
     written++;
   }
+
+  // Emit a static 404.html with a real <h1>Page not found</h1>
+  const notFoundMeta = {
+    path: "/404",
+    title: "Page Not Found — Investing and Retirement",
+    description:
+      "The page you are looking for does not exist. Browse our expert reviews of bank accounts, brokerages, and money apps instead.",
+    h1: "Page Not Found",
+    noindex: true,
+  };
+  const notFoundHtml = rewriteHtml(template, notFoundMeta, data);
+  writeFileSync(join(distDir, "404.html"), notFoundHtml);
 
   console.log(`[prerender] wrote ${written} html files (${skipped} sitemap URLs had no meta)`);
 }

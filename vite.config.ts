@@ -40,6 +40,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
+          if (id.includes("/src/data/products")) return "data-products";
+          if (id.includes("/src/lib/guides-data")) return "data-guides";
           if (!id.includes("node_modules")) return;
           if (id.includes("@radix-ui")) return "radix";
           if (id.includes("lucide-react") || id.includes("react-icons")) return "icons";

@@ -6,6 +6,7 @@ import type { Product } from "@/data/products";
 import { ProductCard, ProductLogo, StarRating, GradeBadge, DisclosureIcon } from "@/components/product-card";
 import { getDisclosure } from "@/data/disclosures";
 import { BankSidebar } from "@/components/bank-sidebar";
+import { RelatedGuidesForCategory } from "@/components/related-guides";
 import { withUtm } from "@/lib/affiliate";
 import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
@@ -732,6 +733,13 @@ function BankAccounts() {
 
   return (
     <div className="bg-[#fef6f1] overflow-x-hidden">
+      <div className="border-b border-[#e4d9cf] bg-[#fef6f1]">
+        <div className="max-w-6xl mx-auto px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] text-black/50 overflow-x-auto">
+          <Link to="/" className="hover:text-[#0e4d45]">Home</Link>
+          <span className="mx-1 sm:mx-1.5 text-black/30">/</span>
+          <span className="text-black font-semibold whitespace-nowrap">Bank Accounts</span>
+        </div>
+      </div>
       {/* Page Header */}
       <section className="border-b border-[#e4d9cf]">
         <div className="max-w-6xl mx-auto px-4 py-7">
@@ -892,6 +900,11 @@ function BankAccounts() {
                 ))}
               </div>
             )}
+
+            {/* Related Guides — cross-link into editorial content */}
+            <div className="mt-8">
+              <RelatedGuidesForCategory categoryPath="/bank-accounts" />
+            </div>
 
             {/* Editorial Footer */}
             <EditorialFooter />

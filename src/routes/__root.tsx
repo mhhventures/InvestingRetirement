@@ -222,4 +222,38 @@ const RootLayout = () => (
   </div>
 );
 
-export const Route = createRootRoute({ component: RootLayout });
+function NotFound() {
+  return (
+    <div className="max-w-3xl mx-auto px-4 py-14 sm:py-20 text-center">
+      <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-3">
+        404 — Page Not Found
+      </div>
+      <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black mb-3 leading-tight">
+        We could not find that page
+      </h1>
+      <p className="text-sm sm:text-base text-black/70 leading-relaxed mb-6 max-w-xl mx-auto">
+        The link you followed may be broken, or the page has moved. Try one of the
+        sections below, or head back to the homepage.
+      </p>
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <Link to="/" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] uppercase tracking-wide transition-colors">
+          Home
+        </Link>
+        <Link to="/bank-accounts" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#fef6f1] border border-[#e4d9cf] text-black hover:border-[#0e4d45] hover:text-[#0e4d45] uppercase tracking-wide transition-colors">
+          Bank Accounts
+        </Link>
+        <Link to="/investing" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#fef6f1] border border-[#e4d9cf] text-black hover:border-[#0e4d45] hover:text-[#0e4d45] uppercase tracking-wide transition-colors">
+          Investing
+        </Link>
+        <Link to="/guides" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#fef6f1] border border-[#e4d9cf] text-black hover:border-[#0e4d45] hover:text-[#0e4d45] uppercase tracking-wide transition-colors">
+          Guides
+        </Link>
+        <Link to="/reviews" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#fef6f1] border border-[#e4d9cf] text-black hover:border-[#0e4d45] hover:text-[#0e4d45] uppercase tracking-wide transition-colors">
+          All Reviews
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export const Route = createRootRoute({ component: RootLayout, notFoundComponent: NotFound });

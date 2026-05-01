@@ -3,6 +3,7 @@ import { useState } from "react";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/product-card";
 import { CategoryPage } from "@/components/category-page";
+import { RelatedGuidesForCategory } from "@/components/related-guides";
 import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/reviews")({
@@ -77,6 +78,19 @@ function Reviews() {
           <ProductCard key={p.slug} p={p} rank={i + 1} />
         ))}
       </div>
+      {filter !== "All" && (
+        <div className="mt-6">
+          <RelatedGuidesForCategory
+            categoryPath={
+              filter === "bank"
+                ? "/bank-accounts"
+                : filter === "investing"
+                  ? "/investing"
+                  : "/financial-apps"
+            }
+          />
+        </div>
+      )}
     </CategoryPage>
   );
 }

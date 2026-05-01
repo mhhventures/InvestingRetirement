@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getGuideBySlug, guides, type GuideProductRow, type GuideSection } from "@/lib/guides-data";
+import { getGuideBySlug, guides, guideHowTos, type GuideProductRow, type GuideSection } from "@/lib/guides-data";
 import { Sidebar } from "@/components/sidebar-offers";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { FtcDisclosure, EditorialStandardsBadge, AuthorByline } from "@/components/eeat";
@@ -20,6 +20,7 @@ function GuideArticlePage() {
   const articleAuthor = getAuthorForCategory(article.category);
   const GUIDE_PUBLISHED_ISO = "2026-01-15T00:00:00Z";
   const GUIDE_MODIFIED_ISO = "2026-04-15T00:00:00Z";
+  const howTo = guideHowTos[article.slug];
 
   useSeo({
     title: article.title,
@@ -78,6 +79,24 @@ function GuideArticlePage() {
           acceptedAnswer: { "@type": "Answer", text: f.a },
         })),
       },
+      ...(howTo
+        ? [
+            {
+              "@context": "https://schema.org",
+              "@type": "HowTo",
+              name: howTo.name,
+              description: article.description,
+              ...(howTo.totalTime ? { totalTime: howTo.totalTime } : {}),
+              step: howTo.steps.map((s, i) => ({
+                "@type": "HowToStep",
+                position: i + 1,
+                name: s.name,
+                text: s.text,
+                url: `${SITE_URL}/guides/${article.slug}#step-${i + 1}`,
+              })),
+            },
+          ]
+        : []),
     ],
   });
 
@@ -141,6 +160,27 @@ function GuideArticlePage() {
                 ))}
               </ul>
             </section>
+
+            {howTo && (
+              <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3">
+                <h2 className="font-serif font-bold text-lg sm:text-xl text-black border-b border-[#e4d9cf] pb-1.5 mb-3">
+                  {howTo.name}
+                </h2>
+                <ol className="space-y-3">
+                  {howTo.steps.map((s, i) => (
+                    <li key={i} id={`step-${i + 1}`} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#0e4d45] text-[#fef6f1] font-serif font-bold text-xs sm:text-sm flex items-center justify-center">
+                        {i + 1}
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="text-xs sm:text-sm font-bold text-black mb-0.5">{s.name}</h3>
+                        <p className="text-xs sm:text-sm text-black/75 leading-relaxed">{s.text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
 
             {article.sections.map((s, i) => (
               <SectionBlock key={i} section={s} />

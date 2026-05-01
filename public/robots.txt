@@ -4,4 +4,5 @@ Disallow: /signin
 Disallow: /signup
 Disallow: /shipper-draft
 
+Sitemap: https://www.investingandretirement.com/sitemap-index.xml
 Sitemap: https://www.investingandretirement.com/sitemap.xml

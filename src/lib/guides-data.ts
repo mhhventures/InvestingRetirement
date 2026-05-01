@@ -32,6 +32,8 @@ export type GuideSection = {
   productSpotlight?: GuideProductRow;
 };
 
+export type HowToStep = { name: string; text: string };
+
 export type GuideArticle = {
   slug: string;
   title: string;
@@ -44,6 +46,72 @@ export type GuideArticle = {
   sections: GuideSection[];
   keyTakeaways: string[];
   faqs: { q: string; a: string }[];
+  howTo?: { name: string; totalTime?: string; steps: HowToStep[] };
+};
+
+// HowTo step-by-step data keyed by guide slug. Kept separate from prose
+// so it feeds schema without bloating the article body.
+export const guideHowTos: Record<string, { name: string; totalTime?: string; steps: HowToStep[] }> = {
+  "emergency-fund": {
+    name: "How to Build a 3-Month Emergency Fund",
+    totalTime: "P6M",
+    steps: [
+      { name: "Calculate your monthly essentials", text: "Add up rent or mortgage, utilities, groceries, insurance, transportation, and minimum debt payments. That total is your one-month target." },
+      { name: "Set a three-month goal", text: "Multiply the monthly number by three. This is the minimum balance your emergency fund should hold." },
+      { name: "Open a dedicated high-yield savings account", text: "Keep the money separate from your checking account so it does not get spent. Choose a FDIC-insured online bank paying 4% APY or higher." },
+      { name: "Automate weekly transfers", text: "Set up an automatic transfer the day after each payday — start with 5–10% of take-home pay and raise it whenever you get a raise or bonus." },
+      { name: "Redirect windfalls to the fund", text: "Send tax refunds, work bonuses, and cash gifts directly to the account until you hit the three-month target." },
+      { name: "Review quarterly", text: "Recheck your essentials every three months. If rent or insurance rises, top up the fund to stay at three months of coverage." },
+    ],
+  },
+  "roth-vs-traditional-ira": {
+    name: "How to Open a Roth IRA",
+    totalTime: "PT20M",
+    steps: [
+      { name: "Confirm you qualify", text: "Roth IRA contributions phase out above $161,000 (single) or $240,000 (married filing jointly) in 2026. If you earn less, you can contribute the full amount." },
+      { name: "Choose a brokerage", text: "Pick a zero-commission provider with a broad fund lineup — Fidelity, Schwab, and Vanguard all offer free Roth IRAs with no minimum." },
+      { name: "Open the account", text: "Complete the online application: name, SSN, employer, and a beneficiary. It typically takes under 10 minutes." },
+      { name: "Link your bank and fund it", text: "Connect a checking account and transfer up to the annual limit ($7,000 in 2026; $8,000 if age 50+). You can make one lump contribution or recurring monthly deposits." },
+      { name: "Pick your investments", text: "Inside the Roth, buy a low-cost index fund like a total-market or target-date fund. Leaving the money in cash defeats the purpose." },
+      { name: "Automate and track", text: "Set up automatic contributions to max out the account every year, and log in annually to rebalance if needed." },
+    ],
+  },
+  "improve-credit-90-days": {
+    name: "How to Improve Your Credit Score in 90 Days",
+    totalTime: "P90D",
+    steps: [
+      { name: "Pull your free credit reports", text: "Get all three reports from AnnualCreditReport.com. Review each line item for errors — misspelled names, wrong balances, or accounts you do not recognize." },
+      { name: "Dispute any inaccuracies", text: "File disputes online with each bureau for anything incorrect. Bureaus have 30 days to investigate and remove unverified items." },
+      { name: "Pay all balances below 30% utilization", text: "Card balances above 30% of the limit hurt your score most. Pay down or ask for a credit-limit increase to push utilization below 30% — under 10% is ideal." },
+      { name: "Set every bill to autopay minimums", text: "Payment history is 35% of your score. Autopay the minimum on every card and loan so you never miss a due date again." },
+      { name: "Become an authorized user", text: "Ask a family member with a long, clean card history to add you as an authorized user. Their history reports on your file, often boosting scores quickly." },
+      { name: "Avoid new hard inquiries", text: "Do not apply for new cards or loans during the 90-day window. Each hard inquiry can drop your score 5–10 points." },
+    ],
+  },
+  "how-to-pick-high-yield-savings": {
+    name: "How to Pick a High-Yield Savings Account",
+    totalTime: "PT15M",
+    steps: [
+      { name: "Confirm FDIC or NCUA insurance", text: "Verify on FDIC.gov or NCUA.gov that deposits are insured up to $250,000 per depositor. Never open an account at an uninsured institution." },
+      { name: "Compare APY on the full balance", text: "Some accounts only pay the headline APY on balances under a cap. Check the rate sheet and read the footnotes for tiered APY." },
+      { name: "Check for monthly fees and minimums", text: "The best high-yield savings accounts charge $0 in monthly fees and require $0 minimum deposit. Avoid accounts with maintenance fees that erase your interest." },
+      { name: "Evaluate withdrawal limits and ATM access", text: "Federal rules limit some savings transfers to six per month. If you need frequent access, pick an account with unlimited transfers or an included debit card." },
+      { name: "Test the mobile app and transfer speed", text: "Before moving serious money, open the account with a small deposit. Time a transfer to and from your checking account — slow ACH (3–5 days) is a dealbreaker for emergency savings." },
+      { name: "Open the account and automate deposits", text: "Once you pick a winner, set up an automatic transfer the day after payday so the savings habit runs itself." },
+    ],
+  },
+  "stop-subscription-drain": {
+    name: "How to Cancel Forgotten Subscriptions",
+    totalTime: "PT45M",
+    steps: [
+      { name: "Pull three months of statements", text: "Download your last 90 days of checking and credit card statements. Print them or export to a spreadsheet." },
+      { name: "Highlight every recurring charge", text: "Mark anything that repeats monthly or annually — streaming, apps, gym memberships, cloud storage, subscription boxes, software." },
+      { name: "Categorize as Keep / Downgrade / Cancel", text: "For each line item, honestly ask: did I use it in the last 30 days? If not, downgrade to a lower tier or cancel it." },
+      { name: "Cancel directly with the provider", text: "Always cancel through the provider's website or app — not through a middleman. Screenshot the confirmation so you can dispute any future charge." },
+      { name: "Bundle or downgrade the keepers", text: "For services you still want, check for annual billing (usually 15–20% cheaper) or family/student tiers. Pick cheaper plans where the extra features are unused." },
+      { name: "Set a quarterly review reminder", text: "Put a 30-minute 'subscription audit' on your calendar every three months. New free trials tend to convert silently." },
+    ],
+  },
 };
 
 export const guides: GuideArticle[] = [
