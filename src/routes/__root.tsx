@@ -172,6 +172,18 @@ function Footer() {
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 01-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 01.042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 014.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 01.14-.197.35.35 0 01.238-.042l2.906.617a1.214 1.214 0 011.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 00-.231.094.33.33 0 000 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 00.029-.463.33.33 0 00-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 00-.232-.095z"/>
               </svg>
             </a>
+            <a
+              href="https://www.youtube.com/channel/UC_b9Qu9uX0Ky6YZWvwIY5-w"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube - Investing & Retirement"
+              title="Investing & Retirement YouTube"
+              className="w-8 h-8 rounded-full bg-[#fef6f1]/10 hover:bg-[#fef6f1] hover:text-black text-[#fef6f1] flex items-center justify-center transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
           </div>
         </div>
         <div>
@@ -187,6 +199,7 @@ function Footer() {
           <div className="font-semibold text-[#fef6f1] mb-2 sm:mb-3 text-[10px] sm:text-[11px] uppercase tracking-widest">Learn</div>
           <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-[12px]">
             <li><Link to="/guides" className="hover:text-[#fef6f1] block">Guides</Link></li>
+            <li><Link to="/faq" className="hover:text-[#fef6f1] block">FAQ</Link></li>
           </ul>
         </div>
         <div>
@@ -194,6 +207,7 @@ function Footer() {
           <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-[12px]">
             <li><Link to="/about" className="hover:text-[#fef6f1] block">About</Link></li>
             <li><Link to="/contact" className="hover:text-[#fef6f1] block">Contact</Link></li>
+            <li><Link to="/faq" className="hover:text-[#fef6f1] block">FAQ</Link></li>
             <li><Link to="/disclosure" className="hover:text-[#fef6f1] block">Disclosure</Link></li>
             <li><Link to="/privacy" className="hover:text-[#fef6f1] block">Privacy</Link></li>
           </ul>
@@ -220,4 +234,38 @@ const RootLayout = () => (
   </div>
 );
 
-export const Route = createRootRoute({ component: RootLayout });
+function NotFound() {
+  return (
+    <div className="max-w-3xl mx-auto px-4 py-14 sm:py-20 text-center">
+      <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-3">
+        404 — Page Not Found
+      </div>
+      <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black mb-3 leading-tight">
+        We could not find that page
+      </h1>
+      <p className="text-sm sm:text-base text-black/70 leading-relaxed mb-6 max-w-xl mx-auto">
+        The link you followed may be broken, or the page has moved. Try one of the
+        sections below, or head back to the homepage.
+      </p>
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <Link to="/" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] uppercase tracking-wide transition-colors">
+          Home
+        </Link>
+        <Link to="/bank-accounts" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#fef6f1] border border-[#e4d9cf] text-black hover:border-[#0e4d45] hover:text-[#0e4d45] uppercase tracking-wide transition-colors">
+          Bank Accounts
+        </Link>
+        <Link to="/investing" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#fef6f1] border border-[#e4d9cf] text-black hover:border-[#0e4d45] hover:text-[#0e4d45] uppercase tracking-wide transition-colors">
+          Investing
+        </Link>
+        <Link to="/guides" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#fef6f1] border border-[#e4d9cf] text-black hover:border-[#0e4d45] hover:text-[#0e4d45] uppercase tracking-wide transition-colors">
+          Guides
+        </Link>
+        <Link to="/reviews" className="text-[11px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm bg-[#fef6f1] border border-[#e4d9cf] text-black hover:border-[#0e4d45] hover:text-[#0e4d45] uppercase tracking-wide transition-colors">
+          All Reviews
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export const Route = createRootRoute({ component: RootLayout, notFoundComponent: NotFound });

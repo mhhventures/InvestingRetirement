@@ -143,3 +143,26 @@ export function useSeo(config: SeoConfig) {
 }
 
 export { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE };
+
+export function buildItemListSchema(args: {
+  name: string;
+  url: string;
+  description?: string;
+  items: { name: string; url: string; description?: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: args.name,
+    url: args.url,
+    ...(args.description ? { description: args.description } : {}),
+    numberOfItems: args.items.length,
+    itemListElement: args.items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: it.url,
+      name: it.name,
+      ...(it.description ? { description: it.description } : {}),
+    })),
+  } as Record<string, unknown>;
+}

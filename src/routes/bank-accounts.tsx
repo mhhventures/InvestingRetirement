@@ -6,8 +6,9 @@ import type { Product } from "@/data/products";
 import { ProductCard, ProductLogo, StarRating, GradeBadge, DisclosureIcon } from "@/components/product-card";
 import { getDisclosure } from "@/data/disclosures";
 import { BankSidebar } from "@/components/bank-sidebar";
+import { RelatedGuidesForCategory } from "@/components/related-guides";
 import { withUtm } from "@/lib/affiliate";
-import { useSeo, SITE_URL } from "@/lib/seo";
+import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 const APY_LAST_UPDATED = "May 1, 2026";
 
@@ -655,19 +656,31 @@ function EditorialFooter() {
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
 function BankAccounts() {
+  const all = getByCategory("bank");
   useSeo({
-    title: "Best Bank Accounts 2026 — High-Yield Savings & Checking | Investing and Retirement",
+    title: "Best Bank Accounts 2026 — High-Yield Savings & Checking",
     description: "Compare the best high-yield savings accounts, checking accounts, and CDs. Top APYs, no-fee options, and expert reviews of SoFi, Ally, Marcus, CIT, Barclays, and more.",
     path: "/bank-accounts",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: "Best Bank Accounts",
-      url: `${SITE_URL}/bank-accounts`,
-      description: "Curated list of high-yield savings and checking accounts reviewed by our editorial team.",
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Best Bank Accounts",
+        url: `${SITE_URL}/bank-accounts`,
+        description: "Curated list of high-yield savings and checking accounts reviewed by our editorial team.",
+      },
+      buildItemListSchema({
+        name: "Best Bank Accounts 2026",
+        url: `${SITE_URL}/bank-accounts`,
+        description: "Ranked list of high-yield savings and checking accounts.",
+        items: all.slice(0, 25).map((p) => ({
+          name: p.name,
+          url: `${SITE_URL}/product/${p.slug}`,
+          description: p.tagline,
+        })),
+      }),
+    ],
   });
-  const all = getByCategory("bank");
   const [filter, setFilter] = useState<string>("All");
   const [sort, setSort] = useState<string>("default");
   const [noFees, setNoFees] = useState(false);
@@ -720,6 +733,13 @@ function BankAccounts() {
 
   return (
     <div className="bg-[#fef6f1] overflow-x-hidden">
+      <div className="border-b border-[#e4d9cf] bg-[#fef6f1]">
+        <div className="max-w-6xl mx-auto px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] text-black/50 overflow-x-auto">
+          <Link to="/" className="hover:text-[#0e4d45]">Home</Link>
+          <span className="mx-1 sm:mx-1.5 text-black/30">/</span>
+          <span className="text-black font-semibold whitespace-nowrap">Bank Accounts</span>
+        </div>
+      </div>
       {/* Page Header */}
       <section className="border-b border-[#e4d9cf]">
         <div className="max-w-6xl mx-auto px-4 py-7">
@@ -880,6 +900,11 @@ function BankAccounts() {
                 ))}
               </div>
             )}
+
+            {/* Related Guides — cross-link into editorial content */}
+            <div className="mt-8">
+              <RelatedGuidesForCategory categoryPath="/bank-accounts" />
+            </div>
 
             {/* Editorial Footer */}
             <EditorialFooter />

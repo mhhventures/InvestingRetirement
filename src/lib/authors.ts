@@ -24,6 +24,7 @@ const michael: Author = {
   bio: "Michael Hewitt is the founder and editor-in-chief of Investing and Retirement. He personally researches, tests, and writes every review and guide on the site — opening accounts, running numbers, and comparing disclosures so readers get a clear, honest, and independent take on the financial products they're considering.",
   avatarInitials: "MH",
   avatarColor: "#0e4d45",
+  linkedin: "https://www.linkedin.com/in/michaelhhewitt/",
   expertise: ["Banking", "Investing", "Retirement", "Personal Finance"],
   yearsExperience: 10,
 };

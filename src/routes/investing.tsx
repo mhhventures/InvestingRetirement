@@ -6,7 +6,8 @@ import type { Product } from "@/data/products";
 import { ProductCard, ProductLogo, StarRating, GradeBadge, DisclosureIcon } from "@/components/product-card";
 import { getDisclosure } from "@/data/disclosures";
 import { CategoryPage } from "@/components/category-page";
-import { useSeo, SITE_URL } from "@/lib/seo";
+import { RelatedGuidesForCategory } from "@/components/related-guides";
+import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/investing")({
   component: Investing,
@@ -179,19 +180,31 @@ function BestForAwards({ products }: { products: Product[] }) {
 }
 
 function Investing() {
+  const all = getByCategory("investing");
   useSeo({
-    title: "Best Investing Apps & Brokerages 2026 | Investing and Retirement",
+    title: "Best Investing Apps & Brokerages 2026",
     description: "Compare the top investing apps, online brokerages, and robo-advisors. Expert reviews of Fidelity, Vanguard, Robinhood, Schwab, Webull and more — with fees, features, and ratings.",
     path: "/investing",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: "Best Investing Apps & Brokerages",
-      url: `${SITE_URL}/investing`,
-      description: "Curated list of the best investing platforms reviewed by our editorial team.",
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Best Investing Apps & Brokerages",
+        url: `${SITE_URL}/investing`,
+        description: "Curated list of the best investing platforms reviewed by our editorial team.",
+      },
+      buildItemListSchema({
+        name: "Best Investing Apps & Brokerages 2026",
+        url: `${SITE_URL}/investing`,
+        description: "Ranked list of brokerages and robo-advisors.",
+        items: all.slice(0, 25).map((p) => ({
+          name: p.name,
+          url: `${SITE_URL}/product/${p.slug}`,
+          description: p.tagline,
+        })),
+      }),
+    ],
   });
-  const all = getByCategory("investing");
   void HeroPick;
   void BestForAwards;
   const [filter, setFilter] = useState<string>("All");
@@ -238,6 +251,9 @@ function Investing() {
         {rest.map((p, i) => (
           <ProductCard key={p.slug} p={p} rank={i + 2} />
         ))}
+      </div>
+      <div className="mt-6">
+        <RelatedGuidesForCategory categoryPath="/investing" />
       </div>
     </CategoryPage>
   );

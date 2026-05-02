@@ -3,12 +3,38 @@ import { useState } from "react";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/product-card";
 import { CategoryPage } from "@/components/category-page";
+import { RelatedGuidesForCategory } from "@/components/related-guides";
+import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/reviews")({
   component: Reviews,
 });
 
 function Reviews() {
+  useSeo({
+    title: "All Financial Product Reviews 2026",
+    description:
+      "Complete reviews of every bank account, brokerage, and money app we cover. Ratings based on fees, features, and hands-on testing.",
+    path: "/reviews",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "All Product Reviews",
+        url: `${SITE_URL}/reviews`,
+        description: "Complete directory of every financial product we review.",
+      },
+      buildItemListSchema({
+        name: "All Product Reviews",
+        url: `${SITE_URL}/reviews`,
+        items: products.slice(0, 50).map((p) => ({
+          name: p.name,
+          url: `${SITE_URL}/product/${p.slug}`,
+          description: p.tagline,
+        })),
+      }),
+    ],
+  });
   const [filter, setFilter] = useState<string>("All");
   const categories = ["All", ...Array.from(new Set(products.map((p) => p.category)))];
   const categoryLabels: Record<string, string> = {
@@ -52,6 +78,19 @@ function Reviews() {
           <ProductCard key={p.slug} p={p} rank={i + 1} />
         ))}
       </div>
+      {filter !== "All" && (
+        <div className="mt-6">
+          <RelatedGuidesForCategory
+            categoryPath={
+              filter === "bank"
+                ? "/bank-accounts"
+                : filter === "investing"
+                  ? "/investing"
+                  : "/financial-apps"
+            }
+          />
+        </div>
+      )}
     </CategoryPage>
   );
 }

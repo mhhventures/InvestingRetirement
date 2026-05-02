@@ -361,7 +361,7 @@ function ProductLogo({ slug, logoText, color }: { slug: string; logoText: string
   }
   return (
     <div className="w-10 h-10 rounded overflow-hidden bg-white border border-[#e4d9cf] flex items-center justify-center flex-shrink-0">
-      <img src={url} alt={logoText} loading="lazy" decoding="async" className="w-full h-full object-contain" onError={() => setFailed(true)} />
+      <img src={url} alt={`${logoText} logo`} width={40} height={40} loading="lazy" decoding="async" className="w-full h-full object-contain" onError={() => setFailed(true)} />
     </div>
   );
 }

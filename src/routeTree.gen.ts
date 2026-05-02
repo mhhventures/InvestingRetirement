@@ -24,6 +24,7 @@ import { Route as BankAccountsRouteImport } from './routes/bank-accounts'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
+import { Route as AuthorsAuthorSlugRouteImport } from './routes/authors.$authorSlug'
 import { Route as GuidesArticleIdRouteImport } from './routes/guides/$articleId'
 import { Route as CalculatorsCalcIdRouteImport } from './routes/calculators/$calcId'
 
@@ -102,6 +103,11 @@ const ProductSlugRoute = ProductSlugRouteImport.update({
   path: '/product/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthorsAuthorSlugRoute = AuthorsAuthorSlugRouteImport.update({
+  id: '/authors/$authorSlug',
+  path: '/authors/$authorSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuidesArticleIdRoute = GuidesArticleIdRouteImport.update({
   id: '/$articleId',
   path: '/$articleId',
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/calculators/$calcId': typeof CalculatorsCalcIdRoute
   '/guides/$articleId': typeof GuidesArticleIdRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/authors/$authorSlug': typeof AuthorsAuthorSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByTo {
   '/calculators/$calcId': typeof CalculatorsCalcIdRoute
   '/guides/$articleId': typeof GuidesArticleIdRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/authors/$authorSlug': typeof AuthorsAuthorSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/calculators/$calcId': typeof CalculatorsCalcIdRoute
   '/guides/$articleId': typeof GuidesArticleIdRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/authors/$authorSlug': typeof AuthorsAuthorSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -191,6 +200,7 @@ export interface FileRouteTypes {
     | '/calculators/$calcId'
     | '/guides/$articleId'
     | '/product/$slug'
+    | '/authors/$authorSlug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/calculators/$calcId'
     | '/guides/$articleId'
     | '/product/$slug'
+    | '/authors/$authorSlug'
   id:
     | '__root__'
     | '/'
@@ -229,6 +240,7 @@ export interface FileRouteTypes {
     | '/calculators/$calcId'
     | '/guides/$articleId'
     | '/product/$slug'
+    | '/authors/$authorSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   ReviewsRoute: typeof ReviewsRoute
   ShipperDraftRoute: typeof ShipperDraftRoute
   ProductSlugRoute: typeof ProductSlugRoute
+  AuthorsAuthorSlugRoute: typeof AuthorsAuthorSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -356,6 +369,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/authors/$authorSlug': {
+      id: '/authors/$authorSlug'
+      path: '/authors/$authorSlug'
+      fullPath: '/authors/$authorSlug'
+      preLoaderRoute: typeof AuthorsAuthorSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guides/$articleId': {
       id: '/guides/$articleId'
       path: '/$articleId'
@@ -412,6 +432,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReviewsRoute: ReviewsRoute,
   ShipperDraftRoute: ShipperDraftRoute,
   ProductSlugRoute: ProductSlugRoute,
+  AuthorsAuthorSlugRoute: AuthorsAuthorSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

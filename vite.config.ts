@@ -40,6 +40,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
+          if (id.includes("/src/data/products")) return "data-products";
+          if (id.includes("/src/lib/guides-data")) return "data-guides";
           if (!id.includes("node_modules")) return;
           if (id.includes("@radix-ui")) return "radix";
           if (id.includes("lucide-react") || id.includes("react-icons")) return "icons";
@@ -53,6 +55,7 @@ export default defineConfig({
             return "forms";
           if (id.includes("@tanstack")) return "tanstack";
           if (id.includes("convex") || id.includes("better-auth")) return "auth";
+          if (id.includes("@supabase")) return "supabase";
           if (id.includes("react-dom") || id.includes("scheduler")) return "react-dom";
         },
       },

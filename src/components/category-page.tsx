@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
 import { Sidebar } from "@/components/sidebar-offers";
 
 type Props = {
@@ -6,12 +7,21 @@ type Props = {
   title: string;
   subtitle: string;
   stats?: { label: string; value: string }[];
+  crumbLabel?: string;
   children: ReactNode;
 };
 
-export function CategoryPage({ eyebrow, title, subtitle, stats, children }: Props) {
+export function CategoryPage({ eyebrow, title, subtitle, stats, crumbLabel, children }: Props) {
+  const crumb = crumbLabel || title;
   return (
     <div className="bg-[#fef6f1]">
+      <div className="border-b border-[#e4d9cf] bg-[#fef6f1]">
+        <div className="max-w-6xl mx-auto px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] text-black/50 overflow-x-auto">
+          <Link to="/" className="hover:text-[#0e4d45]">Home</Link>
+          <span className="mx-1 sm:mx-1.5 text-black/30">/</span>
+          <span className="text-black font-semibold whitespace-nowrap">{crumb}</span>
+        </div>
+      </div>
       <section className="border-b border-[#e4d9cf]">
         <div className="max-w-6xl mx-auto px-4 py-7">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-2">{eyebrow}</div>

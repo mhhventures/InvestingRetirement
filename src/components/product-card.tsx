@@ -131,11 +131,15 @@ function brandColor(p: Product): string {
 }
 
 // Brand logo: tries real brand icon via Clearbit; falls back to editorial monogram badge
-export function ProductLogo({ p, size = 40 }: { p: Product; size?: number }) {
-  const logoUrl = getProductLogoUrl(p.slug, Math.max(128, size * 3));
+export function ProductLogo({ p, size = 40, priority = false }: { p: Product; size?: number; priority?: boolean }) {
+  const size1x = Math.max(64, size * 2);
+  const size2x = Math.max(128, size * 4);
+  const logoUrl = getProductLogoUrl(p.slug, size1x);
+  const logoUrl2x = getProductLogoUrl(p.slug, size2x);
   const [failed, setFailed] = useState(false);
 
   if (logoUrl && !failed) {
+    const srcSet = logoUrl2x && logoUrl2x !== logoUrl ? `${logoUrl} 1x, ${logoUrl2x} 2x` : undefined;
     return (
       <div
         className="flex-shrink-0 rounded-sm overflow-hidden bg-white border border-[#e4d9cf] flex items-center justify-center"
@@ -143,10 +147,13 @@ export function ProductLogo({ p, size = 40 }: { p: Product; size?: number }) {
       >
         <img
           src={logoUrl}
+          srcSet={srcSet}
+          sizes={`${size}px`}
           alt={`${p.name} logo — ${p.provider} ${p.subcategory.toLowerCase()}`}
           width={size}
           height={size}
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
           decoding="async"
           onError={() => setFailed(true)}
           className="w-full h-full object-contain p-1"
