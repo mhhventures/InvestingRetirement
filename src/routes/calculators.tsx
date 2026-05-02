@@ -3,7 +3,7 @@ import { createFileRoute, Link, Outlet, useMatches } from "@tanstack/react-route
 import { calculators } from "@/lib/calculators-data";
 import { useSeo, SITE_URL } from "@/lib/seo";
 
-export const Route = createFileRoute("/calculators" as any)({
+export const Route = createFileRoute("/calculators")({
   component: CalculatorsLayout,
 });
 

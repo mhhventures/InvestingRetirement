@@ -6,7 +6,7 @@ import { products } from "@/data/products";
 import { withUtm } from "@/lib/affiliate";
 import { getProductLogoUrl } from "@/lib/product-icons";
 
-export const Route = createFileRoute("/calculators/$calcId" as any)({
+export const Route = createFileRoute("/calculators/$calcId")({
   component: CalculatorPage,
 });
 
