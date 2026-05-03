@@ -503,16 +503,16 @@ function contextualLinks(meta, data) {
   }
 
   if (path === "/bank-accounts") {
-    return data.products.filter((p) => p.category === "bank").slice(0, 20).map((p) => [`/product/${p.slug}`, `${p.name} review`]);
+    return data.products.filter((p) => p.category === "bank").map((p) => [`/product/${p.slug}`, `${p.name} review`]);
   }
   if (path === "/investing") {
-    return data.products.filter((p) => p.category === "investing").slice(0, 20).map((p) => [`/product/${p.slug}`, `${p.name} review`]);
+    return data.products.filter((p) => p.category === "investing").map((p) => [`/product/${p.slug}`, `${p.name} review`]);
   }
   if (path === "/financial-apps") {
-    return data.products.filter((p) => p.category === "app").slice(0, 20).map((p) => [`/product/${p.slug}`, `${p.name} review`]);
+    return data.products.filter((p) => p.category === "app").map((p) => [`/product/${p.slug}`, `${p.name} review`]);
   }
   if (path === "/reviews") {
-    return data.products.slice(0, 30).map((p) => [`/product/${p.slug}`, `${p.name} review`]);
+    return data.products.map((p) => [`/product/${p.slug}`, `${p.name} review`]);
   }
   if (path === "/guides") {
     return data.guides.map((g) => [`/guides/${g.slug}`, g.title]);

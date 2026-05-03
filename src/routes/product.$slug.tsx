@@ -5,6 +5,7 @@ import { StarRating, ProductLogo, DisclosureIcon } from "@/components/product-ca
 import { getDisclosure } from "@/data/disclosures";
 import { Sidebar } from "@/components/sidebar-offers";
 import { ClarityResearch, GradeBadge, ResearchBlocks, StrengthsLimitations } from "@/components/research-blocks";
+import { RubricScorecard, BenchmarkContext, HowWeTested, CompetitorComparison, KeyTakeaways, ProductPrimer, HowToMaximize, ProsConsExplained, OperationalLimits, HowToSignUp } from "@/components/product-analysis";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { AuthorByline, FtcDisclosure, HowWeReview, EditorialStandardsBadge } from "@/components/eeat";
 import { RelatedGuidesForProduct } from "@/components/related-guides";
@@ -110,6 +111,38 @@ function ProductDetail() {
                     text: `${p.name} is best for ${p.bestFor.toLowerCase()}. It sits in our ${p.subcategory} category and scored ${p.rating}/5 based on ${p.reviews.toLocaleString()} user reviews plus our editorial testing.`,
                   },
                 },
+                {
+                  "@type": "Question",
+                  name: `How long does it take to open an account with ${p.name}?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `The online application itself typically takes 5–10 minutes, with most approvals completed within one business day. Initial funding via ACH transfer takes 1–3 business days to clear.`,
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: `Can I withdraw money out of ${p.name} easily?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `Yes. ACH transfers to linked external accounts are typically free and settle in 1–3 business days. Wire transfers and account transfers may incur fees — check the current fee schedule before initiating.`,
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: `Are there hidden fees with ${p.name}?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `${p.name} charges ${p.fees}. Additional fees can apply for specific actions — for example, wire transfers, expedited card replacement, margin interest, or outbound transfer fees. Always read the full fee schedule on the provider's site before funding.`,
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: `How does ${p.name} compare to competitors?`,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: `${p.name} scores ${p.rating}/5 in our editorial review. The comparison table on this page shows it against the top competitors in the ${p.subcategory} category with side-by-side ratings, fees, minimum deposits, and bonuses.`,
+                  },
+                },
               ],
             },
           ],
@@ -131,13 +164,26 @@ function ProductDetail() {
     );
   }
 
-  const related = products
-    .filter((x) => x.category === p.category && x.slug !== p.slug)
-    .slice(0, 3);
-
   const sameSubcategory = products.filter(
     (x) => x.subcategory === p.subcategory && x.slug !== p.slug
   );
+
+  const competitors = sameSubcategory
+    .slice()
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 4);
+
+  const peerApyValues = products
+    .filter((x) => x.subcategory === p.subcategory && x.apy)
+    .map((x) => {
+      const m = (x.apy || "").match(/(\d+(?:\.\d+)?)/);
+      return m ? parseFloat(m[1]) : NaN;
+    })
+    .filter((n) => !isNaN(n) && n > 0)
+    .sort((a, b) => a - b);
+  const peerMedianApy = peerApyValues.length
+    ? peerApyValues[Math.floor(peerApyValues.length / 2)]
+    : undefined;
   const categoryHref: "/bank-accounts" | "/investing" | "/financial-apps" =
     p.category === "bank"
       ? "/bank-accounts"
@@ -165,6 +211,46 @@ function ProductDetail() {
     {
       q: `Who is ${p.name} best for?`,
       a: `${p.name} is best for ${p.bestFor.toLowerCase()}. It sits in our ${p.subcategory} category and scored ${p.rating}/5 based on ${p.reviews.toLocaleString()} user reviews plus our editorial testing.`,
+    },
+    {
+      q: `How long does it take to open an account with ${p.name}?`,
+      a: `The online application itself typically takes 5–10 minutes. ${
+        p.category === "bank"
+          ? "Most applicants are approved immediately; a small percentage are flagged for manual review, which can take 1–3 business days. Initial ACH funding clears in 1–3 business days."
+          : p.category === "investing"
+          ? "Brokerage accounts are usually approved within one business day. ACH funding takes 1–3 business days to clear; a full ACATS transfer from another broker takes 5–7 business days."
+          : p.subcategory === "Crypto"
+          ? "KYC identity verification is usually complete within an hour, though higher limits may require additional review. First ACH deposits take 3–5 business days to fully clear for withdrawal."
+          : "Most users are up and running within 15 minutes after the free trial starts."
+      }`,
+    },
+    {
+      q: `Can I withdraw or transfer money out of ${p.name} easily?`,
+      a: `${
+        p.category === "bank"
+          ? `Yes — outbound ACH transfers to external linked accounts are free and typically settle in 1–3 business days. Wire transfers are usually available for a fee. ${/savings|money market/i.test(p.subcategory) ? "Savings accounts may cap outbound transfers at six per month." : ""}`
+          : p.category === "investing"
+          ? "Selling positions settles T+1 for stocks and ETFs, T+0 for options. Once cash is settled, ACH withdrawals take 1–3 business days. Full account transfers out (ACATS) typically cost $75."
+          : p.subcategory === "Crypto"
+          ? "Yes. USD withdrawals go via ACH (free, 3–5 days) or wire (fee, same-day). Crypto withdrawals are near-instant but subject to daily limits that scale with your verification tier and network fees."
+          : "Cancel anytime in the app settings. If you stored data in the app, export it before cancelling — some providers delete user data on cancellation."
+      }`,
+    },
+    {
+      q: `Are there any hidden fees or fine print I should know about?`,
+      a: `${p.name} charges ${p.fees}, but ${
+        p.category === "bank"
+          ? "watch for overdraft or non-sufficient-funds fees, out-of-network ATM fees, outbound wire fees, and expedited card replacement fees. Rates are variable and can change at any time."
+          : p.category === "investing"
+          ? "watch for options per-contract fees, margin interest rates (8–13% at major brokers), regulatory transaction fees, mutual fund transaction fees, and ACATS outbound transfer fees ($75)."
+          : p.subcategory === "Crypto"
+          ? "watch the spread between the displayed price and mid-market, network withdrawal fees, staking lockup terms, and whether fee tiers require a 30-day rolling volume commitment."
+          : "watch the difference between the free and paid tiers, annual-vs.-monthly pricing, and whether canceling deletes your data export."
+      } Always read the full fee schedule linked from the application page before funding.`,
+    },
+    {
+      q: `How does ${p.name} compare to competitors?`,
+      a: `In our side-by-side comparison table above, ${p.name} scores ${p.rating}/5 against the top ${competitors.length} alternatives in the ${p.subcategory} category. The main trade-off is typically between ${p.pros[0]?.toLowerCase() ?? "headline features"} and ${p.cons[0]?.toLowerCase() ?? "specific limitations"} — which matters more depends on how you'll actually use the account.`,
     },
   ];
 
@@ -291,6 +377,9 @@ function ProductDetail() {
               )}
             </div>
 
+            {/* Key Takeaways — top-of-page at-a-glance summary */}
+            <KeyTakeaways product={p} />
+
             {/* Overview */}
             <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3">
               <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest border-b border-[#e4d9cf] pb-1.5 mb-2 sm:mb-3">
@@ -305,17 +394,38 @@ function ProductDetail() {
               </p>
             </section>
 
-            {/* How We Review — transparency for E-E-A-T */}
-            <HowWeReview category={p.category} />
+            {/* Product primer — "What is X?" */}
+            <ProductPrimer product={p} />
 
             {/* Clarity Research Commentary */}
             <ClarityResearch product={p} />
 
+            {/* Rubric-based scoring breakdown */}
+            <RubricScorecard product={p} />
+
+            {/* Rate/Fee benchmark context */}
+            <BenchmarkContext product={p} peerMedianApy={peerMedianApy} />
+
+            {/* How to Maximize — practical action block */}
+            <HowToMaximize product={p} />
+
+            {/* How We Tested — product-specific methodology */}
+            <HowWeTested product={p} />
+
             {/* Research Feature Blocks */}
             <ResearchBlocks product={p} />
 
-            {/* Strengths & Limitations */}
+            {/* Pros & Cons Explained (long-form) */}
+            <ProsConsExplained product={p} />
+
+            {/* Strengths & Limitations — bullet summary */}
             <StrengthsLimitations pros={p.pros} cons={p.cons} />
+
+            {/* Operational limits / fine print */}
+            <OperationalLimits product={p} />
+
+            {/* General editorial methodology */}
+            <HowWeReview category={p.category} />
 
             {/* Key Highlights */}
             <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-4 sm:mb-5">
@@ -332,66 +442,14 @@ function ProductDetail() {
               </ul>
             </section>
 
-            {/* Who it is best for */}
-            <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-4 sm:mb-5">
-              <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest border-b border-[#e4d9cf] pb-1.5 mb-2 sm:mb-3">
-                Who It Is Best For
-              </h2>
-              <p className="text-xs sm:text-sm text-black leading-relaxed">
-                {p.name} is ideal for <strong>{p.bestFor.toLowerCase()}</strong>. If you value{" "}
-                {p.highlights[0]?.toLowerCase()} and want a trusted provider with strong customer
-                reviews, this is a solid choice. Readers consistently rate it {p.rating}/5 stars based
-                on ease of use, value, and customer support.
-              </p>
-            </section>
+            {/* Side-by-side competitor comparison with real metrics */}
+            <CompetitorComparison product={p} competitors={competitors} />
+
+            {/* How to sign up — step-by-step */}
+            <HowToSignUp product={p} />
 
             {/* Related Guides — internal linking to editorial content */}
             <RelatedGuidesForProduct product={p} />
-
-            {/* Related Products - Compare Table */}
-            {related.length > 0 && (
-              <section className="bg-white border border-[#e4d9cf] rounded overflow-hidden mb-4 sm:mb-5">
-                <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-[#e4d9cf]">
-                  <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest">Compare Similar Products</h2>
-                </div>
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-[#f5ede2] border-b border-[#e4d9cf]">
-                      <th className="text-left px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] font-bold text-[#0e4d45] uppercase tracking-wider">Product</th>
-                      <th className="text-right px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] font-bold text-[#0e4d45] uppercase tracking-wider">Rating</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {related.map((r, idx) => (
-                      <tr key={r.slug} className="border-b border-[#e4d9cf] last:border-b-0">
-                        <td className="px-3 sm:px-4 py-2.5 sm:py-3">
-                          <Link
-                            to="/product/$slug"
-                            params={{ slug: r.slug }}
-                            className="flex items-center gap-2 group hover:text-[#0e4d45] transition-colors"
-                          >
-                            <ProductLogo p={r} size={24} />
-                            <div className="min-w-0">
-                              <div className="text-[11px] sm:text-xs font-semibold text-black group-hover:text-[#0e4d45]">{r.name}</div>
-                              <div className="text-[9px] text-black/50">{r.tagline}</div>
-                            </div>
-                          </Link>
-                        </td>
-                        <td className="text-right px-3 sm:px-4 py-2.5 sm:py-3">
-                          <Link
-                            to="/product/$slug"
-                            params={{ slug: r.slug }}
-                            className="inline-block text-[11px] sm:text-xs font-semibold text-[#0e4d45] hover:underline"
-                          >
-                            <StarRating rating={r.rating} size="sm" />
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </section>
-            )}
 
             {/* Subcategory internal links — deep linking for SEO */}
             {sameSubcategory.length > 0 && (
