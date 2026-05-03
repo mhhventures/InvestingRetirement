@@ -1387,6 +1387,3 @@ function buildFaqs(
     },
   ];
 }
-
-
-export { Route }
