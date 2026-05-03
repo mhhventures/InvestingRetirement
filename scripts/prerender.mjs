@@ -258,6 +258,8 @@ function metaForUrl(url, data) {
     const calcTitleOverrides = {
       "compound-interest":
         "Compound Interest Calculator — Grow Your Savings Over Time",
+      "bank-deposit-matcher":
+        "Bank Deposit Matcher — Compare HYSA & Checking Offers Instantly",
     };
     return {
       path,
@@ -789,6 +791,16 @@ function bodyCopy(meta, data) {
           detail:
             "The debt-payoff calculator takes a list of balances, APRs, and minimum payments, plus any extra monthly amount you can contribute, and returns a full payoff schedule. It supports both the avalanche and snowball methods so you can compare total interest paid against how quickly the first balance clears — a tradeoff between math and motivation.",
         },
+        "bank-deposit-matcher": {
+          uses: [
+            "See high-yield savings and checking offers matched to your deposit size and savings goals.",
+            "Compare APY, minimum balance requirements, monthly fees, and sign-up bonuses side-by-side.",
+            "Filter out accounts whose rate caps, direct-deposit rules, or eligibility would disqualify your deposit.",
+            "Open an account directly with the issuer — the widget renders results inline, no redirect.",
+          ],
+          detail:
+            "The bank deposit matcher is an embedded tool operated by a partner network. You answer a short set of questions (deposit size, savings horizon, account type) and it returns a ranked list of live offers from participating banks. Investing and Retirement Media LLC may be compensated when you open or fund an account through the widget; compensation does not influence the ranking. APYs, fees, and bonus terms are supplied by each issuer and can change without notice.",
+        },
         "emergency-fund": {
           uses: [
             "The target size of your emergency fund based on essential monthly expenses.",
@@ -808,13 +820,17 @@ function bodyCopy(meta, data) {
           <p>This calculator is a free, browser-based tool. Nothing you type is saved, transmitted, or shared. See the full list of financial tools on the <a href="/calculators">calculators page</a>.</p>`;
       }
       const uses = b.uses.map((x) => `<li>${esc(x)}</li>`).join("");
+      const privacyNote = c.slug === "bank-deposit-matcher"
+        ? `<h2>Privacy</h2>
+        <p>The deposit matcher is an embedded third-party widget. Inputs you provide (deposit size, goals, contact details if you choose to open an offer) are processed by the widget operator and the banks you select. See <a href="/privacy">our privacy policy</a> and <a href="/disclosure">advertiser disclosure</a> for the full details on partner-link tracking.</p>`
+        : `<h2>Privacy</h2>
+        <p>This calculator runs entirely in your browser. Nothing you type is saved, transmitted, or shared with us or any third party. See <a href="/privacy">our privacy policy</a> for the full details, or browse more tools on the <a href="/calculators">calculators page</a>.</p>`;
       return `${intro}
         <h2>What you can figure out</h2>
         <ul>${uses}</ul>
         <h2>How it works</h2>
         <p>${esc(b.detail)}</p>
-        <h2>Privacy</h2>
-        <p>This calculator runs entirely in your browser. Nothing you type is saved, transmitted, or shared with us or any third party. See <a href="/privacy">our privacy policy</a> for the full details, or browse more tools on the <a href="/calculators">calculators page</a>.</p>`;
+        ${privacyNote}`;
     }
   }
   return "";

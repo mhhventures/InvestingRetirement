@@ -5,6 +5,8 @@ import { useSeo } from "@/lib/seo";
 import { products } from "@/data/products";
 import { productPartnerLink } from "@/lib/affiliate";
 import { getProductLogoUrl } from "@/lib/product-icons";
+import { DepositMatchWidget } from "@/components/deposit-match-widget";
+import { SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/calculators/$calcId")({
   component: CalculatorPage,
@@ -41,6 +43,7 @@ function CalculatorPage() {
 
       <div className="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         {calc.slug === "compound-interest" && <CompoundInterestCalculator />}
+        {calc.slug === "bank-deposit-matcher" && <BankDepositMatcher />}
       </div>
     </div>
   );
@@ -443,6 +446,123 @@ function NumberField({
             {suffix}
           </span>
         )}
+      </div>
+    </div>
+  );
+}
+
+function BankDepositMatcher() {
+  const pagePath = "/calculators/bank-deposit-matcher";
+  useSeo({
+    title: "Bank Deposit Matcher — Compare HYSA & Checking Offers Instantly",
+    description:
+      "Answer a few quick questions to see high-yield savings and checking offers matched to your deposit size. Results render inline, no redirect.",
+    path: pagePath,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: "Bank Deposit Matcher",
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Web",
+      url: `${SITE_URL}${pagePath}`,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    },
+  });
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-[#fff7ec] border-l-4 border-[#0e4d45] rounded-sm p-3 sm:p-4 text-[11px] sm:text-xs text-[#1a1a1a] leading-relaxed">
+        <strong className="block font-serif text-sm text-black mb-1">
+          Advertiser disclosure
+        </strong>
+        The tool below is an embedded matching widget operated by a partner
+        network. Investing and Retirement Media LLC may receive compensation
+        from the banks and card issuers shown when you open, apply for, or
+        fund an account. Compensation does not change the order in which the
+        tool presents offers — that ranking is controlled by the partner
+        network based on your inputs. APYs, fees, and eligibility are shown by
+        the widget directly from each issuer and can change without notice.
+      </div>
+
+      <div className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-5">
+        <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
+          Personalized offer match
+        </div>
+        <h2 className="font-serif text-xl sm:text-2xl font-bold text-black mb-2">
+          Find accounts that fit your deposit
+        </h2>
+        <p className="text-xs sm:text-sm text-[#1a1a1a] leading-relaxed mb-4">
+          Tell the matcher your deposit size and goals. It will pull live HYSA
+          and checking offers from partner banks and score them for your
+          situation. Results render right here on this page — you will not be
+          redirected away until you choose an offer to open.
+        </p>
+        <DepositMatchWidget
+          subId="calc-bank-deposit-matcher"
+          placement="calculator-body"
+          pagePath={pagePath}
+        />
+      </div>
+
+      <div className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-5 text-[12px] sm:text-sm text-[#1a1a1a] leading-relaxed space-y-3">
+        <div>
+          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
+            How the match works
+          </div>
+          <h3 className="font-serif text-lg font-bold text-black mb-2">
+            What the tool is actually doing
+          </h3>
+          <p>
+            The matcher takes your stated deposit size, rough monthly savings
+            rate, and timeline, then scores every active partner offer against
+            a few basics: APY net of any rate caps, minimum-balance
+            requirements, monthly fees, early-withdrawal penalties on CDs, and
+            the sign-up bonus (if any) amortized over twelve months. It only
+            shows offers that match your deposit tier, so a $500 starter gets
+            a different ranking than a $50,000 transfer.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-serif text-base font-bold text-black mb-1.5">
+            What to pay attention to
+          </h3>
+          <ul className="list-disc pl-5 space-y-1.5">
+            <li>
+              <strong>Rate tiers and caps.</strong> A quoted APY often only
+              applies up to a balance threshold. Deposits above that earn a
+              lower rate.
+            </li>
+            <li>
+              <strong>Direct-deposit requirements.</strong> Many of the
+              highest APYs and bonuses require a qualifying direct deposit
+              within the first 30 to 90 days.
+            </li>
+            <li>
+              <strong>Bonus clawbacks.</strong> Checking bonuses usually come
+              with a minimum-balance-maintained window (often 60 to 90 days).
+              Closing or draining early can void the payout.
+            </li>
+            <li>
+              <strong>FDIC/NCUA coverage.</strong> Every bank shown is
+              federally insured up to $250,000 per depositor per ownership
+              category.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="text-[11px] text-[#5a5a5a] italic leading-relaxed">
+        This page is for educational comparison and is not personalized
+        financial advice. Offers shown are provided by a partner network and
+        may not include every account available in your state. See our{" "}
+        <a href="/disclosure" className="underline text-[#0e4d45]">
+          advertiser disclosure
+        </a>{" "}
+        and{" "}
+        <a href="/privacy" className="underline text-[#0e4d45]">
+          privacy policy
+        </a>{" "}
+        for more detail on how partner links are tracked.
       </div>
     </div>
   );
