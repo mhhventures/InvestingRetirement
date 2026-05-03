@@ -224,17 +224,9 @@ function Investing() {
         { label: "Top IRA match", value: "1%" },
       ]}
     >
-      <div className="prose-sm max-w-none mb-5 space-y-3 text-sm text-[#1a1a1a] leading-relaxed">
-        <p>
-          We review the brokerages, robo-advisors, and retirement platforms most Americans actually use — Fidelity, Vanguard, Schwab, Robinhood, E*TRADE, Webull, Interactive Brokers, SoFi Invest, Betterment, Wealthfront, M1 Finance, Acorns, and more. Each review is based on a funded account and real trades, not a marketing page read-through. Our rubric weights costs and fees (25%), platform and tools (20%), asset selection (15%), account types (10%), education and research (10%), customer support (10%), and trust and safety (10%).
-        </p>
-        <p>
-          If you are new to investing, start with a broker that offers <strong>commission-free stock and ETF trades</strong>, <strong>fractional shares</strong>, and both <strong>Roth and Traditional IRAs</strong>. Charles Schwab and Fidelity score highest for all-around use. If you want hands-off investing, <strong>robo-advisors</strong> like Betterment and Wealthfront automate asset allocation, rebalancing, and tax-loss harvesting for a small annual fee. Active traders should compare platform depth, options-contract fees, and margin rates — Interactive Brokers, thinkorswim (via Schwab), and Webull lead that category.
-        </p>
-        <p>
-          Commissions, APYs on cash sweeps, and account bonuses change often. Every listing here is reviewed quarterly, and any promotional offer is stamped with the date it was last verified. Read our <a href="/about" className="underline text-[#0e4d45]">editorial methodology</a> and <a href="/disclosure" className="underline text-[#0e4d45]">advertiser disclosure</a> to see how we test products and why affiliate partners cannot buy better rankings.
-        </p>
-      </div>
+      <p className="mb-5 text-sm text-[#1a1a1a] leading-relaxed">
+        Compare the brokerages, robo-advisors, and retirement platforms most Americans actually use. Each ranking is based on a funded account and real trades — not a marketing-page read-through.
+      </p>
       <div className="mb-4 flex items-center gap-2">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0e4d45]" />
         <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">
@@ -266,6 +258,34 @@ function Investing() {
       <div className="mt-6">
         <RelatedGuidesForCategory categoryPath="/investing" />
       </div>
+
+      <section className="mt-12 space-y-5 text-sm text-[#1a1a1a] leading-relaxed">
+        <div>
+          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">Methodology</div>
+          <h2 className="font-serif text-2xl font-bold text-black mb-2">How we rank investing apps</h2>
+          <p>
+            Our rubric weights costs and fees (25%), platform and tools (20%), asset selection (15%), account types (10%), education and research (10%), customer support (10%), and trust and safety (10%). Editors open real accounts, place real trades, and fund IRAs before publishing a score — partners cannot pay for better rankings or preview coverage before it goes live.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold text-black mb-1.5">Which broker fits which investor</h3>
+          <p>
+            If you are new to investing, start with a broker that offers <strong>commission-free stock and ETF trades</strong>, <strong>fractional shares</strong>, and both <strong>Roth and Traditional IRAs</strong>. Charles Schwab and Fidelity score highest for all-around use. If you want hands-off investing, <strong>robo-advisors</strong> like Betterment and Wealthfront automate asset allocation, rebalancing, and tax-loss harvesting for a small annual fee. Active traders should compare platform depth, options-contract fees, and margin rates — Interactive Brokers, thinkorswim (via Schwab), and Webull lead that category.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold text-black mb-1.5">What to compare</h3>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Commission structure on stocks, ETFs, options contracts, and mutual funds.</li>
+            <li>Retirement account support: Traditional IRA, Roth IRA, SEP IRA, Solo 401(k), rollover handling.</li>
+            <li>Research quality, charting depth, and screener flexibility for active decision-making.</li>
+            <li>Fractional shares, dividend reinvestment, tax-loss harvesting, and automated portfolio tools.</li>
+          </ul>
+          <p className="mt-2 text-xs text-[#5a5a5a]">
+            Read our <a href="/about" className="underline text-[#0e4d45]">editorial methodology</a> and <a href="/disclosure" className="underline text-[#0e4d45]">advertiser disclosure</a> for more on how we test products and fund our independence.
+          </p>
+        </div>
+      </section>
     </CategoryPage>
   );
 }
