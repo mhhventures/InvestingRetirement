@@ -411,21 +411,13 @@ export function getDomainLogoUrl(domain: string, size: number = 128): string {
     });
     return `https://img.logo.dev/${clean}?${qs.toString()}`;
   }
-  // No logo.dev token configured — use Clearbit, which is keyless.
-  return `https://logo.clearbit.com/${clean}?size=${size}`;
-}
-
-// Ordered fallback list for <img onError>: if the primary provider fails,
-// walk down these in turn before hiding the element.
-export function getDomainLogoFallbacks(
-  domain: string,
-  size: number = 128,
-): string[] {
-  const clean = domain.replace(/^https?:\/\//, "").replace(/^www\./, "").split("/")[0];
-  return [
-    `https://logo.clearbit.com/${clean}?size=${size}`,
-    `https://www.google.com/s2/favicons?sz=${Math.min(size, 128)}&domain=${clean}`,
-  ];
+  // No logo.dev token configured — fall back to Google's favicon service,
+  // which is keyless and returns a small real brand mark for most domains.
+  // (Clearbit's free logo API was retired in 2023 and now 404s.)
+  return `https://www.google.com/s2/favicons?sz=${Math.min(
+    Math.max(size, 32),
+    256,
+  )}&domain=${clean}`;
 }
 
 export function extractDomain(url: string | null | undefined): string | null {
