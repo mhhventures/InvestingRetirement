@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { products } from "@/data/products";
 import { ProductLogo, StarRating } from "@/components/product-card";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 const TOP_OFFERS = [
   {
@@ -81,6 +82,13 @@ function SidebarBlock({
 export function BankSidebar() {
   return (
     <aside className="space-y-3 lg:sticky lg:top-20 lg:self-start">
+
+      {/* Newsletter */}
+      <NewsletterSignup
+        source="sidebar-banking"
+        headline="Rate Alerts Weekly"
+        sub="We email the top APYs, new bonus offers, and rate drops every Thursday. Free."
+      />
 
       {/* Rates by Account Type */}
       <SidebarBlock title="Rates by Account Type">

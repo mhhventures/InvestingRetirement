@@ -48,14 +48,12 @@ function Header() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <a
-              href="https://investingretirement.substack.com/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/newsletter"
               className="hidden md:inline-flex items-center text-[10px] sm:text-[11px] font-semibold bg-[#0e4d45] text-[#fef6f1] px-2 sm:px-3 py-1.5 rounded-sm hover:bg-[#0a3832] transition-colors tracking-wide uppercase whitespace-nowrap"
             >
               Subscribe
-            </a>
+            </Link>
             <button
               onClick={() => setOpen(!open)}
               className="lg:hidden p-1 sm:p-1.5 text-black"
