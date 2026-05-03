@@ -15,7 +15,7 @@ const FAQS = [
       },
       {
         q: "When was Investing and Retirement founded?",
-        a: "Investing and Retirement Media LLC was founded to give readers clear, honest, and actionable financial product research — free from the noise and bias that dominates much of the personal finance space.",
+        a: "Investing and Retirement Media LLC was founded in 2025 to give readers clear, honest, and actionable financial product research — free from the noise and bias that dominates much of the personal finance space.",
       },
       {
         q: "What makes Investing and Retirement different from other comparison sites?",
