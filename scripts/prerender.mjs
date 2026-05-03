@@ -71,6 +71,12 @@ function staticRouteMeta(path) {
         "Compare the best high-yield savings and checking accounts of 2026. Up-to-date APYs, fees, and bonuses — ranked by our editors after hands-on testing.",
       h1: "Best Bank Accounts",
     },
+    "/banks": {
+      title: "Best Banks & Credit Unions by State 2026 — Local Rates Directory",
+      description:
+        "Compare the best local credit unions and community banks in every state. Verified APYs, fees, and membership details — updated monthly.",
+      h1: "Best Banks & Credit Unions by State",
+    },
     "/investing": {
       title: "Best Investing Apps & Brokerages 2026",
       description:
@@ -247,6 +253,24 @@ function metaForUrl(url, data) {
       title: seoTitle,
       description: clampDescription(g.description),
       h1: g.title,
+    };
+  }
+
+  // /banks/:state
+  const stateMatch = path.match(/^\/banks\/([a-z-]+)$/);
+  if (stateMatch) {
+    const slug = stateMatch[1];
+    const name = slug
+      .split("-")
+      .map((w) => w[0].toUpperCase() + w.slice(1))
+      .join(" ");
+    return {
+      path,
+      title: `Best Banks & Credit Unions in ${name} 2026 — Local Rates`,
+      description: clampDescription(
+        `Top local credit unions, community banks, and regional providers in ${name}. Compare verified APYs, fees, and membership eligibility — updated monthly.`,
+      ),
+      h1: `Best Banks & Credit Unions in ${name}`,
     };
   }
 
