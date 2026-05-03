@@ -275,7 +275,7 @@ export const products: Product[] = [
     logoText: "LC",
     color: "#0c7c59",
     bestFor: "Savers making regular monthly deposits",
-    url: "https://www.lendingclub.com/banking/levelup-savings",
+    url: "https://www.lendingclub.com/personal-banking/savings/high-yield-savings",
   },
   {
     slug: "amex-high-yield-savings",
@@ -308,7 +308,7 @@ export const products: Product[] = [
     logoText: "Amex",
     color: "#006fcf",
     bestFor: "Savers who want a trusted brand",
-    url: "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings/",
+    url: "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/",
   },
   {
     slug: "forbright-growth-savings",
@@ -509,7 +509,7 @@ export const products: Product[] = [
     logoText: "BofA",
     color: "#012169",
     bestFor: "Preferred Rewards members with large balances",
-    url: "https://www.bankofamerica.com/deposits/savings/advantage-savings/",
+    url: "https://www.bankofamerica.com/deposits/savings/savings-accounts/",
   },
   {
     slug: "citi-savings",
@@ -611,7 +611,7 @@ export const products: Product[] = [
     logoText: "Truist",
     color: "#52247f",
     bestFor: "Southeast U.S. customers bundling checking + savings",
-    url: "https://www.truist.com/savings-accounts",
+    url: "https://www.truist.com/savings/truist-one-savings",
   },
 
   // ============================================================
@@ -746,7 +746,7 @@ export const products: Product[] = [
     logoText: "SoFi",
     color: "#1e3a8a",
     bestFor: "All-in-one digital banking",
-    url: "https://www.sofi.com/banking/checking/",
+    url: "https://www.sofi.com/banking/checking-account/",
   },
   {
     slug: "capital-one-360-checking",
@@ -812,7 +812,7 @@ export const products: Product[] = [
     logoText: "NBKC",
     color: "#0a3161",
     bestFor: "Simplicity seekers who want real APY",
-    url: "https://www.nbkc.com/everything-account",
+    url: "https://www.nbkc.com/personal/everything-account",
   },
   {
     slug: "amex-rewards-checking",
@@ -845,7 +845,7 @@ export const products: Product[] = [
     logoText: "Amex",
     color: "#006fcf",
     bestFor: "Existing Amex cardholders",
-    url: "https://www.americanexpress.com/en-us/banking/checking/rewards-checking/",
+    url: "https://www.americanexpress.com/en-us/banking/checking-account/",
   },
   {
     slug: "upgrade-rewards-checking",
@@ -910,7 +910,7 @@ export const products: Product[] = [
     logoText: "PNC",
     color: "#f58025",
     bestFor: "Big-bank perks with built-in budgeting",
-    url: "https://www.pnc.com/en/personal-banking/banking/checking/virtual-wallet-checking.html",
+    url: "https://www.pnc.com/en/personal-banking/banking/checking.html",
   },
   {
     slug: "ally-interest-checking",
@@ -975,7 +975,7 @@ export const products: Product[] = [
     logoText: "E*TR",
     color: "#6c2fb3",
     bestFor: "Investors who want banking + brokerage in one place",
-    url: "https://us.etrade.com/what-we-offer/our-accounts/max-rate-checking",
+    url: "https://us.etrade.com/bank/max-rate-checking",
   },
   {
     slug: "axos-rewards-checking",
@@ -1157,7 +1157,7 @@ export const products: Product[] = [
     logoText: "ET",
     color: "#6e26a8",
     bestFor: "Active traders and options traders",
-    url: "https://us.etrade.com/home",
+    url: "https://us.etrade.com/bank",
     accountTypes: ["Individual", "Joint", "Traditional IRA", "Roth IRA", "Rollover IRA", "SEP IRA", "SIMPLE IRA", "Solo 401(k)", "Custodial", "Trust"],
     assetsAvailable: ["Stocks", "ETFs", "Options", "Mutual Funds", "Bonds", "Futures"],
     platformFeatures: ["Power E*TRADE Platform", "Morgan Stanley Research", "Checking & Savings (Morgan Stanley Private Bank)", "Debit Card", "Robo-Advisor (Core Portfolios)", "Margin"],
@@ -2703,7 +2703,7 @@ export const products: Product[] = [
     logoText: "CNBC",
     color: "#cc0000",
     bestFor: "Market news and macro commentary",
-    url: "https://www.cnbc.com/cnbc-pro/",
+    url: "https://www.cnbc.com/pro/",
   },
   {
     slug: "stock-analysis-pro",
