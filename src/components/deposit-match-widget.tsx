@@ -126,10 +126,19 @@ export function DepositMatchWidget({
   return (
     <div className="w-full">
       {status === "loading" && (
-        <div className="text-[11px] text-[#5a5a5a] py-3">Loading offers…</div>
+        <div
+          className="flex items-center justify-center text-[11px] text-[#5a5a5a]"
+          style={{ minHeight: "clamp(420px, 70vw, 560px)" }}
+          aria-live="polite"
+        >
+          <span className="inline-flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full border-2 border-[#0e4d45] border-t-transparent animate-spin" />
+            Loading offers…
+          </span>
+        </div>
       )}
       {status === "error" && (
-        <div className="text-[11px] text-[#7a1f1f] bg-[#fbe9e7] border border-[#f0b8b0] rounded px-3 py-2">
+        <div className="text-[12px] text-[#7a1f1f] bg-[#fbe9e7] border border-[#f0b8b0] rounded px-3 py-3 leading-relaxed">
           The offer widget failed to load. Please disable ad blockers and
           refresh the page, or browse our{" "}
           <a href="/bank-accounts" className="underline font-semibold">
@@ -143,6 +152,11 @@ export function DepositMatchWidget({
         id="depositmatch-widget-v2"
         data-publisher={PUBLISHER_ID}
         data-sub-id={subId}
+        className="w-full mx-auto [&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:block"
+        style={{
+          display: status === "ready" ? "block" : "none",
+          maxWidth: "100%",
+        }}
       />
     </div>
   );

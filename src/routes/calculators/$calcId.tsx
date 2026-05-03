@@ -514,19 +514,23 @@ function BankDepositMatcher() {
       <div className="max-w-2xl mx-auto px-3 sm:px-4 py-5 sm:py-8 space-y-5 sm:space-y-6">
         <section
           aria-label="Deposit matcher tool"
-          className="bg-white border border-[#e4d9cf] rounded-lg p-3 sm:p-5 shadow-sm"
+          className="bg-white border border-[#e4d9cf] rounded-lg overflow-hidden shadow-sm"
         >
-          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
-            Personalized offer match
+          <div className="px-3 pt-3 pb-2 sm:px-5 sm:pt-5 sm:pb-3">
+            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
+              Personalized offer match
+            </div>
+            <h2 className="font-serif text-lg sm:text-xl font-bold text-black">
+              Start your match
+            </h2>
           </div>
-          <h2 className="font-serif text-lg sm:text-xl font-bold text-black mb-3">
-            Start your match
-          </h2>
-          <DepositMatchWidget
-            subId="calc-bank-deposit-matcher"
-            placement="calculator-body"
-            pagePath={pagePath}
-          />
+          <div className="px-2 pb-2 sm:px-5 sm:pb-5">
+            <DepositMatchWidget
+              subId="calc-bank-deposit-matcher"
+              placement="calculator-body"
+              pagePath={pagePath}
+            />
+          </div>
         </section>
 
         <section
