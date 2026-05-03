@@ -16,6 +16,7 @@ import { useSeo, SITE_URL } from "@/lib/seo";
 import { BankSidebar } from "@/components/bank-sidebar";
 import { StarRating, GradeBadge } from "@/components/product-card";
 import { getDomainLogoUrl, extractDomain } from "@/lib/product-icons";
+import { stateProviderPartnerLink } from "@/lib/affiliate";
 
 export const Route = createFileRoute("/banks/$state")({
   loader: ({ params }) => {
@@ -910,7 +911,7 @@ function BestForCard({ label, why, p }: { label: string; why: string; p: StatePr
         </span>
         {p.website_url ? (
           <a
-            href={p.website_url}
+            href={stateProviderPartnerLink(p, { placement: "bestfor-card" })}
             target="_blank"
             rel="nofollow noopener noreferrer sponsored"
             className="text-[10px] font-semibold uppercase tracking-wider text-[#0e4d45] hover:underline"
@@ -1040,7 +1041,7 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
               <div className="mt-3 md:mt-0">
                 {p.website_url ? (
                   <a
-                    href={p.website_url}
+                    href={stateProviderPartnerLink(p, { placement: "rate-table-row" })}
                     target="_blank"
                     rel="nofollow noopener noreferrer sponsored"
                     onClick={() => logClick(p.institution_name)}
@@ -1163,7 +1164,7 @@ function ApyCalculator({
                 </div>
                 {p.website_url ? (
                   <a
-                    href={p.website_url}
+                    href={stateProviderPartnerLink(p, { placement: "calculator" })}
                     target="_blank"
                     rel="nofollow noopener noreferrer sponsored"
                     className="text-center px-2 py-1 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[9px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors whitespace-nowrap"
@@ -1257,7 +1258,7 @@ function HeroPick({ p, rank }: { p: StateProvider; rank: number }) {
         <div className="mt-5">
           {p.website_url ? (
             <a
-              href={p.website_url}
+              href={stateProviderPartnerLink(p, { placement: "featured-card" })}
               target="_blank"
               rel="nofollow noopener noreferrer sponsored"
               className="inline-block text-center px-4 py-2.5 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
@@ -1357,7 +1358,7 @@ function ProviderCard({ p, rank }: { p: StateProvider; rank: number }) {
         <div className="mt-2.5 sm:mt-3 grid grid-cols-2 gap-1.5">
           {p.website_url ? (
             <a
-              href={p.website_url}
+              href={stateProviderPartnerLink(p, { placement: "provider-card" })}
               target="_blank"
               rel="nofollow noopener noreferrer sponsored"
               className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"

@@ -121,6 +121,40 @@ export function productPartnerLink(
   });
 }
 
+// Resolves a state_providers row to its tracked `{partner}.investingandretirement.com/{offer}`
+// URL. Partner and offer slugs are derived with the same rules used in the
+// `seed_state_provider_partner_offers` migration so client + server stay in sync.
+export function stateProviderPartnerLink(
+  p: {
+    state_code: string;
+    product_type: string;
+    institution_name: string;
+    website_url: string | null | undefined;
+  },
+  opts: { placement?: string; term?: string } = {},
+): string {
+  const fallback = p.website_url || "";
+  const host = (p.website_url || "")
+    .toLowerCase()
+    .replace(/^https?:\/\//, "")
+    .replace(/\/.*$/, "")
+    .replace(/^www\./, "");
+  const firstLabel = host.split(".")[0] || "";
+  const kebab = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+  const partnerSlug = firstLabel
+    ? firstLabel.replace(/[^a-z0-9]/g, "")
+    : kebab(p.institution_name);
+  if (!partnerSlug) return fallback;
+  const offerSlug = `${p.state_code.toLowerCase()}-${p.product_type}-${kebab(
+    p.institution_name,
+  )}`;
+  return partnerLink(partnerSlug, offerSlug, opts);
+}
+
 export function withUtm(
   url: string,
   opts: { campaign: string; content?: string; term?: string },
