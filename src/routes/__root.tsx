@@ -173,7 +173,7 @@ function Footer() {
               </svg>
             </a>
             <a
-              href="https://www.youtube.com/channel/UC_b9Qu9uX0Ky6YZWvwIY5-w"
+              href="https://www.youtube.com/@investingretirement"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube - Investing & Retirement"
