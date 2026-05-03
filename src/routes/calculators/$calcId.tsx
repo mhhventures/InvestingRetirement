@@ -476,15 +476,17 @@ function BankDepositMatcher() {
     <div className="bg-[#fef6f1] min-h-screen overflow-x-hidden">
       <section className="border-b border-[#e4d9cf]">
         <div className="max-w-2xl mx-auto px-4 pt-5 pb-4 sm:pt-8 sm:pb-6">
-          <a
-            href="/calculators"
-            className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#0e4d45] mb-2.5 inline-block hover:underline"
-          >
-            &larr; All Calculators
-          </a>
-          <div className="inline-flex items-center gap-1.5 bg-[#eaf1ef] text-[#0e4d45] text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm mb-2.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0e4d45]" aria-hidden />
-            Free tool
+          <div className="flex items-center gap-3 mb-4">
+            <a
+              href="/calculators"
+              className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#0e4d45] hover:underline"
+            >
+              &larr; All Calculators
+            </a>
+            <span className="inline-flex items-center gap-1.5 bg-[#eaf1ef] text-[#0e4d45] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0e4d45]" aria-hidden />
+              Free tool
+            </span>
           </div>
           <h1 className="font-serif text-[26px] leading-[1.1] sm:text-4xl font-bold text-black mb-2">
             Find a high-yield account matched to your deposit
