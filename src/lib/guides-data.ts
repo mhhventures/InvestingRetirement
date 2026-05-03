@@ -3210,8 +3210,8 @@ export const guides: GuideArticle[] = [
     readTime: "10 min",
     description:
       "Our updated ranking of the top 5 investing apps for May 2026 — covering commission-free trading, fractional shares, retirement accounts, and the best platforms for beginners and active traders.",
-    relatedCategory: "/investing-apps",
-    relatedLabel: "Investing Apps",
+    relatedCategory: "/investing",
+    relatedLabel: "Investing",
     intro:
       "The investing app landscape in May 2026 is more competitive than ever. Commission-free trading is now table stakes, and the platforms that stand out are the ones offering meaningful extras — high-yield cash sweeps, retirement accounts, fractional shares, advanced charting, and access to alternative assets like crypto, options, and futures. We tested the leading apps across account opening speed, fee structure, asset selection, research tools, and mobile experience to bring you this updated ranking of the top 5 for May 2026.",
     sections: [
