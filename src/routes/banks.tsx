@@ -468,11 +468,73 @@ function BanksIndex() {
           />
         </section>
 
-        <p className="mt-8 text-xs text-[#5a5a5a] italic max-w-3xl">
-          Rates and terms are subject to change. Confirm current figures
-          directly with each institution before opening an account. FDIC or
-          NCUA insurance applies to the institution, not the product tier.
-        </p>
+        <section className="mt-12 max-w-3xl space-y-4 text-[14px] text-[#1a1a1a] leading-relaxed">
+          <h2 className="font-serif font-bold text-2xl text-black">
+            What is a state banking directory?
+          </h2>
+          <p>
+            A state banking directory lists the banks, credit unions, and
+            regional providers licensed to serve residents of a specific state
+            — plus the deposit products (savings, checking, money-market, CDs)
+            each institution actually markets locally. Unlike a national
+            best-of list, a state directory surfaces small community banks and
+            state-chartered credit unions that often publish the highest APYs
+            a single household can access, because their field-of-membership
+            rules are limited to residents of that state or a set of affiliated
+            employers.
+          </p>
+          <h2 className="font-serif font-bold text-2xl text-black">
+            Local credit unions vs. national online banks
+          </h2>
+          <p>
+            National online banks (SoFi, Ally, Marcus, Capital One 360,
+            Discover) typically win on raw savings APY at large balances,
+            mobile-app polish, and 24/7 customer support. Local credit unions
+            and community banks typically win on rewards-checking yield (often
+            3–5% on the first $10–25k in balances), CD specials, relationship
+            pricing for members with a mortgage or auto loan at the same
+            institution, and in-branch service for anyone who prefers to talk
+            to a person. The right answer for most households is both — a
+            national HYSA for the bulk of savings, plus a local rewards-
+            checking account for everyday spending.
+          </p>
+          <h2 className="font-serif font-bold text-2xl text-black">
+            How deposit insurance works across state lines
+          </h2>
+          <p>
+            FDIC insurance (for banks) and NCUA insurance (for credit unions)
+            both cover $250,000 per depositor, per ownership category, per
+            institution — the protection is identical regardless of whether
+            the charter is state or federal. A state-chartered bank in
+            California and a national bank headquartered in Delaware carry the
+            same $250k backstop on the same account. What varies by state is
+            the supervisory regulator (the California DFPI, the Texas
+            Department of Banking, the New York DFS, and so on), the consumer-
+            protection rules layered on top of federal law, and the state
+            income-tax treatment of the interest you earn on those deposits.
+          </p>
+          <h2 className="font-serif font-bold text-2xl text-black">
+            How to use this directory
+          </h2>
+          <p>
+            Pick your state from the grid above. Each state page ranks local
+            banks and credit unions by APY after fees, documents the
+            field-of-membership rule for every CU, and calls out the
+            institution's FDIC or NCUA ID. Expand any row for the verified
+            rate, minimum opening deposit, monthly-fee structure, and — where
+            available — the editorial summary of who each institution is the
+            best fit for. Every number on every page is re-verified against
+            the institution's own rate page at least monthly, and stamped
+            with the date of the most recent check.
+          </p>
+          <p className="text-xs text-[#5a5a5a] italic">
+            This page is informational and does not constitute personalized
+            financial advice. Rates, fees, and membership rules change
+            frequently — confirm current figures directly with each
+            institution before opening an account. FDIC or NCUA insurance
+            applies to the institution, not the product tier.
+          </p>
+        </section>
       </div>
     </div>
   );

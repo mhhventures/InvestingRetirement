@@ -61,17 +61,27 @@ async function loadStateProviders() {
   const key = env.VITE_SUPABASE_ANON_KEY;
   if (!url || !key) {
     console.warn("[prerender] Supabase env missing — skipping state data fetch");
-    return [];
+    return { providers: [], intros: [], faqs: [] };
   }
-  const res = await fetch(
-    `${url}/rest/v1/state_providers?select=state_code,state_name,institution_name,institution_type,product_type,apy,min_deposit,monthly_fee,membership_required,website_url,summary,rank_weight,last_verified_at&order=state_code.asc,rank_weight.asc`,
-    { headers: { apikey: key, Authorization: `Bearer ${key}` } },
-  );
-  if (!res.ok) {
-    console.warn(`[prerender] Supabase fetch failed: ${res.status}`);
-    return [];
-  }
-  return await res.json();
+  const headers = { apikey: key, Authorization: `Bearer ${key}` };
+  const [pr, ir, fr] = await Promise.all([
+    fetch(
+      `${url}/rest/v1/state_providers?select=state_code,state_name,institution_name,institution_type,product_type,apy,min_deposit,monthly_fee,membership_required,website_url,summary,rank_weight,last_verified_at&order=state_code.asc,rank_weight.asc`,
+      { headers },
+    ),
+    fetch(
+      `${url}/rest/v1/state_intros?select=state_code,intro_paragraph,regulator,notable_institutions`,
+      { headers },
+    ),
+    fetch(
+      `${url}/rest/v1/state_faqs?select=state_code,question,answer,sort_order&order=state_code.asc,sort_order.asc`,
+      { headers },
+    ),
+  ]);
+  const providers = pr.ok ? await pr.json() : [];
+  const intros = ir.ok ? await ir.json() : [];
+  const faqs = fr.ok ? await fr.json() : [];
+  return { providers, intros, faqs };
 }
 
 // Group providers by state code and compute summary stats used for meta copy,
@@ -856,14 +866,16 @@ function bodyCopy(meta, data) {
       .map((s) => `<li><a href="/banks/${s.slug}">Best banks in ${esc(s.name)}</a></li>`)
       .join("");
     return `
-      <h2>State-by-state local banking directory</h2>
-      <p>This directory lists the strongest local credit unions, community banks, and regional providers available to residents of each covered state. Every listing is verified monthly against the institution's published rate sheet, and we note the exact date each APY was last confirmed. Online-only national banks (SoFi, Ally, Marcus, Capital One 360) are covered on our <a href="/bank-accounts">best bank accounts page</a> — this directory is for institutions where physical branch presence, in-state membership eligibility, or regional deposit relationships actually matter.</p>
-      <h2>Why local wins</h2>
-      <p>National online banks often top raw savings APYs, but local credit unions and community banks routinely win on rewards-checking rates, CD specials, relationship pricing, and in-branch service. A federally-insured local credit union in your state is frequently the highest-APY option a single household can access — the tradeoff is membership eligibility, which this directory spells out in plain English for each institution.</p>
+      <h2>What is a state banking directory?</h2>
+      <p>A state banking directory lists the banks, credit unions, and regional providers licensed to serve residents of a specific state — plus the deposit products (savings, checking, money-market, CDs) each institution actually markets locally. Unlike a national best-of list, a state directory surfaces small community banks and state-chartered credit unions that often publish the highest APYs a single household can access, because their field-of-membership rules are limited to residents of that state or a set of affiliated employers.</p>
+      <h2>Local credit unions vs. national online banks</h2>
+      <p>National online banks (SoFi, Ally, Marcus, Capital One 360, Discover) typically win on raw savings APY at large balances, mobile-app polish, and 24/7 customer support. Local credit unions and community banks typically win on rewards-checking yield (often 3–5% on the first $10–25k in balances), CD specials, relationship pricing for members with a mortgage or auto loan at the same institution, and in-branch service. The right answer for most households is both — a national HYSA for the bulk of savings, plus a local rewards-checking account for everyday use.</p>
+      <h2>How deposit insurance works across state lines</h2>
+      <p>FDIC insurance (for banks) and NCUA insurance (for credit unions) both cover $250,000 per depositor, per ownership category, per institution — the protection is identical regardless of whether the charter is state or federal. What varies by state is the supervisory regulator (the California DFPI, the Texas Department of Banking, the New York DFS, and so on), the consumer-protection rules layered on top of federal law, and the state income-tax treatment of the interest you earn on those deposits.</p>
       <h2>States covered</h2>
       <ul>${links}</ul>
-      <h2>How we verify</h2>
-      <p>APYs, monthly fees, and minimum opening deposits are re-confirmed on the institution's own rate page at least monthly. Membership-eligibility rules (employer groups, county residence, a one-time association fee) are pulled from each institution's bylaws. FDIC or NCUA insurance IDs are cross-checked against federal registries. Every row shows the date of the most recent verification.</p>`;
+      <h2>How to use this directory</h2>
+      <p>Pick your state from the list above. Each state page ranks local banks and credit unions by APY after fees, documents the field-of-membership rule for every CU, and calls out the institution's FDIC or NCUA ID. Every number is re-verified against the institution's own rate page at least monthly, and stamped with the date of the most recent check.</p>`;
   }
 
   // /banks/:state
@@ -907,17 +919,30 @@ function bodyCopy(meta, data) {
       const verified = stateData?.lastVerified
         ? new Date(stateData.lastVerified).toLocaleDateString("en-US", { month: "long", year: "numeric" })
         : "this month";
+      const intro = data.introByCode?.[info.code];
+      const introP = intro?.intro_paragraph
+        ? `<p>${esc(intro.intro_paragraph)}</p>${intro.regulator ? `<p>State regulator: <strong>${esc(intro.regulator)}</strong>. Every institution below is FDIC- or NCUA-insured to $250,000.</p>` : ""}`
+        : `<p>${esc(info.name)} residents have access to a mix of state-chartered credit unions, regional community banks, and nationwide online banks. This page ranks the strongest options for savings APY, checking rewards, and CD specials — all verified against the institution's own rate page as of ${esc(verified)}.</p>`;
+      const stateFaqs = data.faqsByCode?.[info.code] || [];
+      const faqBlock = stateFaqs.length
+        ? `<h2>${esc(info.name)} banking FAQ — credit unions, rates & insurance</h2>${stateFaqs
+            .map(
+              (f) => `<h3>${esc(f.question)}</h3><p>${esc(f.answer)}</p>`,
+            )
+            .join("")}`
+        : "";
       return `
-        <p>${esc(info.name)} residents have access to a mix of state-chartered credit unions, regional community banks, and nationwide online banks. This page ranks the strongest options for savings APY, checking rewards, and CD specials — all verified against the institution's own rate page as of ${esc(verified)}.</p>
-        <h2>Top banks and credit unions in ${esc(info.name)}</h2>
+        ${introP}
+        <h2>Best banks and credit unions in ${esc(info.name)} ${new Date().getFullYear()}</h2>
         <ul>${rows}</ul>
         <h2>What makes a ${esc(info.name)} bank account worth opening</h2>
         <p>Look at four things in order: the APY (does it beat the FDIC national average of about 0.60%?), the monthly fee (anything above $0 should come with a clear waiver path), the minimum opening deposit, and the membership rule for credit unions. ${esc(info.name)} residents typically qualify for at least one large state-chartered credit union on residency alone, and that credit union is often the highest-APY option available locally.</p>
-        <h2>Is my money safe at a ${esc(info.name)} bank?</h2>
+        <h2>Is my money safe at a ${esc(info.name)} bank or credit union?</h2>
         <p>Yes, if the institution is federally insured. FDIC covers banks up to $250,000 per depositor, per ownership category; NCUA covers credit unions at the same limits. Every institution in this directory carries one of those insurances — the FDIC or NCUA ID is listed on the full provider row.</p>
-        <h2>Major ${esc(info.name)} metros</h2>
+        <h2>Best banks in ${esc(info.name)} cities</h2>
         <ul>${cityLinks}</ul>
-        <h2>Related guides</h2>
+        ${faqBlock}
+        <h2>Related guides for ${esc(info.name)} savers</h2>
         <ul>${relatedGuides}</ul>
         <p>Rates and fees change frequently. Confirm current figures directly with each institution before applying, and see our <a href="/about">editorial methodology</a> for how this directory is built and maintained.</p>`;
     }
@@ -1265,7 +1290,14 @@ async function main() {
   }
   const template = readFileSync(join(distDir, "index.html"), "utf8");
   const mod = await loadData();
-  const providers = await loadStateProviders();
+  const { providers, intros, faqs } = await loadStateProviders();
+  const introByCode = {};
+  for (const i of intros) introByCode[i.state_code] = i;
+  const faqsByCode = {};
+  for (const f of faqs) {
+    if (!faqsByCode[f.state_code]) faqsByCode[f.state_code] = [];
+    faqsByCode[f.state_code].push(f);
+  }
   const data = {
     products: mod.products,
     guides: mod.guides,
@@ -1274,6 +1306,8 @@ async function main() {
     STATE_CITIES: mod.STATE_CITIES,
     citySlug: mod.citySlug,
     stateByCode: indexByState(providers),
+    introByCode,
+    faqsByCode,
   };
   updateSitemapLastmod(data);
   emitSplitSitemaps();
