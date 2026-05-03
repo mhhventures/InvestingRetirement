@@ -126,7 +126,7 @@ function Footer() {
               </svg>
             </a>
             <a
-              href="https://discord.gg/bZTSGfxSgz"
+              href="https://discord.com/invite/bZTSGfxSgz"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Discord"
