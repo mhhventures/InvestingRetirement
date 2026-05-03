@@ -2,10 +2,10 @@ import { createRootRoute, Link, Outlet, useRouterState } from "@tanstack/react-r
 import { useEffect, useState } from "react";
 
 const CATEGORIES = [
-  { label: "Bank Accounts", to: "/bank-accounts" },
+  { label: "Banking", to: "/bank-accounts" },
+  { label: "Local Banks", to: "/banks" },
   { label: "Investing", to: "/investing" },
-  { label: "Financial Apps", to: "/financial-apps" },
-  { label: "Reviews", to: "/reviews" },
+  { label: "Apps", to: "/financial-apps" },
   { label: "Guides", to: "/guides" },
   { label: "Calculators", to: "/calculators" },
 ];
@@ -35,7 +35,7 @@ function Header() {
               decoding="async"
             />
           </Link>
-          <nav className="hidden lg:flex items-center gap-7">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
             {CATEGORIES.map((c) => (
               <Link
                 key={c.to}
