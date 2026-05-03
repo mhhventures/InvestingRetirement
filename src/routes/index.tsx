@@ -79,7 +79,7 @@ function Home() {
         logo: "https://cdn.shipper.now/image/users/cmo93re2q001fjo04arbwa90b/1776908612379-yjlz3q6frc-IandR_Horizontal_RGB_Transparent_Black_PNG.png",
         sameAs: [
           "https://www.instagram.com/investingandretirement/",
-          "https://investingretirement.substack.com/",
+          `${SITE_URL}/newsletter`,
         ],
       },
     ],

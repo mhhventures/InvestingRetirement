@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { products } from "@/data/products";
 import { ProductLogo, StarRating } from "@/components/product-card";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 const TRUSTED = products.filter((p) => p.editorsPick).slice(0, 4);
 
@@ -103,6 +104,9 @@ export function Sidebar() {
           ))}
         </div>
       </SidebarBlock>
+
+      {/* Newsletter */}
+      <NewsletterSignup source="sidebar-offers" />
 
       {/* Featured Offers */}
       <SidebarBlock title="Featured Offers">
