@@ -529,28 +529,15 @@ function BankDepositMatcher() {
           />
         </section>
 
-        <aside
-          aria-label="Advertiser disclosure"
-          className="bg-[#fff7ec] border-l-4 border-[#0e4d45] rounded-sm p-3 sm:p-4 text-[11px] sm:text-xs text-[#1a1a1a] leading-relaxed"
-        >
-          <strong className="block font-serif text-[13px] sm:text-sm text-black mb-1">
-            Advertiser disclosure
-          </strong>
-          The tool above is an embedded matching widget operated by a partner
-          network. Investing and Retirement Media LLC may receive compensation
-          from the banks shown when you open, apply for, or fund an account.
-          Compensation does not change the order of results &mdash; that is
-          controlled by the partner network based on your inputs. APYs, fees,
-          and eligibility come directly from each issuer and can change
-          without notice.
-        </aside>
-
         <section
           aria-label="How it works"
           className="bg-white border border-[#e4d9cf] rounded-lg p-3 sm:p-5"
         >
-          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
-            How the match works
+          <div className="flex items-center justify-between gap-2 mb-1">
+            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">
+              How the match works
+            </div>
+            <DisclosureInfo />
           </div>
           <h2 className="font-serif text-lg sm:text-xl font-bold text-black mb-2.5">
             What the tool is doing
@@ -613,6 +600,41 @@ function BankDepositMatcher() {
           for detail on how partner links are tracked.
         </p>
       </div>
+    </div>
+  );
+}
+
+function DisclosureInfo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        onBlur={() => setOpen(false)}
+        aria-label="Advertiser disclosure"
+        aria-expanded={open}
+        className="w-5 h-5 rounded-full border border-[#0e4d45] text-[#0e4d45] text-[11px] font-bold leading-none flex items-center justify-center hover:bg-[#0e4d45] hover:text-white transition-colors"
+      >
+        i
+      </button>
+      {open && (
+        <div
+          role="tooltip"
+          className="absolute right-0 top-7 z-10 w-[260px] sm:w-[320px] bg-[#fff7ec] border border-[#e4d9cf] border-l-4 border-l-[#0e4d45] rounded-sm p-3 text-[11px] text-[#1a1a1a] leading-relaxed shadow-lg"
+        >
+          <strong className="block font-serif text-[12px] text-black mb-1">
+            Advertiser disclosure
+          </strong>
+          The tool above is an embedded matching widget operated by a partner
+          network. Investing and Retirement Media LLC may receive compensation
+          from the banks shown when you open, apply for, or fund an account.
+          Compensation does not change the order of results &mdash; that is
+          controlled by the partner network based on your inputs. APYs, fees,
+          and eligibility come directly from each issuer and can change
+          without notice.
+        </div>
+      )}
     </div>
   );
 }
