@@ -471,7 +471,7 @@ function ProductRow({ row }: { row: GuideProductRow }) {
           campaign: "guide-product-table",
         })}
         target="_blank"
-        rel="noopener noreferrer sponsored"
+        rel="nofollow noopener noreferrer sponsored"
         className="block text-center px-3 py-1.5 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] text-[11px] font-semibold uppercase tracking-wide transition-colors shrink-0"
       >
         {row.ctaLabel}

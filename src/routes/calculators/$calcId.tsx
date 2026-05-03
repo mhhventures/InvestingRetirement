@@ -333,7 +333,7 @@ function CompatibleOfferings({ mode }: { mode: "hysa" | "investing" }) {
               <a
                 href={productPartnerLink(p.slug, p.url, { placement: `calculator-${campaign}`, term: "calculator", campaign })}
                 target="_blank"
-                rel="noopener noreferrer sponsored"
+                rel="nofollow noopener noreferrer sponsored"
                 className="text-center px-2.5 py-1 rounded bg-[#0e4d45] text-white text-[9px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
               >
                 Visit

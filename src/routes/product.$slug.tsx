@@ -358,7 +358,7 @@ function ProductDetail() {
                       campaign: "product-review",
                     })}
                     target="_blank"
-                    rel="noopener noreferrer sponsored"
+                    rel="nofollow noopener noreferrer sponsored"
                     className="block text-center px-3 py-2 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] text-xs font-semibold transition-colors uppercase tracking-wide"
                   >
                     Open {p.category === "investing" ? "Account" : p.category === "app" ? "App" : "Account"}

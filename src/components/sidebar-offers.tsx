@@ -125,7 +125,7 @@ export function Sidebar() {
                 key={o.slug}
                 href={affiliateUrl}
                 target="_blank"
-                rel="noopener sponsored"
+                rel="nofollow noopener sponsored"
                 className={`block group pl-2.5 border-l-[3px] border-[#0e4d45] ${
                   idx !== 0 ? "pt-2.5 border-t border-t-[#e4d9cf]" : ""
                 }`}
@@ -242,7 +242,7 @@ export function Sidebar() {
               <a
                 href={href}
                 target="_blank"
-                rel="noopener sponsored"
+                rel="nofollow noopener sponsored"
                 className="inline-block w-full text-center text-[10px] sm:text-[11px] font-semibold bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] rounded-sm px-3 py-2 transition-colors uppercase tracking-wider"
               >
                 See Offer

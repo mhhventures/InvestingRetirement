@@ -129,7 +129,7 @@ function HeroPick({ p }: { p: Product }) {
           <a
             href={productPartnerLink(p.slug, p.url, { placement: "bank-accounts-hero", term: "hero-pick", campaign: "bank-accounts" })}
             target="_blank"
-            rel="noopener noreferrer sponsored"
+            rel="nofollow noopener noreferrer sponsored"
             className="text-center px-4 py-2.5 rounded-sm bg-white border border-[#d4c5b8] text-black text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
           >
             Visit Site
@@ -219,7 +219,7 @@ function ApyCalculator({ products }: { products: Product[] }) {
                   <a
                     href={productPartnerLink(p.slug, p.url, { placement: "apy-calculator", term: "apy-calculator", campaign: "bank-accounts" })}
                     target="_blank"
-                    rel="noopener noreferrer sponsored"
+                    rel="nofollow noopener noreferrer sponsored"
                     className="text-center px-1.5 sm:px-2 py-1 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[9px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors whitespace-nowrap"
                   >
                     Visit

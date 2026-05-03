@@ -73,8 +73,18 @@ Deno.serve(async (req: Request) => {
       offerSlug = segments[0] || "";
     }
 
+    const redirectWith = (location: string) =>
+      new Response(null, {
+        status: 302,
+        headers: {
+          Location: location,
+          "X-Robots-Tag": "noindex, nofollow",
+          "Cache-Control": "private, no-store",
+        },
+      });
+
     if (!partnerSlug) {
-      return Response.redirect(SITE_URL, 302);
+      return redirectWith(SITE_URL);
     }
 
     const { data: partner } = await supabase
@@ -84,7 +94,7 @@ Deno.serve(async (req: Request) => {
       .maybeSingle();
 
     if (!partner || partner.status !== "active") {
-      return Response.redirect(SITE_URL, 302);
+      return redirectWith(SITE_URL);
     }
 
     let destination = partner.default_destination_url || SITE_URL;
@@ -160,9 +170,16 @@ Deno.serve(async (req: Request) => {
       // background task API unavailable; fall through
     }
 
-    return Response.redirect(finalUrl, 302);
+    return redirectWith(finalUrl);
   } catch (err) {
     console.error("[redirect] error", err);
-    return Response.redirect(SITE_URL, 302);
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: SITE_URL,
+        "X-Robots-Tag": "noindex, nofollow",
+        "Cache-Control": "private, no-store",
+      },
+    });
   }
 });
