@@ -184,6 +184,62 @@ function metaForUrl(url, data) {
         "4 Best Budgeting Apps in 2026 — Ranked by Our Editors",
       "best-bank-bonuses-this-month":
         "Best Bank Account Bonuses This Month — Top Signup Offers",
+      "savings-account-timeline":
+        "Savings Account Timeline — Match Accounts to Your Goals",
+      "investing-101":
+        "Investing 101 — A Beginner's Guide to Stocks & Bonds",
+      "shopping-hacks":
+        "Smart Shopping Hacks to Cut Grocery & Everyday Costs",
+      "big-purchase-guide":
+        "Big Purchase Guide — Smart Ways to Buy Major Items",
+      "budget-basics-50-30-20":
+        "50/30/20 Budget Rule — A Simple Budgeting Framework",
+      "stop-subscription-drain":
+        "Stop Subscription Drain — Audit & Cancel Unused Services",
+      "emergency-fund":
+        "Emergency Fund Guide — How Much to Save & Where",
+      "options-strategies":
+        "4 Defined-Risk Options Strategies Retail Traders Use",
+      "travel-on-budget":
+        "Budget Travel Tips — Vacation Without Breaking the Bank",
+      "how-to-invest-first-10k":
+        "How to Invest Your First $10,000 — Step-by-Step",
+      "6-best-crypto-apps-2026":
+        "6 Best Crypto Apps & Wallets Ranked for 2026",
+      "taxes-and-inheritance-for-investors":
+        "Investor Tax & Inheritance Guide — Capital Gains to NIIT",
+      "best-cash-advance-loan-apps-may-2026":
+        "7 Best Cash Advance Apps — Ranked for May 2026",
+      "equities-trading":
+        "Equities Trading Guide — Strategy, Orders & Risk",
+      "options-101":
+        "Options 101 — Calls, Puts & How Contracts Work",
+      "index-funds-vs-etfs-vs-mutual-funds":
+        "Index Funds vs ETFs vs Mutual Funds — Which to Pick",
+      "the-greeks-explained":
+        "Options Greeks Explained — Delta, Gamma, Theta, Vega, Rho",
+      "improve-credit-90-days":
+        "Improve Your Credit Score in 90 Days — Step-by-Step Plan",
+      "how-to-pick-high-yield-savings":
+        "How to Choose a High-Yield Savings Account (HYSA Guide)",
+      "5-best-investing-apps-may-2026":
+        "5 Best Investing Apps Ranked for May 2026",
+      "hysa-vs-money-market-vs-cds":
+        "HYSA vs Money Market vs CDs — Best Place for Your Cash",
+      "best-high-yield-savings-accounts-may-2026":
+        "Best High-Yield Savings Accounts Ranked — May 2026",
+      "roth-vs-traditional-ira":
+        "Roth vs Traditional IRA — Which Retirement Account Wins?",
+      "portfolio-improvements":
+        "Improve Your Portfolio — Rebalancing & Alternatives",
+      "retirement-investing":
+        "Retirement Investing Guide — 20x Rule & Contributions",
+      "invest-smart-goals":
+        "Invest With SMART Goals — Set, Measure, Achieve",
+      "best-stock-picking-services-may-2026":
+        "5 Best Stock Picking Services Compared — May 2026",
+      "portfolio-building":
+        "Build an Investment Portfolio — Diversification Basics",
     };
     const seoTitle = titleOverrides[g.slug] || g.title;
     return {
@@ -199,9 +255,13 @@ function metaForUrl(url, data) {
   if (calcMatch) {
     const c = data.calculators.find((x) => x.slug === calcMatch[1]);
     if (!c) return null;
+    const calcTitleOverrides = {
+      "compound-interest":
+        "Compound Interest Calculator — Grow Your Savings Over Time",
+    };
     return {
       path,
-      title: c.title,
+      title: calcTitleOverrides[c.slug] || c.title,
       description: clampDescription(c.description),
       h1: c.title,
     };
