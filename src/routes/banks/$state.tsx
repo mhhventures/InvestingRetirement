@@ -350,7 +350,7 @@ function RatesTable({
 }) {
   if (loading) {
     return (
-      <div className="bg-white border border-[#e4d9cf] rounded-sm py-10 text-center text-sm text-[#5a5a5a]">
+      <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#5a5a5a]">
         Loading providers&hellip;
       </div>
     );
@@ -364,152 +364,214 @@ function RatesTable({
   }
   if (!rows.length) {
     return (
-      <div className="bg-white border border-[#e4d9cf] rounded-sm py-10 text-center text-sm text-[#5a5a5a]">
+      <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#5a5a5a]">
         No institutions match your filters.
       </div>
     );
   }
   return (
-    <div className="bg-white border border-[#d4c5b8] rounded-sm overflow-hidden">
-      <div className="hidden md:grid grid-cols-[2fr_80px_100px_90px_90px_100px_32px] bg-[#0e4d45] text-[#fef6f1] text-[10px] font-bold uppercase tracking-wider">
-        <div className="px-4 py-3">Institution</div>
-        <div className="px-2 py-3 text-center">Type</div>
-        <div className="px-2 py-3 text-center">Rate</div>
-        <div className="px-2 py-3 text-center">Term</div>
-        <div className="px-2 py-3 text-center">Min</div>
-        <div className="px-2 py-3 text-center">Class</div>
-        <div className="px-2 py-3" />
+    <div className="space-y-4">
+      {rows.map((p, idx) => (
+        <ProviderRankCard
+          key={p.id}
+          p={p}
+          rank={idx + 1}
+          isOpen={expanded === p.id}
+          onToggle={() => onToggle(p.id)}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ProviderRankCard({
+  p,
+  rank,
+  isOpen,
+  onToggle,
+}: {
+  p: StateProvider;
+  rank: number;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  const isTop = rank === 1;
+  const rankStr = String(rank).padStart(2, "0");
+  return (
+    <div
+      className={`bg-white border rounded-sm shadow-sm overflow-hidden ${
+        isTop ? "border-[#d4c5b8]" : "border-[#e4d9cf]"
+      }`}
+    >
+      <div className="bg-[#f7ebe2] border-b border-[#e4d9cf] px-4 sm:px-5 py-2.5 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <span className="font-serif font-bold text-2xl sm:text-3xl text-[#0e4d45] leading-none">
+            {rankStr}
+          </span>
+          <div className="min-w-0">
+            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] truncate">
+              {INSTITUTION_TYPE_LABEL[p.institution_type] || p.institution_type}
+            </div>
+            <div className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#5a5a5a]">
+              {PRODUCT_TYPE_LABEL[p.product_type] || p.product_type}
+              {isTop && (
+                <span className="ml-1.5 text-[#540f04]">Editor&rsquo;s Pick</span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <span className="hidden sm:inline-flex text-[9px] font-bold uppercase tracking-wider border border-[#0e4d45] text-[#0e4d45] px-1.5 py-0.5 rounded-sm">
+            {PRODUCT_BADGE[p.product_type] || p.product_type}
+          </span>
+          {p.membership_required && (
+            <span className="text-[9px] font-bold uppercase tracking-wider bg-[#fef1e6] text-[#7a4a1f] px-1.5 py-0.5 rounded-sm">
+              Member
+            </span>
+          )}
+        </div>
       </div>
-      <ul className="divide-y divide-[#e4d9cf]">
-        {rows.map((p, idx) => {
-          const isOpen = expanded === p.id;
-          return (
-            <li
-              key={p.id}
-              className={idx % 2 === 0 ? "bg-white" : "bg-[#fdf8f3]"}
-            >
-              <button
-                type="button"
-                onClick={() => onToggle(p.id)}
-                className="w-full text-left md:grid md:grid-cols-[2fr_80px_100px_90px_90px_100px_32px] md:items-center flex flex-col gap-2 md:gap-0 px-4 md:px-0 py-3 hover:bg-[#f7ebe2]/40 transition-colors"
-                aria-expanded={isOpen}
-              >
-                <div className="md:px-4 flex items-center gap-2 min-w-0">
-                  <span className="font-semibold text-sm text-black truncate">
-                    {p.institution_name}
-                  </span>
-                  {p.membership_required && (
-                    <span className="text-[9px] font-bold uppercase tracking-wider bg-[#fef1e6] text-[#7a4a1f] px-1.5 py-0.5 rounded-sm flex-shrink-0">
-                      Member
-                    </span>
-                  )}
-                </div>
-                <div className="md:px-2 md:text-center">
-                  <span className="inline-flex md:justify-center text-[10px] font-bold uppercase tracking-wider border border-[#0e4d45] text-[#0e4d45] px-1.5 py-0.5 rounded-sm">
-                    {PRODUCT_BADGE[p.product_type] || p.product_type}
-                  </span>
-                </div>
-                <div className="md:px-2 md:text-center font-serif font-bold text-[#0e4d45] text-lg">
-                  {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
-                </div>
-                <div className="md:px-2 md:text-center text-sm text-[#1a1a1a]">
-                  {p.product_type === "cd" ? "12mo" : "N/A"}
-                </div>
-                <div className="md:px-2 md:text-center text-sm text-[#1a1a1a]">
-                  {p.min_deposit >= 1000
-                    ? `$${(p.min_deposit / 1000).toFixed(0)}K`
-                    : `$${p.min_deposit.toLocaleString()}`}
-                </div>
-                <div className="md:px-2 md:text-center text-xs text-[#5a5a5a] capitalize">
-                  {(INSTITUTION_TYPE_LABEL[p.institution_type] || "")
-                    .split(" ")[0]
-                    .toLowerCase()}
-                </div>
-                <div className="md:px-2 md:text-center flex md:justify-center">
-                  <ChevronDown
-                    className={`w-4 h-4 text-[#5a5a5a] transition-transform ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </div>
-              </button>
-              {isOpen && (
-                <div className="px-4 pb-4 md:pl-4 text-sm text-[#1a1a1a] leading-relaxed border-t border-[#f0e6dc] pt-3 bg-white">
-                  {p.summary && <p className="mb-2">{p.summary}</p>}
-                  <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-[12px]">
-                    <div>
-                      <dt className="inline font-semibold text-[#0e4d45]">
-                        Institution type:{" "}
-                      </dt>
-                      <dd className="inline text-[#1a1a1a]">
-                        {INSTITUTION_TYPE_LABEL[p.institution_type] ||
-                          p.institution_type}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="inline font-semibold text-[#0e4d45]">
-                        Product:{" "}
-                      </dt>
-                      <dd className="inline text-[#1a1a1a]">
-                        {PRODUCT_TYPE_LABEL[p.product_type] || p.product_type}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="inline font-semibold text-[#0e4d45]">
-                        Monthly fee:{" "}
-                      </dt>
-                      <dd className="inline text-[#1a1a1a]">
-                        {p.monthly_fee > 0
-                          ? `$${p.monthly_fee.toFixed(2)}`
-                          : "None"}
-                      </dd>
-                    </div>
-                    {p.fdic_ncua_id && (
-                      <div>
-                        <dt className="inline font-semibold text-[#0e4d45]">
-                          FDIC/NCUA ID:{" "}
-                        </dt>
-                        <dd className="inline text-[#1a1a1a]">
-                          {p.fdic_ncua_id}
-                        </dd>
-                      </div>
-                    )}
-                    {p.membership_required && p.membership_notes && (
-                      <div className="sm:col-span-2">
-                        <dt className="inline font-semibold text-[#0e4d45]">
-                          Membership:{" "}
-                        </dt>
-                        <dd className="inline text-[#1a1a1a]">
-                          {p.membership_notes}
-                        </dd>
-                      </div>
-                    )}
-                  </dl>
-                  {p.website_url && (
-                    <div className="mt-3 flex items-center justify-between gap-3">
-                      <span className="text-[10px] text-[#5a5a5a] uppercase tracking-wider">
-                        Verified{" "}
-                        {new Date(p.last_verified_at).toLocaleDateString(
-                          undefined,
-                          { year: "numeric", month: "short", day: "numeric" },
-                        )}
-                      </span>
-                      <a
-                        href={p.website_url}
-                        target="_blank"
-                        rel="noopener noreferrer nofollow"
-                        className="text-[11px] font-bold uppercase tracking-wider bg-[#0e4d45] text-[#fef6f1] px-3 py-1.5 rounded-sm hover:bg-[#0a3832] transition-colors"
-                      >
-                        Visit site
-                      </a>
-                    </div>
-                  )}
+
+      <div className="p-4 sm:p-5">
+        <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+          <div className="flex items-center gap-3 flex-shrink-0 min-w-0">
+            <div className="w-10 h-10 rounded-sm bg-[#0e4d45]/10 text-[#0e4d45] font-serif font-bold text-lg flex items-center justify-center flex-shrink-0">
+              {p.institution_name.charAt(0)}
+            </div>
+            <div className="min-w-0">
+              <h3 className="font-serif font-bold text-base sm:text-xl text-black leading-tight">
+                {p.institution_name}
+              </h3>
+              <div className="text-xs text-[#5a5a5a] mt-0.5 truncate">
+                {INSTITUTION_TYPE_LABEL[p.institution_type] || p.institution_type}
+                {" · "}
+                {p.state_name}
+              </div>
+            </div>
+          </div>
+
+          <div className="sm:ml-auto grid grid-cols-3 sm:flex sm:flex-wrap gap-3 sm:gap-5 text-center w-full sm:w-auto">
+            <div className="flex-shrink-0">
+              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                APY
+              </div>
+              <div className="font-serif font-bold text-xl sm:text-2xl text-[#0e4d45]">
+                {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
+              </div>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                Min
+              </div>
+              <div className="font-serif font-bold text-lg sm:text-2xl text-black">
+                {p.min_deposit >= 1000
+                  ? `$${(p.min_deposit / 1000).toFixed(0)}K`
+                  : `$${p.min_deposit.toLocaleString()}`}
+              </div>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                Fees
+              </div>
+              <div className="font-serif font-bold text-lg sm:text-2xl text-black">
+                {p.monthly_fee > 0 ? `$${p.monthly_fee.toFixed(0)}` : "$0"}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {p.summary && (
+          <p className="mt-4 text-sm text-[#1a1a1a] leading-relaxed border-l-[3px] border-[#0e4d45] pl-3 italic font-serif">
+            &ldquo;{p.summary}&rdquo;
+          </p>
+        )}
+
+        {isOpen && (
+          <div className="mt-4 pt-4 border-t border-[#f0e6dc]">
+            <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#0e4d45] mb-1.5">
+              Account details
+            </div>
+            <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-[12px] mb-3">
+              <div>
+                <dt className="inline font-semibold text-[#0e4d45]">
+                  Product:{" "}
+                </dt>
+                <dd className="inline text-[#1a1a1a]">
+                  {PRODUCT_TYPE_LABEL[p.product_type] || p.product_type}
+                </dd>
+              </div>
+              <div>
+                <dt className="inline font-semibold text-[#0e4d45]">
+                  Monthly fee:{" "}
+                </dt>
+                <dd className="inline text-[#1a1a1a]">
+                  {p.monthly_fee > 0 ? `$${p.monthly_fee.toFixed(2)}` : "None"}
+                </dd>
+              </div>
+              {p.fdic_ncua_id && (
+                <div>
+                  <dt className="inline font-semibold text-[#0e4d45]">
+                    FDIC/NCUA ID:{" "}
+                  </dt>
+                  <dd className="inline text-[#1a1a1a]">{p.fdic_ncua_id}</dd>
                 </div>
               )}
-            </li>
-          );
-        })}
-      </ul>
+              <div>
+                <dt className="inline font-semibold text-[#0e4d45]">
+                  Last verified:{" "}
+                </dt>
+                <dd className="inline text-[#1a1a1a]">
+                  {new Date(p.last_verified_at).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </dd>
+              </div>
+              {p.membership_required && p.membership_notes && (
+                <div className="sm:col-span-2">
+                  <dt className="inline font-semibold text-[#0e4d45]">
+                    Membership:{" "}
+                  </dt>
+                  <dd className="inline text-[#1a1a1a]">
+                    {p.membership_notes}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          </div>
+        )}
+
+        <div className="mt-5 grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            onClick={onToggle}
+            className="text-center px-4 py-2.5 rounded-sm bg-white border border-[#d4c5b8] text-black text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors flex items-center justify-center gap-1.5"
+            aria-expanded={isOpen}
+          >
+            {isOpen ? "Hide Details" : "View Details"}
+            <ChevronDown
+              className={`w-3.5 h-3.5 transition-transform ${
+                isOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {p.website_url ? (
+            <a
+              href={p.website_url}
+              target="_blank"
+              rel="nofollow noopener noreferrer sponsored"
+              className="text-center px-4 py-2.5 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
+            >
+              Visit Site
+            </a>
+          ) : (
+            <span className="text-center px-4 py-2.5 rounded-sm bg-[#f7ebe2] text-[#5a5a5a] text-[11px] font-semibold uppercase tracking-wider">
+              Link Unavailable
+            </span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
