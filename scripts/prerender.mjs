@@ -22,6 +22,7 @@ async function loadData() {
     export { products } from "./src/data/products.ts";
     export { guides } from "./src/lib/guides-data.ts";
     export { calculators } from "./src/lib/calculators-data.ts";
+    export { US_STATES, STATE_CITIES, citySlug } from "./src/lib/states-data.ts";
   `;
   const result = await build({
     stdin: { contents: entryContent, resolveDir: root, loader: "ts" },
@@ -39,6 +40,67 @@ async function loadData() {
   const mod = await import(pathToFileURL(tmp).href);
   try { rmSync(tmp); } catch { /* ignore */ }
   return mod;
+}
+
+// Read Supabase credentials from the .env file so the prerender can hit the
+// public state_providers table. The anon key has SELECT-only access.
+function readEnvFile() {
+  const envPath = resolve(root, ".env");
+  if (!existsSync(envPath)) return {};
+  const out = {};
+  for (const line of readFileSync(envPath, "utf8").split("\n")) {
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
+    if (m) out[m[1]] = m[2].replace(/^['"]|['"]$/g, "");
+  }
+  return out;
+}
+
+async function loadStateProviders() {
+  const env = readEnvFile();
+  const url = env.VITE_SUPABASE_URL;
+  const key = env.VITE_SUPABASE_ANON_KEY;
+  if (!url || !key) {
+    console.warn("[prerender] Supabase env missing — skipping state data fetch");
+    return [];
+  }
+  const res = await fetch(
+    `${url}/rest/v1/state_providers?select=state_code,state_name,institution_name,institution_type,product_type,apy,min_deposit,monthly_fee,membership_required,website_url,summary,rank_weight,last_verified_at&order=state_code.asc,rank_weight.asc`,
+    { headers: { apikey: key, Authorization: `Bearer ${key}` } },
+  );
+  if (!res.ok) {
+    console.warn(`[prerender] Supabase fetch failed: ${res.status}`);
+    return [];
+  }
+  return await res.json();
+}
+
+// Group providers by state code and compute summary stats used for meta copy,
+// JSON-LD, and the sitemap's per-URL lastmod.
+function indexByState(providers) {
+  const map = {};
+  for (const p of providers) {
+    const k = p.state_code;
+    if (!map[k]) {
+      map[k] = {
+        code: k,
+        name: p.state_name,
+        providers: [],
+        topSavings: 0,
+        topCD: 0,
+        lastVerified: null,
+      };
+    }
+    const s = map[k];
+    s.providers.push(p);
+    const apy = Number(p.apy) || 0;
+    if (p.product_type === "savings" && apy > s.topSavings) s.topSavings = apy;
+    if (p.product_type === "cd" && apy > s.topCD) s.topCD = apy;
+    const verified = p.last_verified_at ? new Date(p.last_verified_at) : null;
+    if (verified && (!s.lastVerified || verified > s.lastVerified)) {
+      s.lastVerified = verified;
+    }
+  }
+  return map;
 }
 
 // ---------- 2. Route meta definitions (title + description) ----------
@@ -260,17 +322,44 @@ function metaForUrl(url, data) {
   const stateMatch = path.match(/^\/banks\/([a-z-]+)$/);
   if (stateMatch) {
     const slug = stateMatch[1];
-    const name = slug
-      .split("-")
-      .map((w) => w[0].toUpperCase() + w.slice(1))
-      .join(" ");
+    const info = data.US_STATES.find((s) => s.slug === slug);
+    if (!info) return null;
+    const stateData = data.stateByCode[info.code];
+    const apy = stateData?.topSavings > 0
+      ? `up to ${stateData.topSavings.toFixed(2)}% APY`
+      : "competitive APYs";
     return {
       path,
-      title: `Best Banks & Credit Unions in ${name} 2026 — Local Rates`,
+      title: `Best Banks in ${info.name} 2026 — Credit Unions & Local Rates`,
       description: clampDescription(
-        `Top local credit unions, community banks, and regional providers in ${name}. Compare verified APYs, fees, and membership eligibility — updated monthly.`,
+        `Compare the best banks and credit unions in ${info.name} — ${apy}, verified fees, minimums, and membership rules from ${
+          stateData?.providers?.length || 8
+        }+ local institutions.`,
       ),
-      h1: `Best Banks & Credit Unions in ${name}`,
+      h1: `Best Banks & Credit Unions in ${info.name}`,
+    };
+  }
+
+  // /banks/:state/:city
+  const cityMatch = path.match(/^\/banks\/([a-z-]+)\/([a-z0-9-]+)$/);
+  if (cityMatch) {
+    const [, stateSlug, citySlug] = cityMatch;
+    const info = data.US_STATES.find((s) => s.slug === stateSlug);
+    if (!info) return null;
+    const cities = data.STATE_CITIES[info.code] || [];
+    const cityName = cities.find((c) => data.citySlug(c) === citySlug);
+    if (!cityName) return null;
+    const stateData = data.stateByCode[info.code];
+    const apy = stateData?.topSavings > 0
+      ? `up to ${stateData.topSavings.toFixed(2)}% APY`
+      : "competitive APYs";
+    return {
+      path,
+      title: `Best Banks in ${cityName}, ${info.code} 2026 — Local Rates`,
+      description: clampDescription(
+        `Banks and credit unions serving ${cityName}, ${info.name}. Compare ${apy}, monthly fees, minimums, and membership eligibility — verified this month.`,
+      ),
+      h1: `Best Banks & Credit Unions in ${cityName}, ${info.name}`,
     };
   }
 
@@ -760,6 +849,116 @@ function bodyCopy(meta, data) {
       <h2>How to get in touch</h2>
       <p>Readers can email Michael directly through the <a href="/contact">contact page</a> with questions, corrections, or review requests. Press inquiries and partnership questions go through the same channel. He reads every message; responses typically go out within one to three business days.</p>`;
   }
+  // /banks landing
+  if (path === "/banks") {
+    const available = data.US_STATES.filter((s) => s.available);
+    const links = available
+      .map((s) => `<li><a href="/banks/${s.slug}">Best banks in ${esc(s.name)}</a></li>`)
+      .join("");
+    return `
+      <h2>State-by-state local banking directory</h2>
+      <p>This directory lists the strongest local credit unions, community banks, and regional providers available to residents of each covered state. Every listing is verified monthly against the institution's published rate sheet, and we note the exact date each APY was last confirmed. Online-only national banks (SoFi, Ally, Marcus, Capital One 360) are covered on our <a href="/bank-accounts">best bank accounts page</a> — this directory is for institutions where physical branch presence, in-state membership eligibility, or regional deposit relationships actually matter.</p>
+      <h2>Why local wins</h2>
+      <p>National online banks often top raw savings APYs, but local credit unions and community banks routinely win on rewards-checking rates, CD specials, relationship pricing, and in-branch service. A federally-insured local credit union in your state is frequently the highest-APY option a single household can access — the tradeoff is membership eligibility, which this directory spells out in plain English for each institution.</p>
+      <h2>States covered</h2>
+      <ul>${links}</ul>
+      <h2>How we verify</h2>
+      <p>APYs, monthly fees, and minimum opening deposits are re-confirmed on the institution's own rate page at least monthly. Membership-eligibility rules (employer groups, county residence, a one-time association fee) are pulled from each institution's bylaws. FDIC or NCUA insurance IDs are cross-checked against federal registries. Every row shows the date of the most recent verification.</p>`;
+  }
+
+  // /banks/:state
+  const bStateMatch = path.match(/^\/banks\/([a-z-]+)$/);
+  if (bStateMatch) {
+    const slug = bStateMatch[1];
+    const info = data.US_STATES.find((s) => s.slug === slug);
+    if (info) {
+      const stateData = data.stateByCode[info.code];
+      const providers = stateData?.providers || [];
+      const cities = data.STATE_CITIES[info.code] || [];
+      const top = providers
+        .slice()
+        .sort((a, b) => (a.rank_weight || 999) - (b.rank_weight || 999))
+        .slice(0, 8);
+      const rows = top
+        .map((p) => {
+          const apy = Number(p.apy) > 0 ? `${Number(p.apy).toFixed(2)}% APY` : "—";
+          const min = Number(p.min_deposit) > 0 ? `$${Number(p.min_deposit).toLocaleString()} min` : "no minimum";
+          const fee = Number(p.monthly_fee) > 0 ? `$${Number(p.monthly_fee).toFixed(0)}/mo fee` : "no monthly fee";
+          const product =
+            p.product_type === "savings" ? "Savings" :
+            p.product_type === "checking" ? "Checking" :
+            p.product_type === "cd" ? "CD" :
+            p.product_type === "money_market" ? "Money Market" : p.product_type;
+          const link = p.website_url
+            ? `<a href="${esc(p.website_url)}" rel="nofollow sponsored">${esc(p.institution_name)}</a>`
+            : esc(p.institution_name);
+          return `<li><strong>${link}</strong> — ${esc(product)}: ${esc(apy)}, ${esc(min)}, ${esc(fee)}${p.summary ? `. ${esc(p.summary)}` : ""}</li>`;
+        })
+        .join("");
+      const cityLinks = cities
+        .slice(0, 10)
+        .map((c) => `<li><a href="/banks/${info.slug}/${data.citySlug(c)}">Banks in ${esc(c)}, ${esc(info.code)}</a></li>`)
+        .join("");
+      const relatedGuides = `
+        <li><a href="/guides/how-to-pick-high-yield-savings">How to Choose a High-Yield Savings Account</a></li>
+        <li><a href="/guides/hysa-vs-money-market-vs-cds">HYSA vs Money Market vs CDs</a></li>
+        <li><a href="/guides/best-high-yield-savings-accounts-may-2026">Best High-Yield Savings Accounts This Month</a></li>
+        <li><a href="/guides/best-bank-bonuses-this-month">Best Bank Account Bonuses This Month</a></li>`;
+      const verified = stateData?.lastVerified
+        ? new Date(stateData.lastVerified).toLocaleDateString("en-US", { month: "long", year: "numeric" })
+        : "this month";
+      return `
+        <p>${esc(info.name)} residents have access to a mix of state-chartered credit unions, regional community banks, and nationwide online banks. This page ranks the strongest options for savings APY, checking rewards, and CD specials — all verified against the institution's own rate page as of ${esc(verified)}.</p>
+        <h2>Top banks and credit unions in ${esc(info.name)}</h2>
+        <ul>${rows}</ul>
+        <h2>What makes a ${esc(info.name)} bank account worth opening</h2>
+        <p>Look at four things in order: the APY (does it beat the FDIC national average of about 0.60%?), the monthly fee (anything above $0 should come with a clear waiver path), the minimum opening deposit, and the membership rule for credit unions. ${esc(info.name)} residents typically qualify for at least one large state-chartered credit union on residency alone, and that credit union is often the highest-APY option available locally.</p>
+        <h2>Is my money safe at a ${esc(info.name)} bank?</h2>
+        <p>Yes, if the institution is federally insured. FDIC covers banks up to $250,000 per depositor, per ownership category; NCUA covers credit unions at the same limits. Every institution in this directory carries one of those insurances — the FDIC or NCUA ID is listed on the full provider row.</p>
+        <h2>Major ${esc(info.name)} metros</h2>
+        <ul>${cityLinks}</ul>
+        <h2>Related guides</h2>
+        <ul>${relatedGuides}</ul>
+        <p>Rates and fees change frequently. Confirm current figures directly with each institution before applying, and see our <a href="/about">editorial methodology</a> for how this directory is built and maintained.</p>`;
+    }
+  }
+
+  // /banks/:state/:city
+  const bCityMatch = path.match(/^\/banks\/([a-z-]+)\/([a-z0-9-]+)$/);
+  if (bCityMatch) {
+    const [, stateSlug, citySlug] = bCityMatch;
+    const info = data.US_STATES.find((s) => s.slug === stateSlug);
+    if (info) {
+      const cities = data.STATE_CITIES[info.code] || [];
+      const cityName = cities.find((c) => data.citySlug(c) === citySlug);
+      if (cityName) {
+        const stateData = data.stateByCode[info.code];
+        const providers = (stateData?.providers || []).slice(0, 6);
+        const rows = providers
+          .map((p) => {
+            const apy = Number(p.apy) > 0 ? `${Number(p.apy).toFixed(2)}% APY` : "—";
+            const link = p.website_url
+              ? `<a href="${esc(p.website_url)}" rel="nofollow sponsored">${esc(p.institution_name)}</a>`
+              : esc(p.institution_name);
+            return `<li><strong>${link}</strong> — ${esc(apy)}${p.summary ? `. ${esc(p.summary)}` : ""}</li>`;
+          })
+          .join("");
+        const otherCities = cities
+          .filter((c) => data.citySlug(c) !== citySlug)
+          .slice(0, 8)
+          .map((c) => `<li><a href="/banks/${info.slug}/${data.citySlug(c)}">Banks in ${esc(c)}</a></li>`)
+          .join("");
+        return `
+          <p>This page covers banks, credit unions, and local branches available to residents of ${esc(cityName)}, ${esc(info.name)}. All rankings inherit from the <a href="/banks/${info.slug}">${esc(info.name)} state directory</a> — every institution listed is licensed to serve ${esc(cityName)} residents and is either headquartered in ${esc(info.name)} or operates branches in the metro.</p>
+          <h2>Top options in ${esc(cityName)}</h2>
+          <ul>${rows}</ul>
+          <h2>Other ${esc(info.name)} cities</h2>
+          <ul>${otherCities}</ul>
+          <p>See the full <a href="/banks/${info.slug}">${esc(info.name)} banks directory</a> for every institution we've verified in the state, plus the underlying methodology.</p>`;
+      }
+    }
+  }
+
   const calcMatch2 = path.match(/^\/calculators\/([^/]+)$/);
   if (calcMatch2) {
     const c = data.calculators.find((x) => x.slug === calcMatch2[1]);
@@ -915,22 +1114,93 @@ function contextualLinks(meta, data) {
     }
   }
 
+  if (path === "/banks") {
+    return data.US_STATES.filter((s) => s.available).map((s) => [
+      `/banks/${s.slug}`,
+      `Best banks in ${s.name}`,
+    ]);
+  }
+  const bStateMatch = path.match(/^\/banks\/([a-z-]+)$/);
+  if (bStateMatch) {
+    const info = data.US_STATES.find((s) => s.slug === bStateMatch[1]);
+    if (info) {
+      const cities = data.STATE_CITIES[info.code] || [];
+      const links = cities
+        .slice(0, 8)
+        .map((c) => [`/banks/${info.slug}/${data.citySlug(c)}`, `Banks in ${c}`]);
+      links.push(["/banks", "All state directories"]);
+      links.push(["/bank-accounts", "Online bank accounts"]);
+      return links;
+    }
+  }
+  const bCityMatch = path.match(/^\/banks\/([a-z-]+)\/([a-z0-9-]+)$/);
+  if (bCityMatch) {
+    const info = data.US_STATES.find((s) => s.slug === bCityMatch[1]);
+    if (info) {
+      return [
+        [`/banks/${info.slug}`, `All ${info.name} banks`],
+        ["/banks", "All state directories"],
+      ];
+    }
+  }
+
   return [["/", "Home"]];
 }
 
-function updateSitemapLastmod() {
+function updateSitemapLastmod(data) {
   const sitemapPath = join(distDir, "sitemap.xml");
   if (!existsSync(sitemapPath)) return;
-  const xml = readFileSync(sitemapPath, "utf8");
+  let xml = readFileSync(sitemapPath, "utf8");
   const today = new Date().toISOString().slice(0, 10);
-  // Replace existing lastmod values with today; add one if missing.
-  let updated = xml.replace(/<lastmod>[^<]*<\/lastmod>/g, `<lastmod>${today}</lastmod>`);
-  // For <url> blocks that don't have a lastmod, insert one before </url>.
-  updated = updated.replace(/<url>((?:(?!<\/url>)[\s\S])*?)<\/url>/g, (match, inner) => {
+
+  // Build per-state lastmod map from Supabase verification dates.
+  const stateLastmod = {};
+  for (const s of data.US_STATES) {
+    const sd = data.stateByCode[s.code];
+    if (sd?.lastVerified) {
+      stateLastmod[`/banks/${s.slug}`] = new Date(sd.lastVerified)
+        .toISOString()
+        .slice(0, 10);
+    }
+  }
+
+  // Remove any existing /banks/* URL blocks (state + city), we'll regenerate.
+  xml = xml.replace(
+    /\s*<url>\s*<loc>[^<]*\/banks\/[^<]*<\/loc>[\s\S]*?<\/url>/g,
+    "",
+  );
+
+  // Build fresh state + city URL blocks.
+  const blocks = [];
+  for (const s of data.US_STATES.filter((x) => x.available)) {
+    const lastmod = stateLastmod[`/banks/${s.slug}`] || today;
+    blocks.push(
+      `  <url><loc>${SITE_URL}/banks/${s.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`,
+    );
+    const cities = data.STATE_CITIES[s.code] || [];
+    for (const c of cities) {
+      const cs = data.citySlug(c);
+      blocks.push(
+        `  <url><loc>${SITE_URL}/banks/${s.slug}/${cs}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>`,
+      );
+    }
+  }
+
+  // Insert the new blocks right after the /banks index URL.
+  const insertAfter = /(<url><loc>https:\/\/www\.investingandretirement\.com\/banks<\/loc>[\s\S]*?<\/url>)/;
+  if (insertAfter.test(xml)) {
+    xml = xml.replace(insertAfter, `$1\n${blocks.join("\n")}`);
+  } else {
+    xml = xml.replace(/<\/urlset>/, `${blocks.join("\n")}\n</urlset>`);
+  }
+
+  // Fill in today for any remaining <url> blocks without <lastmod>.
+  xml = xml.replace(/<url>((?:(?!<\/url>)[\s\S])*?)<\/url>/g, (match, inner) => {
     if (/<lastmod>/.test(inner)) return match;
     return `<url>${inner}<lastmod>${today}</lastmod></url>`;
   });
-  writeFileSync(sitemapPath, updated);
+
+  writeFileSync(sitemapPath, xml);
 }
 
 function emitSplitSitemaps() {
@@ -994,8 +1264,18 @@ async function main() {
     process.exit(1);
   }
   const template = readFileSync(join(distDir, "index.html"), "utf8");
-  const data = await loadData();
-  updateSitemapLastmod();
+  const mod = await loadData();
+  const providers = await loadStateProviders();
+  const data = {
+    products: mod.products,
+    guides: mod.guides,
+    calculators: mod.calculators,
+    US_STATES: mod.US_STATES,
+    STATE_CITIES: mod.STATE_CITIES,
+    citySlug: mod.citySlug,
+    stateByCode: indexByState(providers),
+  };
+  updateSitemapLastmod(data);
   emitSplitSitemaps();
   const urls = readSitemapUrls();
 
