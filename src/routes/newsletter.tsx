@@ -57,7 +57,7 @@ function NewsletterPage() {
             The money newsletter for savers and retirees who want a plain answer.
           </h1>
           <p className="text-base sm:text-lg text-[#1a1a1a] leading-relaxed">
-            One email every Sunday. The rates worth moving your money for, the
+            One email every Thursday. The rates worth moving your money for, the
             retirement decisions worth making this week, and the fine print
             nobody else bothers to read. Written by the same editors who grade
             every account on this site.
@@ -68,7 +68,7 @@ function NewsletterPage() {
 
         <section className="mt-12">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-2">
-            What you&apos;ll get each Sunday
+            What you&apos;ll get each Thursday
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black mb-4">
             Four things, every week.
@@ -90,7 +90,7 @@ function NewsletterPage() {
 
         <section className="mt-10 bg-white border border-[#e4d9cf] rounded-sm p-5 sm:p-6">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-2">
-            Inside the Sunday edition
+            Inside the Thursday edition
           </div>
           <ul className="space-y-2">
             {WHAT_YOU_GET.map((line) => (

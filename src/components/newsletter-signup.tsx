@@ -18,7 +18,7 @@ export function NewsletterSignup({
   variant = "sidebar",
   eyebrow = "Newsletter",
   headline = "The I&R Weekly",
-  sub = "Top money moves, rate changes, and hand-picked reviews every Sunday. Free, no spam.",
+  sub = "Top money moves, rate changes, and hand-picked reviews every Thursday. Free, no spam.",
 }: Props) {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState(""); // honeypot

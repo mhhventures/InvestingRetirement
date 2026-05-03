@@ -87,7 +87,7 @@ export function BankSidebar() {
       <NewsletterSignup
         source="sidebar-banking"
         headline="Rate Alerts Weekly"
-        sub="We email the top APYs, new bonus offers, and rate drops every Sunday. Free."
+        sub="We email the top APYs, new bonus offers, and rate drops every Thursday. Free."
       />
 
       {/* Rates by Account Type */}
