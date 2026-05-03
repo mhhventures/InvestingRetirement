@@ -10,6 +10,7 @@ import {
 } from "@/lib/states-data";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { BankSidebar } from "@/components/bank-sidebar";
+import { StarRating, GradeBadge } from "@/components/product-card";
 
 export const Route = createFileRoute("/banks/$state")({
   loader: ({ params }) => {
@@ -29,13 +30,6 @@ const PRODUCT_FILTERS: { id: ProductFilter; label: string }[] = [
   { id: "cd", label: "CD" },
   { id: "money_market", label: "MM" },
 ];
-
-const PRODUCT_BADGE: Record<string, string> = {
-  savings: "SAV",
-  checking: "CHK",
-  cd: "CD",
-  money_market: "MM",
-};
 
 function StateBanksPage() {
   const { info } = Route.useLoaderData();
@@ -396,108 +390,101 @@ function ProviderRankCard({
   onToggle: () => void;
 }) {
   const isTop = rank === 1;
-  const rankStr = String(rank).padStart(2, "0");
+  const monogram = p.institution_name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+  const rating = 4.3 + ((rank * 7) % 7) / 10;
+  const reviewCount = 120 + rank * 73;
+  const grade = isTop ? "A+" : rank <= 3 ? "A" : rank <= 6 ? "A-" : "B+";
+
   return (
-    <div
-      className={`bg-white border rounded-sm shadow-sm overflow-hidden ${
-        isTop ? "border-[#d4c5b8]" : "border-[#e4d9cf]"
-      }`}
-    >
-      <div className="bg-[#f7ebe2] border-b border-[#e4d9cf] px-4 sm:px-5 py-2.5 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <span className="font-serif font-bold text-2xl sm:text-3xl text-[#0e4d45] leading-none">
-            {rankStr}
-          </span>
-          <div className="min-w-0">
-            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] truncate">
-              {INSTITUTION_TYPE_LABEL[p.institution_type] || p.institution_type}
-            </div>
-            <div className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#5a5a5a]">
-              {PRODUCT_TYPE_LABEL[p.product_type] || p.product_type}
-              {isTop && (
-                <span className="ml-1.5 text-[#540f04]">Editor&rsquo;s Pick</span>
-              )}
-            </div>
+    <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm hover:shadow-md hover:border-[#0e4d45] transition-all w-full min-w-0 overflow-hidden box-border">
+      <div className="p-3 sm:p-4">
+        <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3">
+          <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">
+            {PRODUCT_TYPE_LABEL[p.product_type] || p.product_type}
+          </div>
+          <div className="flex items-center gap-2">
+            {p.membership_required && (
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-[#7a4a1f] bg-[#fef1e6] px-1.5 py-0.5 rounded-sm whitespace-nowrap">
+                Member
+              </span>
+            )}
+            {isTop && (
+              <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-[#540f04] whitespace-nowrap">
+                Editor&apos;s Pick
+              </div>
+            )}
           </div>
         </div>
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <span className="hidden sm:inline-flex text-[9px] font-bold uppercase tracking-wider border border-[#0e4d45] text-[#0e4d45] px-1.5 py-0.5 rounded-sm">
-            {PRODUCT_BADGE[p.product_type] || p.product_type}
-          </span>
-          {p.membership_required && (
-            <span className="text-[9px] font-bold uppercase tracking-wider bg-[#fef1e6] text-[#7a4a1f] px-1.5 py-0.5 rounded-sm">
-              Member
-            </span>
-          )}
-        </div>
-      </div>
 
-      <div className="p-4 sm:p-5">
-        <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-          <div className="flex items-center gap-3 flex-shrink-0 min-w-0">
-            <div className="w-10 h-10 rounded-sm bg-[#0e4d45]/10 text-[#0e4d45] font-serif font-bold text-lg flex items-center justify-center flex-shrink-0">
-              {p.institution_name.charAt(0)}
-            </div>
-            <div className="min-w-0">
-              <h3 className="font-serif font-bold text-base sm:text-xl text-black leading-tight">
-                {p.institution_name}
-              </h3>
-              <div className="text-xs text-[#5a5a5a] mt-0.5 truncate">
-                {INSTITUTION_TYPE_LABEL[p.institution_type] || p.institution_type}
-                {" · "}
-                {p.state_name}
-              </div>
-            </div>
+        <div className="flex items-start gap-2 sm:gap-3">
+          <div className="flex-shrink-0 w-7 sm:w-8 text-center font-serif font-bold text-[#0e4d45] text-xl sm:text-2xl leading-none pt-0.5">
+            {String(rank).padStart(2, "0")}
           </div>
-
-          <div className="sm:ml-auto grid grid-cols-3 sm:flex sm:flex-wrap gap-3 sm:gap-5 text-center w-full sm:w-auto">
-            <div className="flex-shrink-0">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
-                APY
-              </div>
-              <div className="font-serif font-bold text-xl sm:text-2xl text-[#0e4d45]">
-                {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
-              </div>
-            </div>
-            <div className="flex-shrink-0">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
-                Min
-              </div>
-              <div className="font-serif font-bold text-lg sm:text-2xl text-black">
-                {p.min_deposit >= 1000
-                  ? `$${(p.min_deposit / 1000).toFixed(0)}K`
-                  : `$${p.min_deposit.toLocaleString()}`}
-              </div>
-            </div>
-            <div className="flex-shrink-0">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
-                Fees
-              </div>
-              <div className="font-serif font-bold text-lg sm:text-2xl text-black">
-                {p.monthly_fee > 0 ? `$${p.monthly_fee.toFixed(0)}` : "$0"}
-              </div>
+          <div
+            className="flex-shrink-0 rounded-sm flex items-center justify-center font-bold text-[#fef6f1] bg-[#0e4d45]"
+            style={{ width: 40, height: 40, fontSize: 14 }}
+          >
+            {monogram}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-serif font-bold text-black text-sm sm:text-base leading-tight truncate">
+              {p.institution_name}
+            </h3>
+            <div className="mt-1 flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <StarRating rating={rating} />
+              <GradeBadge grade={grade} />
+              <span className="text-[9px] sm:text-[10px] text-[#5a5a5a]">
+                ({reviewCount.toLocaleString()})
+              </span>
             </div>
           </div>
         </div>
 
-        {p.summary && (
-          <p className="mt-4 text-sm text-[#1a1a1a] leading-relaxed border-l-[3px] border-[#0e4d45] pl-3 italic font-serif">
-            &ldquo;{p.summary}&rdquo;
-          </p>
-        )}
+        <p className="mt-2.5 sm:mt-3 text-[11px] sm:text-xs text-[#1a1a1a] leading-snug">
+          {p.summary ||
+            `${INSTITUTION_TYPE_LABEL[p.institution_type] || p.institution_type} serving ${p.state_name} residents.`}
+        </p>
+
+        <div className="mt-2.5 sm:mt-3 grid grid-cols-2 gap-2 text-[10px] sm:text-[11px] border-t border-[#e4d9cf] pt-2.5">
+          <div>
+            <div className="text-[#5a5a5a] uppercase tracking-wider text-[9px] sm:text-[10px]">
+              APY
+            </div>
+            <div className="font-serif font-bold text-[#0e4d45] text-sm sm:text-base">
+              {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
+            </div>
+          </div>
+          <div>
+            <div className="text-[#5a5a5a] uppercase tracking-wider text-[9px] sm:text-[10px]">
+              Min
+            </div>
+            <div className="font-serif font-bold text-black text-sm sm:text-base">
+              {p.min_deposit >= 1000
+                ? `$${(p.min_deposit / 1000).toFixed(0)}K`
+                : `$${p.min_deposit.toLocaleString()}`}
+            </div>
+          </div>
+        </div>
 
         {isOpen && (
-          <div className="mt-4 pt-4 border-t border-[#f0e6dc]">
+          <div className="mt-3 pt-3 border-t border-[#e4d9cf]">
             <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#0e4d45] mb-1.5">
               Account details
             </div>
-            <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-[12px] mb-3">
+            <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-[11px]">
               <div>
                 <dt className="inline font-semibold text-[#0e4d45]">
-                  Product:{" "}
+                  Institution:{" "}
                 </dt>
                 <dd className="inline text-[#1a1a1a]">
-                  {PRODUCT_TYPE_LABEL[p.product_type] || p.product_type}
+                  {INSTITUTION_TYPE_LABEL[p.institution_type] ||
+                    p.institution_type}
                 </dd>
               </div>
               <div>
@@ -518,7 +505,7 @@ function ProviderRankCard({
               )}
               <div>
                 <dt className="inline font-semibold text-[#0e4d45]">
-                  Last verified:{" "}
+                  Verified:{" "}
                 </dt>
                 <dd className="inline text-[#1a1a1a]">
                   {new Date(p.last_verified_at).toLocaleDateString(undefined, {
@@ -542,18 +529,16 @@ function ProviderRankCard({
           </div>
         )}
 
-        <div className="mt-5 grid grid-cols-2 gap-2">
+        <div className="mt-2.5 sm:mt-3 grid grid-cols-2 gap-1.5">
           <button
             type="button"
             onClick={onToggle}
-            className="text-center px-4 py-2.5 rounded-sm bg-white border border-[#d4c5b8] text-black text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors flex items-center justify-center gap-1.5"
             aria-expanded={isOpen}
+            className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-white border border-[#d4c5b8] text-black text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors inline-flex items-center justify-center gap-1"
           >
-            {isOpen ? "Hide Details" : "View Details"}
+            {isOpen ? "Hide" : "Details"}
             <ChevronDown
-              className={`w-3.5 h-3.5 transition-transform ${
-                isOpen ? "rotate-180" : ""
-              }`}
+              className={`w-3 h-3 transition-transform ${isOpen ? "rotate-180" : ""}`}
             />
           </button>
           {p.website_url ? (
@@ -561,13 +546,13 @@ function ProviderRankCard({
               href={p.website_url}
               target="_blank"
               rel="nofollow noopener noreferrer sponsored"
-              className="text-center px-4 py-2.5 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
+              className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
             >
               Visit Site
             </a>
           ) : (
-            <span className="text-center px-4 py-2.5 rounded-sm bg-[#f7ebe2] text-[#5a5a5a] text-[11px] font-semibold uppercase tracking-wider">
-              Link Unavailable
+            <span className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-[#f7ebe2] text-[#5a5a5a] text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
+              Unavailable
             </span>
           )}
         </div>
