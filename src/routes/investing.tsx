@@ -8,6 +8,7 @@ import { getDisclosure } from "@/data/disclosures";
 import { CategoryPage } from "@/components/category-page";
 import { RelatedGuidesForCategory } from "@/components/related-guides";
 import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
+import { productPartnerLink } from "@/lib/affiliate";
 
 export const Route = createFileRoute("/investing")({
   component: Investing,
@@ -114,7 +115,7 @@ function HeroPick({ p }: { p: Product }) {
             Read Full Review
           </Link>
           <a
-            href={p.url}
+            href={productPartnerLink(p.slug, p.url, { placement: "investing-hero", term: "hero-pick", campaign: "investing" })}
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="text-center px-4 py-2.5 rounded-sm bg-white border border-[#d4c5b8] text-black text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"

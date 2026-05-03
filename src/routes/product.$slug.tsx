@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { getBySlug, products } from "@/data/products";
-import { withUtm } from "@/lib/affiliate";
+import { productPartnerLink } from "@/lib/affiliate";
 import { StarRating, ProductLogo, DisclosureIcon } from "@/components/product-card";
 import { getDisclosure } from "@/data/disclosures";
 import { Sidebar } from "@/components/sidebar-offers";
@@ -352,10 +352,10 @@ function ProductDetail() {
                 {/* CTA row */}
                 <div className="mt-2.5 sm:mt-3">
                   <a
-                    href={withUtm(p.url, {
-                      campaign: "product-review",
-                      content: "open-account-cta",
+                    href={productPartnerLink(p.slug, p.url, {
+                      placement: "product-review-hero",
                       term: p.slug,
+                      campaign: "product-review",
                     })}
                     target="_blank"
                     rel="noopener noreferrer sponsored"

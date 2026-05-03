@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { products } from "@/data/products";
 import { ProductLogo, StarRating } from "@/components/product-card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { productPartnerLink } from "@/lib/affiliate";
 
 const TRUSTED = products.filter((p) => p.editorsPick).slice(0, 4);
 
@@ -114,8 +115,11 @@ export function Sidebar() {
           {TOP_OFFERS.map((o, idx) => {
             const p = products.find((x) => x.slug === o.slug);
             if (!p) return null;
-            const sep = p.url.includes("?") ? "&" : "?";
-            const affiliateUrl = `${p.url}${sep}utm_source=canyon&utm_medium=sidebar&utm_campaign=featured_offers&utm_content=${o.slug}`;
+            const affiliateUrl = productPartnerLink(p.slug, p.url, {
+              placement: "sidebar-featured-offers",
+              term: o.slug,
+              campaign: "featured_offers",
+            });
             return (
               <a
                 key={o.slug}
@@ -229,9 +233,11 @@ export function Sidebar() {
           </p>
           {(() => {
             const sofi = products.find((x) => x.slug === "sofi-checking-savings");
-            const base = sofi?.url || "#";
-            const sep = base.includes("?") ? "&" : "?";
-            const href = `${base}${sep}utm_source=canyon&utm_medium=sidebar&utm_campaign=best_offers_this_month&utm_content=sofi-checking-savings`;
+            const href = productPartnerLink("sofi-checking-savings", sofi?.url || "#", {
+              placement: "sidebar-best-offers",
+              term: "sofi-checking-savings",
+              campaign: "best_offers_this_month",
+            });
             return (
               <a
                 href={href}

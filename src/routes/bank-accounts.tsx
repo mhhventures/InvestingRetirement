@@ -7,7 +7,7 @@ import { ProductCard, ProductLogo, StarRating, GradeBadge, DisclosureIcon } from
 import { getDisclosure } from "@/data/disclosures";
 import { BankSidebar } from "@/components/bank-sidebar";
 import { RelatedGuidesForCategory } from "@/components/related-guides";
-import { withUtm } from "@/lib/affiliate";
+import { productPartnerLink } from "@/lib/affiliate";
 import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
 const APY_LAST_UPDATED = "May 1, 2026";
@@ -127,7 +127,7 @@ function HeroPick({ p }: { p: Product }) {
             Read Full Review
           </Link>
           <a
-            href={withUtm(p.url, { campaign: "bank-accounts", content: p.slug, term: "hero-pick" })}
+            href={productPartnerLink(p.slug, p.url, { placement: "bank-accounts-hero", term: "hero-pick", campaign: "bank-accounts" })}
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="text-center px-4 py-2.5 rounded-sm bg-white border border-[#d4c5b8] text-black text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
@@ -217,7 +217,7 @@ function ApyCalculator({ products }: { products: Product[] }) {
                     ${earned.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                   </div>
                   <a
-                    href={withUtm(p.url, { campaign: "bank-accounts", content: p.slug, term: "apy-calculator" })}
+                    href={productPartnerLink(p.slug, p.url, { placement: "apy-calculator", term: "apy-calculator", campaign: "bank-accounts" })}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
                     className="text-center px-1.5 sm:px-2 py-1 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[9px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors whitespace-nowrap"

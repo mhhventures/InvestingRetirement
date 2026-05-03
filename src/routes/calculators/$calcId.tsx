@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { calculators } from "@/lib/calculators-data";
 import { useSeo } from "@/lib/seo";
 import { products } from "@/data/products";
-import { withUtm } from "@/lib/affiliate";
+import { productPartnerLink } from "@/lib/affiliate";
 import { getProductLogoUrl } from "@/lib/product-icons";
 
 export const Route = createFileRoute("/calculators/$calcId")({
@@ -331,7 +331,7 @@ function CompatibleOfferings({ mode }: { mode: "hysa" | "investing" }) {
                 Review
               </Link>
               <a
-                href={withUtm(p.url, { campaign, content: p.slug, term: "calculator" })}
+                href={productPartnerLink(p.slug, p.url, { placement: `calculator-${campaign}`, term: "calculator", campaign })}
                 target="_blank"
                 rel="noopener noreferrer sponsored"
                 className="text-center px-2.5 py-1 rounded bg-[#0e4d45] text-white text-[9px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
