@@ -183,7 +183,7 @@ function Investing() {
   const all = getByCategory("investing");
   useSeo({
     title: "Best Investing Apps & Brokerages 2026",
-    description: "Compare the top investing apps, online brokerages, and robo-advisors. Expert reviews of Fidelity, Vanguard, Robinhood, Schwab, Webull and more — with fees, features, and ratings.",
+    description: "Compare top investing apps, brokerages, and robo-advisors. Expert reviews of Fidelity, Vanguard, Robinhood, Schwab, and Webull.",
     path: "/investing",
     jsonLd: [
       {

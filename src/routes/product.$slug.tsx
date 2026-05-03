@@ -25,7 +25,7 @@ function ProductDetail() {
     p
       ? {
           title: `${p.name} Review 2026: Rates, Fees & Features`,
-          description: `${p.tagline} Read our expert review of ${p.name} by ${p.provider} — rated ${p.rating}/5 from ${p.reviews.toLocaleString()} reviews. Best for ${p.bestFor.toLowerCase()}.`,
+          description: `${p.tagline} ${p.name} review: ${p.rating}/5. Best for ${p.bestFor.toLowerCase()}.`,
           path: `/product/${p.slug}`,
           type: "product",
           jsonLd: [

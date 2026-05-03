@@ -2142,7 +2142,7 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "10 min",
     description:
-      "Our top 4 picks for budgeting apps in 2026, ranked by features, ease of use, automation, and price. From zero-based budgeting to automatic expense tracking — find the app that fits your style.",
+      "Our top 4 budgeting apps for 2026, ranked by features, ease of use, automation, and price — find the app that fits your style.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Compare Budgeting Apps",
     intro:
@@ -2389,7 +2389,7 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "12 min",
     description:
-      "Our top 7 picks for cash advance and small-loan apps in May 2026, ranked by speed, fees, advance limits, and credit-building features. From zero-fee earned wage access to credit-building installment loans — find the right app for your next paycheck gap.",
+      "Our top 7 cash advance and small-loan apps for May 2026, ranked by speed, fees, limits, and credit-building — find the right app for a paycheck gap.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Compare Cash Advance Apps",
     intro:
@@ -2723,7 +2723,7 @@ export const guides: GuideArticle[] = [
     category: "Investing",
     readTime: "11 min",
     description:
-      "Our top 5 picks for stock picking and research services in May 2026, ranked by pick quality, research depth, value, and usability. From long-term buy-and-hold recommendations to crowd-sourced equity research — find the service that matches your investing style.",
+      "Our top 5 stock picking and research services for May 2026, ranked by pick quality, research depth, value, and usability.",
     relatedCategory: "/investing",
     relatedLabel: "Compare Investing Tools",
     intro:
@@ -3209,7 +3209,7 @@ export const guides: GuideArticle[] = [
     category: "Investing",
     readTime: "10 min",
     description:
-      "Our updated ranking of the top 5 investing apps for May 2026 — covering commission-free trading, fractional shares, retirement accounts, and the best platforms for beginners and active traders.",
+      "Our updated ranking of the top 5 investing apps for May 2026 — commission-free trading, fractional shares, and retirement accounts.",
     relatedCategory: "/investing",
     relatedLabel: "Investing",
     intro:
@@ -3785,7 +3785,7 @@ export const guides: GuideArticle[] = [
     category: "Investing",
     readTime: "9 min",
     description:
-      "Three of the most popular ways to invest — and they are not interchangeable. Here is exactly how index funds, ETFs, and mutual funds differ, and which one fits your goals.",
+      "Index funds, ETFs, and mutual funds are not interchangeable. Here is how they differ and which one fits your investing goals.",
     relatedCategory: "/investing",
     relatedLabel: "Compare Brokerages",
     intro:
@@ -4319,7 +4319,7 @@ export const guides: GuideArticle[] = [
     category: "Trading",
     readTime: "11 min",
     description:
-      "A technical but accessible introduction to options — contracts, strike prices, expiration, intrinsic vs extrinsic value, assignment, and the real math behind payoff diagrams.",
+      "A technical but accessible intro to options — contracts, strikes, expiration, intrinsic vs extrinsic value, and payoff diagram math.",
     relatedCategory: "/investing",
     relatedLabel: "Trading Platforms",
     intro:
@@ -4496,7 +4496,7 @@ export const guides: GuideArticle[] = [
     category: "Trading",
     readTime: "10 min",
     description:
-      "Every options trader has to understand the Greeks. Here is exactly what each one measures, how they interact, and dollar-scale examples that make the numbers click.",
+      "Every options trader has to understand the Greeks. Here is what each one measures, how they interact, and examples that make the numbers click.",
     relatedCategory: "/investing",
     relatedLabel: "Trading Platforms",
     intro:

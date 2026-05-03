@@ -17,7 +17,7 @@ function AuthorPage() {
 
   useSeo({
     title: `${author.name} — ${author.title} | Investing and Retirement`,
-    description: `${author.name}, ${author.title} at Investing and Retirement. ${author.bio}`,
+    description: `${author.name} is ${author.title} at Investing and Retirement, personally researching and writing every review and guide on the site.`,
     path: `/authors/${author.slug}`,
     jsonLd: [
       {
