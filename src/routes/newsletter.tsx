@@ -21,9 +21,9 @@ const BLOCKS = [
   },
   {
     n: "03",
-    label: "Tool & App Comparison",
-    title: "The product table",
-    desc: "A side-by-side comparison of two or three finance apps, brokerages, or bank accounts the desk has actually tested — with the fees, minimums, and catches surfaced. Affiliate links are clearly labeled; they never change our ranking.",
+    label: "Tool & App Spotlight",
+    title: "Finance apps worth your attention",
+    desc: "A weekly discovery of the finance apps, brokerages, and bank accounts the desk believes are worth using to build wealth faster — surfaced in a side-by-side table with fees, minimums, and the one or two details that usually get buried.",
   },
   {
     n: "04",
