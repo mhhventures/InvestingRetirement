@@ -9,6 +9,7 @@ import {
   getStateCities,
   getStateFacts,
   getRelatedStates,
+  citySlug,
   type StateProvider,
 } from "@/lib/states-data";
 import { useSeo, SITE_URL } from "@/lib/seo";
@@ -62,6 +63,9 @@ function StateBanksPage() {
   const [membersOnlyOff, setMembersOnlyOff] = useState(false);
   const [query, setQuery] = useState("");
   const [view, setView] = useState<"cards" | "table">("table");
+  const [popularSearches, setPopularSearches] = useState<
+    { query: string; hits: number }[]
+  >([]);
   const cities = useMemo(() => getStateCities(info.code), [info.code]);
   const facts = useMemo(() => getStateFacts(info.code), [info.code]);
   const relatedStates = useMemo(() => getRelatedStates(info.code), [info.code]);
@@ -83,6 +87,24 @@ function StateBanksPage() {
       if (err) setError(err.message);
       else setProviders((data as StateProvider[]) || []);
       setLoading(false);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [info.code]);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+    let cancelled = false;
+    (async () => {
+      const { data } = await supabase.rpc("popular_state_searches", {
+        p_state_code: info.code,
+        p_limit: 8,
+      });
+      if (cancelled) return;
+      setPopularSearches(
+        (data as { query: string; hits: number }[] | null) || [],
+      );
     })();
     return () => {
       cancelled = true;
@@ -305,6 +327,29 @@ function StateBanksPage() {
           },
         ],
       },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: `Best Banks in ${info.name}`,
+        itemListOrder: "https://schema.org/ItemListOrderAscending",
+        numberOfItems: providers.length,
+        itemListElement: providers
+          .slice()
+          .sort((a, b) => a.rank_weight - b.rank_weight)
+          .map((p, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type":
+                p.institution_type === "credit_union"
+                  ? "FinancialService"
+                  : "BankOrCreditUnion",
+              name: p.institution_name,
+              url: p.website_url || undefined,
+              areaServed: { "@type": "State", name: info.name },
+            },
+          })),
+      },
       ...providers.map((p) => ({
         "@context": "https://schema.org",
         "@type":
@@ -496,6 +541,25 @@ function StateBanksPage() {
                   aria-label={`Search banks in ${info.name}`}
                 />
               </div>
+
+              {popularSearches.length > 0 && (
+                <div className="mb-3 flex items-center flex-wrap gap-1.5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a]">
+                    Popular in {info.name}
+                  </span>
+                  {popularSearches.map((s) => (
+                    <button
+                      key={s.query}
+                      type="button"
+                      onClick={() => setQuery(s.query)}
+                      className="text-[11px] font-medium bg-white border border-[#e4d9cf] text-[#1a1a1a] rounded-sm px-2.5 py-1 hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
+                      aria-label={`Search for ${s.query}`}
+                    >
+                      {s.query}
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div className="mb-5 space-y-2.5">
                 <div className="flex flex-wrap gap-1.5">
@@ -708,12 +772,14 @@ function StateBanksPage() {
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {cities.map((c) => (
-                    <span
+                    <Link
                       key={c}
-                      className="text-[11px] font-medium bg-white border border-[#e4d9cf] text-[#1a1a1a] rounded-sm px-2.5 py-1"
+                      to="/banks/$state/$city"
+                      params={{ state: info.slug, city: citySlug(c) }}
+                      className="text-[11px] font-medium bg-white border border-[#e4d9cf] text-[#1a1a1a] rounded-sm px-2.5 py-1 hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
                     >
                       {c}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </section>

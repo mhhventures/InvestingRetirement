@@ -137,6 +137,23 @@ export function getStateCities(code: string): string[] {
   return STATE_CITIES[code] || [];
 }
 
+export function citySlug(city: string): string {
+  return city
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+export function findStateCity(
+  stateCode: string,
+  slug: string,
+): string | undefined {
+  const target = slug.toLowerCase();
+  return (STATE_CITIES[stateCode] || []).find((c) => citySlug(c) === target);
+}
+
 export function getStateFacts(code: string) {
   return (
     STATE_FACTS[code] || {
