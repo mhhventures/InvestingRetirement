@@ -41,6 +41,17 @@ function CalculatorsIndex() {
           <p className="text-sm text-[#1a1a1a] leading-relaxed max-w-2xl">
             Free, no-signup calculators to run the numbers on your biggest financial decisions. From compound interest to retirement planning.
           </p>
+          <div className="mt-5 max-w-3xl space-y-3 text-sm text-[#1a1a1a] leading-relaxed">
+            <p>
+              Every calculator on this page works in your browser — nothing you type is saved, transmitted, or shared. We built each tool to answer one specific question clearly, show the formulas and assumptions driving the result, and let you adjust the inputs in real time so you can see how small changes ripple across decades.
+            </p>
+            <p>
+              Use the <strong>compound interest calculator</strong> to see how a lump sum plus monthly contributions grows at a given rate. Use the <strong>retirement calculator</strong> to check whether your current savings rate is on track. The <strong>mortgage calculator</strong> shows the true monthly cost of a home loan across principal, interest, taxes, and insurance. A <strong>debt payoff calculator</strong> compares the avalanche and snowball methods side-by-side. Our <strong>emergency-fund calculator</strong> recommends a target based on your monthly expenses and job stability.
+            </p>
+            <p className="text-xs text-[#5a5a5a] italic">
+              These tools are for planning and education only. They are not personalized advice. Actual returns, rates, and outcomes will vary based on markets, fees, taxes, and your individual situation.
+            </p>
+          </div>
         </div>
       </section>
 

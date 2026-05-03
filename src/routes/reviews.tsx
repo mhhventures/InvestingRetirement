@@ -58,6 +58,17 @@ function Reviews() {
         { label: "Expert rating", value: "4.6★" },
       ]}
     >
+      <div className="prose-sm max-w-none mb-5 space-y-3 text-sm text-[#1a1a1a] leading-relaxed">
+        <p>
+          This page lists every financial product our editors have reviewed — high-yield savings accounts, checking accounts, online brokerages, robo-advisors, crypto exchanges, prediction markets, and money apps. Each listing links to a full hands-on review with the current APY or fee schedule, our editorial grade, the specific saver or investor the product is best suited for, and the closest alternatives to consider.
+        </p>
+        <p>
+          Filter the grid by category to narrow the view. Want bank-account detail? Pick <strong>Bank Accounts</strong>. Looking for investing coverage? Pick <strong>Investing</strong>. Need a budgeting app, credit monitor, or cash-advance tool? Pick <strong>Financial Apps</strong>. Inside each category, products are ranked by our weighted rubric — APY, fees, platform quality, asset selection, customer service, and trust and safety — with the weights published on each individual review page.
+        </p>
+        <p>
+          Rates and promotional offers change often. We re-verify APYs and bonuses on a rolling weekly schedule, fee schedules monthly, and full reviews at least twice a year. Every review shows the date of the most recent check near the top. If you spot a number that looks stale, the <a href="/contact" className="underline text-[#0e4d45]">contact form</a> goes straight to an editor.
+        </p>
+      </div>
       <div className="flex flex-wrap gap-1.5 mb-4">
         {categories.map((cat) => (
           <button
