@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { Product } from "@/data/products";
-import { withUtm } from "@/lib/affiliate";
+import { productPartnerLink } from "@/lib/affiliate";
 import { getProductLogoUrl } from "@/lib/product-icons";
 import { getDisclosure } from "@/data/disclosures";
 
@@ -250,7 +250,7 @@ export function ProductCard({ p, rank }: { p: Product; rank?: number }) {
             Read Review
           </Link>
           <a
-            href={withUtm(p.url, { campaign: p.category === "bank" ? "bank-accounts" : p.category === "investing" ? "investing" : "financial-apps", content: p.slug })}
+            href={productPartnerLink(p.slug, p.url, { placement: "product-card", campaign: p.category === "bank" ? "bank-accounts" : p.category === "investing" ? "investing" : "financial-apps" })}
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-white border border-[#d4c5b8] text-black text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"

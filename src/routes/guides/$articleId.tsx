@@ -4,7 +4,7 @@ import { Sidebar } from "@/components/sidebar-offers";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { FtcDisclosure, EditorialStandardsBadge, AuthorByline } from "@/components/eeat";
 import { getAuthorForCategory, authors } from "@/lib/authors";
-import { withUtm } from "@/lib/affiliate";
+import { productPartnerLink } from "@/lib/affiliate";
 import { useState } from "react";
 import { getProductLogoUrl } from "@/lib/product-icons";
 import {
@@ -465,10 +465,10 @@ function ProductRow({ row }: { row: GuideProductRow }) {
         </div>
       </div>
       <a
-        href={withUtm(row.ctaUrl, {
-          campaign: "guide-product-table",
-          content: "cta",
+        href={productPartnerLink(row.slug || "", row.ctaUrl, {
+          placement: "guide-product-table",
           term: row.slug || row.name,
+          campaign: "guide-product-table",
         })}
         target="_blank"
         rel="noopener noreferrer sponsored"

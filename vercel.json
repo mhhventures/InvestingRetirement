@@ -3,5 +3,17 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/investing-apps", "destination": "/investing", "permanent": true }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?!www\\.)(?<partner>[^.]+)\\.investingandretirement\\.com"
+        }
+      ],
+      "destination": "https://eibmgedhnbssuzgtwlqh.supabase.co/functions/v1/redirect/:path*"
+    }
   ]
 }
