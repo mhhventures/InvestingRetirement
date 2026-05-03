@@ -52,13 +52,25 @@ Deno.serve(async (req: Request) => {
 
   try {
     const url = new URL(req.url);
-    const host = req.headers.get("x-forwarded-host") ?? url.host;
-    const partnerSlug = parsePartnerFromHost(host);
 
-    const path = url.pathname
+    const rawPath = url.pathname
       .replace(/^\/functions\/v1\/redirect\/?/, "/")
       .replace(/^\/+|\/+$/g, "");
-    const offerSlug = path.split("/")[0] || "";
+    const segments = rawPath.split("/").filter(Boolean);
+
+    // Vercel rewrites from partner subdomains using the `/_p/<partner>/<path*>`
+    // prefix so the partner slug survives the external rewrite (Host header is
+    // lost on external rewrites). Direct hits still fall back to the Host.
+    let partnerSlug: string | null = null;
+    let offerSlug = "";
+    if (segments[0] === "_p" && segments[1]) {
+      partnerSlug = segments[1];
+      offerSlug = segments[2] || "";
+    } else {
+      const host = req.headers.get("x-forwarded-host") ?? url.host;
+      partnerSlug = parsePartnerFromHost(host);
+      offerSlug = segments[0] || "";
+    }
 
     if (!partnerSlug) {
       return Response.redirect(SITE_URL, 302);
