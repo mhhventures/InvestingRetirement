@@ -218,11 +218,11 @@ function NewsletterPage() {
             A newsletter, three communities, one research desk.
           </h2>
           <p className="text-[14px] sm:text-[15px] leading-relaxed mb-4 text-[#fef6f1]/90">
-            The I&amp;R Newsletter is the Thursday voice of a larger ecosystem:
-            our investing site, an audience of more than 330,000 readers, and
-            three subreddit communities owned and moderated by MHH Ventures.
-            Every issue pulls from the communities and sends readers back to
-            them.
+            The I&amp;R Newsletter is the Thursday voice of a larger
+            ecosystem: our investing site and three active subreddit
+            communities where the questions, debates, and real experiences
+            happen. Every issue pulls from those communities and sends
+            readers back to them.
           </p>
           <div className="grid sm:grid-cols-3 gap-3 text-[13px]">
             <div className="bg-[#fef6f1]/10 rounded-sm p-3">
