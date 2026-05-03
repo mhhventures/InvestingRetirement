@@ -3,5 +3,8 @@ Allow: /
 Disallow: /signin
 Disallow: /signup
 Disallow: /shipper-draft
+Disallow: /_p/
+Disallow: /go/
+Disallow: /out/
 
 Sitemap: https://www.investingandretirement.com/sitemap.xml

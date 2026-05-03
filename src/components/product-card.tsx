@@ -252,7 +252,7 @@ export function ProductCard({ p, rank }: { p: Product; rank?: number }) {
           <a
             href={productPartnerLink(p.slug, p.url, { placement: "product-card", campaign: p.category === "bank" ? "bank-accounts" : p.category === "investing" ? "investing" : "financial-apps" })}
             target="_blank"
-            rel="noopener noreferrer sponsored"
+            rel="nofollow noopener noreferrer sponsored"
             className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-white border border-[#d4c5b8] text-black text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
           >
             Visit Site

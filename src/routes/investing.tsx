@@ -117,7 +117,7 @@ function HeroPick({ p }: { p: Product }) {
           <a
             href={productPartnerLink(p.slug, p.url, { placement: "investing-hero", term: "hero-pick", campaign: "investing" })}
             target="_blank"
-            rel="noopener noreferrer sponsored"
+            rel="nofollow noopener noreferrer sponsored"
             className="text-center px-4 py-2.5 rounded-sm bg-white border border-[#d4c5b8] text-black text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
           >
             Visit Site
