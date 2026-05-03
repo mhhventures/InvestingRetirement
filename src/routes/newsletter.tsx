@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { useSeo, SITE_URL } from "@/lib/seo";
 
@@ -60,22 +60,12 @@ const PROMISES: { head: string; body: React.ReactNode }[] = [
     body: "Every claim is traceable to a primary source — a bank's rate sheet, an issuer's disclosure, a federal agency, or a study we can link to. If we can't cite it, we don't print it.",
   },
   {
-    head: "No stock picks. No return promises.",
-    body: "The Research Desk will never tell you what to buy, forecast returns, or hype a product. We compare tools and explain trade-offs. What you do with the information is yours.",
+    head: "Educational, never advisory.",
+    body: "Nothing we publish — including any stock, fund, or product we discuss — is personalized financial advice, a solicitation, or a guarantee of results. We share research, frameworks, and trade-offs so you can make informed decisions. Past performance is not indicative of future returns.",
   },
   {
-    head: "Affiliate-transparent.",
-    body: (
-      <>
-        Some products in the comparison block pay us when readers sign up.
-        Those links are labeled every time and never change our ranking. Read
-        our{" "}
-        <Link to="/disclosure" className="underline text-[#0e4d45]">
-          full disclosure
-        </Link>
-        .
-      </>
-    ),
+    head: "Built around the value of the read.",
+    body: "Every issue is written to be worth the two minutes it takes. If a block isn't useful that week, we cut it. Readers stay because the content earns it — not because we buried the unsubscribe link.",
   },
   {
     head: "Double opt-in, unsubscribe in one click.",
