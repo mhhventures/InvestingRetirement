@@ -46,12 +46,23 @@ function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+// Clamp a meta description to under 155 chars at a word boundary so
+// Google does not truncate it in search snippets.
+function clampDescription(desc, max = 154) {
+  const s = String(desc).replace(/\s+/g, " ").trim();
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  const trimmed = (lastSpace > 80 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:\-—\s]+$/, "");
+  return trimmed;
+}
+
 function staticRouteMeta(path) {
   const map = {
     "/": {
       title: "Compare the Best Financial Products 2026",
       description:
-        "Expert reviews and comparisons of the best high-yield savings accounts, checking accounts, investing apps, brokerages, and budgeting tools. Find the right financial product for your goals.",
+        "Expert reviews of the best high-yield savings, checking, investing apps, and budgeting tools — ranked after hands-on testing.",
       h1: "Compare the Best Financial Products",
     },
     "/bank-accounts": {
@@ -134,7 +145,13 @@ function staticRouteMeta(path) {
 function metaForUrl(url, data) {
   const path = new URL(url).pathname.replace(/\/+$/, "") || "/";
   const staticMeta = staticRouteMeta(path);
-  if (staticMeta) return { path, ...staticMeta };
+  if (staticMeta) {
+    return {
+      path,
+      ...staticMeta,
+      description: clampDescription(staticMeta.description),
+    };
+  }
 
   // /product/:slug
   const prodMatch = path.match(/^\/product\/([^/]+)$/);
@@ -145,13 +162,16 @@ function metaForUrl(url, data) {
     // for products with long names.
     const longTitle = `${p.name} Review 2026: Rates, Fees & Features`;
     const shortTitle = `${p.name} Review 2026`;
-    const title = longTitle.length <= 60 ? longTitle : shortTitle;
-    return {
-      path,
-      title,
-      description: `${p.tagline} Read our expert review of ${p.name} by ${p.provider} — rated ${p.rating}/5 from ${p.reviews.toLocaleString()} reviews. Best for ${p.bestFor.toLowerCase()}.`,
-      h1: `${p.name} Review`,
-    };
+    const title = longTitle.length <= 58 ? longTitle : shortTitle;
+    // Compact description: rating + reviews + best-for. Drops the tagline
+    // and provider string so we reliably stay under 155 characters.
+    const bestFor = String(p.bestFor || "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
+    const rawDesc = `${p.name} review — rated ${p.rating}/5 from ${p.reviews.toLocaleString()} reviews. Best for ${bestFor}.`;
+    const description = clampDescription(rawDesc);
+    return { path, title, description, h1: `${p.name} Review` };
   }
 
   // /guides/:slug
@@ -164,12 +184,68 @@ function metaForUrl(url, data) {
         "4 Best Budgeting Apps in 2026 — Ranked by Our Editors",
       "best-bank-bonuses-this-month":
         "Best Bank Account Bonuses This Month — Top Signup Offers",
+      "savings-account-timeline":
+        "Savings Account Timeline — Match Accounts to Your Goals",
+      "investing-101":
+        "Investing 101 — A Beginner's Guide to Stocks & Bonds",
+      "shopping-hacks":
+        "Smart Shopping Hacks to Cut Grocery & Everyday Costs",
+      "big-purchase-guide":
+        "Big Purchase Guide — Smart Ways to Buy Major Items",
+      "budget-basics-50-30-20":
+        "50/30/20 Budget Rule — A Simple Budgeting Framework",
+      "stop-subscription-drain":
+        "Stop Subscription Drain — Audit & Cancel Unused Services",
+      "emergency-fund":
+        "Emergency Fund Guide — How Much to Save & Where",
+      "options-strategies":
+        "4 Defined-Risk Options Strategies Retail Traders Use",
+      "travel-on-budget":
+        "Budget Travel Tips — Vacation Without Breaking the Bank",
+      "how-to-invest-first-10k":
+        "How to Invest Your First $10,000 — Step-by-Step",
+      "6-best-crypto-apps-2026":
+        "6 Best Crypto Apps & Wallets Ranked for 2026",
+      "taxes-and-inheritance-for-investors":
+        "Investor Tax & Inheritance Guide — Capital Gains to NIIT",
+      "best-cash-advance-loan-apps-may-2026":
+        "7 Best Cash Advance Apps — Ranked for May 2026",
+      "equities-trading":
+        "Equities Trading Guide — Strategy, Orders & Risk",
+      "options-101":
+        "Options 101 — Calls, Puts & How Contracts Work",
+      "index-funds-vs-etfs-vs-mutual-funds":
+        "Index Funds vs ETFs vs Mutual Funds — Which to Pick",
+      "the-greeks-explained":
+        "Options Greeks Explained — Delta, Gamma, Theta, Vega, Rho",
+      "improve-credit-90-days":
+        "Improve Your Credit Score in 90 Days — Step-by-Step Plan",
+      "how-to-pick-high-yield-savings":
+        "How to Choose a High-Yield Savings Account (HYSA Guide)",
+      "5-best-investing-apps-may-2026":
+        "5 Best Investing Apps Ranked for May 2026",
+      "hysa-vs-money-market-vs-cds":
+        "HYSA vs Money Market vs CDs — Best Place for Your Cash",
+      "best-high-yield-savings-accounts-may-2026":
+        "Best High-Yield Savings Accounts Ranked — May 2026",
+      "roth-vs-traditional-ira":
+        "Roth vs Traditional IRA — Which Retirement Account Wins?",
+      "portfolio-improvements":
+        "Improve Your Portfolio — Rebalancing & Alternatives",
+      "retirement-investing":
+        "Retirement Investing Guide — 20x Rule & Contributions",
+      "invest-smart-goals":
+        "Invest With SMART Goals — Set, Measure, Achieve",
+      "best-stock-picking-services-may-2026":
+        "5 Best Stock Picking Services Compared — May 2026",
+      "portfolio-building":
+        "Build an Investment Portfolio — Diversification Basics",
     };
     const seoTitle = titleOverrides[g.slug] || g.title;
     return {
       path,
       title: seoTitle,
-      description: g.description,
+      description: clampDescription(g.description),
       h1: g.title,
     };
   }
@@ -179,10 +255,14 @@ function metaForUrl(url, data) {
   if (calcMatch) {
     const c = data.calculators.find((x) => x.slug === calcMatch[1]);
     if (!c) return null;
+    const calcTitleOverrides = {
+      "compound-interest":
+        "Compound Interest Calculator — Grow Your Savings Over Time",
+    };
     return {
       path,
-      title: c.title,
-      description: c.description,
+      title: calcTitleOverrides[c.slug] || c.title,
+      description: clampDescription(c.description),
       h1: c.title,
     };
   }

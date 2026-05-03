@@ -794,6 +794,17 @@ function BankAccounts() {
           <p className="mt-2 text-[10px] text-[#5a5a5a] italic">
             Ranked by APY, fees, minimums, and FDIC coverage. Editorial independence guaranteed &mdash; we never accept payment for rankings.
           </p>
+          <div className="mt-5 max-w-3xl space-y-3 text-sm text-[#1a1a1a] leading-relaxed">
+            <p>
+              We review high-yield savings accounts, checking accounts, money-market accounts, and certificates of deposit from the online banks and national institutions that serve the majority of U.S. depositors. Every account on this page is FDIC-insured, funded by our editors during testing, and ranked on a rubric that weights APY (30%), fees (20%), access and convenience (15%), account features (15%), trust and safety (10%), and customer support (10%).
+            </p>
+            <p>
+              Top online banks like <strong>SoFi</strong>, <strong>Ally</strong>, <strong>Marcus by Goldman Sachs</strong>, <strong>Barclays</strong>, and <strong>CIT Bank</strong> consistently out-yield the national average — currently 0.45% — by five to ten times. If you value branch access, <strong>Chase</strong>, <strong>Capital One</strong>, and <strong>PNC</strong> still appear in our rankings despite lower APYs. Bonuses are real but always come with fine print: qualifying direct deposits, minimum balances, and 60-to-90-day holding periods. We publish the exact terms inside each review so you can decide whether a stated bonus is worth chasing.
+            </p>
+            <p className="text-xs text-[#5a5a5a]">
+              Rates and promotional offers change often. This page is reviewed weekly and every APY is stamped with the date of its most recent verification. Use the <strong>APY calculator</strong> below to estimate earnings on your deposit, the <strong>filters</strong> to narrow by account type or feature, and the <strong>compare checkboxes</strong> on each card to line up to three accounts side-by-side.
+            </p>
+          </div>
         </div>
       </section>
 

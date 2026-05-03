@@ -224,6 +224,17 @@ function Investing() {
         { label: "Top IRA match", value: "1%" },
       ]}
     >
+      <div className="prose-sm max-w-none mb-5 space-y-3 text-sm text-[#1a1a1a] leading-relaxed">
+        <p>
+          We review the brokerages, robo-advisors, and retirement platforms most Americans actually use — Fidelity, Vanguard, Schwab, Robinhood, E*TRADE, Webull, Interactive Brokers, SoFi Invest, Betterment, Wealthfront, M1 Finance, Acorns, and more. Each review is based on a funded account and real trades, not a marketing page read-through. Our rubric weights costs and fees (25%), platform and tools (20%), asset selection (15%), account types (10%), education and research (10%), customer support (10%), and trust and safety (10%).
+        </p>
+        <p>
+          If you are new to investing, start with a broker that offers <strong>commission-free stock and ETF trades</strong>, <strong>fractional shares</strong>, and both <strong>Roth and Traditional IRAs</strong>. Charles Schwab and Fidelity score highest for all-around use. If you want hands-off investing, <strong>robo-advisors</strong> like Betterment and Wealthfront automate asset allocation, rebalancing, and tax-loss harvesting for a small annual fee. Active traders should compare platform depth, options-contract fees, and margin rates — Interactive Brokers, thinkorswim (via Schwab), and Webull lead that category.
+        </p>
+        <p>
+          Commissions, APYs on cash sweeps, and account bonuses change often. Every listing here is reviewed quarterly, and any promotional offer is stamped with the date it was last verified. Read our <a href="/about" className="underline text-[#0e4d45]">editorial methodology</a> and <a href="/disclosure" className="underline text-[#0e4d45]">advertiser disclosure</a> to see how we test products and why affiliate partners cannot buy better rankings.
+        </p>
+      </div>
       <div className="mb-4 flex items-center gap-2">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0e4d45]" />
         <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">
