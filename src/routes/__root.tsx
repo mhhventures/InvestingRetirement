@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 const CATEGORIES = [
   { label: "Bank Accounts", to: "/bank-accounts" },
+  { label: "Local Banks", to: "/banks" },
   { label: "Investing", to: "/investing" },
   { label: "Financial Apps", to: "/financial-apps" },
   { label: "Reviews", to: "/reviews" },

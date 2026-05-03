@@ -27,7 +27,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 import { Route as GuidesArticleIdRouteImport } from './routes/guides/$articleId'
 import { Route as CalculatorsCalcIdRouteImport } from './routes/calculators/$calcId'
-import { Route as BanksStateRouteImport } from './routes/banks/$state'
 import { Route as AuthorsAuthorSlugRouteImport } from './routes/authors.$authorSlug'
 import { Route as AdminGscRouteImport } from './routes/admin.gsc'
 
@@ -121,11 +120,6 @@ const CalculatorsCalcIdRoute = CalculatorsCalcIdRouteImport.update({
   path: '/$calcId',
   getParentRoute: () => CalculatorsRoute,
 } as any)
-const BanksStateRoute = BanksStateRouteImport.update({
-  id: '/$state',
-  path: '/$state',
-  getParentRoute: () => BanksRoute,
-} as any)
 const AuthorsAuthorSlugRoute = AuthorsAuthorSlugRouteImport.update({
   id: '/authors/$authorSlug',
   path: '/authors/$authorSlug',
@@ -141,7 +135,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bank-accounts': typeof BankAccountsRoute
-  '/banks': typeof BanksRouteWithChildren
+  '/banks': typeof BanksRoute
   '/calculators': typeof CalculatorsRouteWithChildren
   '/contact': typeof ContactRoute
   '/disclosure': typeof DisclosureRoute
@@ -155,7 +149,6 @@ export interface FileRoutesByFullPath {
   '/shipper-draft': typeof ShipperDraftRoute
   '/admin/gsc': typeof AdminGscRoute
   '/authors/$authorSlug': typeof AuthorsAuthorSlugRoute
-  '/banks/$state': typeof BanksStateRoute
   '/calculators/$calcId': typeof CalculatorsCalcIdRoute
   '/guides/$articleId': typeof GuidesArticleIdRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -164,7 +157,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bank-accounts': typeof BankAccountsRoute
-  '/banks': typeof BanksRouteWithChildren
+  '/banks': typeof BanksRoute
   '/calculators': typeof CalculatorsRouteWithChildren
   '/contact': typeof ContactRoute
   '/disclosure': typeof DisclosureRoute
@@ -178,7 +171,6 @@ export interface FileRoutesByTo {
   '/shipper-draft': typeof ShipperDraftRoute
   '/admin/gsc': typeof AdminGscRoute
   '/authors/$authorSlug': typeof AuthorsAuthorSlugRoute
-  '/banks/$state': typeof BanksStateRoute
   '/calculators/$calcId': typeof CalculatorsCalcIdRoute
   '/guides/$articleId': typeof GuidesArticleIdRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -188,7 +180,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bank-accounts': typeof BankAccountsRoute
-  '/banks': typeof BanksRouteWithChildren
+  '/banks': typeof BanksRoute
   '/calculators': typeof CalculatorsRouteWithChildren
   '/contact': typeof ContactRoute
   '/disclosure': typeof DisclosureRoute
@@ -202,7 +194,6 @@ export interface FileRoutesById {
   '/shipper-draft': typeof ShipperDraftRoute
   '/admin/gsc': typeof AdminGscRoute
   '/authors/$authorSlug': typeof AuthorsAuthorSlugRoute
-  '/banks/$state': typeof BanksStateRoute
   '/calculators/$calcId': typeof CalculatorsCalcIdRoute
   '/guides/$articleId': typeof GuidesArticleIdRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -227,7 +218,6 @@ export interface FileRouteTypes {
     | '/shipper-draft'
     | '/admin/gsc'
     | '/authors/$authorSlug'
-    | '/banks/$state'
     | '/calculators/$calcId'
     | '/guides/$articleId'
     | '/product/$slug'
@@ -250,7 +240,6 @@ export interface FileRouteTypes {
     | '/shipper-draft'
     | '/admin/gsc'
     | '/authors/$authorSlug'
-    | '/banks/$state'
     | '/calculators/$calcId'
     | '/guides/$articleId'
     | '/product/$slug'
@@ -273,7 +262,6 @@ export interface FileRouteTypes {
     | '/shipper-draft'
     | '/admin/gsc'
     | '/authors/$authorSlug'
-    | '/banks/$state'
     | '/calculators/$calcId'
     | '/guides/$articleId'
     | '/product/$slug'
@@ -283,7 +271,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BankAccountsRoute: typeof BankAccountsRoute
-  BanksRoute: typeof BanksRouteWithChildren
+  BanksRoute: typeof BanksRoute
   CalculatorsRoute: typeof CalculatorsRouteWithChildren
   ContactRoute: typeof ContactRoute
   DisclosureRoute: typeof DisclosureRoute
@@ -428,13 +416,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorsCalcIdRouteImport
       parentRoute: typeof CalculatorsRoute
     }
-    '/banks/$state': {
-      id: '/banks/$state'
-      path: '/$state'
-      fullPath: '/banks/$state'
-      preLoaderRoute: typeof BanksStateRouteImport
-      parentRoute: typeof BanksRoute
-    }
     '/authors/$authorSlug': {
       id: '/authors/$authorSlug'
       path: '/authors/$authorSlug'
@@ -451,16 +432,6 @@ declare module '@tanstack/react-router' {
     }
   }
 }
-
-interface BanksRouteChildren {
-  BanksStateRoute: typeof BanksStateRoute
-}
-
-const BanksRouteChildren: BanksRouteChildren = {
-  BanksStateRoute: BanksStateRoute,
-}
-
-const BanksRouteWithChildren = BanksRoute._addFileChildren(BanksRouteChildren)
 
 interface CalculatorsRouteChildren {
   CalculatorsCalcIdRoute: typeof CalculatorsCalcIdRoute
@@ -489,7 +460,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BankAccountsRoute: BankAccountsRoute,
-  BanksRoute: BanksRouteWithChildren,
+  BanksRoute: BanksRoute,
   CalculatorsRoute: CalculatorsRouteWithChildren,
   ContactRoute: ContactRoute,
   DisclosureRoute: DisclosureRoute,
