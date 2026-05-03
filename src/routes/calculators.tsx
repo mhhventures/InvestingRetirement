@@ -39,19 +39,8 @@ function CalculatorsIndex() {
             Financial Calculators
           </h1>
           <p className="text-sm text-[#1a1a1a] leading-relaxed max-w-2xl">
-            Free, no-signup calculators to run the numbers on your biggest financial decisions. From compound interest to retirement planning.
+            Free, no-signup calculators to run the numbers on your biggest financial decisions — compound interest, retirement, mortgages, debt payoff, and emergency-fund targets. Everything runs in your browser; nothing you type is saved or transmitted.
           </p>
-          <div className="mt-5 max-w-3xl space-y-3 text-sm text-[#1a1a1a] leading-relaxed">
-            <p>
-              Every calculator on this page works in your browser — nothing you type is saved, transmitted, or shared. We built each tool to answer one specific question clearly, show the formulas and assumptions driving the result, and let you adjust the inputs in real time so you can see how small changes ripple across decades.
-            </p>
-            <p>
-              Use the <strong>compound interest calculator</strong> to see how a lump sum plus monthly contributions grows at a given rate. Use the <strong>retirement calculator</strong> to check whether your current savings rate is on track. The <strong>mortgage calculator</strong> shows the true monthly cost of a home loan across principal, interest, taxes, and insurance. A <strong>debt payoff calculator</strong> compares the avalanche and snowball methods side-by-side. Our <strong>emergency-fund calculator</strong> recommends a target based on your monthly expenses and job stability.
-            </p>
-            <p className="text-xs text-[#5a5a5a] italic">
-              These tools are for planning and education only. They are not personalized advice. Actual returns, rates, and outcomes will vary based on markets, fees, taxes, and your individual situation.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -92,6 +81,36 @@ function CalculatorsIndex() {
             </div>
           ))}
         </div>
+
+        <section className="mt-12 max-w-3xl space-y-4 text-sm text-[#1a1a1a] leading-relaxed">
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">About these tools</div>
+            <h2 className="font-serif text-2xl font-bold text-black mb-2">What you can figure out here</h2>
+            <p>
+              Each calculator answers one specific question clearly, shows the formulas and assumptions driving the result, and lets you adjust the inputs in real time so you can see how small changes ripple across decades.
+            </p>
+          </div>
+          <ul className="space-y-2 border border-[#e4d9cf] bg-white rounded-sm p-4 divide-y divide-[#e4d9cf]">
+            <li className="pt-0 first:pt-0 pb-2">
+              <strong>Compound interest calculator</strong> — how a lump sum plus monthly contributions grows over 10, 20, or 30 years at a given return.
+            </li>
+            <li className="pt-2 pb-2">
+              <strong>Retirement calculator</strong> — whether your current savings rate is on track to replace the income you want after you stop working.
+            </li>
+            <li className="pt-2 pb-2">
+              <strong>Mortgage calculator</strong> — the true monthly cost of a home loan across principal, interest, taxes, and insurance.
+            </li>
+            <li className="pt-2 pb-2">
+              <strong>Debt payoff calculator</strong> — avalanche vs. snowball methods compared side-by-side on your actual balances.
+            </li>
+            <li className="pt-2">
+              <strong>Emergency-fund calculator</strong> — a recommended target based on your monthly expenses and job stability.
+            </li>
+          </ul>
+          <p className="text-xs text-[#5a5a5a] italic">
+            These tools are for planning and education only. They are not personalized financial advice. Actual returns, rates, and outcomes will vary based on markets, fees, taxes, and your individual situation.
+          </p>
+        </section>
       </div>
     </div>
   );

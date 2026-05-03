@@ -58,17 +58,9 @@ function Reviews() {
         { label: "Expert rating", value: "4.6★" },
       ]}
     >
-      <div className="prose-sm max-w-none mb-5 space-y-3 text-sm text-[#1a1a1a] leading-relaxed">
-        <p>
-          This page lists every financial product our editors have reviewed — high-yield savings accounts, checking accounts, online brokerages, robo-advisors, crypto exchanges, prediction markets, and money apps. Each listing links to a full hands-on review with the current APY or fee schedule, our editorial grade, the specific saver or investor the product is best suited for, and the closest alternatives to consider.
-        </p>
-        <p>
-          Filter the grid by category to narrow the view. Want bank-account detail? Pick <strong>Bank Accounts</strong>. Looking for investing coverage? Pick <strong>Investing</strong>. Need a budgeting app, credit monitor, or cash-advance tool? Pick <strong>Financial Apps</strong>. Inside each category, products are ranked by our weighted rubric — APY, fees, platform quality, asset selection, customer service, and trust and safety — with the weights published on each individual review page.
-        </p>
-        <p>
-          Rates and promotional offers change often. We re-verify APYs and bonuses on a rolling weekly schedule, fee schedules monthly, and full reviews at least twice a year. Every review shows the date of the most recent check near the top. If you spot a number that looks stale, the <a href="/contact" className="underline text-[#0e4d45]">contact form</a> goes straight to an editor.
-        </p>
-      </div>
+      <p className="mb-5 text-sm text-[#1a1a1a] leading-relaxed">
+        Every financial product our editors have tested — bank accounts, brokerages, robo-advisors, crypto exchanges, and money apps. Filter by category below, or scroll for how we rank.
+      </p>
       <div className="flex flex-wrap gap-1.5 mb-4">
         {categories.map((cat) => (
           <button
@@ -102,6 +94,28 @@ function Reviews() {
           />
         </div>
       )}
+
+      <section className="mt-12 space-y-5 text-sm text-[#1a1a1a] leading-relaxed">
+        <div>
+          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">Editorial Process</div>
+          <h2 className="font-serif text-2xl font-bold text-black mb-2">How this page is built</h2>
+          <p>
+            This directory lists every product our editors have reviewed. Each listing links to a full hands-on review with the current APY or fee schedule, our editorial grade, the specific saver or investor the product is best suited for, and the closest alternatives to consider. Inside each category, products are ranked by a weighted rubric — APY, fees, platform quality, asset selection, customer service, and trust and safety — with the exact weights published on each review.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold text-black mb-1.5">How to use this page</h3>
+          <p>
+            Use the filter pills above to narrow by product type. Choose <strong>Bank Accounts</strong> for high-yield savings, checking, money markets, and CDs. Choose <strong>Investing</strong> for brokerages, robo-advisors, and retirement platforms. Choose <strong>Financial Apps</strong> for budgeting tools, credit monitors, and cash-advance services. Each card shows our grade, headline rate, and a one-line summary so you can scan quickly before diving into a full review.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold text-black mb-1.5">Update cadence</h3>
+          <p>
+            Rates and promotional offers change often. APYs and bonuses are re-verified weekly, fee schedules monthly, and full reviews at least twice a year — or immediately whenever a product meaningfully changes. Every review is stamped with the date of its most recent check. If you spot a number that looks stale, the <a href="/contact" className="underline text-[#0e4d45]">contact form</a> goes straight to an editor.
+          </p>
+        </div>
+      </section>
     </CategoryPage>
   );
 }
