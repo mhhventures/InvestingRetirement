@@ -403,9 +403,21 @@ export function getDomainLogoUrl(domain: string, size: number = 128): string {
   const clean = domain.replace(/^https?:\/\//, "").replace(/^www\./, "").split("/")[0];
   const token = (import.meta as { env?: Record<string, string | undefined> }).env
     ?.VITE_LOGO_DEV_TOKEN;
-  const qs = new URLSearchParams({ size: String(size), format: "png" });
-  if (token) qs.set("token", token);
-  return `https://img.logo.dev/${clean}?${qs.toString()}`;
+  if (token) {
+    const qs = new URLSearchParams({
+      size: String(size),
+      format: "png",
+      token,
+    });
+    return `https://img.logo.dev/${clean}?${qs.toString()}`;
+  }
+  // No logo.dev token configured — fall back to Google's favicon service,
+  // which is keyless and returns a small real brand mark for most domains.
+  // (Clearbit's free logo API was retired in 2023 and now 404s.)
+  return `https://www.google.com/s2/favicons?sz=${Math.min(
+    Math.max(size, 32),
+    256,
+  )}&domain=${clean}`;
 }
 
 export function extractDomain(url: string | null | undefined): string | null {

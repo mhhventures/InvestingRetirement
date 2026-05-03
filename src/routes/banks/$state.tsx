@@ -70,6 +70,40 @@ function StateBanksPage() {
   const cities = useMemo(() => getStateCities(info.code), [info.code]);
   const facts = useMemo(() => getStateFacts(info.code), [info.code]);
   const relatedStates = useMemo(() => getRelatedStates(info.code), [info.code]);
+  const [intro, setIntro] = useState<{
+    intro_paragraph: string;
+    regulator: string;
+    notable_institutions: string[];
+  } | null>(null);
+  const [stateFaqs, setStateFaqs] = useState<
+    { question: string; answer: string }[]
+  >([]);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+    let cancelled = false;
+    (async () => {
+      const [introRes, faqRes] = await Promise.all([
+        supabase
+          .from("state_intros")
+          .select("intro_paragraph,regulator,notable_institutions")
+          .eq("state_code", info.code)
+          .maybeSingle(),
+        supabase
+          .from("state_faqs")
+          .select("question,answer")
+          .eq("state_code", info.code)
+          .order("sort_order", { ascending: true }),
+      ]);
+      if (cancelled) return;
+      if (introRes.data) setIntro(introRes.data as typeof intro);
+      if (faqRes.data)
+        setStateFaqs(faqRes.data as { question: string; answer: string }[]);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [info.code]);
 
   useEffect(() => {
     let cancelled = false;
@@ -252,10 +286,12 @@ function StateBanksPage() {
     );
   }, [providers, info.name]);
 
-  const faqs = useMemo(
-    () => buildFaqs(info.name, stats.topSavings, stats.bestCD, cities),
-    [info.name, stats.topSavings, stats.bestCD, cities],
-  );
+  const faqs = useMemo(() => {
+    if (stateFaqs.length > 0) {
+      return stateFaqs.map((f) => ({ q: f.question, a: f.answer }));
+    }
+    return buildFaqs(info.name, stats.topSavings, stats.bestCD, cities);
+  }, [stateFaqs, info.name, stats.topSavings, stats.bestCD, cities]);
 
   useSeo({
     title: `Best Banks in ${info.name} ${new Date().getFullYear()} — Local Rates, Credit Unions & Banks Near Me`,
@@ -382,26 +418,38 @@ function StateBanksPage() {
             Banking · {info.name}
           </div>
           <h1 className="font-serif text-3xl md:text-4xl font-bold text-black leading-[1.05] mb-2">
-            Best Banks in {info.name} ({new Date().getFullYear()})
+            Best Banks & Credit Unions in {info.name} ({new Date().getFullYear()})
           </h1>
-          <p className="speakable-intro text-sm text-[#1a1a1a] max-w-3xl leading-relaxed">
-            Compare the best banks and credit unions for {info.name} residents —
-            current APYs up to{" "}
-            <strong>
-              {stats.topSavings > 0
-                ? `${stats.topSavings.toFixed(2)}%`
-                : "competitive"}
-            </strong>
-            , fees, minimums, and membership rules.{" "}
-            {facts.population && (
-              <>
-                {info.name} is home to roughly {facts.population} residents and{" "}
-                {facts.fdicBanks} FDIC-insured banks plus {facts.creditUnions}{" "}
-                credit unions.{" "}
-              </>
-            )}
-            Independent research, verified this month.
-          </p>
+          {intro?.intro_paragraph ? (
+            <p className="speakable-intro text-sm text-[#1a1a1a] max-w-3xl leading-relaxed">
+              {intro.intro_paragraph}
+            </p>
+          ) : (
+            <p className="speakable-intro text-sm text-[#1a1a1a] max-w-3xl leading-relaxed">
+              Compare the best banks and credit unions for {info.name} residents —
+              current APYs up to{" "}
+              <strong>
+                {stats.topSavings > 0
+                  ? `${stats.topSavings.toFixed(2)}%`
+                  : "competitive"}
+              </strong>
+              , fees, minimums, and membership rules.{" "}
+              {facts.population && (
+                <>
+                  {info.name} is home to roughly {facts.population} residents
+                  and {facts.fdicBanks} FDIC-insured banks plus{" "}
+                  {facts.creditUnions} credit unions.{" "}
+                </>
+              )}
+              Independent research, verified this month.
+            </p>
+          )}
+          {intro?.regulator && (
+            <p className="mt-2 text-[11px] text-[#5a5a5a]">
+              State regulator: <strong className="text-[#1a1a1a]">{intro.regulator}</strong>.
+              Every institution below is FDIC- or NCUA-insured to $250,000.
+            </p>
+          )}
 
           <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#5a5a5a]">
             <MapPin className="w-3 h-3 text-[#0e4d45]" />
@@ -761,7 +809,7 @@ function StateBanksPage() {
                   Local coverage
                 </div>
                 <h2 className="font-serif font-bold text-2xl text-black mb-3">
-                  Banks near me in {info.name} cities
+                  Best banks in {info.name} cities — {cities.slice(0, 3).join(", ")} & more
                 </h2>
                 <p className="text-sm text-[#1a1a1a] leading-relaxed mb-3">
                   Our {info.name} directory covers online banks and credit
@@ -791,7 +839,7 @@ function StateBanksPage() {
                 FAQ
               </div>
               <h2 className="font-serif font-bold text-2xl text-black mb-3">
-                Banks near me in {info.name}
+                {info.name} banking FAQ — credit unions, rates & insurance
               </h2>
               <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm divide-y divide-[#e4d9cf]">
                 {faqs.map((f, i) => (
@@ -828,13 +876,57 @@ function StateBanksPage() {
               </section>
             )}
 
+            <section className="mt-12">
+              <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
+                Keep reading
+              </div>
+              <h2 className="font-serif font-bold text-2xl text-black mb-3">
+                Related guides for {info.name} savers
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  {
+                    to: "/guides/how-to-pick-high-yield-savings",
+                    title: "How to Choose a High-Yield Savings Account",
+                    blurb: "The five checks that separate a real HYSA from a teaser-rate trap.",
+                  },
+                  {
+                    to: "/guides/hysa-vs-money-market-vs-cds",
+                    title: "HYSA vs Money Market vs CDs",
+                    blurb: "Which savings vehicle fits which goal — and when to mix them.",
+                  },
+                  {
+                    to: "/guides/best-high-yield-savings-accounts-may-2026",
+                    title: "Best High-Yield Savings Accounts This Month",
+                    blurb: "Our national pick list, cross-checked against this state directory.",
+                  },
+                  {
+                    to: "/guides/best-bank-bonuses-this-month",
+                    title: "Best Bank Account Bonuses This Month",
+                    blurb: "Sign-up offers worth chasing — and the ones with strings attached.",
+                  },
+                ].map((g) => (
+                  <a
+                    key={g.to}
+                    href={g.to}
+                    className="block bg-white border border-[#d4c5b8] rounded-sm px-4 py-3 hover:border-[#0e4d45] transition-colors"
+                  >
+                    <div className="font-serif font-bold text-black text-base leading-tight">
+                      {g.title}
+                    </div>
+                    <div className="text-[12px] text-[#5a5a5a] mt-1">{g.blurb}</div>
+                  </a>
+                ))}
+              </div>
+            </section>
+
             <section className="mt-12 max-w-3xl space-y-3 text-sm text-[#1a1a1a] leading-relaxed pb-8">
               <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
                 Methodology
               </div>
-              <h3 className="font-serif font-bold text-2xl text-black">
+              <h2 className="font-serif font-bold text-2xl text-black">
                 How we pick the best banks in {info.name}
-              </h3>
+              </h2>
               <p>
                 Our {info.name} shortlist weighs effective APY after fees, the
                 real cost of minimums and balance requirements, and the quality

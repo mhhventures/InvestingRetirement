@@ -424,55 +424,95 @@ function RowLogo({ row }: { row: GuideProductRow }) {
 }
 
 function ProductRow({ row }: { row: GuideProductRow }) {
+  const href = productPartnerLink(row.slug || "", row.ctaUrl, {
+    placement: "guide-product-table",
+    term: row.slug || row.name,
+    campaign: "guide-product-table",
+  });
   return (
-    <li className="border-b border-[#e4d9cf] last:border-b-0 px-3 py-3 flex items-start gap-3 flex-wrap sm:flex-nowrap">
-      <RowLogo row={row} />
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-1.5 flex-wrap">
-          <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest">
-            #{row.rank}
+    <li className="border-b border-[#e4d9cf] last:border-b-0 px-3 py-3 sm:flex sm:items-start sm:gap-3">
+      <div className="flex items-start gap-3 mb-3 sm:mb-0 sm:flex-1 sm:min-w-0">
+        <RowLogo row={row} />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest">
+              #{row.rank}
+            </div>
+            <div className="text-sm font-bold text-black">{row.name}</div>
+            {row.editorsPick && (
+              <span className="text-[8px] font-bold uppercase tracking-wide border border-[#0e4d45] text-[#0e4d45] px-1 py-0.5 rounded-sm">
+                Editor
+              </span>
+            )}
           </div>
-          <div className="text-xs sm:text-sm font-bold text-black">{row.name}</div>
-          {row.editorsPick && (
-            <span className="text-[8px] font-bold uppercase tracking-wide border border-[#0e4d45] text-[#0e4d45] px-1 py-0.5 rounded-sm">
-              Editor
-            </span>
-          )}
-        </div>
-        <div className="text-[10px] text-black/50 mb-1">by {row.provider}</div>
-        <div className="text-[11px] sm:text-xs text-black mb-1">{row.bestFor}</div>
-        <div className="flex items-center gap-3 text-[10px] sm:text-[11px] text-black/70 flex-wrap">
-          {row.apy && (
-            <span>
-              <strong className="text-[#0e4d45]">APY:</strong> {row.apy}
-              {row.apyNote ? ` (${row.apyNote})` : ""}
-            </span>
-          )}
-          <span>
-            <strong className="text-black">Min:</strong> {row.minDeposit}
-          </span>
-          <span>
-            <strong className="text-black">Fee:</strong> {row.monthlyFee}
-          </span>
-          {row.bonus && (
-            <span>
-              <strong className="text-black">Bonus:</strong> {row.bonus}
-            </span>
-          )}
-          <span>
-            <strong className="text-black">Rating:</strong> {row.rating}/5
-          </span>
+          <div className="text-[10px] text-black/50 mb-1">by {row.provider}</div>
+          <div className="text-[11px] sm:text-xs text-black mb-2 sm:mb-1">{row.bestFor}</div>
+
+          {/* Mobile: stat grid w/ labels above values. Desktop: inline row. */}
+          <dl className="grid grid-cols-2 gap-x-3 gap-y-1.5 sm:flex sm:items-center sm:gap-3 sm:flex-wrap text-[11px] text-black/80">
+            {row.apy && (
+              <div className="sm:contents">
+                <dt className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-[#0e4d45] sm:text-[#0e4d45] sm:normal-case sm:tracking-normal sm:font-bold">
+                  <span className="sm:hidden">APY</span>
+                  <span className="hidden sm:inline">APY:</span>
+                </dt>
+                <dd className="font-semibold text-black sm:font-normal sm:text-black/80">
+                  {row.apy}
+                  {row.apyNote ? (
+                    <span className="block sm:inline text-[10px] text-black/50 sm:text-black/70">
+                      <span className="sm:hidden">{row.apyNote}</span>
+                      <span className="hidden sm:inline"> ({row.apyNote})</span>
+                    </span>
+                  ) : null}
+                </dd>
+              </div>
+            )}
+            <div className="sm:contents">
+              <dt className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-black/50 sm:text-black sm:normal-case sm:tracking-normal">
+                <span className="sm:hidden">Min deposit</span>
+                <span className="hidden sm:inline">Min:</span>
+              </dt>
+              <dd className="font-semibold text-black sm:font-normal sm:text-black/80">
+                {row.minDeposit}
+              </dd>
+            </div>
+            <div className="sm:contents">
+              <dt className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-black/50 sm:text-black sm:normal-case sm:tracking-normal">
+                <span className="sm:hidden">Monthly fee</span>
+                <span className="hidden sm:inline">Fee:</span>
+              </dt>
+              <dd className="font-semibold text-black sm:font-normal sm:text-black/80">
+                {row.monthlyFee}
+              </dd>
+            </div>
+            {row.bonus && (
+              <div className="sm:contents">
+                <dt className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-black/50 sm:text-black sm:normal-case sm:tracking-normal">
+                  <span className="sm:hidden">Bonus</span>
+                  <span className="hidden sm:inline">Bonus:</span>
+                </dt>
+                <dd className="font-semibold text-black sm:font-normal sm:text-black/80">
+                  {row.bonus}
+                </dd>
+              </div>
+            )}
+            <div className="sm:contents">
+              <dt className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-black/50 sm:text-black sm:normal-case sm:tracking-normal">
+                <span className="sm:hidden">Rating</span>
+                <span className="hidden sm:inline">Rating:</span>
+              </dt>
+              <dd className="font-semibold text-black sm:font-normal sm:text-black/80">
+                {row.rating}/5
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
       <a
-        href={productPartnerLink(row.slug || "", row.ctaUrl, {
-          placement: "guide-product-table",
-          term: row.slug || row.name,
-          campaign: "guide-product-table",
-        })}
+        href={href}
         target="_blank"
         rel="nofollow noopener noreferrer sponsored"
-        className="block text-center px-3 py-1.5 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] text-[11px] font-semibold uppercase tracking-wide transition-colors shrink-0"
+        className="block text-center w-full sm:w-auto px-3 py-2 sm:py-1.5 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] text-[12px] sm:text-[11px] font-semibold uppercase tracking-wide transition-colors shrink-0"
       >
         {row.ctaLabel}
       </a>
