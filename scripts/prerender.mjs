@@ -162,7 +162,7 @@ function metaForUrl(url, data) {
     // for products with long names.
     const longTitle = `${p.name} Review 2026: Rates, Fees & Features`;
     const shortTitle = `${p.name} Review 2026`;
-    const title = longTitle.length <= 60 ? longTitle : shortTitle;
+    const title = longTitle.length <= 58 ? longTitle : shortTitle;
     // Compact description: rating + reviews + best-for. Drops the tagline
     // and provider string so we reliably stay under 155 characters.
     const bestFor = String(p.bestFor || "")
