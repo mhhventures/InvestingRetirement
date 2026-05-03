@@ -11,6 +11,7 @@ import {
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { BankSidebar } from "@/components/bank-sidebar";
 import { StarRating, GradeBadge } from "@/components/product-card";
+import { getDomainLogoUrl, extractDomain } from "@/lib/product-icons";
 
 export const Route = createFileRoute("/banks/$state")({
   loader: ({ params }) => {
@@ -590,7 +591,7 @@ function HeroPick({ p, rank }: { p: StateProvider; rank: number }) {
       <div className="p-5 sm:p-6">
         <div className="flex flex-col sm:flex-row sm:items-start gap-4">
           <div className="flex items-center gap-3 flex-shrink-0">
-            <Monogram name={p.institution_name} size={40} />
+            <InstitutionLogo p={p} size={40} />
             <div className="min-w-0">
               <h2 className="font-serif font-bold text-base sm:text-xl text-black leading-tight truncate">
                 {p.institution_name}
@@ -711,7 +712,7 @@ function ProviderCard({ p, rank }: { p: StateProvider; rank: number }) {
           <div className="flex-shrink-0 w-7 sm:w-8 text-center font-serif font-bold text-[#0e4d45] text-xl sm:text-2xl leading-none pt-0.5">
             {String(rank).padStart(2, "0")}
           </div>
-          <Monogram name={p.institution_name} size={40} />
+          <InstitutionLogo p={p} size={40} />
           <div className="flex-1 min-w-0">
             <h3 className="font-serif font-bold text-black text-sm sm:text-base leading-tight truncate">
               {p.institution_name}
@@ -777,14 +778,47 @@ function ProviderCard({ p, rank }: { p: StateProvider; rank: number }) {
   );
 }
 
-function Monogram({ name, size = 40 }: { name: string; size?: number }) {
-  const letters = name
+function InstitutionLogo({
+  p,
+  size = 40,
+}: {
+  p: StateProvider;
+  size?: number;
+}) {
+  const domain = extractDomain(p.website_url);
+  const [failed, setFailed] = useState(false);
+  const letters = p.institution_name
     .split(" ")
     .filter(Boolean)
     .slice(0, 2)
     .map((w) => w[0])
     .join("")
     .toUpperCase();
+
+  if (domain && !failed) {
+    const url1x = getDomainLogoUrl(domain, Math.max(64, size * 2));
+    const url2x = getDomainLogoUrl(domain, Math.max(128, size * 4));
+    return (
+      <div
+        className="flex-shrink-0 rounded-sm overflow-hidden bg-white border border-[#e4d9cf] flex items-center justify-center"
+        style={{ width: size, height: size }}
+      >
+        <img
+          src={url1x}
+          srcSet={`${url1x} 1x, ${url2x} 2x`}
+          sizes={`${size}px`}
+          alt={`${p.institution_name} logo`}
+          width={size}
+          height={size}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+          className="w-full h-full object-contain p-1"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className="flex-shrink-0 rounded-sm flex items-center justify-center font-bold text-[#fef6f1] bg-[#0e4d45]"

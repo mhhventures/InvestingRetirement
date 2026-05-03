@@ -390,8 +390,30 @@ export function getProductLogoUrl(slug: string, size: number = 128): string | un
     return brandLogoUrls[brandKey];
   }
 
-  // 2. Fall back to Clearbit Logo API for all other brands
+  // 2. Fall back to logo.dev / Clearbit for all other brands
   const domain = productDomains[slug];
   if (!domain) return undefined;
-  return `https://logo.clearbit.com/${domain}?size=${size}`;
+  return getDomainLogoUrl(domain, size);
+}
+
+// Resolve a logo URL from a domain string. Uses logo.dev (with optional token
+// from VITE_LOGO_DEV_TOKEN for branded/un-watermarked results) and falls back
+// to Clearbit via onError in the consumer.
+export function getDomainLogoUrl(domain: string, size: number = 128): string {
+  const clean = domain.replace(/^https?:\/\//, "").replace(/^www\./, "").split("/")[0];
+  const token = (import.meta as { env?: Record<string, string | undefined> }).env
+    ?.VITE_LOGO_DEV_TOKEN;
+  const qs = new URLSearchParams({ size: String(size), format: "png" });
+  if (token) qs.set("token", token);
+  return `https://img.logo.dev/${clean}?${qs.toString()}`;
+}
+
+export function extractDomain(url: string | null | undefined): string | null {
+  if (!url) return null;
+  try {
+    const u = new URL(url.startsWith("http") ? url : `https://${url}`);
+    return u.hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
 }
