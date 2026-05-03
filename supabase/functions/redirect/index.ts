@@ -55,7 +55,9 @@ Deno.serve(async (req: Request) => {
     const host = req.headers.get("x-forwarded-host") ?? url.host;
     const partnerSlug = parsePartnerFromHost(host);
 
-    const path = url.pathname.replace(/^\/+|\/+$/g, "");
+    const path = url.pathname
+      .replace(/^\/functions\/v1\/redirect\/?/, "/")
+      .replace(/^\/+|\/+$/g, "");
     const offerSlug = path.split("/")[0] || "";
 
     if (!partnerSlug) {
