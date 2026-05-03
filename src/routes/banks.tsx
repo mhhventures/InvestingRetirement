@@ -269,8 +269,18 @@ function BanksIndex() {
                         <img
                           src={logo}
                           alt=""
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-contain p-0.5"
                           loading="lazy"
+                          onError={(e) => {
+                            const img = e.currentTarget;
+                            const parent = img.parentElement;
+                            img.remove();
+                            if (parent) {
+                              parent.innerHTML = `<span class="text-[10px] font-bold text-[#5a5a5a]">${r.institution_name
+                                .slice(0, 2)
+                                .toUpperCase()}</span>`;
+                            }
+                          }}
                         />
                       ) : (
                         <span className="text-[10px] font-bold text-[#5a5a5a]">
