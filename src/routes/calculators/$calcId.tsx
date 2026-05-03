@@ -20,6 +20,10 @@ function CalculatorPage() {
     return <Navigate to={"/calculators" as any} />;
   }
 
+  if (calc.slug === "bank-deposit-matcher") {
+    return <BankDepositMatcher />;
+  }
+
   return (
     <div className="bg-[#fef6f1] min-h-screen overflow-x-hidden">
       <section className="border-b border-[#e4d9cf]">
@@ -43,7 +47,6 @@ function CalculatorPage() {
 
       <div className="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
         {calc.slug === "compound-interest" && <CompoundInterestCalculator />}
-        {calc.slug === "bank-deposit-matcher" && <BankDepositMatcher />}
       </div>
     </div>
   );
@@ -470,100 +473,167 @@ function BankDepositMatcher() {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="bg-[#fff7ec] border-l-4 border-[#0e4d45] rounded-sm p-3 sm:p-4 text-[11px] sm:text-xs text-[#1a1a1a] leading-relaxed">
-        <strong className="block font-serif text-sm text-black mb-1">
-          Advertiser disclosure
-        </strong>
-        The tool below is an embedded matching widget operated by a partner
-        network. Investing and Retirement Media LLC may receive compensation
-        from the banks and card issuers shown when you open, apply for, or
-        fund an account. Compensation does not change the order in which the
-        tool presents offers — that ranking is controlled by the partner
-        network based on your inputs. APYs, fees, and eligibility are shown by
-        the widget directly from each issuer and can change without notice.
-      </div>
-
-      <div className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-5">
-        <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
-          Personalized offer match
-        </div>
-        <h2 className="font-serif text-xl sm:text-2xl font-bold text-black mb-2">
-          Find accounts that fit your deposit
-        </h2>
-        <p className="text-xs sm:text-sm text-[#1a1a1a] leading-relaxed mb-4">
-          Tell the matcher your deposit size and goals. It will pull live HYSA
-          and checking offers from partner banks and score them for your
-          situation. Results render right here on this page — you will not be
-          redirected away until you choose an offer to open.
-        </p>
-        <DepositMatchWidget
-          subId="calc-bank-deposit-matcher"
-          placement="calculator-body"
-          pagePath={pagePath}
-        />
-      </div>
-
-      <div className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-5 text-[12px] sm:text-sm text-[#1a1a1a] leading-relaxed space-y-3">
-        <div>
-          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
-            How the match works
+    <div className="bg-[#fef6f1] min-h-screen overflow-x-hidden">
+      <section className="border-b border-[#e4d9cf]">
+        <div className="max-w-2xl mx-auto px-4 pt-5 pb-4 sm:pt-8 sm:pb-6">
+          <a
+            href="/calculators"
+            className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#0e4d45] mb-2.5 inline-block hover:underline"
+          >
+            &larr; All Calculators
+          </a>
+          <div className="inline-flex items-center gap-1.5 bg-[#eaf1ef] text-[#0e4d45] text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm mb-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0e4d45]" aria-hidden />
+            Free tool
           </div>
-          <h3 className="font-serif text-lg font-bold text-black mb-2">
-            What the tool is actually doing
-          </h3>
-          <p>
-            The matcher takes your stated deposit size, rough monthly savings
-            rate, and timeline, then scores every active partner offer against
-            a few basics: APY net of any rate caps, minimum-balance
-            requirements, monthly fees, early-withdrawal penalties on CDs, and
-            the sign-up bonus (if any) amortized over twelve months. It only
-            shows offers that match your deposit tier, so a $500 starter gets
-            a different ranking than a $50,000 transfer.
+          <h1 className="font-serif text-[26px] leading-[1.1] sm:text-4xl font-bold text-black mb-2">
+            Find a high-yield account matched to your deposit
+          </h1>
+          <p className="text-[13px] sm:text-sm text-[#1a1a1a] leading-relaxed">
+            Answer a few quick questions and see live HYSA and checking offers
+            scored for your deposit size. Results render inline &mdash; no
+            redirect until you pick one.
           </p>
-        </div>
-        <div>
-          <h3 className="font-serif text-base font-bold text-black mb-1.5">
-            What to pay attention to
-          </h3>
-          <ul className="list-disc pl-5 space-y-1.5">
-            <li>
-              <strong>Rate tiers and caps.</strong> A quoted APY often only
-              applies up to a balance threshold. Deposits above that earn a
-              lower rate.
+          <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-[#1a1a1a]">
+            <li className="inline-flex items-center gap-1">
+              <Check /> 100% free
             </li>
-            <li>
-              <strong>Direct-deposit requirements.</strong> Many of the
-              highest APYs and bonuses require a qualifying direct deposit
-              within the first 30 to 90 days.
+            <li className="inline-flex items-center gap-1">
+              <Check /> FDIC-insured banks
             </li>
-            <li>
-              <strong>Bonus clawbacks.</strong> Checking bonuses usually come
-              with a minimum-balance-maintained window (often 60 to 90 days).
-              Closing or draining early can void the payout.
+            <li className="inline-flex items-center gap-1">
+              <Check /> No credit-score impact
             </li>
-            <li>
-              <strong>FDIC/NCUA coverage.</strong> Every bank shown is
-              federally insured up to $250,000 per depositor per ownership
-              category.
+            <li className="inline-flex items-center gap-1">
+              <Check /> Takes ~60 seconds
             </li>
           </ul>
         </div>
-      </div>
+      </section>
 
-      <div className="text-[11px] text-[#5a5a5a] italic leading-relaxed">
-        This page is for educational comparison and is not personalized
-        financial advice. Offers shown are provided by a partner network and
-        may not include every account available in your state. See our{" "}
-        <a href="/disclosure" className="underline text-[#0e4d45]">
-          advertiser disclosure
-        </a>{" "}
-        and{" "}
-        <a href="/privacy" className="underline text-[#0e4d45]">
-          privacy policy
-        </a>{" "}
-        for more detail on how partner links are tracked.
+      <div className="max-w-2xl mx-auto px-3 sm:px-4 py-5 sm:py-8 space-y-5 sm:space-y-6">
+        <section
+          aria-label="Deposit matcher tool"
+          className="bg-white border border-[#e4d9cf] rounded-lg p-3 sm:p-5 shadow-sm"
+        >
+          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
+            Personalized offer match
+          </div>
+          <h2 className="font-serif text-lg sm:text-xl font-bold text-black mb-3">
+            Start your match
+          </h2>
+          <DepositMatchWidget
+            subId="calc-bank-deposit-matcher"
+            placement="calculator-body"
+            pagePath={pagePath}
+          />
+        </section>
+
+        <aside
+          aria-label="Advertiser disclosure"
+          className="bg-[#fff7ec] border-l-4 border-[#0e4d45] rounded-sm p-3 sm:p-4 text-[11px] sm:text-xs text-[#1a1a1a] leading-relaxed"
+        >
+          <strong className="block font-serif text-[13px] sm:text-sm text-black mb-1">
+            Advertiser disclosure
+          </strong>
+          The tool above is an embedded matching widget operated by a partner
+          network. Investing and Retirement Media LLC may receive compensation
+          from the banks shown when you open, apply for, or fund an account.
+          Compensation does not change the order of results &mdash; that is
+          controlled by the partner network based on your inputs. APYs, fees,
+          and eligibility come directly from each issuer and can change
+          without notice.
+        </aside>
+
+        <section
+          aria-label="How it works"
+          className="bg-white border border-[#e4d9cf] rounded-lg p-3 sm:p-5"
+        >
+          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">
+            How the match works
+          </div>
+          <h2 className="font-serif text-lg sm:text-xl font-bold text-black mb-2.5">
+            What the tool is doing
+          </h2>
+          <p className="text-[13px] sm:text-sm text-[#1a1a1a] leading-relaxed mb-3">
+            The matcher takes your deposit size, rough savings rate, and
+            timeline, then scores every active partner offer on APY net of
+            rate caps, minimum balance, monthly fees, CD early-withdrawal
+            penalties, and sign-up bonus amortized over twelve months. A $500
+            starter sees a different ranking than a $50,000 transfer.
+          </p>
+          <h3 className="font-serif text-[15px] sm:text-base font-bold text-black mb-1.5">
+            What to pay attention to
+          </h3>
+          <ul className="text-[13px] sm:text-sm text-[#1a1a1a] leading-relaxed space-y-2">
+            <li className="flex gap-2">
+              <Check />
+              <span>
+                <strong>Rate tiers and caps.</strong> The quoted APY often
+                only applies up to a balance threshold.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <Check />
+              <span>
+                <strong>Direct-deposit requirements.</strong> The highest APYs
+                and bonuses usually require a qualifying direct deposit in the
+                first 30&ndash;90 days.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <Check />
+              <span>
+                <strong>Bonus clawbacks.</strong> Closing or draining a new
+                checking account early can void the payout.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <Check />
+              <span>
+                <strong>FDIC/NCUA coverage.</strong> Every bank shown is
+                federally insured up to $250,000 per depositor per ownership
+                category.
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <p className="text-[11px] text-[#5a5a5a] italic leading-relaxed">
+          For educational comparison only &mdash; not personalized financial
+          advice. Offers shown are provided by a partner network and may not
+          include every account available in your state. See our{" "}
+          <a href="/disclosure" className="underline text-[#0e4d45]">
+            advertiser disclosure
+          </a>{" "}
+          and{" "}
+          <a href="/privacy" className="underline text-[#0e4d45]">
+            privacy policy
+          </a>{" "}
+          for detail on how partner links are tracked.
+        </p>
       </div>
     </div>
+  );
+}
+
+function Check() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden
+      className="mt-[3px] flex-shrink-0 text-[#0e4d45]"
+    >
+      <path
+        d="M4 10.5l4 4 8-9"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
