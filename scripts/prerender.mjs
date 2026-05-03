@@ -97,22 +97,22 @@ function staticRouteMeta(path) {
       h1: "About Investing and Retirement",
     },
     "/contact": {
-      title: "Contact Us",
+      title: "Contact Us — Investing and Retirement Editorial Team",
       description: "Have a question about a product review? Get in touch with our editorial team.",
       h1: "Contact Investing and Retirement",
     },
     "/disclosure": {
-      title: "Advertiser Disclosure",
+      title: "Advertiser Disclosure — How We Make Money",
       description: "How Investing and Retirement is compensated, and how that affects our product reviews and rankings.",
       h1: "Advertiser Disclosure",
     },
     "/privacy": {
-      title: "Privacy Policy",
+      title: "Privacy Policy — How We Handle Your Data",
       description: "How we collect, use, and protect your information on Investing and Retirement.",
       h1: "Privacy Policy",
     },
     "/faq": {
-      title: "Frequently Asked Questions",
+      title: "Frequently Asked Questions — Reviews & Methodology",
       description: "Answers to common questions about our reviews, methodology, and the products we cover.",
       h1: "Frequently Asked Questions",
     },
@@ -159,9 +159,16 @@ function metaForUrl(url, data) {
   if (guideMatch) {
     const g = data.guides.find((x) => x.slug === guideMatch[1]);
     if (!g) return null;
+    const titleOverrides = {
+      "best-budgeting-apps-2026":
+        "4 Best Budgeting Apps in 2026 — Ranked by Our Editors",
+      "best-bank-bonuses-this-month":
+        "Best Bank Account Bonuses This Month — Top Signup Offers",
+    };
+    const seoTitle = titleOverrides[g.slug] || g.title;
     return {
       path,
-      title: g.title,
+      title: seoTitle,
       description: g.description,
       h1: g.title,
     };
