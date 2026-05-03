@@ -76,6 +76,85 @@ export const PRODUCT_TYPE_LABEL: Record<string, string> = {
   money_market: "Money Market",
 };
 
+// Popular cities per state — powers local SEO anchors and "banks near me in X"
+// copy on the state pages.
+export const STATE_CITIES: Record<string, string[]> = {
+  CA: [
+    "Los Angeles",
+    "San Diego",
+    "San Jose",
+    "San Francisco",
+    "Fresno",
+    "Sacramento",
+    "Long Beach",
+    "Oakland",
+    "Bakersfield",
+    "Anaheim",
+  ],
+  TX: [
+    "Houston",
+    "San Antonio",
+    "Dallas",
+    "Austin",
+    "Fort Worth",
+    "El Paso",
+    "Arlington",
+    "Corpus Christi",
+    "Plano",
+    "Lubbock",
+  ],
+};
+
+// Approximate population + household figures used in intro copy and schema.
+// These do not need to be exact — they orient the reader and improve topical
+// relevance for long-tail queries like "banks in california population".
+export const STATE_FACTS: Record<
+  string,
+  { population: string; households: string; fdicBanks: string; creditUnions: string }
+> = {
+  CA: {
+    population: "39 million",
+    households: "13.2 million",
+    fdicBanks: "120+",
+    creditUnions: "270+",
+  },
+  TX: {
+    population: "30 million",
+    households: "10.5 million",
+    fdicBanks: "380+",
+    creditUnions: "440+",
+  },
+};
+
+// Related states to cross-link for internal linking. Only include slugs of
+// currently-available state pages.
+export const RELATED_STATES: Record<string, string[]> = {
+  CA: ["texas"],
+  TX: ["california"],
+};
+
+export function getStateCities(code: string): string[] {
+  return STATE_CITIES[code] || [];
+}
+
+export function getStateFacts(code: string) {
+  return (
+    STATE_FACTS[code] || {
+      population: "",
+      households: "",
+      fdicBanks: "",
+      creditUnions: "",
+    }
+  );
+}
+
+export function getRelatedStates(code: string): StateInfo[] {
+  const slugs = RELATED_STATES[code] || [];
+  return slugs
+    .map((slug) => US_STATES.find((s) => s.slug === slug))
+    .filter((s): s is StateInfo => !!s && s.available);
+}
+
 export type StateProvider = {
   id: string;
   state_code: string;
