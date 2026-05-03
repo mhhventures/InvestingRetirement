@@ -46,12 +46,23 @@ function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+// Clamp a meta description to under 155 chars at a word boundary so
+// Google does not truncate it in search snippets.
+function clampDescription(desc, max = 154) {
+  const s = String(desc).replace(/\s+/g, " ").trim();
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  const trimmed = (lastSpace > 80 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:\-—\s]+$/, "");
+  return trimmed;
+}
+
 function staticRouteMeta(path) {
   const map = {
     "/": {
       title: "Compare the Best Financial Products 2026",
       description:
-        "Expert reviews and comparisons of the best high-yield savings accounts, checking accounts, investing apps, brokerages, and budgeting tools. Find the right financial product for your goals.",
+        "Expert reviews of the best high-yield savings, checking, investing apps, and budgeting tools — ranked after hands-on testing.",
       h1: "Compare the Best Financial Products",
     },
     "/bank-accounts": {
@@ -134,7 +145,13 @@ function staticRouteMeta(path) {
 function metaForUrl(url, data) {
   const path = new URL(url).pathname.replace(/\/+$/, "") || "/";
   const staticMeta = staticRouteMeta(path);
-  if (staticMeta) return { path, ...staticMeta };
+  if (staticMeta) {
+    return {
+      path,
+      ...staticMeta,
+      description: clampDescription(staticMeta.description),
+    };
+  }
 
   // /product/:slug
   const prodMatch = path.match(/^\/product\/([^/]+)$/);
@@ -146,12 +163,15 @@ function metaForUrl(url, data) {
     const longTitle = `${p.name} Review 2026: Rates, Fees & Features`;
     const shortTitle = `${p.name} Review 2026`;
     const title = longTitle.length <= 60 ? longTitle : shortTitle;
-    return {
-      path,
-      title,
-      description: `${p.tagline} Read our expert review of ${p.name} by ${p.provider} — rated ${p.rating}/5 from ${p.reviews.toLocaleString()} reviews. Best for ${p.bestFor.toLowerCase()}.`,
-      h1: `${p.name} Review`,
-    };
+    // Compact description: rating + reviews + best-for. Drops the tagline
+    // and provider string so we reliably stay under 155 characters.
+    const bestFor = String(p.bestFor || "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
+    const rawDesc = `${p.name} review — rated ${p.rating}/5 from ${p.reviews.toLocaleString()} reviews. Best for ${bestFor}.`;
+    const description = clampDescription(rawDesc);
+    return { path, title, description, h1: `${p.name} Review` };
   }
 
   // /guides/:slug
@@ -169,7 +189,7 @@ function metaForUrl(url, data) {
     return {
       path,
       title: seoTitle,
-      description: g.description,
+      description: clampDescription(g.description),
       h1: g.title,
     };
   }
@@ -182,7 +202,7 @@ function metaForUrl(url, data) {
     return {
       path,
       title: c.title,
-      description: c.description,
+      description: clampDescription(c.description),
       h1: c.title,
     };
   }
