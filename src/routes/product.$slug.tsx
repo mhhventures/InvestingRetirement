@@ -5,6 +5,7 @@ import { StarRating, ProductLogo, DisclosureIcon } from "@/components/product-ca
 import { getDisclosure } from "@/data/disclosures";
 import { Sidebar } from "@/components/sidebar-offers";
 import { ClarityResearch, GradeBadge, ResearchBlocks, StrengthsLimitations } from "@/components/research-blocks";
+import { RubricScorecard, BenchmarkContext, HowWeTested, CompetitorComparison } from "@/components/product-analysis";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { AuthorByline, FtcDisclosure, HowWeReview, EditorialStandardsBadge } from "@/components/eeat";
 import { RelatedGuidesForProduct } from "@/components/related-guides";
@@ -131,13 +132,26 @@ function ProductDetail() {
     );
   }
 
-  const related = products
-    .filter((x) => x.category === p.category && x.slug !== p.slug)
-    .slice(0, 3);
-
   const sameSubcategory = products.filter(
     (x) => x.subcategory === p.subcategory && x.slug !== p.slug
   );
+
+  const competitors = sameSubcategory
+    .slice()
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 4);
+
+  const peerApyValues = products
+    .filter((x) => x.subcategory === p.subcategory && x.apy)
+    .map((x) => {
+      const m = (x.apy || "").match(/(\d+(?:\.\d+)?)/);
+      return m ? parseFloat(m[1]) : NaN;
+    })
+    .filter((n) => !isNaN(n) && n > 0)
+    .sort((a, b) => a - b);
+  const peerMedianApy = peerApyValues.length
+    ? peerApyValues[Math.floor(peerApyValues.length / 2)]
+    : undefined;
   const categoryHref: "/bank-accounts" | "/investing" | "/financial-apps" =
     p.category === "bank"
       ? "/bank-accounts"
@@ -305,17 +319,26 @@ function ProductDetail() {
               </p>
             </section>
 
-            {/* How We Review — transparency for E-E-A-T */}
-            <HowWeReview category={p.category} />
-
             {/* Clarity Research Commentary */}
             <ClarityResearch product={p} />
+
+            {/* Rubric-based scoring breakdown */}
+            <RubricScorecard product={p} />
+
+            {/* Rate/Fee benchmark context */}
+            <BenchmarkContext product={p} peerMedianApy={peerMedianApy} />
+
+            {/* How We Tested — product-specific methodology */}
+            <HowWeTested product={p} />
 
             {/* Research Feature Blocks */}
             <ResearchBlocks product={p} />
 
             {/* Strengths & Limitations */}
             <StrengthsLimitations pros={p.pros} cons={p.cons} />
+
+            {/* General editorial methodology */}
+            <HowWeReview category={p.category} />
 
             {/* Key Highlights */}
             <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-4 sm:mb-5">
@@ -332,66 +355,11 @@ function ProductDetail() {
               </ul>
             </section>
 
-            {/* Who it is best for */}
-            <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-4 sm:mb-5">
-              <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest border-b border-[#e4d9cf] pb-1.5 mb-2 sm:mb-3">
-                Who It Is Best For
-              </h2>
-              <p className="text-xs sm:text-sm text-black leading-relaxed">
-                {p.name} is ideal for <strong>{p.bestFor.toLowerCase()}</strong>. If you value{" "}
-                {p.highlights[0]?.toLowerCase()} and want a trusted provider with strong customer
-                reviews, this is a solid choice. Readers consistently rate it {p.rating}/5 stars based
-                on ease of use, value, and customer support.
-              </p>
-            </section>
+            {/* Side-by-side competitor comparison with real metrics */}
+            <CompetitorComparison product={p} competitors={competitors} />
 
             {/* Related Guides — internal linking to editorial content */}
             <RelatedGuidesForProduct product={p} />
-
-            {/* Related Products - Compare Table */}
-            {related.length > 0 && (
-              <section className="bg-white border border-[#e4d9cf] rounded overflow-hidden mb-4 sm:mb-5">
-                <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-[#e4d9cf]">
-                  <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest">Compare Similar Products</h2>
-                </div>
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-[#f5ede2] border-b border-[#e4d9cf]">
-                      <th className="text-left px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] font-bold text-[#0e4d45] uppercase tracking-wider">Product</th>
-                      <th className="text-right px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] font-bold text-[#0e4d45] uppercase tracking-wider">Rating</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {related.map((r, idx) => (
-                      <tr key={r.slug} className="border-b border-[#e4d9cf] last:border-b-0">
-                        <td className="px-3 sm:px-4 py-2.5 sm:py-3">
-                          <Link
-                            to="/product/$slug"
-                            params={{ slug: r.slug }}
-                            className="flex items-center gap-2 group hover:text-[#0e4d45] transition-colors"
-                          >
-                            <ProductLogo p={r} size={24} />
-                            <div className="min-w-0">
-                              <div className="text-[11px] sm:text-xs font-semibold text-black group-hover:text-[#0e4d45]">{r.name}</div>
-                              <div className="text-[9px] text-black/50">{r.tagline}</div>
-                            </div>
-                          </Link>
-                        </td>
-                        <td className="text-right px-3 sm:px-4 py-2.5 sm:py-3">
-                          <Link
-                            to="/product/$slug"
-                            params={{ slug: r.slug }}
-                            className="inline-block text-[11px] sm:text-xs font-semibold text-[#0e4d45] hover:underline"
-                          >
-                            <StarRating rating={r.rating} size="sm" />
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </section>
-            )}
 
             {/* Subcategory internal links — deep linking for SEO */}
             {sameSubcategory.length > 0 && (
