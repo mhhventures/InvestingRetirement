@@ -962,7 +962,8 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
           return (
             <div
               key={p.id}
-              className="px-4 py-3 hover:bg-[#fef6f1] transition-colors md:grid md:grid-cols-[minmax(0,1.6fr)_96px_110px_120px_120px] md:gap-3 md:items-center"
+              id={`institution-${p.id}`}
+              className="px-4 py-3 hover:bg-[#fef6f1] transition-colors md:grid md:grid-cols-[minmax(0,1.6fr)_96px_110px_120px_120px] md:gap-3 md:items-center scroll-mt-24 target:bg-[#fef1e6] target:ring-2 target:ring-[#0e4d45]"
             >
               {/* Mobile header: logo + name + rating + top-pick badge */}
               <div className="flex items-start gap-3 min-w-0">
@@ -1302,7 +1303,10 @@ function ProviderCard({ p, rank }: { p: StateProvider; rank: number }) {
   const reviewCount = 120 + rank * 73;
   const grade = rank === 1 ? "A+" : rank <= 3 ? "A" : rank <= 6 ? "A-" : "B+";
   return (
-    <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm hover:shadow-md hover:border-[#0e4d45] transition-all w-full min-w-0 overflow-hidden box-border">
+    <div
+      id={`institution-${p.id}`}
+      className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm hover:shadow-md hover:border-[#0e4d45] transition-all w-full min-w-0 overflow-hidden box-border scroll-mt-24 target:border-[#0e4d45] target:ring-2 target:ring-[#0e4d45]"
+    >
       <div className="p-3 sm:p-4">
         <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3">
           <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">

@@ -29,6 +29,7 @@ type StateStat = {
 };
 
 type TopRate = {
+  id: string;
   state_code: string;
   state_name: string;
   institution_name: string;
@@ -258,11 +259,8 @@ function BanksIndex() {
                 const stateSlug = US_STATES.find(
                   (s) => s.code === r.state_code,
                 )?.slug;
-                return (
-                  <li
-                    key={`${r.state_code}-${r.institution_name}`}
-                    className="flex items-center gap-3 p-3 hover:bg-[#fef6f1]"
-                  >
+                const content = (
+                  <>
                     <div className="w-6 text-center font-serif font-bold text-[#5a5a5a] text-sm">
                       {i + 1}
                     </div>
@@ -281,22 +279,12 @@ function BanksIndex() {
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-serif font-bold text-black text-sm leading-tight truncate">
+                      <div className="font-serif font-bold text-black text-sm leading-tight truncate group-hover:text-[#0e4d45]">
                         {r.institution_name}
                       </div>
                       <div className="text-[10px] text-[#5a5a5a] uppercase tracking-wider">
                         {PRODUCT_LABEL[r.product_type] || r.product_type} ·{" "}
-                        {stateSlug ? (
-                          <Link
-                            to="/banks/$state"
-                            params={{ state: stateSlug }}
-                            className="hover:text-[#0e4d45] underline-offset-2 hover:underline"
-                          >
-                            {r.state_name}
-                          </Link>
-                        ) : (
-                          r.state_name
-                        )}
+                        {r.state_name}
                       </div>
                     </div>
                     <div className="text-right shrink-0">
@@ -307,6 +295,28 @@ function BanksIndex() {
                         APY
                       </div>
                     </div>
+                    <div className="shrink-0 text-[#0e4d45] text-base group-hover:translate-x-0.5 transition-transform">
+                      &rarr;
+                    </div>
+                  </>
+                );
+                return (
+                  <li key={`${r.state_code}-${r.institution_name}`}>
+                    {stateSlug ? (
+                      <Link
+                        to="/banks/$state"
+                        params={{ state: stateSlug }}
+                        hash={`institution-${r.id}`}
+                        aria-label={`View ${r.institution_name} in ${r.state_name}`}
+                        className="group flex items-center gap-3 p-3 hover:bg-[#fef6f1] focus:bg-[#fef6f1] outline-none"
+                      >
+                        {content}
+                      </Link>
+                    ) : (
+                      <div className="group flex items-center gap-3 p-3">
+                        {content}
+                      </div>
+                    )}
                   </li>
                 );
               })}
