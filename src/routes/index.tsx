@@ -57,7 +57,7 @@ function SectionHeader({ title, href, linkText }: { title: string; href?: string
 function Home() {
   useSeo({
     title: "Compare the Best Financial Products 2026",
-    description: "Expert reviews and comparisons of the best high-yield savings accounts, checking accounts, investing apps, brokerages, and budgeting tools. Find the right financial product for your goals.",
+    description: "Expert reviews of the best high-yield savings, checking accounts, investing apps, and budgeting tools to match your financial goals.",
     path: "/",
     jsonLd: [
       {

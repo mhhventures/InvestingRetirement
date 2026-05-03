@@ -126,7 +126,7 @@ function Footer() {
               </svg>
             </a>
             <a
-              href="https://discord.gg/bZTSGfxSgz"
+              href="https://discord.com/invite/bZTSGfxSgz"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Discord"
@@ -173,7 +173,7 @@ function Footer() {
               </svg>
             </a>
             <a
-              href="https://www.youtube.com/channel/UC_b9Qu9uX0Ky6YZWvwIY5-w"
+              href="https://www.youtube.com/@investingretirement"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube - Investing & Retirement"
@@ -199,6 +199,7 @@ function Footer() {
           <div className="font-semibold text-[#fef6f1] mb-2 sm:mb-3 text-[10px] sm:text-[11px] uppercase tracking-widest">Learn</div>
           <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-[12px]">
             <li><Link to="/guides" className="hover:text-[#fef6f1] block">Guides</Link></li>
+            <li><Link to="/newsletter" className="hover:text-[#fef6f1] block">Newsletter</Link></li>
             <li><Link to="/faq" className="hover:text-[#fef6f1] block">FAQ</Link></li>
           </ul>
         </div>
