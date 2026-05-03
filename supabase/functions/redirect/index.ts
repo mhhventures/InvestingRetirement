@@ -55,6 +55,7 @@ Deno.serve(async (req: Request) => {
 
     const rawPath = url.pathname
       .replace(/^\/functions\/v1\/redirect\/?/, "/")
+      .replace(/^\/redirect\/?/, "/")
       .replace(/^\/+|\/+$/g, "");
     const segments = rawPath.split("/").filter(Boolean);
 
