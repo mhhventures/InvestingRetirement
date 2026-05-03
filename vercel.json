@@ -10,7 +10,7 @@
       "has": [
         {
           "type": "host",
-          "value": "(?!www\\.)(?<partner>[^.]+)\\.investingandretirement\\.com"
+          "value": "^(?!www\\.)(?<partner>[a-z0-9-]+)\\.investingandretirement\\.com$"
         }
       ],
       "destination": "https://eibmgedhnbssuzgtwlqh.supabase.co/functions/v1/redirect/:path*"
