@@ -30,7 +30,7 @@ const methodology = [
 const stats = [
   { value: "50+", label: "Products Tested" },
   { value: "100K+", label: "Community Members" },
-  { value: "2024", label: "Founded" },
+  { value: "2025", label: "Founded" },
   { value: "30+", label: "Scoring Criteria" },
 ];
 
@@ -42,7 +42,7 @@ function About() {
         <div className="max-w-6xl mx-auto px-4 py-8 md:py-12">
           <div className="max-w-3xl">
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-3">
-              About &middot; Est. 2024
+              About &middot; Est. 2025
             </div>
             <h1 className="font-serif text-4xl md:text-6xl font-bold leading-[1.02] text-black mb-4">
               Financial research you can actually trust.
@@ -85,7 +85,7 @@ function About() {
               Every year, Americans pay billions in unnecessary fees, miss out on higher yields, and choose financial products that don't fit their needs — largely because comparison information is fragmented, biased, or buried behind marketing copy.
             </p>
             <p>
-              We started Investing &amp; Retirement in 2024 to fix that. We open real accounts, test real products, and publish side-by-side comparisons that treat readers like adults.
+              We started Investing &amp; Retirement in 2025 to fix that. We open real accounts, test real products, and publish side-by-side comparisons that treat readers like adults.
             </p>
             <p className="font-medium text-black">
               If we wouldn't recommend a product to our own family, it doesn't make our lists.
