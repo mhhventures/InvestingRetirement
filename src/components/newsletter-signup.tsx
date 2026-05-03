@@ -17,8 +17,8 @@ export function NewsletterSignup({
   source,
   variant = "sidebar",
   eyebrow = "Newsletter",
-  headline = "The I&R Weekly",
-  sub = "Top money moves, rate changes, and hand-picked reviews every Thursday. Free, no spam.",
+  headline = "The I&R Newsletter",
+  sub = "From the Investing & Retirement Research Desk. One scannable email every Thursday — rates, tool comparisons, headlines. Free, no spam.",
 }: Props) {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
