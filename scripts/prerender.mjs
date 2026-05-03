@@ -397,14 +397,33 @@ function bodyCopy(meta, data) {
       const pros = (p.pros || []).slice(0, 4).map((x) => `<li>${esc(x)}</li>`).join("");
       const cons = (p.cons || []).slice(0, 3).map((x) => `<li>${esc(x)}</li>`).join("");
       const highlights = (p.highlights || []).slice(0, 4).map((x) => `<li>${esc(x)}</li>`).join("");
+      const categoryBlurb = {
+        bank:
+          "Our bank-account reviews weight APY (30%), fees (20%), access and convenience (15%), account features (15%), trust and safety (10%), and customer support (10%). We open and fund every account to verify rates, check transfer speeds, and test the mobile app on both iOS and Android.",
+        investing:
+          "Our brokerage and robo-advisor reviews weight costs and fees (25%), platform and tools (20%), asset selection (15%), account types (10%), education and research (10%), customer support (10%), and trust and safety (10%). We place real trades, fund retirement accounts, and test research features before publishing a score.",
+        app:
+          "Our money-app reviews weight cost (25%), accuracy and reliability (25%), data security (20%), usefulness (20%), and customer support (10%). We install the app on a personal device, link real bank accounts, and track whether it measurably improves behavior over a 30-day window.",
+      }[p.category] || "";
+      const related = data.products
+        .filter((x) => x.category === p.category && x.slug !== p.slug)
+        .slice(0, 4)
+        .map((x) => `<li><a href="/product/${x.slug}">${esc(x.name)} review</a></li>`)
+        .join("");
+      const grade = p.grade ? `<p>Editorial grade: <strong>${esc(p.grade)}</strong>${p.gradeScore ? ` (composite score ${p.gradeScore}/100)` : ""}.</p>` : "";
       return `
         <h2>About ${esc(p.name)}</h2>
-        <p>${esc(p.tagline)} ${esc(p.name)} is offered by ${esc(p.provider)} and is rated ${p.rating} out of 5 based on ${p.reviews.toLocaleString()} user reviews. Category: ${esc(p.subcategory)}. Best for ${esc(p.bestFor)}.</p>
+        <p>${esc(p.tagline)} ${esc(p.name)} is offered by ${esc(p.provider)} and currently holds an average rating of ${p.rating} out of 5 across ${p.reviews.toLocaleString()} user reviews. It falls into the ${esc(p.subcategory)} category and tends to be the strongest fit for ${esc(p.bestFor).toLowerCase()}.</p>
+        ${grade}
         ${highlights ? `<h3>Highlights</h3><ul>${highlights}</ul>` : ""}
-        ${pros ? `<h3>Pros</h3><ul>${pros}</ul>` : ""}
-        ${cons ? `<h3>Cons</h3><ul>${cons}</ul>` : ""}
-        <h3>Fees & Minimums</h3>
-        <p>Monthly fee: ${esc(p.fees || "See details")}. Minimum deposit: ${esc(p.minDeposit || "See details")}.${p.apy ? ` APY: ${esc(p.apy)}.` : ""}${p.bonus ? ` Bonus: ${esc(p.bonus)}.` : ""}</p>`;
+        ${pros ? `<h3>What we like</h3><ul>${pros}</ul>` : ""}
+        ${cons ? `<h3>Where it falls short</h3><ul>${cons}</ul>` : ""}
+        <h3>Fees, minimums, and rates</h3>
+        <p>Monthly fee: ${esc(p.fees || "See details")}. Minimum to open: ${esc(p.minDeposit || "See details")}.${p.apy ? ` Current APY: ${esc(p.apy)}.` : ""}${p.bonus ? ` New-customer bonus: ${esc(p.bonus)}.` : ""} Rates and promotional offers change often, so we re-verify every listed number on a rolling schedule and stamp the review with the date of the most recent check.</p>
+        <h3>How we reviewed it</h3>
+        <p>${categoryBlurb} For this review of ${esc(p.name)}, our editors funded an account, walked through the full onboarding flow, and compared the experience to the other products in the ${esc(p.subcategory)} shortlist. Scores are not influenced by affiliate relationships — partners cannot pay for better rankings, and our rubric is the same for every brand.</p>
+        ${related ? `<h3>Similar products to compare</h3><ul>${related}</ul>` : ""}
+        <p>Read our full <a href="/about">editorial methodology</a> and <a href="/disclosure">advertiser disclosure</a> for more on how we fund our testing and why that matters for the reviews you read here.</p>`;
     }
   }
   const guideMatch = path.match(/^\/guides\/([^/]+)$/);
@@ -467,27 +486,249 @@ function bodyCopy(meta, data) {
   if (path === "/financial-apps") {
     return `
       <h2>Budgeting, credit, and cash-advance apps</h2>
-      <p>We review the money apps most Americans actually use: budget trackers, expense categorizers, subscription cancelers, credit score monitors, and small-dollar cash-advance tools. Each app is evaluated on cost, accuracy, data security, and whether it actually changes financial behavior.</p>`;
+      <p>We review the money apps most Americans actually use: budget trackers, expense categorizers, subscription cancelers, credit-score monitors, and small-dollar cash-advance tools. Each app is evaluated on cost, accuracy, data security, and whether it actually changes financial behavior.</p>
+      <h2>How we test every app</h2>
+      <p>Our editors install each app on a personal device, link real bank and credit-card accounts, and run the product through a 30-day behavior window before writing a word. We check transaction-categorization accuracy, subscription-detection rate, alert reliability, and how quickly the support team responds when something breaks. Paid tiers are reviewed at the price everyone pays — no press comps or promotional access.</p>
+      <h2>What to compare</h2>
+      <ul>
+        <li>Subscription cost, free-tier limits, and whether the paid tier actually unlocks anything meaningful.</li>
+        <li>Bank-sync reliability across major issuers and how the app handles duplicate transactions.</li>
+        <li>Data-security posture: encryption at rest, SOC 2 audits, and whether the company sells anonymized transaction data.</li>
+        <li>Cash-advance caps, fee structure, and repayment flexibility for the apps that offer short-term loans.</li>
+        <li>Credit-score source (VantageScore vs. FICO) and update frequency for monitoring tools.</li>
+      </ul>`;
   }
   if (path === "/reviews") {
     return `
       <h2>All reviews</h2>
-      <p>Browse every product we cover across bank accounts, investing apps, financial apps, and crypto platforms. Filter by category to narrow the list.</p>`;
+      <p>Browse every product we cover across bank accounts, investing apps, financial apps, and crypto platforms. Every listing on this page links to a full hands-on review with fees, rates, pros and cons, and an editorial grade.</p>
+      <h2>How to use this page</h2>
+      <p>Filter by category to narrow the list to the product type you care about, or scan the grades to find the top-rated options in each space. Reviews are updated on a rolling schedule — APYs and bonuses are re-verified weekly, fee schedules monthly, and the full review is refreshed at least twice a year or whenever a product meaningfully changes.</p>
+      <h2>What our reviews cover</h2>
+      <ul>
+        <li>Current APY, monthly fees, minimum balance requirements, and any account bonuses.</li>
+        <li>Hands-on notes from opening and funding the account, including transfer speeds and onboarding friction.</li>
+        <li>Editorial pros, cons, and the specific customer profile the product is best suited for.</li>
+        <li>Head-to-head comparisons with the closest alternatives in the same category.</li>
+      </ul>`;
   }
   if (path === "/guides") {
     return `
       <h2>Financial education you can actually use</h2>
-      <p>Our guides cover the topics most people get wrong: emergency funds, the 50/30/20 budget, Roth vs. Traditional IRAs, picking a high-yield savings account, portfolio construction, and improving credit. Every guide is written by our editorial team and reviewed for accuracy.</p>`;
+      <p>Our guides cover the topics most people get wrong: emergency funds, the 50/30/20 budget, Roth vs. Traditional IRAs, picking a high-yield savings account, portfolio construction, and improving credit. Every guide is written by our editorial team, reviewed for accuracy against primary sources (IRS publications, FDIC data, Federal Reserve surveys), and updated when the underlying rules or numbers change.</p>
+      <h2>Who writes these</h2>
+      <p>Guides are drafted by editors with a background in personal finance, then fact-checked against the current-year tax code, FDIC and SEC publications, and the rate environment at the time of publication. We do not repackage press releases or rewrite other publications' work. If we reference a study or a rate, we link to the primary source.</p>
+      <h2>Popular topics</h2>
+      <ul>
+        <li>Saving and emergency funds — how much to hold, where to park it, and when to draw down.</li>
+        <li>Investing basics — index funds, asset allocation, rebalancing, and tax-advantaged account order.</li>
+        <li>Retirement — Roth vs. Traditional, 401(k) rollovers, contribution limits, and withdrawal strategies.</li>
+        <li>Credit — how scores are calculated, disputing errors, and building credit from scratch.</li>
+      </ul>`;
   }
   if (path === "/calculators") {
     return `
       <h2>Free financial calculators</h2>
-      <p>Run the numbers on compound interest, retirement savings, mortgages, debt payoff, and emergency-fund targets. Every calculator is free, works in your browser, and never asks for personal information.</p>`;
+      <p>Run the numbers on compound interest, retirement savings, mortgages, debt payoff, and emergency-fund targets. Every calculator is free, works in your browser, and never asks for personal information — nothing you type is saved, transmitted, or shared with advertisers.</p>
+      <h2>What you can figure out here</h2>
+      <ul>
+        <li>How a lump sum plus monthly contributions grows over 10, 20, or 30 years at a given return.</li>
+        <li>Whether your current retirement savings rate is on track to replace the income you want in retirement.</li>
+        <li>The true monthly cost of a mortgage, including principal, interest, and amortization over the life of the loan.</li>
+        <li>How long it will take to pay off credit-card debt under the avalanche vs. snowball method.</li>
+        <li>The right emergency-fund target based on your monthly expenses and job stability.</li>
+      </ul>
+      <p>Each calculator shows the formulas and assumptions used. If you want to verify a result by hand, the inputs are all standard time-value-of-money math — no proprietary black boxes.</p>`;
   }
   if (path === "/about") {
     return `
       <h2>Who we are</h2>
-      <p>Investing and Retirement is an independent editorial publisher. We open real accounts at every institution we review, fund them, run transactions, and test customer service firsthand. Our scoring rubrics are public, our methodology is consistent across products, and we publish quarterly re-reviews so rankings reflect current reality.</p>`;
+      <p>Investing and Retirement is an independent editorial publisher owned by Investing and Retirement Media LLC. We open real accounts at every institution we review, fund them, run transactions, and test customer service firsthand. Our scoring rubrics are public, our methodology is consistent across products, and we publish quarterly re-reviews so rankings reflect current reality.</p>
+      <h2>How we make money</h2>
+      <p>We are compensated through affiliate relationships with some of the banks, brokerages, and app companies we cover. Partners cannot pay for better rankings, cannot preview or approve editorial content, and cannot remove negative findings. When a commission relationship exists, it is disclosed on the review itself and in our <a href="/disclosure">advertiser disclosure</a>. Our editorial independence is the product — without it, there is no reason for a reader to trust our ratings.</p>
+      <h2>Editorial process</h2>
+      <ul>
+        <li>Every product page is assigned to an editor who funds a real account and tests the experience end-to-end.</li>
+        <li>Scores are computed from a published, category-specific rubric — not a vibe check.</li>
+        <li>APYs, fees, and bonus offers are re-verified on a rolling schedule and stamped with the date of the most recent check.</li>
+        <li>Readers can flag inaccuracies at any time; we investigate within five business days and publish a correction when warranted.</li>
+      </ul>`;
+  }
+  if (path === "/privacy") {
+    return `
+      <h2>What this policy covers</h2>
+      <p>This page documents what Investing and Retirement Media LLC collects from visitors to this website, how we use it, and what rights you have to see, correct, or delete your data. It applies to everything on the investingandretirement.com domain — reviews, guides, calculators, the newsletter signup, and the contact form.</p>
+      <h2>The short version</h2>
+      <p>We collect the bare minimum: an email address if you subscribe to the newsletter, a name and message if you use the contact form, and the standard web-analytics metadata every modern site collects (IP, browser, pages viewed, referring URL). We do not sell any of it, we do not build advertising profiles, and we do not run retargeting pixels. Our business model is affiliate commissions on product referrals, not user data.</p>
+      <h2>Your rights</h2>
+      <ul>
+        <li>Unsubscribe from the newsletter at any time using the link in any email — no explanation needed.</li>
+        <li>Request a copy of everything we hold on you by emailing our privacy contact.</li>
+        <li>Request deletion of your data, subject to limited legal-retention exceptions.</li>
+        <li>California, EU, and UK residents have additional statutory rights under the CCPA and GDPR; see the full policy for details.</li>
+      </ul>
+      <p>The full policy on this page covers cookies, data retention, third-party processors, children's privacy, and changes to the policy. For questions, see our <a href="/contact">contact page</a>.</p>`;
+  }
+  if (path === "/contact") {
+    return `
+      <h2>How to reach the editorial team</h2>
+      <p>Have a question about a review, a correction to flag, a rate change to report, or a press inquiry? The fastest way to reach us is email. A human reads every message — this is not a support queue staffed by bots or overseas contractors. Response time is typically one to three business days for reader questions and same-day for time-sensitive corrections.</p>
+      <h2>What to include</h2>
+      <ul>
+        <li><strong>Review corrections</strong> — the product name, the specific fact you believe is wrong, and a link to the primary source if you have one. We update within 48 hours of verification.</li>
+        <li><strong>Rate or bonus updates</strong> — the product and the new APY, fee, or bonus amount, plus a link to the bank's or broker's official page.</li>
+        <li><strong>Reader questions</strong> — the question itself and any context that would help us answer it. We frequently turn common questions into guides.</li>
+        <li><strong>Press or partnership inquiries</strong> — the publication or brand you represent and the specific ask. Please do not pitch guest posts or link-insertion requests; we do not publish sponsored editorial.</li>
+      </ul>
+      <h2>What we do not handle here</h2>
+      <p>We are a publisher, not a bank or broker. If your issue is with an account at a specific institution, please contact that institution's customer service directly — we have no ability to access, modify, or close your accounts on any third-party platform.</p>`;
+  }
+  if (path === "/faq") {
+    return `
+      <h2>Answers to the questions we get most</h2>
+      <p>This page covers the questions readers ask most often about how we operate: how we make money, who writes the reviews, how often ratings are updated, and why a specific product did or did not make a list. If your question is not answered here, send it to our editorial team via the <a href="/contact">contact page</a> and we will answer directly, usually within one to three business days.</p>
+      <h2>Common categories of questions</h2>
+      <ul>
+        <li><strong>Editorial independence</strong> — how affiliate relationships work, what partners can and cannot influence, and why compensation does not move rankings. The short version: partners cannot preview content, cannot edit scores, and cannot pay for placement.</li>
+        <li><strong>Methodology</strong> — the specific rubrics we use for bank accounts, investing apps, and money apps. Each rubric assigns percentage weights to fees, platform quality, features, support, and trust.</li>
+        <li><strong>Review freshness</strong> — APYs and promotional bonuses are re-verified weekly, fee schedules monthly, and the full review is refreshed at least twice a year or whenever a product meaningfully changes its pricing or feature set.</li>
+        <li><strong>Coverage gaps</strong> — why certain banks, brokers, or apps are not yet reviewed, how products get added to the queue, and how reader requests factor in.</li>
+        <li><strong>Reader-submitted corrections</strong> — how to flag an error, what evidence we need to verify it, and how quickly corrections are published once confirmed.</li>
+        <li><strong>Affiliate tracking</strong> — what data is shared with partners when you click through (a referral ID and conversion event, nothing more) and what is not (your email, name, or browsing history).</li>
+      </ul>
+      <p>For more on the business behind the site, see our <a href="/about">about page</a>, our full <a href="/disclosure">advertiser disclosure</a>, and our <a href="/privacy">privacy policy</a>.</p>`;
+  }
+  if (path === "/disclosure") {
+    return `
+      <h2>How we are compensated</h2>
+      <p>Investing and Retirement Media LLC earns affiliate commissions when readers click links on this site and open accounts with some (not all) of the banks, brokerages, robo-advisors, and money apps we cover. When a commercial relationship exists, it is disclosed on the review page itself in addition to this blanket notice.</p>
+      <h2>What commissions do and do not influence</h2>
+      <p>Compensation does not influence which products we review, the rubric we use, the score we assign, or the editorial pros and cons. Partners cannot preview content, cannot request edits, cannot pay for better placement, and cannot have negative findings removed. The integrity of our rankings is the only thing that keeps readers clicking through — and without the clicks, the business does not exist.</p>
+      <h2>Where you will see disclosures</h2>
+      <ul>
+        <li>At the top of every review page that includes affiliate links to the reviewed product.</li>
+        <li>In the footer of every page on the site, linking back to this page.</li>
+        <li>On the <a href="/about">about page</a>, which explains our editorial process in detail.</li>
+        <li>In sponsored content, if we ever publish any — which, as of today, we do not.</li>
+      </ul>
+      <h2>Rate and fee accuracy</h2>
+      <p>APYs, fees, and new-customer bonuses change frequently. We re-verify every rate on a rolling schedule and stamp reviews with the date of the most recent check. If you believe a number on this site is out of date, please flag it through the <a href="/contact">contact page</a> and we will verify and correct within 48 hours.</p>`;
+  }
+  if (path === "/newsletter") {
+    return `
+      <h2>What you get</h2>
+      <p>The Investing and Retirement newsletter lands in your inbox once a week and covers the single most useful money decision you can make that week. That might be a new top-of-market APY, an account-opening bonus worth chasing, a tax deadline you need to hit, or a fresh review of a product worth considering. No daily blasts, no affiliate dumps, no padding.</p>
+      <h2>A typical issue</h2>
+      <ul>
+        <li>One top pick — the rate, bonus, or product change that matters most this week, with the short version of why it is worth your attention.</li>
+        <li>Rate roundup — the current leaders in high-yield savings, CDs, and money-market accounts, with the date each rate was verified.</li>
+        <li>One guide or calculator we published or meaningfully updated that week.</li>
+        <li>A reader question we answered, drawn from the contact inbox — useful because if one person asks, dozens are probably wondering.</li>
+        <li>A short calendar note when a tax, contribution, or enrollment deadline is coming up in the next 30 days.</li>
+      </ul>
+      <h2>Who writes it</h2>
+      <p>The newsletter is written by editor-in-chief Michael Hewitt and the Investing and Retirement editorial team. It is the same voice and the same standards you get from the reviews on the site — no ghostwriters, no ad-copy inserts dressed up as recommendations.</p>
+      <h2>Privacy and unsubscribe</h2>
+      <p>We only use your email address to send you the newsletter. We do not sell the list, rent it, or share it with advertisers. Every email has a one-click unsubscribe link at the bottom, and requests are honored immediately — no retention tricks. For the full policy, see <a href="/privacy">our privacy page</a>.</p>`;
+  }
+  if (path === "/authors/michael-hewitt") {
+    return `
+      <h2>About Michael</h2>
+      <p>Michael Hewitt is the founder and editor-in-chief of Investing and Retirement. He has spent more than a decade writing about consumer banking, brokerage platforms, retirement accounts, and personal-finance tools, and he sets the editorial direction and scoring methodology for every product category on the site. His background is in independent editorial publishing — the business model only works if readers trust the rankings, and that trust is the only lever worth pulling.</p>
+      <h2>Areas of expertise</h2>
+      <ul>
+        <li>High-yield savings accounts, CDs, and checking accounts — including fintech challengers like SoFi, Ally, and Marcus alongside traditional FDIC banks.</li>
+        <li>Online brokerages and robo-advisors, with a particular focus on long-term, tax-advantaged investing at Fidelity, Vanguard, Schwab, Betterment, and Wealthfront.</li>
+        <li>Retirement planning, IRA and 401(k) mechanics, Roth conversion strategy, and the withdrawal-stage sequencing that determines how long a portfolio lasts.</li>
+        <li>Budgeting, credit-building, and cash-advance apps aimed at everyday users — the category where bad products cause the most harm, and careful review matters most.</li>
+      </ul>
+      <h2>Editorial role</h2>
+      <p>Michael personally reviews every published rubric, signs off on ratings before they go live, and handles reader corrections submitted through the <a href="/contact">contact page</a>. He also writes the weekly <a href="/newsletter">newsletter</a>, hosts our quarterly methodology updates, and represents the site in press inquiries and industry coverage.</p>
+      <h2>How to get in touch</h2>
+      <p>Readers can email Michael directly through the <a href="/contact">contact page</a> with questions, corrections, or review requests. Press inquiries and partnership questions go through the same channel. He reads every message; responses typically go out within one to three business days.</p>`;
+  }
+  const calcMatch2 = path.match(/^\/calculators\/([^/]+)$/);
+  if (calcMatch2) {
+    const c = data.calculators.find((x) => x.slug === calcMatch2[1]);
+    if (c) {
+      const blurbs = {
+        "compound-interest": {
+          uses: [
+            "How a lump-sum deposit grows over a long time horizon at a given annual return.",
+            "The additional upside from consistent monthly contributions on top of the initial balance.",
+            "Why starting earlier beats contributing more — the time variable dominates the math.",
+            "Side-by-side comparison of savings-account APYs vs. market-return assumptions.",
+          ],
+          detail:
+            "The compound-interest calculator takes an initial deposit, a monthly contribution, an annual rate, and a number of years, then applies standard time-value-of-money math to show the ending balance. Returns compound monthly by default to match how most high-yield savings accounts pay interest. Adjust the rate to model different scenarios — a 4% high-yield savings rate, a 7% long-term stock-market average, or anything in between.",
+        },
+        retirement: {
+          uses: [
+            "Whether your current savings rate is on track to replace the income you want in retirement.",
+            "The impact of delaying retirement by a few years vs. saving more aggressively now.",
+            "How Social Security fits into the picture alongside 401(k) and IRA balances.",
+            "A rough check on whether the 4% safe-withdrawal rate covers your projected expenses.",
+          ],
+          detail:
+            "The retirement calculator takes your current age, target retirement age, current balance, annual contribution, expected return, and desired retirement income, then projects whether the plan is on track. It is a planning tool, not a financial-planning engagement — the output is a useful first look, not a substitute for a CFP who knows your full picture.",
+        },
+        mortgage: {
+          uses: [
+            "The monthly principal-and-interest payment on a fixed-rate mortgage.",
+            "Total interest paid over the full life of the loan at current rates.",
+            "The amortization schedule showing how each payment splits between principal and interest.",
+            "How a larger down payment or shorter term changes the total cost.",
+          ],
+          detail:
+            "The mortgage calculator takes loan amount, term in years, and annual interest rate, then produces a full amortization schedule. Property tax, homeowners insurance, PMI, and HOA dues are not included by default — add them separately when comparing the true monthly cost against your budget.",
+        },
+        "savings-goal": {
+          uses: [
+            "How much you need to save every month to hit a specific dollar goal by a target date.",
+            "The impact of earning interest on savings vs. stuffing cash in a checking account.",
+            "Whether a shorter timeline requires an unrealistic monthly contribution.",
+            "The tradeoff between saving more now vs. extending the deadline.",
+          ],
+          detail:
+            "The savings-goal calculator solves for the monthly contribution required to reach a target amount by a given date, given a starting balance and an expected interest rate. Useful for down-payment funds, weddings, travel, and any other mid-horizon goal where the end date matters.",
+        },
+        "debt-payoff": {
+          uses: [
+            "The payoff date for a set of credit-card balances at a given monthly payment.",
+            "The total interest saved by paying an extra $100 or $200 per month.",
+            "A head-to-head comparison of the avalanche (highest-rate first) and snowball (smallest-balance first) methods.",
+            "Whether a balance-transfer card would meaningfully change the payoff timeline.",
+          ],
+          detail:
+            "The debt-payoff calculator takes a list of balances, APRs, and minimum payments, plus any extra monthly amount you can contribute, and returns a full payoff schedule. It supports both the avalanche and snowball methods so you can compare total interest paid against how quickly the first balance clears — a tradeoff between math and motivation.",
+        },
+        "emergency-fund": {
+          uses: [
+            "The target size of your emergency fund based on essential monthly expenses.",
+            "Whether three, six, or nine months of expenses is the right target given your job stability.",
+            "How long your current emergency fund would last if your income stopped tomorrow.",
+            "A savings-contribution plan to hit the target within a reasonable timeframe.",
+          ],
+          detail:
+            "The emergency-fund calculator takes your essential monthly expenses (housing, utilities, groceries, insurance, minimum debt payments) and a risk-profile multiplier (three months for dual-income households with stable jobs, up to nine for single-income freelancers) and returns a target balance plus a monthly savings plan to get there.",
+        },
+      };
+      const b = blurbs[c.slug];
+      const intro = `<p>${esc(c.description)}</p>`;
+      if (!b) {
+        return `${intro}
+          <h2>How it works</h2>
+          <p>This calculator is a free, browser-based tool. Nothing you type is saved, transmitted, or shared. See the full list of financial tools on the <a href="/calculators">calculators page</a>.</p>`;
+      }
+      const uses = b.uses.map((x) => `<li>${esc(x)}</li>`).join("");
+      return `${intro}
+        <h2>What you can figure out</h2>
+        <ul>${uses}</ul>
+        <h2>How it works</h2>
+        <p>${esc(b.detail)}</p>
+        <h2>Privacy</h2>
+        <p>This calculator runs entirely in your browser. Nothing you type is saved, transmitted, or shared with us or any third party. See <a href="/privacy">our privacy policy</a> for the full details, or browse more tools on the <a href="/calculators">calculators page</a>.</p>`;
+    }
   }
   return "";
 }
