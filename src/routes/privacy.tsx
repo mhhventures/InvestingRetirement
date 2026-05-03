@@ -17,7 +17,7 @@ function Privacy() {
             Privacy Policy
           </h1>
           <p className="text-[13px] sm:text-[15px] text-gray-700 leading-relaxed max-w-2xl">
-            What information Investing and Retirement Media LLC collects, how we use it, who we share it with, and the choices you have.
+            Here's the plain-English version of what Investing and Retirement Media LLC actually does with data from people who visit this site. If something below is unclear, email us and we'll fix the wording.
           </p>
           <div className="mt-5 text-[11px] uppercase tracking-widest text-gray-500">
             Last Updated: January 2026
@@ -33,7 +33,7 @@ function Privacy() {
             The Short Version
           </div>
           <p className="text-[13px] sm:text-[15px] text-black leading-relaxed">
-            We collect the minimum information needed to run our site, understand what readers find useful, and send newsletters to people who subscribe. We <span className="font-semibold">do not sell your personal data</span>. You can unsubscribe, request deletion, or ask what we hold on you at any time.
+            We grab the bare minimum: an email if you subscribe, and the usual web analytics everyone else collects. We <span className="font-semibold">don't sell any of it</span>. Want off the list, or want us to forget you entirely? One email to us and it's done, usually same-day.
           </p>
         </div>
 
@@ -42,10 +42,10 @@ function Privacy() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-black mb-3">1. Introduction</h2>
             <p>
-              This Privacy Policy describes how <span className="font-semibold">Investing and Retirement Media LLC</span> (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses, and shares information when you visit our website, read our content, subscribe to our newsletter, or interact with our affiliate links.
+              This page covers what <span className="font-semibold">Investing and Retirement Media LLC</span> (us) does with data whenever someone reads a review, opens the newsletter, or clicks through to a bank or broker partner.
             </p>
             <p className="mt-3">
-              By using this site, you agree to the practices described below. If you do not agree, please do not use the site.
+              Sticking around on the site counts as agreeing to this. If any of it rubs you the wrong way, please don't use the site — and feel free to tell us why so we can improve.
             </p>
           </section>
 
@@ -92,7 +92,7 @@ function Privacy() {
               <li>Comply with legal obligations and enforce our terms</li>
             </ul>
             <p className="mt-4">
-              We do <span className="font-semibold">not</span> use your information to build advertising profiles, run retargeting campaigns across the web, or sell your data to third parties.
+              Here's what we <span className="font-semibold">don't</span> do with it: we don't build ad profiles on you, we don't chase you around the web with retargeting pixels, and we don't hand or sell your data to data brokers. Our business model is affiliate commissions, not eyeballs.
             </p>
           </section>
 
@@ -128,7 +128,7 @@ function Privacy() {
               <li><span className="font-semibold">Affiliate tracking cookies</span> — allow partner companies to attribute signups to our site</li>
             </ul>
             <p className="mt-4">
-              You can control cookies through your browser settings. Blocking cookies may prevent some features of the site from working correctly. You can also opt out of many analytics cookies through tools such as the Google Analytics opt-out browser add-on.
+              Your browser's cookie settings are the easy kill switch — Chrome, Safari, and Firefox all let you block or clear cookies per-site. The trade-off is that a few things (like saved preferences) will reset each visit. If you only want to mute analytics specifically, Google publishes a browser add-on for that.
             </p>
           </section>
 
@@ -145,7 +145,7 @@ function Privacy() {
               <li><span className="font-semibold">Restrict or object</span> to certain processing activities</li>
             </ul>
             <p className="mt-4">
-              To exercise any of these rights, email us at <span className="font-mono text-[12px]">Partners@mhhventures.com</span> with the subject line &ldquo;Privacy Request.&rdquo; We will respond within 30 days.
+              Easiest path: email <span className="font-mono text-[12px]">Partners@mhhventures.com</span> with "Privacy Request" in the subject line. A human reads every one of these, usually within a few business days, and 30 days at the outside.
             </p>
           </section>
 
@@ -164,7 +164,7 @@ function Privacy() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-black mb-3">8. Data Retention</h2>
             <p>
-              We keep personal information only as long as needed for the purposes described in this policy. Newsletter emails are retained until you unsubscribe. Analytics data is typically retained for up to 26 months. Contact form submissions are kept for up to 2 years unless we need them longer to address an ongoing matter.
+              Rough rule of thumb: newsletter emails sit on the list until you unsubscribe, analytics rolls off after about 26 months, and contact-form messages stick around for up to two years (longer only if there's still an open thread). Nothing is kept forever just because we can.
             </p>
           </section>
 
@@ -172,7 +172,7 @@ function Privacy() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-black mb-3">9. Security</h2>
             <p>
-              We use reasonable administrative, technical, and physical safeguards to protect the information we hold. However, no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
+              Behind the scenes: everything runs over HTTPS, access to our email platform and analytics is limited to a handful of people (with two-factor turned on), and we review vendors periodically. That said, nobody who's honest will promise 100% security on the internet — so we won't either.
             </p>
           </section>
 

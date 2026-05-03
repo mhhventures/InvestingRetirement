@@ -51,6 +51,9 @@ function DeferredAnalytics() {
   )
 }
 
+// Remove prerendered SEO fallback (duplicate h1 / nav) once JS takes over.
+document.getElementById('seo-fallback')?.remove()
+
 // Render the app
 const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
