@@ -880,71 +880,116 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
         <div></div>
       </div>
       <div className="divide-y divide-[#e4d9cf]">
-        {rows.map((p, idx) => (
-          <div
-            key={p.id}
-            className="grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_96px_110px_120px_120px] gap-2 md:gap-3 px-4 py-3 items-center hover:bg-[#fef6f1] transition-colors"
-          >
-            <div className="flex items-center gap-3 min-w-0">
-              {p.rank_weight <= 3 && (
-                <span className="hidden md:inline-block text-[9px] font-bold uppercase tracking-wider text-[#7a4a1f] bg-[#fef1e6] px-1.5 py-0.5 rounded-sm whitespace-nowrap">
-                  Top Pick
-                </span>
-              )}
-              <InstitutionLogo p={p} size={40} />
-              <div className="min-w-0">
-                <div className="font-serif font-bold text-black text-sm leading-tight truncate">
-                  {p.institution_name}
-                </div>
-                <div className="mt-0.5 flex items-center gap-1.5 text-[10px] text-[#5a5a5a]">
-                  <StarRating rating={4.2 + ((idx * 7) % 7) / 10} size="sm" />
-                  <span>·</span>
-                  <span>
-                    APY updated{" "}
-                    {new Date(p.last_verified_at).toLocaleDateString(undefined, {
-                      month: "2-digit",
-                      day: "2-digit",
-                      year: "numeric",
-                    })}
+        {rows.map((p, idx) => {
+          const formattedMin =
+            p.min_deposit >= 1000
+              ? `$${(p.min_deposit / 1000).toFixed(0)}K`
+              : `$${p.min_deposit.toLocaleString()}`;
+          const feeText =
+            p.monthly_fee > 0 ? `$${p.monthly_fee.toFixed(0)}/mo fee` : "No fee";
+          const typeLabel = PRODUCT_TYPE_LABEL[p.product_type] || p.product_type;
+          const rating = 4.2 + ((idx * 7) % 7) / 10;
+          const updated = new Date(p.last_verified_at).toLocaleDateString(
+            undefined,
+            { month: "2-digit", day: "2-digit", year: "numeric" },
+          );
+          return (
+            <div
+              key={p.id}
+              className="px-4 py-3 hover:bg-[#fef6f1] transition-colors md:grid md:grid-cols-[minmax(0,1.6fr)_96px_110px_120px_120px] md:gap-3 md:items-center"
+            >
+              {/* Mobile header: logo + name + rating + top-pick badge */}
+              <div className="flex items-start gap-3 min-w-0">
+                {p.rank_weight <= 3 && (
+                  <span className="hidden md:inline-block text-[9px] font-bold uppercase tracking-wider text-[#7a4a1f] bg-[#fef1e6] px-1.5 py-0.5 rounded-sm whitespace-nowrap">
+                    Top Pick
                   </span>
+                )}
+                <InstitutionLogo p={p} size={44} />
+                <div className="min-w-0 flex-1">
+                  {p.rank_weight <= 3 && (
+                    <span className="md:hidden inline-block mb-1 text-[9px] font-bold uppercase tracking-wider text-[#7a4a1f] bg-[#fef1e6] px-1.5 py-0.5 rounded-sm">
+                      Top Pick
+                    </span>
+                  )}
+                  <div className="font-serif font-bold text-black text-sm leading-tight">
+                    {p.institution_name}
+                  </div>
+                  <div className="mt-0.5 flex items-center flex-wrap gap-x-1.5 gap-y-0.5 text-[10px] text-[#5a5a5a]">
+                    <StarRating rating={rating} size="sm" />
+                    <span className="hidden sm:inline">·</span>
+                    <span>Updated {updated}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="md:text-center font-serif font-bold text-[#0e4d45] text-lg">
-              {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
-            </div>
-            <div className="md:text-center text-[11px] font-semibold text-black uppercase tracking-wider">
-              {PRODUCT_TYPE_LABEL[p.product_type] || p.product_type}
-            </div>
-            <div className="md:text-center">
-              <div className="font-serif font-bold text-black text-sm">
-                {p.min_deposit >= 1000
-                  ? `$${(p.min_deposit / 1000).toFixed(0)}K`
-                  : `$${p.min_deposit.toLocaleString()}`}
+
+              {/* Mobile: labeled stat grid. Desktop: individual aligned cells. */}
+              <div className="md:hidden mt-3 grid grid-cols-3 gap-2 border-t border-[#e4d9cf] pt-3">
+                <div>
+                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                    APY
+                  </div>
+                  <div className="font-serif font-bold text-[#0e4d45] text-base leading-tight">
+                    {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                    Type
+                  </div>
+                  <div className="font-semibold text-black text-[11px] leading-tight mt-0.5 uppercase tracking-wider">
+                    {typeLabel}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                    Min. Deposit
+                  </div>
+                  <div className="font-serif font-bold text-black text-base leading-tight">
+                    {formattedMin}
+                  </div>
+                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                    {feeText}
+                  </div>
+                </div>
               </div>
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
-                {p.monthly_fee > 0 ? `$${p.monthly_fee.toFixed(0)}/mo fee` : "No fee"}
+
+              {/* Desktop-only aligned cells */}
+              <div className="hidden md:block text-center font-serif font-bold text-[#0e4d45] text-lg">
+                {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
+              </div>
+              <div className="hidden md:block text-center text-[11px] font-semibold text-black uppercase tracking-wider">
+                {typeLabel}
+              </div>
+              <div className="hidden md:block text-center">
+                <div className="font-serif font-bold text-black text-sm">
+                  {formattedMin}
+                </div>
+                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                  {feeText}
+                </div>
+              </div>
+
+              <div className="mt-3 md:mt-0">
+                {p.website_url ? (
+                  <a
+                    href={p.website_url}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer sponsored"
+                    onClick={() => logClick(p.institution_name)}
+                    className="block text-center px-3 py-2.5 md:py-2 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
+                  >
+                    Open Now
+                  </a>
+                ) : (
+                  <span className="block text-center px-3 py-2.5 md:py-2 rounded-sm bg-[#f7ebe2] text-[#5a5a5a] text-[11px] font-semibold uppercase tracking-wider">
+                    Unavailable
+                  </span>
+                )}
               </div>
             </div>
-            <div>
-              {p.website_url ? (
-                <a
-                  href={p.website_url}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer sponsored"
-                  onClick={() => logClick(p.institution_name)}
-                  className="block text-center px-3 py-2 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
-                >
-                  Open Now
-                </a>
-              ) : (
-                <span className="block text-center px-3 py-2 rounded-sm bg-[#f7ebe2] text-[#5a5a5a] text-[11px] font-semibold uppercase tracking-wider">
-                  Unavailable
-                </span>
-              )}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
