@@ -9,6 +9,15 @@ export type Calculator = {
 
 export const calculators: Calculator[] = [
   {
+    slug: "bank-deposit-matcher",
+    title: "Bank Deposit Matcher",
+    description:
+      "Answer a few quick questions and see high-yield savings and checking offers matched to your deposit size and location — no redirect, results render inline.",
+    category: "Saving",
+    icon: "🏦",
+    available: true,
+  },
+  {
     slug: "compound-interest",
     title: "Compound Interest Calculator",
     description:
