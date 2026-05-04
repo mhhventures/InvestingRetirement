@@ -16,6 +16,49 @@ const supabase = createClient(
   { auth: { persistSession: false } },
 );
 
+type ResolvedOffer = {
+  partner_id: string | null;
+  partner_status: string | null;
+  partner_default_url: string | null;
+  offer_id: string | null;
+  offer_destination_url: string | null;
+  offer_campaign: string | null;
+  offer_content: string | null;
+  offer_term: string | null;
+  offer_active: boolean;
+};
+
+// Per-isolate in-memory cache. Supabase edge functions reuse isolates for
+// warm requests, so this avoids the DB round-trip on the hot path. TTL is
+// short enough that partner/offer status changes propagate quickly.
+const RESOLVE_TTL_MS = 60_000;
+const resolveCache = new Map<string, { value: ResolvedOffer | null; expires: number }>();
+
+async function resolvePartnerOffer(
+  partnerSlug: string,
+  offerSlug: string,
+): Promise<ResolvedOffer | null> {
+  const key = `${partnerSlug}::${offerSlug}`;
+  const cached = resolveCache.get(key);
+  const now = Date.now();
+  if (cached && cached.expires > now) return cached.value;
+
+  const { data, error } = await supabase.rpc("resolve_partner_offer", {
+    p_partner_slug: partnerSlug,
+    p_offer_slug: offerSlug,
+  });
+
+  if (error) {
+    console.error("[redirect] resolve rpc error", error);
+    return null;
+  }
+
+  const row = (Array.isArray(data) ? data[0] : data) as ResolvedOffer | undefined;
+  const value = row ?? null;
+  resolveCache.set(key, { value, expires: now + RESOLVE_TTL_MS });
+  return value;
+}
+
 function parsePartnerFromHost(host: string): string | null {
   const h = host.toLowerCase().split(":")[0];
   if (!h.endsWith(ROOT_DOMAIN)) return null;
@@ -45,6 +88,17 @@ async function sha256(input: string): Promise<string> {
     .join("");
 }
 
+function redirectWith(location: string): Response {
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: location,
+      "X-Robots-Tag": "noindex, nofollow",
+      "Cache-Control": "private, no-store",
+    },
+  });
+}
+
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 200, headers: corsHeaders });
@@ -59,10 +113,6 @@ Deno.serve(async (req: Request) => {
       .replace(/^\/+|\/+$/g, "");
     const segments = rawPath.split("/").filter(Boolean);
 
-    // Every path on a partner subdomain is a tracked redirect with no
-    // canonical content. Serve a strict robots.txt + noindex header so
-    // crawlers (Ahrefs, Googlebot) stop reporting these URLs as broken
-    // links when the merchant destination bot-blocks them.
     const lastPathSegment = segments[segments.length - 1] || "";
     const robotsRequested =
       lastPathSegment === "robots.txt" || url.pathname.endsWith("/robots.txt");
@@ -77,9 +127,6 @@ Deno.serve(async (req: Request) => {
       });
     }
 
-    // Vercel rewrites from partner subdomains using the `/_p/<partner>/<path*>`
-    // prefix so the partner slug survives the external rewrite (Host header is
-    // lost on external rewrites). Direct hits still fall back to the Host.
     let partnerSlug: string | null = null;
     let offerSlug = "";
     if (segments[0] === "_p" && segments[1]) {
@@ -91,56 +138,28 @@ Deno.serve(async (req: Request) => {
       offerSlug = segments[0] || "";
     }
 
-    const redirectWith = (location: string) =>
-      new Response(null, {
-        status: 302,
-        headers: {
-          Location: location,
-          "X-Robots-Tag": "noindex, nofollow",
-          "Cache-Control": "private, no-store",
-        },
-      });
-
     if (!partnerSlug) {
       return redirectWith(SITE_URL);
     }
 
-    const { data: partner } = await supabase
-      .from("partners")
-      .select("id, slug, default_destination_url, status")
-      .eq("slug", partnerSlug)
-      .maybeSingle();
+    const resolved = await resolvePartnerOffer(partnerSlug, offerSlug);
 
-    if (!partner || partner.status !== "active") {
+    if (!resolved || !resolved.partner_id || resolved.partner_status !== "active") {
       return redirectWith(SITE_URL);
     }
 
-    let destination = partner.default_destination_url || SITE_URL;
+    let destination = resolved.partner_default_url || SITE_URL;
     let offerId: string | null = null;
     let offerCampaign = "";
     let offerContent = "";
     let offerTerm = "";
 
-    if (offerSlug) {
-      const { data: offer } = await supabase
-        .from("offers")
-        .select("id, destination_url, campaign, content, term, active, starts_at, ends_at")
-        .eq("partner_id", partner.id)
-        .eq("slug", offerSlug)
-        .maybeSingle();
-
-      if (offer && offer.active) {
-        const now = Date.now();
-        const startsOk = !offer.starts_at || new Date(offer.starts_at).getTime() <= now;
-        const endsOk = !offer.ends_at || new Date(offer.ends_at).getTime() > now;
-        if (startsOk && endsOk) {
-          destination = offer.destination_url;
-          offerId = offer.id;
-          offerCampaign = offer.campaign || "";
-          offerContent = offer.content || "";
-          offerTerm = offer.term || "";
-        }
-      }
+    if (resolved.offer_active && resolved.offer_destination_url) {
+      destination = resolved.offer_destination_url;
+      offerId = resolved.offer_id;
+      offerCampaign = resolved.offer_campaign || "";
+      offerContent = resolved.offer_content || "";
+      offerTerm = resolved.offer_term || "";
     }
 
     const placement = url.searchParams.get("p") || offerContent;
@@ -156,48 +175,53 @@ Deno.serve(async (req: Request) => {
       utm_term: term,
     });
 
+    const response = redirectWith(finalUrl);
+
+    // Background-log the click so the 302 is returned immediately. The
+    // IP hash is computed inside the background task because SHA-256 adds
+    // ~1ms that shouldn't block the redirect.
     const referrer = req.headers.get("referer") ?? "";
     const userAgent = req.headers.get("user-agent") ?? "";
     const ip =
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
       req.headers.get("cf-connecting-ip") ??
       "";
-    const country = req.headers.get("x-vercel-ip-country") ?? req.headers.get("cf-ipcountry") ?? "";
-    const ipHash = ip ? await sha256(ip) : "";
+    const country =
+      req.headers.get("x-vercel-ip-country") ?? req.headers.get("cf-ipcountry") ?? "";
 
-    const logPromise = supabase.from("offer_clicks").insert({
-      partner_slug: partnerSlug,
-      offer_slug: offerSlug,
-      offer_id: offerId,
-      destination_url: finalUrl,
-      referrer,
-      user_agent: userAgent,
-      ip_hash: ipHash,
-      country,
-      placement,
-      term,
-      utm_source: "investingandretirement",
-      utm_medium: "affiliate",
-      utm_campaign: utmCampaign,
-      utm_content: utmContent,
-    });
+    const logTask = (async () => {
+      try {
+        const ipHash = ip ? await sha256(ip) : "";
+        await supabase.from("offer_clicks").insert({
+          partner_slug: partnerSlug,
+          offer_slug: offerSlug,
+          offer_id: offerId,
+          destination_url: finalUrl,
+          referrer,
+          user_agent: userAgent,
+          ip_hash: ipHash,
+          country,
+          placement,
+          term,
+          utm_source: "investingandretirement",
+          utm_medium: "affiliate",
+          utm_campaign: utmCampaign,
+          utm_content: utmContent,
+        });
+      } catch (e) {
+        console.error("[redirect] click log error", e);
+      }
+    })();
 
     try {
-      (globalThis as any).EdgeRuntime?.waitUntil?.(logPromise);
+      (globalThis as any).EdgeRuntime?.waitUntil?.(logTask);
     } catch {
-      // background task API unavailable; fall through
+      // background task API unavailable; the promise still runs
     }
 
-    return redirectWith(finalUrl);
+    return response;
   } catch (err) {
     console.error("[redirect] error", err);
-    return new Response(null, {
-      status: 302,
-      headers: {
-        Location: SITE_URL,
-        "X-Robots-Tag": "noindex, nofollow",
-        "Cache-Control": "private, no-store",
-      },
-    });
+    return redirectWith(SITE_URL);
   }
 });
