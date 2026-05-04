@@ -59,6 +59,24 @@ Deno.serve(async (req: Request) => {
       .replace(/^\/+|\/+$/g, "");
     const segments = rawPath.split("/").filter(Boolean);
 
+    // Every path on a partner subdomain is a tracked redirect with no
+    // canonical content. Serve a strict robots.txt + noindex header so
+    // crawlers (Ahrefs, Googlebot) stop reporting these URLs as broken
+    // links when the merchant destination bot-blocks them.
+    const lastPathSegment = segments[segments.length - 1] || "";
+    const robotsRequested =
+      lastPathSegment === "robots.txt" || url.pathname.endsWith("/robots.txt");
+    if (robotsRequested) {
+      return new Response("User-agent: *\nDisallow: /\n", {
+        status: 200,
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Cache-Control": "public, max-age=86400",
+          "X-Robots-Tag": "noindex, nofollow",
+        },
+      });
+    }
+
     // Vercel rewrites from partner subdomains using the `/_p/<partner>/<path*>`
     // prefix so the partner slug survives the external rewrite (Host header is
     // lost on external rewrites). Direct hits still fall back to the Host.
