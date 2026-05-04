@@ -1195,20 +1195,17 @@ function updateSitemapLastmod(data) {
     "",
   );
 
-  // Build fresh state + city URL blocks.
+  // Build fresh state URL blocks. City URLs are intentionally excluded from
+  // the sitemap: the prior deployment canonicalised cities up to their state
+  // page, which triggered Ahrefs "non-canonical page in sitemap" warnings.
+  // City HTML still ships (with self-referential canonicals) so direct hits
+  // and internal links resolve, but they are not advertised for indexing.
   const blocks = [];
   for (const s of data.US_STATES.filter((x) => x.available)) {
     const lastmod = stateLastmod[`/banks/${s.slug}`] || today;
     blocks.push(
       `  <url><loc>${SITE_URL}/banks/${s.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`,
     );
-    const cities = data.STATE_CITIES[s.code] || [];
-    for (const c of cities) {
-      const cs = data.citySlug(c);
-      blocks.push(
-        `  <url><loc>${SITE_URL}/banks/${s.slug}/${cs}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>`,
-      );
-    }
   }
 
   // Insert the new blocks right after the /banks index URL.
@@ -1312,6 +1309,17 @@ async function main() {
   updateSitemapLastmod(data);
   emitSplitSitemaps();
   const urls = readSitemapUrls();
+
+  // Also prerender city pages (not advertised in the sitemap, but reachable
+  // via internal state-page links and direct visits). These emit HTML with
+  // self-referential canonicals so the city URL is never served with a
+  // canonical pointing up to the parent state URL.
+  for (const s of data.US_STATES.filter((x) => x.available)) {
+    const cities = data.STATE_CITIES[s.code] || [];
+    for (const c of cities) {
+      urls.push(`${SITE_URL}/banks/${s.slug}/${data.citySlug(c)}`);
+    }
+  }
 
   let written = 0;
   let skipped = 0;
