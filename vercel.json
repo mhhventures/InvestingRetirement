@@ -16,10 +16,6 @@
       "destination": "/partner-robots.txt"
     },
     {
-      "source": "/go/:partner/:offer*",
-      "destination": "https://eibmgedhnbssuzgtwlqh.supabase.co/functions/v1/redirect/_p/:partner/:offer*"
-    },
-    {
       "source": "/:path*",
       "has": [
         {
