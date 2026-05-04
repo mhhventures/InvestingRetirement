@@ -87,12 +87,19 @@ const PRODUCT_TO_PARTNER: Record<string, [string, string]> = {
   "stock-analysis-pro": ["stockanalysis", "stock-analysis-pro-research"],
 };
 
+// Partner subdomains whose Vercel external rewrite is reliably returning
+// FUNCTION_INVOCATION_FAILED (likely WAF collision on the brand name).
+// Route these through the main-domain `/go/` fallback rewrite instead.
+const SUBDOMAIN_REWRITE_BLOCKLIST = new Set(["schwab", "coinbase"]);
+
 export function partnerLink(
   partnerSlug: string,
   offerSlug: string,
   opts: { placement?: string; term?: string } = {},
 ): string {
-  const base = `https://${partnerSlug}.${ROOT_DOMAIN}/${offerSlug}`;
+  const base = SUBDOMAIN_REWRITE_BLOCKLIST.has(partnerSlug)
+    ? `https://www.${ROOT_DOMAIN}/go/${partnerSlug}/${offerSlug}`
+    : `https://${partnerSlug}.${ROOT_DOMAIN}/${offerSlug}`;
   const params = new URLSearchParams();
   if (opts.placement) params.set("p", opts.placement);
   if (opts.term) params.set("t", opts.term);
