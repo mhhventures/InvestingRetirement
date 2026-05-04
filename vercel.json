@@ -6,6 +6,16 @@
   ],
   "rewrites": [
     {
+      "source": "/robots.txt",
+      "has": [
+        {
+          "type": "host",
+          "value": "^(?!www\\.)(?<partner>[a-z0-9-]+)\\.investingandretirement\\.com$"
+        }
+      ],
+      "destination": "/partner-robots.txt"
+    },
+    {
       "source": "/:path*",
       "has": [
         {
