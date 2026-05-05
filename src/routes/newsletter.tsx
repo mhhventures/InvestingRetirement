@@ -75,14 +75,14 @@ const PROMISES: { head: string; body: React.ReactNode }[] = [
 
 function NewsletterPage() {
   useSeo({
-    title: "The I&R Newsletter — Investing & Retirement Research Desk",
+    title: "The I&R Market Brief — Where Reddit's Best Finance Conversations Meet Curated Insights",
     description:
       "A free Thursday newsletter from the Investing & Retirement Research Desk. Reddit community questions answered, weekly market data, tool comparisons, and headlines for savers, traders, and retirement-account holders.",
     path: "/newsletter",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: "The I&R Newsletter",
+      name: "The I&R Market Brief",
       url: `${SITE_URL}/newsletter`,
     },
   });
@@ -92,7 +92,7 @@ function NewsletterPage() {
       <div className="max-w-3xl mx-auto px-4 py-10 sm:py-14">
         <div className="mb-8">
           <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-[#0e4d45] uppercase mb-3">
-            The I&amp;R Newsletter &middot; Every Thursday
+            The I&amp;R Market Brief &middot; Every Thursday
           </p>
           <h1 className="font-serif text-3xl sm:text-5xl leading-[1.1] text-black mb-4">
             Where the best finance conversations on Reddit meet the work of a research desk.
@@ -218,7 +218,7 @@ function NewsletterPage() {
             A newsletter, three communities, one research desk.
           </h2>
           <p className="text-[14px] sm:text-[15px] leading-relaxed mb-4 text-[#fef6f1]/90">
-            The I&amp;R Newsletter is the Thursday voice of a larger
+            The I&amp;R Market Brief is the Thursday voice of a larger
             ecosystem: our investing site and three active subreddit
             communities where the questions, debates, and real experiences
             happen. Every issue pulls from those communities and sends
