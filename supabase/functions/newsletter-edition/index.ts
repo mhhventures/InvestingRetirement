@@ -136,6 +136,17 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
+    const adminToken = Deno.env.get("NEWSLETTER_ADMIN_TOKEN");
+    if (adminToken) {
+      const provided = req.headers.get("x-admin-token");
+      if (provided !== adminToken) {
+        return new Response(JSON.stringify({ error: "Unauthorized" }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,

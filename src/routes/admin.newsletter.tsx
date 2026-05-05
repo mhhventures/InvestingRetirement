@@ -1,15 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
+import { Calendar, Copy, Lock, Sparkles, Check, Plus, X } from "lucide-react";
 
 export const Route = createFileRoute("/admin/newsletter")({
   component: NewsletterBuilder,
 });
+
+const TOKEN_KEY = "newsletter_admin_token";
 
 function mondayOf(d = new Date()) {
   const day = d.getUTCDay();
@@ -20,6 +24,54 @@ function mondayOf(d = new Date()) {
 }
 
 function NewsletterBuilder() {
+  const [token, setToken] = useState<string | null>(null);
+  const [tokenInput, setTokenInput] = useState("");
+
+  useEffect(() => {
+    const saved = localStorage.getItem(TOKEN_KEY);
+    if (saved) setToken(saved);
+  }, []);
+
+  if (!token) {
+    return (
+      <div className="flex min-h-[70vh] items-center justify-center px-4">
+        <div className="w-full max-w-sm rounded-lg border border-border bg-card p-8 shadow-sm">
+          <div className="mb-5 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
+              <Lock className="h-5 w-5" />
+            </div>
+            <div>
+              <h1 className="font-serif text-lg font-semibold">Admin access</h1>
+              <p className="text-xs text-muted-foreground">Enter the newsletter admin token to continue.</p>
+            </div>
+          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!tokenInput.trim()) return;
+              localStorage.setItem(TOKEN_KEY, tokenInput.trim());
+              setToken(tokenInput.trim());
+            }}
+            className="space-y-3"
+          >
+            <Input
+              type="password"
+              autoFocus
+              value={tokenInput}
+              onChange={(e) => setTokenInput(e.target.value)}
+              placeholder="Admin token"
+            />
+            <Button type="submit" className="w-full">Unlock</Button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  return <Builder token={token} onSignOut={() => { localStorage.removeItem(TOKEN_KEY); setToken(null); }} />;
+}
+
+function Builder({ token, onSignOut }: { token: string; onSignOut: () => void }) {
   const subcategories = useMemo(
     () => Array.from(new Set(products.map((p) => p.subcategory))).sort(),
     [],
@@ -31,6 +83,7 @@ function NewsletterBuilder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [html, setHtml] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const categoryProducts = useMemo(
     () => products.filter((p) => p.subcategory === category),
@@ -41,6 +94,18 @@ function NewsletterBuilder() {
     setSelected((prev) =>
       prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug],
     );
+  };
+
+  const move = (slug: string, dir: -1 | 1) => {
+    setSelected((prev) => {
+      const i = prev.indexOf(slug);
+      if (i < 0) return prev;
+      const j = i + dir;
+      if (j < 0 || j >= prev.length) return prev;
+      const next = [...prev];
+      [next[i], next[j]] = [next[j], next[i]];
+      return next;
+    });
   };
 
   const build = async () => {
@@ -60,6 +125,7 @@ function NewsletterBuilder() {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+            "x-admin-token": token,
           },
           body: JSON.stringify({
             category,
@@ -71,6 +137,11 @@ function NewsletterBuilder() {
         },
       );
       const data = await res.json();
+      if (res.status === 401) {
+        toast.error("Invalid admin token.");
+        onSignOut();
+        return;
+      }
       if (!res.ok) throw new Error(data.error ?? "Request failed");
       setHtml(data.rendered_html);
       toast.success("Edition built and archived.");
@@ -83,122 +154,186 @@ function NewsletterBuilder() {
 
   const copy = async () => {
     await navigator.clipboard.writeText(html);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
     toast.success("HTML copied. Paste into Beehiiv's Custom HTML block.");
   };
 
+  const selectedProducts = selected
+    .map((s) => products.find((p) => p.slug === s))
+    .filter((p): p is NonNullable<typeof p> => !!p);
+
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10">
-      <h1 className="mb-1 font-serif text-3xl font-bold">Newsletter Edition Builder</h1>
-      <p className="mb-8 text-sm text-muted-foreground">
-        Pick products, generate email-safe HTML, and paste into Beehiiv. Each edition is archived in Supabase.
-      </p>
+    <div className="min-h-screen bg-muted/30">
+      <header className="border-b border-border bg-background">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-muted-foreground" />
+              <span className="text-xs uppercase tracking-wider text-muted-foreground">Admin</span>
+            </div>
+            <h1 className="font-serif text-2xl font-semibold">Newsletter Edition Builder</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <Badge variant="secondary" className="gap-1">
+              <Lock className="h-3 w-3" />
+              Protected
+            </Badge>
+            <Button variant="ghost" size="sm" onClick={onSignOut}>Sign out</Button>
+          </div>
+        </div>
+      </header>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div>
-          <Label>Category</Label>
-          <select
-            value={category}
-            onChange={(e) => {
-              setCategory(e.target.value);
-              setSelected([]);
-            }}
-            className="mt-1 h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
-          >
-            {subcategories.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <Label>Week start (Monday)</Label>
-          <Input
-            type="date"
-            value={weekStart}
-            onChange={(e) => setWeekStart(e.target.value)}
-            className="mt-1"
-          />
-        </div>
-        <div className="flex items-end">
-          <Button onClick={build} disabled={loading} className="w-full">
-            {loading ? "Building..." : "Build edition"}
-          </Button>
-        </div>
-      </div>
-
-      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div>
-          <Label>Headline (optional)</Label>
-          <Input
-            value={headline}
-            onChange={(e) => setHeadline(e.target.value)}
-            placeholder={`This week's top ${category.toLowerCase()} picks`}
-            className="mt-1"
-          />
-        </div>
-        <div>
-          <Label>Intro (optional)</Label>
-          <Textarea
-            value={intro}
-            onChange={(e) => setIntro(e.target.value)}
-            placeholder="Short editor's note..."
-            className="mt-1"
-            rows={2}
-          />
-        </div>
-      </div>
-
-      <h2 className="mt-8 mb-2 font-serif text-lg font-semibold">
-        Select products ({selected.length} selected)
-      </h2>
-      <div className="space-y-2">
-        {categoryProducts.map((p) => {
-          const on = selected.includes(p.slug);
-          return (
-            <button
-              key={p.slug}
-              onClick={() => toggle(p.slug)}
-              className={`flex w-full items-center justify-between rounded-md border p-3 text-left transition-colors ${
-                on ? "border-foreground bg-muted" : "border-border hover:bg-muted/50"
-              }`}
-            >
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-8 lg:grid-cols-[minmax(0,1fr)_480px]">
+        <div className="space-y-6">
+          <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-1 font-serif text-lg font-semibold">1. Edition details</h2>
+            <p className="mb-4 text-sm text-muted-foreground">Pick the week and category. Headline and intro are optional.</p>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                <div className="font-medium">{p.name}</div>
-                <div className="text-xs text-muted-foreground">
-                  {p.apy ? `${p.apy} APY` : p.bonus ?? p.tagline} &middot; {p.fees}
+                <Label className="text-xs">Category</Label>
+                <select
+                  value={category}
+                  onChange={(e) => { setCategory(e.target.value); setSelected([]); }}
+                  className="mt-1.5 h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
+                >
+                  {subcategories.map((s) => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+              <div>
+                <Label className="text-xs">Week start</Label>
+                <div className="relative mt-1.5">
+                  <Calendar className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    type="date"
+                    value={weekStart}
+                    onChange={(e) => setWeekStart(e.target.value)}
+                    className="pl-9"
+                  />
                 </div>
               </div>
-              <div className="text-xs font-medium">
-                {on ? `#${selected.indexOf(p.slug) + 1}` : "Add"}
+              <div className="md:col-span-2">
+                <Label className="text-xs">Headline</Label>
+                <Input
+                  value={headline}
+                  onChange={(e) => setHeadline(e.target.value)}
+                  placeholder={`This week's top ${category.toLowerCase()} picks`}
+                  className="mt-1.5"
+                />
               </div>
-            </button>
-          );
-        })}
-      </div>
+              <div className="md:col-span-2">
+                <Label className="text-xs">Intro</Label>
+                <Textarea
+                  value={intro}
+                  onChange={(e) => setIntro(e.target.value)}
+                  placeholder="Short editor's note shown above the product cards..."
+                  rows={2}
+                  className="mt-1.5"
+                />
+              </div>
+            </div>
+          </section>
 
-      {html && (
-        <div className="mt-10">
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="font-serif text-lg font-semibold">Rendered HTML</h2>
-            <Button onClick={copy} variant="outline">
-              Copy for Beehiiv
+          <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h2 className="font-serif text-lg font-semibold">2. Pick products</h2>
+                <p className="text-sm text-muted-foreground">
+                  {categoryProducts.length} available in {category}
+                </p>
+              </div>
+              <Badge variant="outline">{selected.length} selected</Badge>
+            </div>
+
+            {selectedProducts.length > 0 && (
+              <div className="mb-4 rounded-md border border-dashed border-border bg-muted/40 p-3">
+                <div className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">Running order</div>
+                <div className="space-y-1.5">
+                  {selectedProducts.map((p, i) => (
+                    <div key={p.slug} className="flex items-center justify-between rounded bg-background px-3 py-2 text-sm">
+                      <div className="flex items-center gap-3">
+                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-foreground text-xs font-semibold text-background">{i + 1}</span>
+                        <span className="font-medium">{p.name}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <button onClick={() => move(p.slug, -1)} disabled={i === 0} className="rounded p-1 text-muted-foreground hover:bg-muted disabled:opacity-30" aria-label="Move up">↑</button>
+                        <button onClick={() => move(p.slug, 1)} disabled={i === selectedProducts.length - 1} className="rounded p-1 text-muted-foreground hover:bg-muted disabled:opacity-30" aria-label="Move down">↓</button>
+                        <button onClick={() => toggle(p.slug)} className="rounded p-1 text-muted-foreground hover:bg-muted" aria-label="Remove">
+                          <X className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="divide-y divide-border overflow-hidden rounded-md border border-border">
+              {categoryProducts.map((p) => {
+                const on = selected.includes(p.slug);
+                const rank = selected.indexOf(p.slug) + 1;
+                return (
+                  <button
+                    key={p.slug}
+                    onClick={() => toggle(p.slug)}
+                    className={`flex w-full items-center justify-between px-4 py-3 text-left transition-colors ${on ? "bg-muted/60" : "bg-background hover:bg-muted/30"}`}
+                  >
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        {on && <Badge className="h-5 shrink-0 px-1.5 text-[10px]">#{rank}</Badge>}
+                        {p.grade && <span className="shrink-0 rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium">{p.grade}</span>}
+                        <span className="truncate font-medium">{p.name}</span>
+                      </div>
+                      <div className="mt-0.5 truncate text-xs text-muted-foreground">
+                        {p.apy ? `${p.apy} APY` : p.bonus ?? p.tagline} &middot; {p.fees} &middot; Min {p.minDeposit}
+                      </div>
+                    </div>
+                    <div className={`ml-3 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors ${on ? "border-foreground bg-foreground text-background" : "border-border text-muted-foreground"}`}>
+                      {on ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
+          <div className="flex justify-end">
+            <Button size="lg" onClick={build} disabled={loading || selected.length === 0}>
+              {loading ? "Building..." : `Build edition (${selected.length})`}
             </Button>
           </div>
-          <div
-            className="rounded-md border p-4"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-          <details className="mt-4">
-            <summary className="cursor-pointer text-sm text-muted-foreground">
-              View raw HTML
-            </summary>
-            <pre className="mt-2 max-h-96 overflow-auto rounded-md bg-muted p-3 text-xs">
-              {html}
-            </pre>
-          </details>
         </div>
-      )}
+
+        <aside className="lg:sticky lg:top-6 lg:self-start">
+          <div className="rounded-lg border border-border bg-card shadow-sm">
+            <div className="flex items-center justify-between border-b border-border px-5 py-3">
+              <div>
+                <div className="text-xs uppercase tracking-wide text-muted-foreground">Preview</div>
+                <div className="text-sm font-medium">{html ? "Ready to send" : "Nothing built yet"}</div>
+              </div>
+              <Button size="sm" variant={copied ? "default" : "outline"} disabled={!html} onClick={copy}>
+                {copied ? <><Check className="mr-1 h-3.5 w-3.5" />Copied</> : <><Copy className="mr-1 h-3.5 w-3.5" />Copy HTML</>}
+              </Button>
+            </div>
+            <div className="max-h-[75vh] overflow-auto">
+              {html ? (
+                <div className="bg-white" dangerouslySetInnerHTML={{ __html: html }} />
+              ) : (
+                <div className="flex h-64 items-center justify-center p-10 text-center text-sm text-muted-foreground">
+                  Pick products and click Build to see the rendered email here.
+                </div>
+              )}
+            </div>
+          </div>
+
+          {html && (
+            <details className="mt-3 rounded-lg border border-border bg-card p-3 text-sm shadow-sm">
+              <summary className="cursor-pointer font-medium text-muted-foreground">Raw HTML</summary>
+              <pre className="mt-2 max-h-64 overflow-auto rounded bg-muted p-3 text-[11px] leading-relaxed">{html}</pre>
+            </details>
+          )}
+        </aside>
+      </div>
     </div>
   );
 }
