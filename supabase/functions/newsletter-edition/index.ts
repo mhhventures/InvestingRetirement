@@ -6,6 +6,8 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
+const SITE_URL = "https://www.investingandretirement.com";
+
 type Product = {
   slug: string;
   name: string;
@@ -23,6 +25,20 @@ type Product = {
   editorsPick?: boolean;
   promoNote?: string;
 };
+
+type LinkCard = {
+  kind: "link";
+  slug: string;
+  title: string;
+  eyebrow: string;
+  description: string;
+  ctaLabel: string;
+  href: string;
+  editorsPick?: boolean;
+};
+
+type Item = Product | LinkCard;
+const isLinkCard = (x: Item): x is LinkCard => (x as LinkCard).kind === "link";
 
 const escapeHtml = (s: string) =>
   s
@@ -105,6 +121,37 @@ const renderCard = (p: Product, rank: number, utm: string, logoToken: string | n
             <td style="background:#1a1a1a;border-radius:2px;">
               <a href="${escapeHtml(href)}" style="display:inline-block;padding:10px 20px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.02em;">View Offer &rarr;</a>
             </td>
+            <td style="padding-left:10px;">
+              <a href="${SITE_URL}/product/${escapeHtml(p.slug)}?${utm}" style="display:inline-block;padding:10px 18px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#1a1a1a;text-decoration:none;letter-spacing:0.02em;border:1px solid #1a1a1a;border-radius:2px;">Read Our Review</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>`;
+};
+
+const renderLinkCard = (c: LinkCard, rank: number, utm: string) => {
+  const href = `${c.href.startsWith("http") ? c.href : `${SITE_URL}${c.href}`}${c.href.includes("?") ? "&" : "?"}${utm}`;
+  const pickRibbon = c.editorsPick
+    ? `<div style="background:#1a1a1a;color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;padding:6px 12px;">Editor&rsquo;s Pick</div>`
+    : "";
+  const borderColor = c.editorsPick ? "#1a1a1a" : "#e4d9cf";
+  const borderWidth = c.editorsPick ? "2px" : "1px";
+
+  return `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 16px 0;background:#ffffff;border:${borderWidth} solid ${borderColor};border-radius:4px;overflow:hidden;">
+    ${pickRibbon ? `<tr><td>${pickRibbon}</td></tr>` : ""}
+    <tr>
+      <td style="padding:20px;">
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:11px;color:#8a7a6b;text-transform:uppercase;letter-spacing:0.08em;">#${rank} &middot; ${escapeHtml(c.eyebrow)}</div>
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#1a1a1a;font-weight:700;line-height:1.2;margin-top:6px;">${escapeHtml(c.title)}</div>
+        <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#5a5a5a;line-height:1.6;margin-top:8px;">${escapeHtml(c.description)}</div>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px;">
+          <tr>
+            <td style="background:#1a1a1a;border-radius:2px;">
+              <a href="${escapeHtml(href)}" style="display:inline-block;padding:10px 20px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.02em;">${escapeHtml(c.ctaLabel)} &rarr;</a>
+            </td>
           </tr>
         </table>
       </td>
@@ -115,13 +162,19 @@ const renderCard = (p: Product, rank: number, utm: string, logoToken: string | n
 const renderEdition = (opts: {
   headline: string;
   intro: string;
-  products: Product[];
+  products: Item[];
   weekStart: string;
   category: string;
   logoToken: string | null;
 }) => {
   const utm = `utm_source=newsletter&utm_medium=email&utm_campaign=${encodeURIComponent(opts.category)}-${opts.weekStart}`;
-  const cards = opts.products.map((p, i) => renderCard(p, i + 1, utm, opts.logoToken)).join("");
+  const cards = opts.products
+    .map((item, i) =>
+      isLinkCard(item)
+        ? renderLinkCard(item, i + 1, utm)
+        : renderCard(item, i + 1, utm, opts.logoToken),
+    )
+    .join("");
 
   return `<div style="background:#faf7f2;padding:24px 16px;font-family:Georgia,'Times New Roman',serif;">
   <div style="max-width:600px;margin:0 auto;">
@@ -217,7 +270,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const body = await req.json();
-    const products: Product[] = Array.isArray(body.products) ? body.products : [];
+    const products: Item[] = Array.isArray(body.products) ? body.products : [];
     if (products.length === 0) {
       return new Response(
         JSON.stringify({ error: "products array is required in request body" }),
@@ -225,7 +278,8 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const category: string = body.category ?? products[0]?.subcategory ?? "Weekly Picks";
+    const firstProduct = products.find((p): p is Product => !isLinkCard(p));
+    const category: string = body.category ?? firstProduct?.subcategory ?? "Weekly Picks";
     const weekStart: string = body.week_start ?? mondayOf(new Date());
     const headline: string =
       body.headline ?? `This week's top ${category.toLowerCase()} picks`;

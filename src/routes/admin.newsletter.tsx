@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { products } from "@/data/products";
 import { toast } from "sonner";
-import { Calendar, Copy, Lock, Sparkles, Check, Plus, X, Star } from "lucide-react";
+import { Calendar, Copy, Lock, Sparkles, Check, Plus, X, Star, Link2, Building2, MapPin, ChartLine as LineChart, Smartphone, BookOpen } from "lucide-react";
 
 export const Route = createFileRoute("/admin/newsletter")({
   component: NewsletterBuilder,
@@ -20,6 +20,25 @@ function mondayOf(d = new Date()) {
 
 const inputCls =
   "w-full h-10 rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900";
+
+const LINK_CARD_PRESETS = [
+  { id: "bank-accounts", icon: Building2, eyebrow: "Browse all banks", title: "Top bank accounts this week", description: "Compare APYs, fees, and bonuses across every bank we track.", ctaLabel: "See all bank accounts", href: "/bank-accounts" },
+  { id: "banks", icon: MapPin, eyebrow: "Banking by state", title: "Find a local bank near you", description: "State-by-state picks for regional banks and credit unions.", ctaLabel: "Explore local banks", href: "/banks" },
+  { id: "investing", icon: LineChart, eyebrow: "Investing", title: "Best brokers and investing accounts", description: "Our ranked picks for brokerages, IRAs, and robo-advisors.", ctaLabel: "See investing picks", href: "/investing" },
+  { id: "financial-apps", icon: Smartphone, eyebrow: "Financial apps", title: "Money apps worth downloading", description: "Budgeting, saving, and spending apps we actually use.", ctaLabel: "Browse apps", href: "/financial-apps" },
+  { id: "guides", icon: BookOpen, eyebrow: "Guides", title: "Our latest money guides", description: "Deep dives on saving, investing, and retirement planning.", ctaLabel: "Read the guides", href: "/guides" },
+] as const;
+
+type LinkCardItem = {
+  kind: "link";
+  slug: string;
+  presetId: string;
+  title: string;
+  eyebrow: string;
+  description: string;
+  ctaLabel: string;
+  href: string;
+};
 
 function NewsletterBuilder() {
   const [token, setToken] = useState<string | null>(null);
@@ -86,6 +105,7 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
   const [intro, setIntro] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
   const [overrides, setOverrides] = useState<Record<string, { bonus?: string; promoNote?: string }>>({});
+  const [linkCards, setLinkCards] = useState<Record<string, LinkCardItem>>({});
   const [editorsPickSlug, setEditorsPickSlug] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [html, setHtml] = useState("");
@@ -114,15 +134,52 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
     });
   };
 
+  const addLinkCard = (preset: typeof LINK_CARD_PRESETS[number]) => {
+    const slug = `link-${preset.id}-${Date.now().toString(36)}`;
+    setLinkCards((prev) => ({
+      ...prev,
+      [slug]: {
+        kind: "link",
+        slug,
+        presetId: preset.id,
+        title: preset.title,
+        eyebrow: preset.eyebrow,
+        description: preset.description,
+        ctaLabel: preset.ctaLabel,
+        href: preset.href,
+      },
+    }));
+    setSelected((prev) => [...prev, slug]);
+  };
+
+  const updateLinkCard = (slug: string, patch: Partial<LinkCardItem>) => {
+    setLinkCards((prev) => ({ ...prev, [slug]: { ...prev[slug], ...patch } }));
+  };
+
+  const removeItem = (slug: string) => {
+    setSelected((prev) => prev.filter((s) => s !== slug));
+    if (editorsPickSlug === slug) setEditorsPickSlug(null);
+    if (linkCards[slug]) {
+      setLinkCards((prev) => {
+        const next = { ...prev };
+        delete next[slug];
+        return next;
+      });
+    }
+  };
+
   const build = async () => {
     if (selected.length === 0) {
-      toast.error("Pick at least one product to feature.");
+      toast.error("Pick at least one card to feature.");
       return;
     }
     setLoading(true);
     try {
       const chosen = selected
         .map((s) => {
+          if (linkCards[s]) {
+            return { ...linkCards[s], editorsPick: editorsPickSlug === s };
+          }
           const base = products.find((p) => p.slug === s);
           if (!base) return null;
           const ov = overrides[s] ?? {};
@@ -175,20 +232,32 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
     toast.success("HTML copied. Paste into Beehiiv's Custom HTML block.");
   };
 
-  const selectedProducts = selected
-    .map((s) => products.find((p) => p.slug === s))
-    .filter((p): p is NonNullable<typeof p> => !!p);
+  type SelectedItem =
+    | { kind: "product"; slug: string; product: typeof products[number] }
+    | { kind: "link"; slug: string; link: LinkCardItem };
+
+  const selectedItems: SelectedItem[] = selected
+    .map((s): SelectedItem | null => {
+      if (linkCards[s]) return { kind: "link", slug: s, link: linkCards[s] };
+      const prod = products.find((p) => p.slug === s);
+      if (prod) return { kind: "product", slug: s, product: prod };
+      return null;
+    })
+    .filter((x): x is SelectedItem => !!x);
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div>
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-slate-500" />
-              <span className="text-xs uppercase tracking-wider text-slate-500">Admin</span>
+      <div className="h-1 bg-gradient-to-r from-emerald-700 via-emerald-600 to-amber-400" />
+      <header className="border-b border-slate-200 bg-[#faf7f2]">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+          <div className="flex items-center gap-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white shadow-sm">
+              <Sparkles className="h-5 w-5" />
             </div>
-            <h1 className="font-serif text-2xl font-semibold text-slate-900">Newsletter Edition Builder</h1>
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-800">Admin &middot; Newsletter</div>
+              <h1 className="font-serif text-2xl font-semibold leading-tight text-slate-900">Edition Builder</h1>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700">
@@ -217,7 +286,7 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
                   value={category}
                   onChange={(e) => {
                     setCategory(e.target.value);
-                    setSelected([]);
+                    setSelected((prev) => prev.filter((s) => !!linkCards[s]));
                     setOverrides({});
                     setEditorsPickSlug(null);
                   }}
@@ -273,7 +342,7 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
               </span>
             </div>
 
-            {selectedProducts.length > 0 && (
+            {selectedItems.length > 0 && (
               <div className="mb-4 rounded-md border border-dashed border-slate-300 bg-slate-50 p-3">
                 <div className="mb-2 flex items-center justify-between">
                   <div className="text-xs font-medium uppercase tracking-wide text-slate-500">Running order &amp; overrides</div>
@@ -287,20 +356,26 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
                   )}
                 </div>
                 <div className="space-y-2">
-                  {selectedProducts.map((p, i) => {
-                    const ov = overrides[p.slug] ?? {};
-                    const isPick = editorsPickSlug === p.slug;
+                  {selectedItems.map((item, i) => {
+                    const isPick = editorsPickSlug === item.slug;
+                    const name = item.kind === "product" ? item.product.name : item.link.title;
                     return (
                       <div
-                        key={p.slug}
-                        className={`rounded border bg-white p-3 text-sm ${isPick ? "border-slate-900 ring-1 ring-slate-900" : "border-slate-200"}`}
+                        key={item.slug}
+                        className={`relative overflow-hidden rounded border bg-white p-3 pl-4 text-sm ${isPick ? "border-slate-900 ring-1 ring-slate-900" : "border-slate-200"}`}
                       >
+                        <div className={`absolute inset-y-0 left-0 w-1 ${isPick ? "bg-slate-900" : "bg-slate-300"}`} />
                         <div className="flex items-center justify-between">
                           <div className="flex min-w-0 items-center gap-3">
                             <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">{i + 1}</span>
                             <div className="min-w-0">
                               <div className="flex items-center gap-2">
-                                <span className="truncate font-medium text-slate-900">{p.name}</span>
+                                {item.kind === "link" && (
+                                  <span className="inline-flex items-center gap-1 rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-800">
+                                    <Link2 className="h-3 w-3" /> Link
+                                  </span>
+                                )}
+                                <span className="truncate font-medium text-slate-900">{name}</span>
                                 {isPick && (
                                   <span className="inline-flex items-center gap-1 rounded bg-slate-900 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
                                     <Star className="h-3 w-3" /> Pick
@@ -308,26 +383,25 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
                                 )}
                               </div>
                               <div className="truncate text-xs text-slate-500">
-                                Default bonus: {p.bonus ?? "—"}
+                                {item.kind === "product"
+                                  ? `Default bonus: ${item.product.bonus ?? "—"}`
+                                  : item.link.href}
                               </div>
                             </div>
                           </div>
                           <div className="flex items-center gap-1">
                             <button
-                              onClick={() => setEditorsPickSlug(isPick ? null : p.slug)}
+                              onClick={() => setEditorsPickSlug(isPick ? null : item.slug)}
                               className={`rounded p-1.5 ${isPick ? "bg-slate-900 text-white" : "text-slate-500 hover:bg-slate-100"}`}
                               aria-label="Set Editor's Pick"
                               title="Set Editor's Pick"
                             >
                               <Star className="h-3.5 w-3.5" />
                             </button>
-                            <button onClick={() => move(p.slug, -1)} disabled={i === 0} className="rounded p-1.5 text-slate-500 hover:bg-slate-100 disabled:opacity-30" aria-label="Move up">↑</button>
-                            <button onClick={() => move(p.slug, 1)} disabled={i === selectedProducts.length - 1} className="rounded p-1.5 text-slate-500 hover:bg-slate-100 disabled:opacity-30" aria-label="Move down">↓</button>
+                            <button onClick={() => move(item.slug, -1)} disabled={i === 0} className="rounded p-1.5 text-slate-500 hover:bg-slate-100 disabled:opacity-30" aria-label="Move up">↑</button>
+                            <button onClick={() => move(item.slug, 1)} disabled={i === selectedItems.length - 1} className="rounded p-1.5 text-slate-500 hover:bg-slate-100 disabled:opacity-30" aria-label="Move down">↓</button>
                             <button
-                              onClick={() => {
-                                toggle(p.slug);
-                                if (editorsPickSlug === p.slug) setEditorsPickSlug(null);
-                              }}
+                              onClick={() => removeItem(item.slug)}
                               className="rounded p-1.5 text-slate-500 hover:bg-slate-100"
                               aria-label="Remove"
                             >
@@ -335,36 +409,69 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
                             </button>
                           </div>
                         </div>
-                        <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-2">
-                          <div>
-                            <label className="text-[11px] font-medium text-slate-600">Bonus override</label>
-                            <input
-                              value={ov.bonus ?? ""}
-                              onChange={(e) =>
-                                setOverrides((prev) => ({
-                                  ...prev,
-                                  [p.slug]: { ...prev[p.slug], bonus: e.target.value },
-                                }))
-                              }
-                              placeholder={p.bonus ?? "e.g. $500 bonus"}
-                              className="mt-1 h-9 w-full rounded-md border border-slate-300 bg-white px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
-                            />
+
+                        {item.kind === "product" && (
+                          <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-2">
+                            <div>
+                              <label className="text-[11px] font-medium text-slate-600">Bonus override</label>
+                              <input
+                                value={overrides[item.slug]?.bonus ?? ""}
+                                onChange={(e) =>
+                                  setOverrides((prev) => ({
+                                    ...prev,
+                                    [item.slug]: { ...prev[item.slug], bonus: e.target.value },
+                                  }))
+                                }
+                                placeholder={item.product.bonus ?? "e.g. $500 bonus"}
+                                className="mt-1 h-9 w-full rounded-md border border-slate-300 bg-white px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-slate-600">Newsletter-exclusive note</label>
+                              <input
+                                value={overrides[item.slug]?.promoNote ?? ""}
+                                onChange={(e) =>
+                                  setOverrides((prev) => ({
+                                    ...prev,
+                                    [item.slug]: { ...prev[item.slug], promoNote: e.target.value },
+                                  }))
+                                }
+                                placeholder="Use code NEWS100 for an extra $100"
+                                className="mt-1 h-9 w-full rounded-md border border-slate-300 bg-white px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+                              />
+                            </div>
                           </div>
-                          <div>
-                            <label className="text-[11px] font-medium text-slate-600">Newsletter-exclusive note</label>
-                            <input
-                              value={ov.promoNote ?? ""}
-                              onChange={(e) =>
-                                setOverrides((prev) => ({
-                                  ...prev,
-                                  [p.slug]: { ...prev[p.slug], promoNote: e.target.value },
-                                }))
-                              }
-                              placeholder="Use code NEWS100 for an extra $100"
-                              className="mt-1 h-9 w-full rounded-md border border-slate-300 bg-white px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
-                            />
+                        )}
+
+                        {item.kind === "link" && (
+                          <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-2">
+                            <div>
+                              <label className="text-[11px] font-medium text-slate-600">Title</label>
+                              <input
+                                value={item.link.title}
+                                onChange={(e) => updateLinkCard(item.slug, { title: e.target.value })}
+                                className="mt-1 h-9 w-full rounded-md border border-slate-300 bg-white px-2.5 text-xs text-slate-900 focus:border-slate-900 focus:outline-none"
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-slate-600">CTA label</label>
+                              <input
+                                value={item.link.ctaLabel}
+                                onChange={(e) => updateLinkCard(item.slug, { ctaLabel: e.target.value })}
+                                className="mt-1 h-9 w-full rounded-md border border-slate-300 bg-white px-2.5 text-xs text-slate-900 focus:border-slate-900 focus:outline-none"
+                              />
+                            </div>
+                            <div className="md:col-span-2">
+                              <label className="text-[11px] font-medium text-slate-600">Description</label>
+                              <textarea
+                                value={item.link.description}
+                                onChange={(e) => updateLinkCard(item.slug, { description: e.target.value })}
+                                rows={2}
+                                className="mt-1 w-full rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-900 focus:border-slate-900 focus:outline-none"
+                              />
+                            </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                     );
                   })}
@@ -376,24 +483,64 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
               {categoryProducts.map((p) => {
                 const on = selected.includes(p.slug);
                 const rank = selected.indexOf(p.slug) + 1;
+                const rate = p.apy ?? p.bonus ?? "—";
                 return (
                   <button
                     key={p.slug}
                     onClick={() => toggle(p.slug)}
-                    className={`flex w-full items-center justify-between px-4 py-3 text-left transition-colors ${on ? "bg-slate-50" : "bg-white hover:bg-slate-50"}`}
+                    className={`relative flex w-full items-center justify-between px-4 py-2.5 pl-5 text-left transition-colors ${on ? "bg-slate-50" : "bg-white hover:bg-slate-50"}`}
                   >
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        {on && <span className="inline-flex h-5 shrink-0 items-center rounded bg-slate-900 px-1.5 text-[10px] font-semibold text-white">#{rank}</span>}
-                        {p.grade && <span className="shrink-0 rounded border border-slate-300 bg-white px-1.5 py-0.5 text-[10px] font-medium text-slate-700">{p.grade}</span>}
-                        <span className="truncate font-medium text-slate-900">{p.name}</span>
+                    <span className={`absolute inset-y-0 left-0 w-1 transition-colors ${on ? "bg-slate-900" : "bg-transparent"}`} />
+                    <div className="flex min-w-0 flex-1 items-center gap-3">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-slate-100 text-[10px] font-semibold text-slate-600">
+                        {p.logoText.slice(0, 2).toUpperCase()}
                       </div>
-                      <div className="mt-0.5 truncate text-xs text-slate-500">
-                        {p.apy ? `${p.apy} APY` : p.bonus ?? p.tagline} &middot; {p.fees} &middot; Min {p.minDeposit}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          {on && <span className="inline-flex h-5 shrink-0 items-center rounded bg-slate-900 px-1.5 text-[10px] font-semibold text-white">#{rank}</span>}
+                          {p.grade && <span className="shrink-0 rounded border border-slate-300 bg-white px-1.5 py-0.5 text-[10px] font-medium text-slate-700">{p.grade}</span>}
+                          <span className="truncate text-sm font-medium text-slate-900">{p.name}</span>
+                        </div>
+                        <div className="truncate text-xs text-slate-500">
+                          {p.fees} &middot; Min {p.minDeposit}
+                        </div>
                       </div>
                     </div>
-                    <div className={`ml-3 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors ${on ? "border-slate-900 bg-slate-900 text-white" : "border-slate-300 bg-white text-slate-500"}`}>
-                      {on ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                    <div className="ml-3 flex items-center gap-3">
+                      <div className="text-right">
+                        <div className="font-mono text-sm font-semibold tabular-nums text-slate-900">{rate}</div>
+                        <div className="text-[10px] uppercase tracking-wide text-slate-500">{p.apy ? "APY" : p.bonus ? "Bonus" : ""}</div>
+                      </div>
+                      <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors ${on ? "border-slate-900 bg-slate-900 text-white" : "border-slate-300 bg-white text-slate-500"}`}>
+                        {on ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="mb-4">
+              <h2 className="font-serif text-lg font-semibold text-slate-900">3. Add section links (optional)</h2>
+              <p className="text-sm text-slate-500">Drop in a standalone card that points readers to a whole section of the site.</p>
+            </div>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {LINK_CARD_PRESETS.map((preset) => {
+                const Icon = preset.icon;
+                return (
+                  <button
+                    key={preset.id}
+                    onClick={() => addLinkCard(preset)}
+                    className="flex items-start gap-3 rounded-md border border-slate-200 bg-white p-3 text-left transition-all hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-sm"
+                  >
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded bg-emerald-50 text-emerald-700">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-sm font-medium text-slate-900">{preset.title}</div>
+                      <div className="truncate text-xs text-slate-500">{preset.href}</div>
                     </div>
                   </button>
                 );
