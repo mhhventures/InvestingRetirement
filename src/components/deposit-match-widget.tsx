@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { trackEvent } from "@/lib/pixel";
 
 const WIDGET_SCRIPT = "https://caporax.com/embed-v2.js";
 const WIDGET_ORIGIN = "https://caporax.com";
@@ -107,12 +108,20 @@ export function DepositMatchWidget({
         type === "widget:click" ||
         type === "widget:lead"
       ) {
-        logEvent(type.includes("lead") ? "lead" : "click", {
+        const isLead = type.includes("lead");
+        logEvent(isLead ? "lead" : "click", {
           placement,
           pagePath,
           subId,
           payload: data as Record<string, unknown>,
         });
+        if (isLead) {
+          trackEvent("Lead", {
+            content_name: "deposit-match",
+            content_category: "banks",
+            placement,
+          });
+        }
       }
     };
     window.addEventListener("message", onMessage);

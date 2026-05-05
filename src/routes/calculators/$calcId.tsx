@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useParams, Navigate } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { calculators } from "@/lib/calculators-data";
 import { useSeo } from "@/lib/seo";
 import { products } from "@/data/products";
@@ -7,6 +7,7 @@ import { productPartnerLink } from "@/lib/affiliate";
 import { getProductLogoUrl } from "@/lib/product-icons";
 import { DepositMatchWidget } from "@/components/deposit-match-widget";
 import { SITE_URL } from "@/lib/seo";
+import { trackEvent } from "@/lib/pixel";
 
 export const Route = createFileRoute("/calculators/$calcId")({
   component: CalculatorPage,
@@ -93,6 +94,13 @@ function CompoundInterestCalculator() {
   const [rate, setRate] = useState(4.0);
   const [years, setYears] = useState(20);
   const [compounds, setCompounds] = useState(12);
+
+  useEffect(() => {
+    trackEvent("CustomizeProduct", {
+      content_name: "compound-interest",
+      content_category: "calculator",
+    });
+  }, []);
 
   function selectMode(m: RateMode) {
     setMode(m);
@@ -456,6 +464,12 @@ function NumberField({
 
 function BankDepositMatcher() {
   const pagePath = "/calculators/bank-deposit-matcher";
+  useEffect(() => {
+    trackEvent("CustomizeProduct", {
+      content_name: "bank-deposit-matcher",
+      content_category: "calculator",
+    });
+  }, []);
   useSeo({
     title: "Bank Deposit Matcher — Compare HYSA & Checking Offers Instantly",
     description:
