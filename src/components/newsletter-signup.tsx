@@ -17,8 +17,8 @@ export function NewsletterSignup({
   source,
   variant = "sidebar",
   eyebrow = "Newsletter",
-  headline = "The I&R Newsletter",
-  sub = "From the Investing & Retirement Research Desk. One scannable email every Thursday — rates, tool comparisons, headlines. Free, no spam.",
+  headline = "The I&R Market Brief",
+  sub = "Where Reddit's best finance conversations meet curated insights. One scannable email every Thursday — rates, tool comparisons, headlines. Free, no spam.",
 }: Props) {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
