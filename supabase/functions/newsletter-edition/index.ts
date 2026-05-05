@@ -22,6 +22,9 @@ type Product = {
   bestFor: string;
   url: string;
   logoText: string;
+  rating?: number;
+  reviews?: number;
+  category?: string;
   editorsPick?: boolean;
   promoNote?: string;
 };
@@ -65,64 +68,102 @@ const logoUrl = (url: string, token: string | null) => {
   return `https://logo.clearbit.com/${domain}?size=128`;
 };
 
+const gradeBg = (grade?: string) => {
+  if (!grade) return "#1a1a1a";
+  if (grade.startsWith("A")) return "#0e4d45";
+  if (grade.startsWith("B")) return "#1a1a1a";
+  return "#540f04";
+};
+
+const starRow = (rating?: number, reviews?: number) => {
+  if (!rating) return "";
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5 ? 1 : 0;
+  const stars = "\u2605".repeat(full) + (half ? "\u2605" : "");
+  const reviewsStr = reviews ? ` <span style="color:#5a5a5a;font-family:Helvetica,Arial,sans-serif;font-size:12px;">(${reviews.toLocaleString()})</span>` : "";
+  return `<span style="color:#c9a882;font-family:Georgia,serif;font-size:14px;letter-spacing:0.05em;">${stars}</span> <span style="color:#5a5a5a;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;">${rating.toFixed(1)}</span>${reviewsStr}`;
+};
+
 const renderCard = (p: Product, rank: number, utm: string, logoToken: string | null) => {
-  const headline = p.apy ? `${p.apy} APY` : p.bonus ? p.bonus : p.tagline;
   const href = `${p.url}${p.url.includes("?") ? "&" : "?"}${utm}`;
+  const reviewHref = `${SITE_URL}/product/${p.slug}?${utm}`;
   const logo = logoUrl(p.url, logoToken);
   const logoCell = logo
-    ? `<img src="${logo}" alt="${escapeHtml(p.name)}" width="32" height="32" style="display:block;width:32px;height:32px;border:0;outline:none;border-radius:4px;" />`
-    : `<div style="width:32px;height:32px;background:#1e3a8a;color:#fff;font-family:Georgia,serif;font-weight:700;font-size:14px;line-height:32px;text-align:center;border-radius:4px;">${escapeHtml(p.logoText.slice(0, 2))}</div>`;
+    ? `<img src="${logo}" alt="${escapeHtml(p.name)}" width="48" height="48" style="display:block;width:48px;height:48px;border:0;outline:none;border-radius:3px;background:#ffffff;border:1px solid #e4d9cf;padding:4px;box-sizing:border-box;" />`
+    : `<div style="width:48px;height:48px;background:#0e4d45;color:#fef6f1;font-family:Georgia,serif;font-weight:700;font-size:14px;line-height:48px;text-align:center;border-radius:3px;">${escapeHtml(p.logoText.slice(0, 2))}</div>`;
 
-  const pickRibbon = p.editorsPick
-    ? `<div style="background:#1a1a1a;color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;padding:6px 12px;">Editor&rsquo;s Pick</div>`
+  const gradeBadge = p.grade
+    ? `<span style="display:inline-block;background:${gradeBg(p.grade)};color:#fef6f1;font-family:Georgia,serif;font-weight:700;font-size:11px;padding:2px 7px;border-radius:2px;letter-spacing:0.01em;">${escapeHtml(p.grade)}</span>`
     : "";
 
   const promoBanner = p.promoNote
-    ? `<div style="margin-top:14px;padding:10px 12px;background:#fff8e6;border:1px solid #f2d98a;border-radius:4px;font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#6b4e00;line-height:1.5;"><strong style="color:#4a3600;">Newsletter exclusive:</strong> ${escapeHtml(p.promoNote)}</div>`
+    ? `<tr><td style="padding:0 20px 12px 20px;"><div style="padding:10px 12px;background:#fff8e6;border:1px solid #f2d98a;border-radius:3px;font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#6b4e00;line-height:1.5;"><strong style="color:#4a3600;text-transform:uppercase;letter-spacing:0.08em;font-size:10px;">Newsletter exclusive</strong><br/>${escapeHtml(p.promoNote)}</div></td></tr>`
     : "";
 
-  const borderColor = p.editorsPick ? "#1a1a1a" : "#e4d9cf";
-  const borderWidth = p.editorsPick ? "2px" : "1px";
+  const leftLabel = p.apy ? "APY" : "Bonus";
+  const leftValue = p.apy ?? p.bonus ?? "—";
+  const leftColor = p.apy ? "#0e4d45" : "#1a1a1a";
+  const rightLabel = p.bonus && p.apy ? "Bonus" : "Min";
+  const rightValue = p.bonus && p.apy ? p.bonus : p.minDeposit;
 
   return `
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 16px 0;background:#ffffff;border:${borderWidth} solid ${borderColor};border-radius:4px;overflow:hidden;">
-    ${pickRibbon ? `<tr><td>${pickRibbon}</td></tr>` : ""}
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 18px 0;background:#ffffff;border:1px solid #d4c5b8;border-radius:3px;border-collapse:separate;">
     <tr>
-      <td style="padding:20px;">
+      <td style="padding:18px 20px 0 20px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
-            <td width="48" valign="top">${logoCell}</td>
-            <td valign="top" style="padding-left:12px;">
-              <div style="font-family:Georgia,'Times New Roman',serif;font-size:11px;color:#8a7a6b;text-transform:uppercase;letter-spacing:0.08em;">#${rank} &middot; ${escapeHtml(p.subcategory)}${p.grade ? ` &middot; ${escapeHtml(p.grade)}` : ""}</div>
-              <div style="font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.2;margin-top:4px;">${escapeHtml(p.name)}</div>
-              <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#5a5a5a;line-height:1.5;margin-top:4px;">${escapeHtml(p.tagline)}</div>
+            <td style="font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;color:#0e4d45;text-transform:uppercase;letter-spacing:0.15em;">${escapeHtml(p.subcategory)}</td>
+            <td align="right" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;color:#540f04;text-transform:uppercase;letter-spacing:0.15em;">${p.editorsPick ? "Editor&rsquo;s Pick" : `#${String(rank).padStart(2, "0")}`}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:12px 20px 0 20px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="60" valign="top" style="padding-right:12px;">${logoCell}</td>
+            <td valign="top">
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:700;color:#000000;line-height:1.2;">${escapeHtml(p.name)}</div>
+              <div style="margin-top:6px;line-height:1;">
+                ${starRow(p.rating, p.reviews)} ${gradeBadge ? `&nbsp; ${gradeBadge}` : ""}
+              </div>
             </td>
           </tr>
         </table>
-        ${promoBanner}
-
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px;border-top:1px solid #f0e8de;border-bottom:1px solid #f0e8de;">
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:14px 20px 0 20px;">
+        <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#1a1a1a;line-height:1.55;">${escapeHtml(p.tagline)}</p>
+      </td>
+    </tr>
+    ${promoBanner}
+    <tr>
+      <td style="padding:14px 20px 0 20px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e4d9cf;">
           <tr>
-            <td width="50%" style="padding:12px 8px 12px 0;border-right:1px solid #f0e8de;">
-              <div style="font-family:Helvetica,Arial,sans-serif;font-size:10px;color:#8a7a6b;text-transform:uppercase;letter-spacing:0.08em;">${p.apy ? "APY" : "Bonus"}</div>
-              <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#1a1a1a;font-weight:700;line-height:1.2;margin-top:2px;">${escapeHtml(headline)}</div>
+            <td width="50%" valign="top" style="padding:14px 8px 14px 0;">
+              <div style="font-family:Helvetica,Arial,sans-serif;font-size:10px;color:#5a5a5a;text-transform:uppercase;letter-spacing:0.12em;">${leftLabel}</div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:700;color:${leftColor};line-height:1.15;margin-top:4px;">${escapeHtml(leftValue)}</div>
             </td>
-            <td width="50%" style="padding:12px 0 12px 12px;">
-              <div style="font-family:Helvetica,Arial,sans-serif;font-size:10px;color:#8a7a6b;text-transform:uppercase;letter-spacing:0.08em;">Fees / Min</div>
-              <div style="font-family:Georgia,'Times New Roman',serif;font-size:14px;color:#1a1a1a;font-weight:600;line-height:1.3;margin-top:4px;">${escapeHtml(p.fees)} &middot; ${escapeHtml(p.minDeposit)}</div>
+            <td width="50%" valign="top" style="padding:14px 0 14px 8px;">
+              <div style="font-family:Helvetica,Arial,sans-serif;font-size:10px;color:#5a5a5a;text-transform:uppercase;letter-spacing:0.12em;">${rightLabel}</div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:700;color:#000000;line-height:1.15;margin-top:4px;">${escapeHtml(rightValue)}</div>
             </td>
           </tr>
         </table>
-
-        <div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#5a5a5a;line-height:1.6;margin-top:14px;"><strong style="color:#1a1a1a;">Best for:</strong> ${escapeHtml(p.bestFor)}</div>
-
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px;">
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:4px 20px 20px 20px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
-            <td style="background:#1a1a1a;border-radius:2px;">
-              <a href="${escapeHtml(href)}" style="display:inline-block;padding:10px 20px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.02em;">View Offer &rarr;</a>
+            <td width="50%" style="padding-right:6px;">
+              <a href="${escapeHtml(reviewHref)}" style="display:block;background:#0e4d45;color:#fef6f1;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;text-align:center;text-decoration:none;text-transform:uppercase;letter-spacing:0.12em;padding:13px 10px;border-radius:2px;">Read Review</a>
             </td>
-            <td style="padding-left:10px;">
-              <a href="${SITE_URL}/product/${escapeHtml(p.slug)}?${utm}" style="display:inline-block;padding:10px 18px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#1a1a1a;text-decoration:none;letter-spacing:0.02em;border:1px solid #1a1a1a;border-radius:2px;">Read Our Review</a>
+            <td width="50%" style="padding-left:6px;">
+              <a href="${escapeHtml(href)}" style="display:block;background:#ffffff;color:#000000;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;text-align:center;text-decoration:none;text-transform:uppercase;letter-spacing:0.12em;padding:12px 10px;border:1px solid #d4c5b8;border-radius:2px;">Visit Site</a>
             </td>
           </tr>
         </table>
@@ -132,28 +173,30 @@ const renderCard = (p: Product, rank: number, utm: string, logoToken: string | n
 };
 
 const renderLinkCard = (c: LinkCard, rank: number, utm: string) => {
-  const href = `${c.href.startsWith("http") ? c.href : `${SITE_URL}${c.href}`}${c.href.includes("?") ? "&" : "?"}${utm}`;
-  const pickRibbon = c.editorsPick
-    ? `<div style="background:#1a1a1a;color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;padding:6px 12px;">Editor&rsquo;s Pick</div>`
-    : "";
-  const borderColor = c.editorsPick ? "#1a1a1a" : "#e4d9cf";
-  const borderWidth = c.editorsPick ? "2px" : "1px";
+  const fullHref = c.href.startsWith("http") ? c.href : `${SITE_URL}${c.href}`;
+  const href = `${fullHref}${fullHref.includes("?") ? "&" : "?"}${utm}`;
 
   return `
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 16px 0;background:#ffffff;border:${borderWidth} solid ${borderColor};border-radius:4px;overflow:hidden;">
-    ${pickRibbon ? `<tr><td>${pickRibbon}</td></tr>` : ""}
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 18px 0;background:#ffffff;border:1px solid #d4c5b8;border-radius:3px;border-collapse:separate;">
     <tr>
-      <td style="padding:20px;">
-        <div style="font-family:Georgia,'Times New Roman',serif;font-size:11px;color:#8a7a6b;text-transform:uppercase;letter-spacing:0.08em;">#${rank} &middot; ${escapeHtml(c.eyebrow)}</div>
-        <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#1a1a1a;font-weight:700;line-height:1.2;margin-top:6px;">${escapeHtml(c.title)}</div>
-        <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#5a5a5a;line-height:1.6;margin-top:8px;">${escapeHtml(c.description)}</div>
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px;">
+      <td style="padding:18px 20px 0 20px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
-            <td style="background:#1a1a1a;border-radius:2px;">
-              <a href="${escapeHtml(href)}" style="display:inline-block;padding:10px 20px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.02em;">${escapeHtml(c.ctaLabel)} &rarr;</a>
-            </td>
+            <td style="font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;color:#0e4d45;text-transform:uppercase;letter-spacing:0.15em;">${escapeHtml(c.eyebrow)}</td>
+            <td align="right" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;color:#540f04;text-transform:uppercase;letter-spacing:0.15em;">${c.editorsPick ? "Editor&rsquo;s Pick" : `#${String(rank).padStart(2, "0")}`}</td>
           </tr>
         </table>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:12px 20px 0 20px;">
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:700;color:#000000;line-height:1.25;">${escapeHtml(c.title)}</div>
+        <p style="margin:10px 0 0 0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#1a1a1a;line-height:1.55;">${escapeHtml(c.description)}</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:18px 20px 20px 20px;">
+        <a href="${escapeHtml(href)}" style="display:block;background:#0e4d45;color:#fef6f1;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;text-align:center;text-decoration:none;text-transform:uppercase;letter-spacing:0.12em;padding:13px 10px;border-radius:2px;">${escapeHtml(c.ctaLabel)}</a>
       </td>
     </tr>
   </table>`;
