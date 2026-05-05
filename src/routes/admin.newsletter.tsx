@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { products } from "@/data/products";
+import { useSeo } from "@/lib/seo";
 import { toast } from "sonner";
 import { Calendar, Copy, Lock, Sparkles, Check, Plus, X, Star, Link2, Building2, MapPin, ChartLine as LineChart, Smartphone, BookOpen } from "lucide-react";
 
@@ -41,6 +42,12 @@ type LinkCardItem = {
 };
 
 function NewsletterBuilder() {
+  useSeo({
+    title: "Admin",
+    description: "Private admin area.",
+    path: "/admin/newsletter",
+    noindex: true,
+  });
   const [token, setToken] = useState<string | null>(null);
   const [tokenInput, setTokenInput] = useState("");
 
