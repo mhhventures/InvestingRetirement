@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { products } from "@/data/products";
 import { toast } from "sonner";
-import { Calendar, Copy, Lock, Sparkles, Check, Plus, X } from "lucide-react";
+import { Calendar, Copy, Lock, Sparkles, Check, Plus, X, Star } from "lucide-react";
 
 export const Route = createFileRoute("/admin/newsletter")({
   component: NewsletterBuilder,
@@ -85,6 +85,8 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
   const [headline, setHeadline] = useState("");
   const [intro, setIntro] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
+  const [overrides, setOverrides] = useState<Record<string, { bonus?: string; promoNote?: string }>>({});
+  const [editorsPickSlug, setEditorsPickSlug] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [html, setHtml] = useState("");
   const [copied, setCopied] = useState(false);
@@ -120,7 +122,17 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
     setLoading(true);
     try {
       const chosen = selected
-        .map((s) => products.find((p) => p.slug === s))
+        .map((s) => {
+          const base = products.find((p) => p.slug === s);
+          if (!base) return null;
+          const ov = overrides[s] ?? {};
+          return {
+            ...base,
+            bonus: ov.bonus?.trim() ? ov.bonus.trim() : base.bonus,
+            promoNote: ov.promoNote?.trim() ? ov.promoNote.trim() : undefined,
+            editorsPick: editorsPickSlug === s,
+          };
+        })
         .filter(Boolean);
       const res = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/newsletter-edition`,
@@ -203,7 +215,12 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
                 <label className="text-xs font-medium text-slate-700">Category</label>
                 <select
                   value={category}
-                  onChange={(e) => { setCategory(e.target.value); setSelected([]); }}
+                  onChange={(e) => {
+                    setCategory(e.target.value);
+                    setSelected([]);
+                    setOverrides({});
+                    setEditorsPickSlug(null);
+                  }}
                   className={`mt-1.5 ${inputCls}`}
                 >
                   {subcategories.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -258,23 +275,99 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
 
             {selectedProducts.length > 0 && (
               <div className="mb-4 rounded-md border border-dashed border-slate-300 bg-slate-50 p-3">
-                <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Running order</div>
-                <div className="space-y-1.5">
-                  {selectedProducts.map((p, i) => (
-                    <div key={p.slug} className="flex items-center justify-between rounded border border-slate-200 bg-white px-3 py-2 text-sm">
-                      <div className="flex items-center gap-3">
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">{i + 1}</span>
-                        <span className="font-medium text-slate-900">{p.name}</span>
+                <div className="mb-2 flex items-center justify-between">
+                  <div className="text-xs font-medium uppercase tracking-wide text-slate-500">Running order &amp; overrides</div>
+                  {editorsPickSlug && (
+                    <button
+                      onClick={() => setEditorsPickSlug(null)}
+                      className="text-xs text-slate-500 hover:text-slate-800"
+                    >
+                      Clear Editor&rsquo;s Pick
+                    </button>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  {selectedProducts.map((p, i) => {
+                    const ov = overrides[p.slug] ?? {};
+                    const isPick = editorsPickSlug === p.slug;
+                    return (
+                      <div
+                        key={p.slug}
+                        className={`rounded border bg-white p-3 text-sm ${isPick ? "border-slate-900 ring-1 ring-slate-900" : "border-slate-200"}`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex min-w-0 items-center gap-3">
+                            <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">{i + 1}</span>
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-2">
+                                <span className="truncate font-medium text-slate-900">{p.name}</span>
+                                {isPick && (
+                                  <span className="inline-flex items-center gap-1 rounded bg-slate-900 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                                    <Star className="h-3 w-3" /> Pick
+                                  </span>
+                                )}
+                              </div>
+                              <div className="truncate text-xs text-slate-500">
+                                Default bonus: {p.bonus ?? "—"}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <button
+                              onClick={() => setEditorsPickSlug(isPick ? null : p.slug)}
+                              className={`rounded p-1.5 ${isPick ? "bg-slate-900 text-white" : "text-slate-500 hover:bg-slate-100"}`}
+                              aria-label="Set Editor's Pick"
+                              title="Set Editor's Pick"
+                            >
+                              <Star className="h-3.5 w-3.5" />
+                            </button>
+                            <button onClick={() => move(p.slug, -1)} disabled={i === 0} className="rounded p-1.5 text-slate-500 hover:bg-slate-100 disabled:opacity-30" aria-label="Move up">↑</button>
+                            <button onClick={() => move(p.slug, 1)} disabled={i === selectedProducts.length - 1} className="rounded p-1.5 text-slate-500 hover:bg-slate-100 disabled:opacity-30" aria-label="Move down">↓</button>
+                            <button
+                              onClick={() => {
+                                toggle(p.slug);
+                                if (editorsPickSlug === p.slug) setEditorsPickSlug(null);
+                              }}
+                              className="rounded p-1.5 text-slate-500 hover:bg-slate-100"
+                              aria-label="Remove"
+                            >
+                              <X className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-2">
+                          <div>
+                            <label className="text-[11px] font-medium text-slate-600">Bonus override</label>
+                            <input
+                              value={ov.bonus ?? ""}
+                              onChange={(e) =>
+                                setOverrides((prev) => ({
+                                  ...prev,
+                                  [p.slug]: { ...prev[p.slug], bonus: e.target.value },
+                                }))
+                              }
+                              placeholder={p.bonus ?? "e.g. $500 bonus"}
+                              className="mt-1 h-9 w-full rounded-md border border-slate-300 bg-white px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-[11px] font-medium text-slate-600">Newsletter-exclusive note</label>
+                            <input
+                              value={ov.promoNote ?? ""}
+                              onChange={(e) =>
+                                setOverrides((prev) => ({
+                                  ...prev,
+                                  [p.slug]: { ...prev[p.slug], promoNote: e.target.value },
+                                }))
+                              }
+                              placeholder="Use code NEWS100 for an extra $100"
+                              className="mt-1 h-9 w-full rounded-md border border-slate-300 bg-white px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <button onClick={() => move(p.slug, -1)} disabled={i === 0} className="rounded p-1 text-slate-500 hover:bg-slate-100 disabled:opacity-30" aria-label="Move up">↑</button>
-                        <button onClick={() => move(p.slug, 1)} disabled={i === selectedProducts.length - 1} className="rounded p-1 text-slate-500 hover:bg-slate-100 disabled:opacity-30" aria-label="Move down">↓</button>
-                        <button onClick={() => toggle(p.slug)} className="rounded p-1 text-slate-500 hover:bg-slate-100" aria-label="Remove">
-                          <X className="h-3.5 w-3.5" />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}

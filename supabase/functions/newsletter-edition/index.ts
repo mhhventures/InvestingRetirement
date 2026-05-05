@@ -20,6 +20,8 @@ type Product = {
   bestFor: string;
   url: string;
   logoText: string;
+  editorsPick?: boolean;
+  promoNote?: string;
 };
 
 const escapeHtml = (s: string) =>
@@ -55,8 +57,20 @@ const renderCard = (p: Product, rank: number, utm: string, logoToken: string | n
     ? `<img src="${logo}" alt="${escapeHtml(p.name)}" width="32" height="32" style="display:block;width:32px;height:32px;border:0;outline:none;border-radius:4px;" />`
     : `<div style="width:32px;height:32px;background:#1e3a8a;color:#fff;font-family:Georgia,serif;font-weight:700;font-size:14px;line-height:32px;text-align:center;border-radius:4px;">${escapeHtml(p.logoText.slice(0, 2))}</div>`;
 
+  const pickRibbon = p.editorsPick
+    ? `<div style="background:#1a1a1a;color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;padding:6px 12px;">Editor&rsquo;s Pick</div>`
+    : "";
+
+  const promoBanner = p.promoNote
+    ? `<div style="margin-top:14px;padding:10px 12px;background:#fff8e6;border:1px solid #f2d98a;border-radius:4px;font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#6b4e00;line-height:1.5;"><strong style="color:#4a3600;">Newsletter exclusive:</strong> ${escapeHtml(p.promoNote)}</div>`
+    : "";
+
+  const borderColor = p.editorsPick ? "#1a1a1a" : "#e4d9cf";
+  const borderWidth = p.editorsPick ? "2px" : "1px";
+
   return `
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 16px 0;background:#ffffff;border:1px solid #e4d9cf;border-radius:4px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 16px 0;background:#ffffff;border:${borderWidth} solid ${borderColor};border-radius:4px;overflow:hidden;">
+    ${pickRibbon ? `<tr><td>${pickRibbon}</td></tr>` : ""}
     <tr>
       <td style="padding:20px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -69,6 +83,7 @@ const renderCard = (p: Product, rank: number, utm: string, logoToken: string | n
             </td>
           </tr>
         </table>
+        ${promoBanner}
 
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:16px;border-top:1px solid #f0e8de;border-bottom:1px solid #f0e8de;">
           <tr>
