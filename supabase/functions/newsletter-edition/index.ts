@@ -22,11 +22,21 @@ type Product = {
   bestFor: string;
   url: string;
   logoText: string;
+  logoSourceUrl?: string;
   rating?: number;
   reviews?: number;
   category?: string;
   editorsPick?: boolean;
   promoNote?: string;
+};
+
+const ROOT_DOMAIN = "investingandretirement.com";
+const isPartnerSubdomainUrl = (url: string) => {
+  try {
+    return new URL(url).hostname.endsWith(`.${ROOT_DOMAIN}`);
+  } catch {
+    return false;
+  }
 };
 
 type LinkCard = {
@@ -85,9 +95,11 @@ const starRow = (rating?: number, reviews?: number) => {
 };
 
 const renderCard = (p: Product, rank: number, utm: string, logoToken: string | null) => {
-  const href = `${p.url}${p.url.includes("?") ? "&" : "?"}${utm}`;
+  const href = isPartnerSubdomainUrl(p.url)
+    ? p.url
+    : `${p.url}${p.url.includes("?") ? "&" : "?"}${utm}`;
   const reviewHref = `${SITE_URL}/product/${p.slug}?${utm}`;
-  const logo = logoUrl(p.url, logoToken);
+  const logo = logoUrl(p.logoSourceUrl ?? p.url, logoToken);
   const logoCell = logo
     ? `<img src="${logo}" alt="${escapeHtml(p.name)}" width="48" height="48" style="display:block;width:48px;height:48px;border:0;outline:none;border-radius:3px;background:#ffffff;border:1px solid #e4d9cf;padding:4px;box-sizing:border-box;" />`
     : `<div style="width:48px;height:48px;background:#0e4d45;color:#fef6f1;font-family:Georgia,serif;font-weight:700;font-size:14px;line-height:48px;text-align:center;border-radius:3px;">${escapeHtml(p.logoText.slice(0, 2))}</div>`;
