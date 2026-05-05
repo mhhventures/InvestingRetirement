@@ -5,6 +5,8 @@ import type { Product } from "@/data/products";
 import { productPartnerLink } from "@/lib/affiliate";
 import { getProductLogoUrl } from "@/lib/product-icons";
 import { getDisclosure } from "@/data/disclosures";
+import { pushImpression } from "@/lib/gtm";
+import { useImpression } from "@/hooks/use-impression";
 
 // Letter-grade badge. Color-coded by tier:
 // A+/A = deep green (top), A- = green, B+/B = charcoal, B- = muted, C+ = deep red.
@@ -177,10 +179,19 @@ export function ProductLogo({ p, size = 40, priority = false }: { p: Product; si
   );
 }
 
-export function ProductCard({ p, rank }: { p: Product; rank?: number }) {
+export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; listName?: string }) {
   const disclosure = p.disclosure || getDisclosure(p.slug);
+  const impressionRef = useImpression<HTMLDivElement>(() => {
+    pushImpression("view_item", {
+      item_id: p.slug,
+      item_name: p.name,
+      item_category: p.category,
+      item_list_name: listName || "product-card",
+      placement: listName || "product-card",
+    });
+  });
   return (
-    <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm hover:shadow-md hover:border-[#0e4d45] transition-all w-full min-w-0 overflow-hidden box-border" style={{ maxWidth: '100%', contain: 'layout' }}>
+    <div ref={impressionRef} className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm hover:shadow-md hover:border-[#0e4d45] transition-all w-full min-w-0 overflow-hidden box-border" style={{ maxWidth: '100%', contain: 'layout' }}>
       <div className="p-3 sm:p-4">
         {/* Top row: category tag + editor's pick label (mirror Guides card) */}
         <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3">
@@ -245,6 +256,9 @@ export function ProductCard({ p, rank }: { p: Product; rank?: number }) {
           <Link
             to="/product/$slug"
             params={{ slug: p.slug }}
+            data-product={p.slug}
+            data-product-category={p.category}
+            data-placement={listName || "product-card"}
             className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
           >
             Read Review
@@ -253,7 +267,9 @@ export function ProductCard({ p, rank }: { p: Product; rank?: number }) {
             href={productPartnerLink(p.slug, p.url, { placement: "product-card", campaign: p.category === "bank" ? "bank-accounts" : p.category === "investing" ? "investing" : "financial-apps" })}
             target="_blank"
             rel="nofollow noopener noreferrer sponsored"
-            data-placement="product-card"
+            data-placement={listName || "product-card"}
+            data-product={p.slug}
+            data-product-category={p.category}
             className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-white border border-[#d4c5b8] text-black text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
           >
             Visit Site

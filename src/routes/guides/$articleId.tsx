@@ -130,7 +130,7 @@ function GuideArticlePage() {
 
   return (
     <div>
-      <ReadingProgressBar />
+      <ReadingProgressBar guideSlug={article.slug} />
       <BackToTop />
       <FtcDisclosure variant="compact" />
 

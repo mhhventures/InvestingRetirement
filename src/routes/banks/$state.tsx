@@ -18,6 +18,7 @@ import { StarRating, GradeBadge } from "@/components/product-card";
 import { getDomainLogoUrl, extractDomain } from "@/lib/product-icons";
 import { stateProviderPartnerLink } from "@/lib/affiliate";
 import { trackEvent } from "@/lib/pixel";
+import { pushEvent } from "@/lib/gtm";
 
 export const Route = createFileRoute("/banks/$state")({
   loader: ({ params }) => {
@@ -211,6 +212,13 @@ function StateBanksPage() {
         content_category: "banks",
         state_code: info.code,
         product_filter: filter,
+      });
+      pushEvent("site_search", {
+        search_term: q,
+        content_group: "banks",
+        state: info.code,
+        product_filter: filter,
+        results_count: filtered.length,
       });
     }, 900);
     return () => clearTimeout(timer);
@@ -641,7 +649,11 @@ function StateBanksPage() {
                     </label>
                     <select
                       value={sort}
-                      onChange={(e) => setSort(e.target.value as typeof sort)}
+                      onChange={(e) => {
+                        const v = e.target.value as typeof sort;
+                        setSort(v);
+                        pushEvent("rate_table_sort", { sort_key: v, state: info.code, content_group: "banks" });
+                      }}
                       className="text-[11px] border border-[#d4c5b8] bg-white rounded-sm px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#0e4d45] text-black"
                     >
                       <option value="default">Our Ranking</option>
