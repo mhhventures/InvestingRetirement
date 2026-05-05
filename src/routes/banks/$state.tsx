@@ -17,6 +17,7 @@ import { BankSidebar } from "@/components/bank-sidebar";
 import { StarRating, GradeBadge } from "@/components/product-card";
 import { getDomainLogoUrl, extractDomain } from "@/lib/product-icons";
 import { stateProviderPartnerLink } from "@/lib/affiliate";
+import { trackEvent } from "@/lib/pixel";
 
 export const Route = createFileRoute("/banks/$state")({
   loader: ({ params }) => {
@@ -204,6 +205,12 @@ function StateBanksPage() {
         referrer: typeof document !== "undefined" ? document.referrer : "",
         user_agent:
           typeof navigator !== "undefined" ? navigator.userAgent : "",
+      });
+      trackEvent("Search", {
+        search_string: q,
+        content_category: "banks",
+        state_code: info.code,
+        product_filter: filter,
       });
     }, 900);
     return () => clearTimeout(timer);

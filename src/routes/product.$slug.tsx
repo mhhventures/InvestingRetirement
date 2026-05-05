@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { getBySlug, products } from "@/data/products";
 import { productPartnerLink } from "@/lib/affiliate";
+import { trackEvent } from "@/lib/pixel";
 import { StarRating, ProductLogo, DisclosureIcon } from "@/components/product-card";
 import { getDisclosure } from "@/data/disclosures";
 import { Sidebar } from "@/components/sidebar-offers";
@@ -154,6 +156,16 @@ function ProductDetail() {
           noindex: true,
         }
   );
+
+  useEffect(() => {
+    if (!p) return;
+    trackEvent("ViewContent", {
+      content_name: p.name,
+      content_category: p.subcategory,
+      content_ids: [p.slug],
+      content_type: "product",
+    });
+  }, [p?.slug]);
 
   if (!p) {
     return (
@@ -359,6 +371,14 @@ function ProductDetail() {
                     })}
                     target="_blank"
                     rel="nofollow noopener noreferrer sponsored"
+                    onClick={() => {
+                      trackEvent("Lead", {
+                        content_name: p.slug,
+                        content_category: p.category,
+                        content_ids: [p.slug],
+                        placement: "product-review-hero",
+                      });
+                    }}
                     className="block text-center px-3 py-2 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] text-xs font-semibold transition-colors uppercase tracking-wide"
                   >
                     Open {p.category === "investing" ? "Account" : p.category === "app" ? "App" : "Account"}

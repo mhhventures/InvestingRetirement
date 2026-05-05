@@ -5,6 +5,7 @@ import type { Product } from "@/data/products";
 import { productPartnerLink } from "@/lib/affiliate";
 import { getProductLogoUrl } from "@/lib/product-icons";
 import { getDisclosure } from "@/data/disclosures";
+import { trackEvent } from "@/lib/pixel";
 
 // Letter-grade badge. Color-coded by tier:
 // A+/A = deep green (top), A- = green, B+/B = charcoal, B- = muted, C+ = deep red.
@@ -253,6 +254,14 @@ export function ProductCard({ p, rank }: { p: Product; rank?: number }) {
             href={productPartnerLink(p.slug, p.url, { placement: "product-card", campaign: p.category === "bank" ? "bank-accounts" : p.category === "investing" ? "investing" : "financial-apps" })}
             target="_blank"
             rel="nofollow noopener noreferrer sponsored"
+            onClick={() => {
+              trackEvent("Lead", {
+                content_name: p.slug,
+                content_category: p.category,
+                content_ids: [p.slug],
+                placement: "product-card",
+              });
+            }}
             className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-white border border-[#d4c5b8] text-black text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
           >
             Visit Site

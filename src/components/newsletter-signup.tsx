@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { trackEvent } from "@/lib/pixel";
 
 type Variant = "sidebar" | "inline" | "page";
 
@@ -56,6 +57,13 @@ export function NewsletterSignup({
         setMessage({ type: "ok", text: "You're already subscribed — thanks!" });
         setEmail("");
       } else {
+        trackEvent("Subscribe", {
+          value: "0.00",
+          currency: "USD",
+          predicted_ltv: "0.00",
+          content_name: "newsletter",
+          content_category: source,
+        });
         setMessage({
           type: "ok",
           text: "Check your inbox for a confirmation link to finish subscribing.",
