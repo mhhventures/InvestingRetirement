@@ -22,11 +22,21 @@ type Product = {
   bestFor: string;
   url: string;
   logoText: string;
+  logoSourceUrl?: string;
   rating?: number;
   reviews?: number;
   category?: string;
   editorsPick?: boolean;
   promoNote?: string;
+};
+
+const ROOT_DOMAIN = "investingandretirement.com";
+const isPartnerSubdomainUrl = (url: string) => {
+  try {
+    return new URL(url).hostname.endsWith(`.${ROOT_DOMAIN}`);
+  } catch {
+    return false;
+  }
 };
 
 type LinkCard = {
@@ -85,9 +95,11 @@ const starRow = (rating?: number, reviews?: number) => {
 };
 
 const renderCard = (p: Product, rank: number, utm: string, logoToken: string | null) => {
-  const href = `${p.url}${p.url.includes("?") ? "&" : "?"}${utm}`;
+  const href = isPartnerSubdomainUrl(p.url)
+    ? p.url
+    : `${p.url}${p.url.includes("?") ? "&" : "?"}${utm}`;
   const reviewHref = `${SITE_URL}/product/${p.slug}?${utm}`;
-  const logo = logoUrl(p.url, logoToken);
+  const logo = logoUrl(p.logoSourceUrl ?? p.url, logoToken);
   const logoCell = logo
     ? `<img src="${logo}" alt="${escapeHtml(p.name)}" width="48" height="48" style="display:block;width:48px;height:48px;border:0;outline:none;border-radius:3px;background:#ffffff;border:1px solid #e4d9cf;padding:4px;box-sizing:border-box;" />`
     : `<div style="width:48px;height:48px;background:#0e4d45;color:#fef6f1;font-family:Georgia,serif;font-weight:700;font-size:14px;line-height:48px;text-align:center;border-radius:3px;">${escapeHtml(p.logoText.slice(0, 2))}</div>`;
@@ -219,7 +231,7 @@ const renderEdition = (opts: {
     )
     .join("");
 
-  return `<div style="background:#faf7f2;padding:24px 16px;font-family:Georgia,'Times New Roman',serif;">
+  return `<div style="background:#ffffff;padding:24px 16px;font-family:Georgia,'Times New Roman',serif;">
   <div style="max-width:600px;margin:0 auto;">
     <div style="font-family:Georgia,'Times New Roman',serif;font-size:11px;color:#8a7a6b;text-transform:uppercase;letter-spacing:0.12em;">Week of ${escapeHtml(opts.weekStart)} &middot; ${escapeHtml(opts.category)}</div>
     <h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;color:#1a1a1a;font-weight:700;line-height:1.2;margin:8px 0 12px 0;">${escapeHtml(opts.headline)}</h1>

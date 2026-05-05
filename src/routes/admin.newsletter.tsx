@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { products } from "@/data/products";
+import { productPartnerLink } from "@/lib/affiliate";
 import { useSeo } from "@/lib/seo";
 import { toast } from "sonner";
 import { Calendar, Copy, Lock, Sparkles, Check, Plus, X, Star, Link2, Building2, MapPin, ChartLine as LineChart, Smartphone, BookOpen } from "lucide-react";
@@ -190,8 +191,14 @@ function Builder({ token, onSignOut }: { token: string; onSignOut: () => void })
           const base = products.find((p) => p.slug === s);
           if (!base) return null;
           const ov = overrides[s] ?? {};
+          const trackedUrl = productPartnerLink(base.slug, base.url, {
+            placement: "newsletter",
+            term: `${category}-${weekStart}`,
+          });
           return {
             ...base,
+            url: trackedUrl,
+            logoSourceUrl: base.url,
             bonus: ov.bonus?.trim() ? ov.bonus.trim() : base.bonus,
             promoNote: ov.promoNote?.trim() ? ov.promoNote.trim() : undefined,
             editorsPick: editorsPickSlug === s,
