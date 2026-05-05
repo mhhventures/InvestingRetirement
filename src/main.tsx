@@ -54,6 +54,17 @@ function DeferredAnalytics() {
 // Remove prerendered SEO fallback (duplicate h1 / nav) once JS takes over.
 document.getElementById('seo-fallback')?.remove()
 
+// Fire Meta Pixel PageView on SPA route changes (initial load is tracked in index.html).
+let lastPixelPath = typeof window !== 'undefined' ? window.location.pathname + window.location.search : ''
+router.subscribe('onResolved', () => {
+  const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq
+  if (!fbq) return
+  const path = window.location.pathname + window.location.search
+  if (path === lastPixelPath) return
+  lastPixelPath = path
+  fbq('track', 'PageView')
+})
+
 // Render the app
 const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
