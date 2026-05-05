@@ -65,6 +65,50 @@ router.subscribe('onResolved', () => {
   fbq('track', 'PageView')
 })
 
+// Global affiliate-click tracker: any anchor pointing at `{partner}.investingandretirement.com`
+// fires a Meta Pixel `Lead` event. Dedupes per anchor node per tick to avoid double-firing
+// when both a card wrapper and inner CTA are tracked. Works across calculators, comparison
+// modules, sidebar offers, state bank pages, and any future partner link.
+if (typeof document !== 'undefined') {
+  const PARTNER_HOST = /(^|\.)investingandretirement\.com$/i
+  const fired = new WeakSet<Element>()
+  document.addEventListener(
+    'click',
+    (ev) => {
+      const target = ev.target
+      if (!(target instanceof Element)) return
+      const anchor = target.closest('a[href]') as HTMLAnchorElement | null
+      if (!anchor) return
+      const href = anchor.getAttribute('href') || ''
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return
+      let host = ''
+      try {
+        host = new URL(href, window.location.href).hostname
+      } catch {
+        return
+      }
+      if (!PARTNER_HOST.test(host)) return
+      // Skip the www/root host — only partner subdomains.
+      if (host.replace(/^www\./, '') === 'investingandretirement.com') return
+      if (fired.has(anchor)) return
+      fired.add(anchor)
+      const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq
+      if (!fbq) return
+      const partner = host.split('.')[0]
+      const offer = new URL(href, window.location.href).pathname.replace(/^\//, '')
+      const placement = anchor.getAttribute('data-placement') || 'auto'
+      fbq('track', 'Lead', {
+        content_name: offer || partner,
+        content_category: partner,
+        content_ids: [offer || partner],
+        placement,
+        page_path: window.location.pathname,
+      })
+    },
+    true,
+  )
+}
+
 // Render the app
 const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
