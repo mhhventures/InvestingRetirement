@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { useSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/admin/gsc")({
   component: GscDashboard,
@@ -34,6 +35,12 @@ function formatInt(n: number) {
 }
 
 function GscDashboard() {
+  useSeo({
+    title: "Admin",
+    description: "Private admin area.",
+    path: "/admin/gsc",
+    noindex: true,
+  });
   const [rows, setRows] = useState<MetricRow[]>([]);
   const [runs, setRuns] = useState<SyncRun[]>([]);
   const [loading, setLoading] = useState(true);
