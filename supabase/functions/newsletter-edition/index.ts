@@ -231,7 +231,7 @@ const renderEdition = (opts: {
     )
     .join("");
 
-  return `<div style="background:#faf7f2;padding:24px 16px;font-family:Georgia,'Times New Roman',serif;">
+  return `<div style="background:#ffffff;padding:24px 16px;font-family:Georgia,'Times New Roman',serif;">
   <div style="max-width:600px;margin:0 auto;">
     <div style="font-family:Georgia,'Times New Roman',serif;font-size:11px;color:#8a7a6b;text-transform:uppercase;letter-spacing:0.12em;">Week of ${escapeHtml(opts.weekStart)} &middot; ${escapeHtml(opts.category)}</div>
     <h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;color:#1a1a1a;font-weight:700;line-height:1.2;margin:8px 0 12px 0;">${escapeHtml(opts.headline)}</h1>
