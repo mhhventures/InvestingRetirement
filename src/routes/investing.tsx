@@ -286,6 +286,24 @@ function Investing() {
             Read our <a href="/about" className="underline text-[#0e4d45]">editorial methodology</a> and <a href="/disclosure" className="underline text-[#0e4d45]">advertiser disclosure</a> for more on how we test products and fund our independence.
           </p>
         </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold text-black mb-1.5">How to open your first brokerage account</h3>
+          <p>
+            Opening a brokerage account takes about ten minutes online. You&rsquo;ll need your Social Security number, a government ID, your employer and address, and a bank account for the initial transfer. Most brokers have a $0 minimum for taxable accounts and IRAs, though a few require $500 to $2,500 for managed portfolios. Once funded, money typically clears for trading in one to three business days via ACH, or instantly if the platform offers same-day buying power. Before you place a first order, decide on a simple allocation — a broad US stock index, a total international index, and a bond or cash position is enough for most long-term investors — and set up automatic monthly contributions so you&rsquo;re dollar-cost averaging by default.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold text-black mb-1.5">Common mistakes we see new investors make</h3>
+          <p>
+            The costliest mistakes are usually behavioral, not strategic. Chasing hot stocks or leveraged ETFs you saw trending on social media rarely beats a boring index fund after taxes and fees. Trying to time the market — selling in a downturn or waiting on the sidelines for the &ldquo;right moment&rdquo; — consistently underperforms staying invested through volatility. And overlooking tax-advantaged accounts like a Roth IRA, Traditional IRA, or 401(k) match is the most expensive decision most new investors make: skipping an employer match is leaving free money on the table, while paying long-term capital gains in a taxable account on trades you could have made inside an IRA can cost tens of thousands over a career. Our <a href="/guides/portfolio-building" className="underline text-[#0e4d45]">portfolio-building guide</a> walks through a simple, tax-aware setup from scratch.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold text-black mb-1.5">Robo-advisor vs. self-directed vs. full-service</h3>
+          <p>
+            The three main flavors of brokerage service fit different investors. A <strong>self-directed brokerage</strong> gives you maximum control and the lowest fees — commission-free trades, no advisory fees, and a wide menu of stocks, ETFs, bonds, and options — but you pick every investment yourself. A <strong>robo-advisor</strong> charges a small annual fee (usually 0.25% of assets) to automatically build and rebalance a diversified portfolio based on your goals and risk tolerance, and most now include tax-loss harvesting that can offset the fee for taxable investors. A <strong>full-service broker</strong> pairs you with a human advisor who provides financial planning, tax guidance, and estate work, typically at 1% of assets or a flat annual fee — usually worth it only once portfolios are complex enough to warrant the cost.
+          </p>
+        </div>
       </section>
     </CategoryPage>
   );

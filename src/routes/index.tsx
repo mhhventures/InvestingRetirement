@@ -246,6 +246,34 @@ function Home() {
           {/* Sidebar */}
           <Sidebar />
         </div>
+
+        <section className="mt-12 max-w-4xl space-y-6 text-sm text-[#1a1a1a] leading-relaxed">
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">About this site</div>
+            <h2 className="font-serif text-2xl font-bold text-black mb-2">Honest, hands-on reviews of the money products Americans actually use</h2>
+            <p>
+              Investing and Retirement is an independent personal-finance publication built around a simple rule: an editor has to open, fund, and use a product before we publish a ranking. That means real deposits at the online banks we recommend, funded trades at the brokerages we score, and months of day-to-day use on the budgeting and cash-advance apps we compare. We publish the exact APY, fee schedule, and bonus terms every account offers on the day of review, and we re-check those numbers on a weekly cadence so stale rates don&rsquo;t linger in our rankings.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-serif text-lg font-bold text-black mb-1.5">What you&rsquo;ll find here</h3>
+            <p>
+              Our coverage is organized into three hubs. <strong>Bank accounts</strong> covers high-yield savings, no-fee checking, money markets, and certificates of deposit, with a live ranking of top APYs and signup bonuses. <strong>Investing apps</strong> compares traditional brokerages, robo-advisors, retirement accounts, and crypto exchanges on commissions, account types, research tools, and support. <strong>Financial apps</strong> covers budgeting tools, credit monitors, cash-advance services, and round-up investors. Every category hub links to a full review of each product and to long-form guides that explain how to choose between them.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-serif text-lg font-bold text-black mb-1.5">How we make money, and how we stay independent</h3>
+            <p>
+              Some of the links on this site are affiliate links, meaning we may earn a commission if you open an account through them. Partners never see our rankings before they publish, they cannot pay to be included in a list, and they cannot pay for a higher score. Our rankings are driven by a weighted rubric scored by editors — advertising revenue keeps the lights on but never bends the copy. If a product drops in quality, its ranking drops. Our full <a href="/disclosure" className="underline text-[#0e4d45]">advertiser disclosure</a> explains which partners we work with and how we handle conflicts of interest, and our <a href="/about" className="underline text-[#0e4d45]">about page</a> walks through the editorial standards we hold every review to.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-serif text-lg font-bold text-black mb-1.5">Who this is for</h3>
+            <p>
+              Most of our readers are Americans trying to make a specific, near-term money decision: where to park an emergency fund, which brokerage to open a Roth IRA at, whether a $200 checking bonus is worth the direct-deposit requirement, or how a HYSA compares to a CD for a short-term savings goal. Every guide and review is written so you can skim to the numbers in under a minute, then dig deeper if you want to understand the why. We avoid hype, we publish the downsides alongside the upsides, and we link out to official disclosures so you can verify anything we report.
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   );
