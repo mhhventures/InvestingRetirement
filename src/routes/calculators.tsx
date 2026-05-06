@@ -110,23 +110,49 @@ function CalculatorsIndex() {
           <p className="text-xs text-[#5a5a5a] italic">
             These tools are for planning and education only. They are not personalized financial advice. Actual returns, rates, and outcomes will vary based on markets, fees, taxes, and your individual situation.
           </p>
-          <div>
-            <h3 className="font-serif text-lg font-bold text-black mb-1.5">How to use these calculators well</h3>
-            <p>
-              A good financial calculator forces you to stop guessing and make your assumptions explicit. The compound interest and retirement calculators ask you to pick a return assumption — we recommend running the numbers three times, at conservative (5% annual return), moderate (7%), and optimistic (9%) inputs, and planning to the conservative case while saving toward the moderate. For the mortgage tool, plug in not just principal and rate but also property taxes, homeowners insurance, and expected HOA fees; the difference between a bare principal-and-interest payment and a true all-in monthly housing cost is typically 20% to 40%. On the debt payoff tool, remember that avalanche (highest rate first) mathematically saves more money, but snowball (smallest balance first) produces faster psychological wins that help some households actually finish.
-            </p>
+        </section>
+
+        <section className="mt-10 max-w-5xl">
+          <div className="mb-3 border-b border-[#e4d9cf] pb-1.5">
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">Usage Notes</div>
+            <h2 className="font-serif text-2xl font-bold text-black">Getting the most out of these tools</h2>
           </div>
-          <div>
-            <h3 className="font-serif text-lg font-bold text-black mb-1.5">What these calculators don&rsquo;t do</h3>
-            <p>
-              No calculator can account for the messiness of real life. They don&rsquo;t know that your employer will match 6% for the first four years and 3% thereafter, that you&rsquo;ll have a kid in seven years, that your state taxes retirement income differently than the federal government, or that your emergency fund may need to double during a period of job instability. Use the outputs as a directional benchmark, not a forecast. For significant decisions — a home purchase, retirement date, Roth conversion, or debt consolidation — we recommend pairing calculator output with a conversation with a fee-only fiduciary financial planner, especially when tax and estate consequences are in play.
-            </p>
+          <div className="grid sm:grid-cols-3 gap-3">
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
+              <div className="font-serif text-xl font-bold text-[#0e4d45] leading-none mb-1">01</div>
+              <div className="font-semibold text-sm text-black mb-1">Run three scenarios</div>
+              <p className="text-[11.5px] text-[#5a5a5a] leading-relaxed">
+                For return assumptions, try conservative (5%), moderate (7%), and optimistic (9%). Plan to the conservative case while saving toward the moderate.
+              </p>
+            </div>
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
+              <div className="font-serif text-xl font-bold text-[#0e4d45] leading-none mb-1">02</div>
+              <div className="font-semibold text-sm text-black mb-1">Include every cost</div>
+              <p className="text-[11.5px] text-[#5a5a5a] leading-relaxed">
+                On the mortgage tool, add property taxes, insurance, and HOA fees. True all-in housing cost is typically 20&ndash;40% above principal and interest.
+              </p>
+            </div>
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
+              <div className="font-serif text-xl font-bold text-[#0e4d45] leading-none mb-1">03</div>
+              <div className="font-semibold text-sm text-black mb-1">Pick the right method</div>
+              <p className="text-[11.5px] text-[#5a5a5a] leading-relaxed">
+                On debt payoff, avalanche (highest rate first) saves more money; snowball (smallest balance first) builds psychological wins that help you finish.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="font-serif text-lg font-bold text-black mb-1.5">Privacy and data</h3>
-            <p>
-              Everything you type into these calculators stays on your device. We do not transmit your deposit amounts, balances, salary, or any other inputs to our servers or third parties. There is no account to create, no email required, and no login. If you refresh the page, your inputs reset — you&rsquo;re welcome to screenshot a scenario before closing the tab if you want to keep it.
-            </p>
+          <div className="mt-3 grid sm:grid-cols-2 gap-3">
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
+              <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#540f04] mb-1">What these calculators don&rsquo;t do</div>
+              <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed">
+                No tool accounts for life&rsquo;s messiness &mdash; variable employer matches, a kid in seven years, state-specific retirement taxes, or a fund that needs to double during job instability. Use outputs as a directional benchmark, not a forecast. For major decisions, pair the numbers with a fee-only fiduciary planner.
+              </p>
+            </div>
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
+              <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">Privacy and data</div>
+              <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed">
+                Every input stays on your device. Nothing is transmitted to our servers or third parties &mdash; no account, no email, no login. Refreshing the page resets your inputs, so screenshot a scenario if you want to keep it.
+              </p>
+            </div>
           </div>
         </section>
       </div>

@@ -247,31 +247,84 @@ function Home() {
           <Sidebar />
         </div>
 
-        <section className="mt-12 max-w-4xl space-y-6 text-sm text-[#1a1a1a] leading-relaxed">
-          <div>
-            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">About this site</div>
-            <h2 className="font-serif text-2xl font-bold text-black mb-2">Honest, hands-on reviews of the money products Americans actually use</h2>
-            <p>
-              Investing and Retirement is an independent personal-finance publication built around a simple rule: an editor has to open, fund, and use a product before we publish a ranking. That means real deposits at the online banks we recommend, funded trades at the brokerages we score, and months of day-to-day use on the budgeting and cash-advance apps we compare. We publish the exact APY, fee schedule, and bonus terms every account offers on the day of review, and we re-check those numbers on a weekly cadence so stale rates don&rsquo;t linger in our rankings.
-            </p>
+        <section className="mt-10 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
+          <div className="min-w-0">
+            <div className="flex items-end justify-between mb-3 border-b-2 border-black pb-1.5">
+              <h2 className="font-serif text-xl md:text-2xl font-bold text-black leading-none">
+                About This Site
+              </h2>
+              <Link to="/about" className="text-[11px] font-semibold text-[#0e4d45] hover:text-[#0a3832] uppercase tracking-wider">
+                Our methodology &rarr;
+              </Link>
+            </div>
+            <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm p-5 sm:p-6 text-sm text-[#1a1a1a] leading-relaxed">
+              <p>
+                Investing and Retirement is an independent personal-finance publication. An editor opens, funds, and uses every product before we publish a ranking — real deposits at the banks we recommend, funded trades at the brokerages we score, and months of daily use on the apps we compare. APY, fees, and bonus terms are re-verified weekly so stale numbers don&rsquo;t linger in our rankings.
+              </p>
+              <div className="mt-5 grid sm:grid-cols-3 gap-3">
+                {[
+                  { step: "01", title: "Bank accounts", desc: "High-yield savings, no-fee checking, money markets, and CDs." },
+                  { step: "02", title: "Investing apps", desc: "Brokerages, robo-advisors, retirement accounts, and crypto." },
+                  { step: "03", title: "Financial apps", desc: "Budgeting, credit monitoring, and cash-advance tools." },
+                ].map((c) => (
+                  <div key={c.step} className="border border-[#e4d9cf] rounded-sm p-3">
+                    <div className="font-serif text-xl font-bold text-[#0e4d45] leading-none mb-1">{c.step}</div>
+                    <div className="font-semibold text-sm text-black mb-0.5">{c.title}</div>
+                    <div className="text-[11px] text-[#5a5a5a] leading-snug">{c.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 className="font-serif text-lg font-bold text-black mb-1.5">What you&rsquo;ll find here</h3>
-            <p>
-              Our coverage is organized into three hubs. <strong>Bank accounts</strong> covers high-yield savings, no-fee checking, money markets, and certificates of deposit, with a live ranking of top APYs and signup bonuses. <strong>Investing apps</strong> compares traditional brokerages, robo-advisors, retirement accounts, and crypto exchanges on commissions, account types, research tools, and support. <strong>Financial apps</strong> covers budgeting tools, credit monitors, cash-advance services, and round-up investors. Every category hub links to a full review of each product and to long-form guides that explain how to choose between them.
-            </p>
+          <aside className="space-y-4">
+            <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm p-4">
+              <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1.5">Editorial standards</div>
+              <ul className="space-y-2 text-[12px] text-[#1a1a1a] leading-snug">
+                <li className="flex gap-2"><span className="text-[#0e4d45] font-bold">&#8226;</span><span>Partners cannot preview, pay for, or influence rankings.</span></li>
+                <li className="flex gap-2"><span className="text-[#0e4d45] font-bold">&#8226;</span><span>Rates re-verified weekly, reviews refreshed twice a year.</span></li>
+                <li className="flex gap-2"><span className="text-[#0e4d45] font-bold">&#8226;</span><span>Downsides published alongside highlights &mdash; always.</span></li>
+              </ul>
+              <Link to="/disclosure" className="mt-3 inline-block text-[11px] font-semibold uppercase tracking-wider text-[#0e4d45] hover:text-[#0a3832]">
+                Advertiser disclosure &rarr;
+              </Link>
+            </div>
+          </aside>
+        </section>
+
+        <section className="mt-10 max-w-5xl">
+          <div className="flex items-end justify-between mb-3 border-b-2 border-black pb-1.5">
+            <h2 className="font-serif text-xl md:text-2xl font-bold text-black leading-none">
+              Common Questions
+            </h2>
+            <Link to="/faq" className="text-[11px] font-semibold text-[#0e4d45] hover:text-[#0a3832] uppercase tracking-wider">
+              See all FAQs &rarr;
+            </Link>
           </div>
-          <div>
-            <h3 className="font-serif text-lg font-bold text-black mb-1.5">How we make money, and how we stay independent</h3>
-            <p>
-              Some of the links on this site are affiliate links, meaning we may earn a commission if you open an account through them. Partners never see our rankings before they publish, they cannot pay to be included in a list, and they cannot pay for a higher score. Our rankings are driven by a weighted rubric scored by editors — advertising revenue keeps the lights on but never bends the copy. If a product drops in quality, its ranking drops. Our full <a href="/disclosure" className="underline text-[#0e4d45]">advertiser disclosure</a> explains which partners we work with and how we handle conflicts of interest, and our <a href="/about" className="underline text-[#0e4d45]">about page</a> walks through the editorial standards we hold every review to.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-serif text-lg font-bold text-black mb-1.5">Who this is for</h3>
-            <p>
-              Most of our readers are Americans trying to make a specific, near-term money decision: where to park an emergency fund, which brokerage to open a Roth IRA at, whether a $200 checking bonus is worth the direct-deposit requirement, or how a HYSA compares to a CD for a short-term savings goal. Every guide and review is written so you can skim to the numbers in under a minute, then dig deeper if you want to understand the why. We avoid hype, we publish the downsides alongside the upsides, and we link out to official disclosures so you can verify anything we report.
-            </p>
+          <div className="grid sm:grid-cols-2 gap-3 text-sm text-[#1a1a1a] leading-relaxed">
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4">
+              <h3 className="font-serif font-bold text-base text-black mb-1">How do you make money?</h3>
+              <p className="text-[12.5px] text-[#1a1a1a]">
+                Some links are affiliate links — we may earn a commission if you open an account. Partners cannot pay for a higher ranking, and advertising revenue never bends the copy. When a product gets worse, its ranking drops.
+              </p>
+            </div>
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4">
+              <h3 className="font-serif font-bold text-base text-black mb-1">Who is this site for?</h3>
+              <p className="text-[12.5px] text-[#1a1a1a]">
+                Americans making a specific, near-term money decision: where to park an emergency fund, which brokerage to open a Roth IRA at, or whether a signup bonus is worth the direct-deposit requirement.
+              </p>
+            </div>
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4">
+              <h3 className="font-serif font-bold text-base text-black mb-1">How current are the rates?</h3>
+              <p className="text-[12.5px] text-[#1a1a1a]">
+                APYs and signup bonuses are checked weekly; fee schedules monthly; full reviews at least twice a year. Every listing shows the date of its most recent editorial check.
+              </p>
+            </div>
+            <div className="bg-white border border-[#d4c5b8] rounded-sm p-4">
+              <h3 className="font-serif font-bold text-base text-black mb-1">Do you test every product?</h3>
+              <p className="text-[12.5px] text-[#1a1a1a]">
+                Yes. Our editors open real accounts, place real trades, and use the apps day-to-day before publishing a score. No ranking is based on marketing pages alone.
+              </p>
+            </div>
           </div>
         </section>
       </div>
