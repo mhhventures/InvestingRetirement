@@ -85,17 +85,25 @@ export function DepositMatchWidget({
     setStatus("loading");
     logEvent("mount", { placement, pagePath, subId });
 
-    loadScript()
-      .then(() => {
-        if (cancelled) return;
-        setStatus("ready");
-        logEvent("impression", { placement, pagePath, subId });
-      })
-      .catch(() => {
-        if (cancelled) return;
-        setStatus("error");
-        logEvent("error", { placement, pagePath, subId });
-      });
+    const startLoad = () => {
+      if (cancelled) return;
+      loadScript()
+        .then(() => {
+          if (cancelled) return;
+          setStatus("ready");
+          logEvent("impression", { placement, pagePath, subId });
+        })
+        .catch(() => {
+          if (cancelled) return;
+          setStatus("error");
+          logEvent("error", { placement, pagePath, subId });
+        });
+    };
+
+    const idle =
+      (window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number })
+        .requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 300));
+    idle(startLoad, { timeout: 2000 });
 
     const onMessage = (ev: MessageEvent) => {
       if (ev.origin !== WIDGET_ORIGIN) return;

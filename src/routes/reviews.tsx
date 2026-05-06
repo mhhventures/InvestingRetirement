@@ -116,6 +116,30 @@ function Reviews() {
           </p>
         </div>
       </section>
+
+      <section className="mt-10 grid sm:grid-cols-2 gap-3">
+        <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
+          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">Anatomy of a review</div>
+          <h3 className="font-serif font-bold text-base text-black mb-1">How to read a review on this site</h3>
+          <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed">
+            Each review opens with the headline number &mdash; APY, commission, or monthly fee &mdash; and a short verdict naming the specific reader it fits. Below that: full fee schedule, minimums, bonus terms, and account types. &ldquo;Highlights&rdquo; covers what the product does better than peers, &ldquo;things to know&rdquo; names the drawbacks, and every piece ends with close alternatives and a short FAQ.
+          </p>
+        </div>
+        <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
+          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">Editorial independence</div>
+          <h3 className="font-serif font-bold text-base text-black mb-1">Partners don&rsquo;t pay for rankings</h3>
+          <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed">
+            Some reviews include affiliate links. Partners do not see reviews before publication, cannot pay for a higher rating, and cannot pay to be added to a ranking. When a product gets worse, the review updates &mdash; partner or not. See our <a href="/disclosure" className="underline text-[#0e4d45]">advertiser disclosure</a> and <a href="/about" className="underline text-[#0e4d45]">editorial standards</a>.
+          </p>
+        </div>
+        <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm sm:col-span-2">
+          <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">The team</div>
+          <h3 className="font-serif font-bold text-base text-black mb-1">Who writes these reviews</h3>
+          <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed">
+            Our editors come from backgrounds in banking, investment research, and consumer journalism. Every review is written by a named author, fact-checked by a second editor, and signed off by the category lead. Sources for any cited rate, fee, or policy are the provider&rsquo;s own disclosure, a regulatory filing, or a funded test account. Each byline links straight to the author&rsquo;s bio.
+          </p>
+        </div>
+      </section>
     </CategoryPage>
   );
 }

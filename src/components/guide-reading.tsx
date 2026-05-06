@@ -6,11 +6,18 @@ export function ReadingProgressBar({ guideSlug }: { guideSlug?: string } = {}) {
   const [progress, setProgress] = useState(0);
   const firedRef = useRef<Set<number>>(new Set());
   useEffect(() => {
-    function onScroll() {
+    let ticking = false;
+    let lastInt = -1;
+    function measure() {
+      ticking = false;
       const h = document.documentElement;
       const total = h.scrollHeight - h.clientHeight;
       const p = total > 0 ? (h.scrollTop / total) * 100 : 0;
-      setProgress(p);
+      const rounded = Math.round(p);
+      if (rounded !== lastInt) {
+        lastInt = rounded;
+        setProgress(rounded);
+      }
       const fired = firedRef.current;
       for (const m of [25, 50, 75, 100]) {
         if (p >= m && !fired.has(m)) {
@@ -23,12 +30,17 @@ export function ReadingProgressBar({ guideSlug }: { guideSlug?: string } = {}) {
         }
       }
     }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    function schedule() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(measure);
+    }
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
     };
   }, [guideSlug]);
   return (
@@ -37,8 +49,8 @@ export function ReadingProgressBar({ guideSlug }: { guideSlug?: string } = {}) {
       className="fixed top-0 left-0 right-0 z-40 h-[3px] bg-transparent pointer-events-none"
     >
       <div
-        className="h-full bg-[#0e4d45] transition-[width] duration-75"
-        style={{ width: `${progress}%` }}
+        className="h-full w-full bg-[#0e4d45] origin-left will-change-transform"
+        style={{ transform: `scaleX(${progress / 100})` }}
       />
     </div>
   );
@@ -122,11 +134,23 @@ export function TableOfContents({
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    function onScroll() {
-      setVisible(window.scrollY > 600);
+    let ticking = false;
+    let lastVisible = false;
+    function measure() {
+      ticking = false;
+      const next = window.scrollY > 600;
+      if (next !== lastVisible) {
+        lastVisible = next;
+        setVisible(next);
+      }
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    function schedule() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(measure);
+    }
+    window.addEventListener("scroll", schedule, { passive: true });
+    return () => window.removeEventListener("scroll", schedule);
   }, []);
   if (!visible) return null;
   return (

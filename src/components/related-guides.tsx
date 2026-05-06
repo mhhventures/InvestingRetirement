@@ -1,13 +1,44 @@
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { guides } from "@/lib/guides-data";
 import type { Product } from "@/data/products";
+
+type GuideLite = {
+  slug: string;
+  title: string;
+  category: string;
+  readTime: string;
+  description: string;
+  relatedCategory: string;
+};
+
+function useGuides(): GuideLite[] | null {
+  const [guides, setGuides] = useState<GuideLite[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    const load = () =>
+      import("@/lib/guides-data").then((m) => {
+        if (!cancelled) setGuides(m.guides);
+      });
+    const w = window as unknown as {
+      requestIdleCallback?: (cb: () => void) => number;
+    };
+    const idle = w.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 200));
+    idle(load);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return guides;
+}
 
 /**
  * Cross-links product reviews to relevant guides.
  * Boosts internal linking and helps readers go deeper on topics related to the product.
  */
 export function RelatedGuidesForProduct({ product }: { product: Product }) {
-  // Match guides by topic overlap with product category/subcategory.
+  const guides = useGuides();
+  if (!guides) return null;
+
   const sub = product.subcategory.toLowerCase();
   const cat = product.category;
 
@@ -38,7 +69,6 @@ export function RelatedGuidesForProduct({ product }: { product: Product }) {
           hay.includes("stock")
         );
       }
-      // apps
       return (
         hay.includes("budget") ||
         hay.includes("credit") ||
@@ -47,7 +77,6 @@ export function RelatedGuidesForProduct({ product }: { product: Product }) {
         hay.includes("app")
       );
     })
-    // Prioritize matches that contain a subcategory keyword
     .sort((a, b) => {
       const ax = (a.title + " " + a.description).toLowerCase().includes(sub) ? 1 : 0;
       const bx = (b.title + " " + b.description).toLowerCase().includes(sub) ? 1 : 0;
@@ -104,6 +133,9 @@ export function RelatedGuidesForCategory({
   categoryPath: "/bank-accounts" | "/investing" | "/financial-apps";
   limit?: number;
 }) {
+  const guides = useGuides();
+  if (!guides) return null;
+
   const related = guides
     .filter((g) => g.relatedCategory === categoryPath)
     .slice(0, limit);

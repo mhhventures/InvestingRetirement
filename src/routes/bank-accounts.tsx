@@ -797,6 +797,31 @@ function BankAccounts() {
           <p className="mt-4 max-w-3xl text-sm text-[#1a1a1a] leading-relaxed">
             Top online banks consistently out-yield the national savings average of 0.45% by five to ten times. Use the APY calculator to estimate earnings, the filters to narrow by account type, and the compare checkboxes to line up three accounts side-by-side. Full methodology is below the rankings.
           </p>
+          <div className="mt-5 max-w-3xl bg-white border border-[#d4c5b8] rounded-sm shadow-sm">
+            <div className="px-4 py-2.5 border-b border-[#e4d9cf] bg-[#f7ebe2]">
+              <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">The state of bank rates, 2026</div>
+            </div>
+            <div className="divide-y divide-[#e4d9cf]">
+              <div className="px-4 py-3">
+                <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#540f04] mb-0.5">Savings</div>
+                <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed">
+                  A no-fee online savings account paying 4%+ APY is the right default for most Americans. The gap to the 0.45% national average is large: $10,000 earns about $45 at the average rate versus more than $400 at a top account. Every listing here is FDIC-insured to at least $250,000 per depositor; sweep-network banks extend coverage to $2M+.
+                </p>
+              </div>
+              <div className="px-4 py-3">
+                <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#540f04] mb-0.5">Checking, money market &amp; CDs</div>
+                <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed">
+                  Checking accounts are ranked on bonuses, fees, ATM access, early direct deposit, and app quality &mdash; plus how cleanly they pair with a HYSA at the same bank. Money market and CD rankings are built on total return: a 4.8% one-year CD only beats a 4.1% HYSA if you&rsquo;re willing to lock up funds. See our <a href="/guides/how-to-pick-high-yield-savings" className="underline text-[#0e4d45]">HYSA guide</a> and <a href="/guides/hysa-vs-money-market-vs-cds" className="underline text-[#0e4d45]">HYSA vs MMA vs CD</a> breakdown.
+                </p>
+              </div>
+              <div className="px-4 py-3">
+                <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#540f04] mb-0.5">Bonuses &mdash; read the fine print</div>
+                <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed">
+                  A $400 signup bonus often requires $5,000+ in direct deposits within 60&ndash;90 days, with clawbacks if the account closes inside 180 days. We weight bonuses by how achievable the qualification actually is &mdash; a $200 bonus at $1,500 in direct deposit typically beats a $400 bonus most readers can&rsquo;t hit. Terms are re-verified weekly.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

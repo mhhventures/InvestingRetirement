@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 
 const CATEGORIES = [
   { label: "Banking", to: "/bank-accounts" },
-  { label: "Local Banks", to: "/banks" },
   { label: "Investing", to: "/investing" },
   { label: "Apps", to: "/financial-apps" },
+  { label: "Reviews", to: "/reviews" },
   { label: "Guides", to: "/guides" },
   { label: "Calculators", to: "/calculators" },
+  { label: "Local Banks", to: "/banks" },
 ];
 
 function ScrollToTop() {
