@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { trackEvent } from "@/lib/pixel";
+import { pushEvent } from "@/lib/gtm";
 
 type Variant = "sidebar" | "inline" | "page";
 
@@ -36,6 +37,7 @@ export function NewsletterSignup({
     if (loading) return;
     setMessage(null);
     setLoading(true);
+    pushEvent("newsletter_signup_attempt", { placement: source, source_page: typeof window !== "undefined" ? window.location.pathname : "" });
     try {
       const res = await fetch(ENDPOINT, {
         method: "POST",
@@ -53,6 +55,7 @@ export function NewsletterSignup({
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         setMessage({ type: "err", text: data?.error || "Subscription failed. Please try again." });
+        pushEvent("newsletter_signup_error", { placement: source, reason: (data?.error as string) || "http_error" });
       } else if (data?.status === "already_subscribed") {
         setMessage({ type: "ok", text: "You're already subscribed — thanks!" });
         setEmail("");
@@ -63,6 +66,11 @@ export function NewsletterSignup({
           predicted_ltv: "0.00",
           content_name: "newsletter",
           content_category: source,
+        });
+        pushEvent("newsletter_signup_success", {
+          placement: source,
+          content_group: "newsletter",
+          source_page: typeof window !== "undefined" ? window.location.pathname : "",
         });
         setMessage({
           type: "ok",

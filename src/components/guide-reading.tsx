@@ -1,14 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { pushEvent } from "@/lib/gtm";
 
-export function ReadingProgressBar() {
+export function ReadingProgressBar({ guideSlug }: { guideSlug?: string } = {}) {
   const [progress, setProgress] = useState(0);
+  const firedRef = useRef<Set<number>>(new Set());
   useEffect(() => {
     function onScroll() {
       const h = document.documentElement;
       const total = h.scrollHeight - h.clientHeight;
       const p = total > 0 ? (h.scrollTop / total) * 100 : 0;
       setProgress(p);
+      const fired = firedRef.current;
+      for (const m of [25, 50, 75, 100]) {
+        if (p >= m && !fired.has(m)) {
+          fired.add(m);
+          pushEvent("guide_read_milestone", {
+            milestone: m,
+            item_id: guideSlug || "",
+            content_group: "guides",
+          });
+        }
+      }
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -17,7 +30,7 @@ export function ReadingProgressBar() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [guideSlug]);
   return (
     <div
       aria-hidden="true"
@@ -169,6 +182,12 @@ export function GuideFeedback({ guideSlug }: { guideSlug: string }) {
     if (error) return;
     const choice = helpful ? "up" : "down";
     setSubmitted(choice);
+    pushEvent("guide_feedback", {
+      item_id: guideSlug,
+      content_group: "guides",
+      feedback: choice,
+      value: helpful ? 1 : 0,
+    });
     setCounts((c) => ({
       up: c.up + (helpful ? 1 : 0),
       down: c.down + (helpful ? 0 : 1),

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { trackEvent } from "@/lib/pixel";
+import { pushEvent } from "@/lib/gtm";
 
 const WIDGET_SCRIPT = "https://caporax.com/embed-v2.js";
 const WIDGET_ORIGIN = "https://caporax.com";
@@ -109,6 +110,8 @@ export function DepositMatchWidget({
         type === "widget:lead"
       ) {
         const isLead = type.includes("lead");
+        const isSubmit = type.includes("submit") || type.includes("match");
+        const isResult = type.includes("result") || type.includes("show");
         logEvent(isLead ? "lead" : "click", {
           placement,
           pagePath,
@@ -120,6 +123,26 @@ export function DepositMatchWidget({
             content_name: "deposit-match",
             content_category: "banks",
             placement,
+          });
+          pushEvent("generate_lead", {
+            partner: "deposit-match",
+            offer: "deposit-match",
+            placement,
+            item_id: "deposit-match",
+            item_category: "banks",
+            currency: "USD",
+          });
+        }
+        if (isSubmit) {
+          pushEvent("deposit_match_submit", {
+            placement,
+            item_id: "deposit-match",
+          });
+        }
+        if (isResult) {
+          pushEvent("deposit_match_result_view", {
+            placement,
+            item_id: "deposit-match",
           });
         }
       }

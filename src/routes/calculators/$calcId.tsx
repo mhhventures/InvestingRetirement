@@ -8,6 +8,7 @@ import { getProductLogoUrl } from "@/lib/product-icons";
 import { DepositMatchWidget } from "@/components/deposit-match-widget";
 import { SITE_URL } from "@/lib/seo";
 import { trackEvent } from "@/lib/pixel";
+import { pushEvent } from "@/lib/gtm";
 
 export const Route = createFileRoute("/calculators/$calcId")({
   component: CalculatorPage,
@@ -100,6 +101,10 @@ function CompoundInterestCalculator() {
       content_name: "compound-interest",
       content_category: "calculator",
     });
+    pushEvent("calculator_start", {
+      item_id: "compound-interest",
+      calculator: "compound-interest",
+    });
   }, []);
 
   function selectMode(m: RateMode) {
@@ -138,6 +143,27 @@ function CompoundInterestCalculator() {
       totalInterest: balance - contributed,
     };
   }, [initial, monthly, rate, years, compounds]);
+
+  useEffect(() => {
+    if (!isFinite(finalBalance) || finalBalance <= 0) return;
+    const handle = setTimeout(() => {
+      pushEvent("calculator_complete", {
+        item_id: "compound-interest",
+        calculator: "compound-interest",
+        initial,
+        monthly,
+        rate,
+        years,
+        compounds,
+        mode,
+        final_balance: Math.round(finalBalance),
+        total_interest: Math.round(totalInterest),
+        value: Math.round(finalBalance),
+        currency: "USD",
+      });
+    }, 800);
+    return () => clearTimeout(handle);
+  }, [initial, monthly, rate, years, compounds, mode, finalBalance, totalInterest]);
 
   return (
     <div className="grid md:grid-cols-[320px_1fr] gap-4 md:gap-6 min-w-0">
@@ -340,6 +366,9 @@ function CompatibleOfferings({ mode }: { mode: "hysa" | "investing" }) {
               <Link
                 to="/product/$slug"
                 params={{ slug: p.slug }}
+                data-product={p.slug}
+                data-product-category={p.category}
+                data-placement={`calculator-${campaign}`}
                 className="text-center px-2.5 py-1 rounded bg-white border border-[#d4c5b8] text-black text-[9px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
               >
                 Review
@@ -348,6 +377,17 @@ function CompatibleOfferings({ mode }: { mode: "hysa" | "investing" }) {
                 href={productPartnerLink(p.slug, p.url, { placement: `calculator-${campaign}`, term: "calculator", campaign })}
                 target="_blank"
                 rel="nofollow noopener noreferrer sponsored"
+                data-placement={`calculator-${campaign}`}
+                data-product={p.slug}
+                data-product-category={p.category}
+                onClick={() => {
+                  pushEvent("calculator_cta_click", {
+                    item_id: p.slug,
+                    item_category: p.category,
+                    placement: `calculator-${campaign}`,
+                    calculator: "compound-interest",
+                  });
+                }}
                 className="text-center px-2.5 py-1 rounded bg-[#0e4d45] text-white text-[9px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
               >
                 Visit
