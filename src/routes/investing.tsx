@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { getByCategory } from "@/data/products";
 import type { Product } from "@/data/products";
-import { ProductCard, ProductLogo, StarRating, GradeBadge, DisclosureIcon } from "@/components/product-card";
+import { ProductCard, ProductLogo, StarRating, GradeBadge, DisclosureIcon, ProductPreviewModal } from "@/components/product-card";
+import { pushEvent } from "@/lib/gtm";
 import { getDisclosure } from "@/data/disclosures";
 import { CategoryPage } from "@/components/category-page";
 import { RelatedGuidesForCategory } from "@/components/related-guides";
@@ -15,8 +16,43 @@ export const Route = createFileRoute("/investing")({
 });
 
 function HeroPick({ p }: { p: Product }) {
+  const [previewOpen, setPreviewOpen] = useState(false);
+
+  function handleClick(e: React.MouseEvent) {
+    const target = e.target as HTMLElement;
+    if (target.closest("a, button, input, label")) return;
+    setPreviewOpen(true);
+    pushEvent("select_item", {
+      item_id: p.slug,
+      item_name: p.name,
+      item_category: p.category,
+      item_list_name: "investing-hero",
+      placement: "investing-hero",
+      action: "card-preview-open",
+    });
+  }
+
+  function handleKey(e: React.KeyboardEvent) {
+    if (e.key === "Enter" || e.key === " ") {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, input, label")) return;
+      e.preventDefault();
+      setPreviewOpen(true);
+    }
+  }
+
   return (
-    <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm mb-5 overflow-hidden">
+    <div
+      onClick={handleClick}
+      onKeyDown={handleKey}
+      role="button"
+      tabIndex={0}
+      aria-label={`Preview ${p.name}`}
+      className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm mb-5 overflow-hidden cursor-pointer hover:border-[#0e4d45] hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-[#0e4d45]/40"
+    >
+      {previewOpen && (
+        <ProductPreviewModal p={p} listName="investing-hero" onClose={() => setPreviewOpen(false)} />
+      )}
       <div className="border-b border-[#e4d9cf] px-3 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 min-w-0">
           <span className="font-serif font-bold text-2xl sm:text-3xl text-[#0e4d45] leading-none">01</span>
