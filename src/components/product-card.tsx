@@ -375,7 +375,7 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
           <button
             onClick={onClose}
             aria-label="Close preview"
-            className="text-[#5a5a5a] hover:text-black text-lg leading-none shrink-0 -mr-1 -mt-1 px-2 py-1"
+            className="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-full text-[#5a5a5a] text-lg leading-none hover:bg-[#f7ebe2] hover:text-black hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#0e4d45]/40 transition-all duration-150 -mr-1 -mt-0.5"
           >
             ✕
           </button>
