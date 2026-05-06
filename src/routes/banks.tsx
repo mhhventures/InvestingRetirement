@@ -269,6 +269,9 @@ function BanksIndex() {
                         <img
                           src={logo}
                           alt=""
+                          width={40}
+                          height={40}
+                          decoding="async"
                           className="w-full h-full object-contain p-0.5"
                           loading="lazy"
                           onError={(e) => {

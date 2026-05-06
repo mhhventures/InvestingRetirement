@@ -195,6 +195,9 @@ function CityBanksPage() {
                         <img
                           src={logo}
                           alt=""
+                          width={44}
+                          height={44}
+                          decoding="async"
                           className="w-full h-full object-contain"
                           loading="lazy"
                         />
