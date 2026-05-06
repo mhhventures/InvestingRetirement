@@ -1110,7 +1110,7 @@ function contextualLinks(meta, data) {
     return data.guides.map((g) => [`/guides/${g.slug}`, g.title]);
   }
   if (path === "/calculators") {
-    return data.calculators.map((c) => [`/calculators/${c.slug}`, c.title]);
+    return data.calculators.filter((c) => c.available).map((c) => [`/calculators/${c.slug}`, c.title]);
   }
 
   const prodMatch = path.match(/^\/product\/([^/]+)$/);
