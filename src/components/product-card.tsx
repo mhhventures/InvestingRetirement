@@ -5,7 +5,7 @@ import type { Product } from "@/data/products";
 import { productPartnerLink } from "@/lib/affiliate";
 import { getProductLogoUrl } from "@/lib/product-icons";
 import { getDisclosure } from "@/data/disclosures";
-import { pushImpression } from "@/lib/gtm";
+import { pushImpression, pushEvent } from "@/lib/gtm";
 import { useImpression } from "@/hooks/use-impression";
 
 // Letter-grade badge. Color-coded by tier:
@@ -189,6 +189,7 @@ export function ProductLogo({ p, size = 40, priority = false }: { p: Product; si
 
 export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; listName?: string }) {
   const disclosure = p.disclosure || getDisclosure(p.slug);
+  const [previewOpen, setPreviewOpen] = useState(false);
   const impressionRef = useImpression<HTMLDivElement>(() => {
     pushImpression("view_item", {
       item_id: p.slug,
@@ -198,8 +199,41 @@ export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; 
       placement: listName || "product-card",
     });
   });
+
+  function handleCardClick(e: React.MouseEvent) {
+    const target = e.target as HTMLElement;
+    if (target.closest("a, button")) return;
+    setPreviewOpen(true);
+    pushEvent("select_item", {
+      item_id: p.slug,
+      item_name: p.name,
+      item_category: p.category,
+      item_list_name: listName || "product-card",
+      placement: listName || "product-card",
+      action: "card-preview-open",
+    });
+  }
+
+  function handleCardKey(e: React.KeyboardEvent) {
+    if (e.key === "Enter" || e.key === " ") {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button")) return;
+      e.preventDefault();
+      setPreviewOpen(true);
+    }
+  }
+
   return (
-    <div ref={impressionRef} className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm hover:shadow-md hover:border-[#0e4d45] transition-all w-full min-w-0 overflow-hidden box-border" style={{ maxWidth: '100%', contain: 'layout' }}>
+    <div
+      ref={impressionRef}
+      onClick={handleCardClick}
+      onKeyDown={handleCardKey}
+      role="button"
+      tabIndex={0}
+      aria-label={`Preview ${p.name}`}
+      className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm hover:shadow-md hover:border-[#0e4d45] transition-all w-full min-w-0 overflow-hidden box-border cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0e4d45]/40"
+      style={{ maxWidth: '100%', contain: 'layout' }}
+    >
       <div className="p-3 sm:p-4">
         {/* Top row: category tag + editor's pick label (mirror Guides card) */}
         <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3">
@@ -283,7 +317,155 @@ export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; 
             Visit Site
           </a>
         </div>
+
+        <div className="mt-2 text-center text-[9px] sm:text-[10px] text-[#5a5a5a] uppercase tracking-wider">
+          Tap card for quick look
+        </div>
       </div>
+      {previewOpen && <ProductPreviewModal p={p} listName={listName} onClose={() => setPreviewOpen(false)} />}
     </div>
+  );
+}
+
+function ProductPreviewModal({ p, listName, onClose }: { p: Product; listName?: string; onClose: () => void }) {
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  if (typeof document === "undefined") return null;
+
+  const campaign =
+    p.category === "bank" ? "bank-accounts" : p.category === "investing" ? "investing" : "financial-apps";
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[70] bg-black/45 flex items-end sm:items-center justify-center p-0 sm:p-4"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${p.name} quick preview`}
+    >
+      <div
+        className="bg-white w-full sm:max-w-md sm:rounded-sm rounded-t-lg border border-[#d4c5b8] shadow-xl max-h-[92vh] sm:max-h-[85vh] overflow-hidden flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="sm:hidden mx-auto mt-2 mb-1 h-1 w-10 rounded-full bg-[#d4c5b8]" />
+        <div className="px-4 sm:px-5 pt-3 sm:pt-4 pb-3 border-b border-[#e4d9cf] flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <ProductLogo p={p} size={40} />
+            <div className="min-w-0">
+              <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] truncate">{p.subcategory}</div>
+              <div className="font-serif font-bold text-base sm:text-lg text-black leading-tight truncate">{p.name}</div>
+              <div className="mt-0.5 flex items-center gap-2 flex-wrap">
+                <StarRating rating={p.rating} />
+                {p.grade && <GradeBadge grade={p.grade} />}
+                <span className="text-[10px] text-[#5a5a5a]">({p.reviews.toLocaleString()} reviews)</span>
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            aria-label="Close preview"
+            className="text-[#5a5a5a] hover:text-black text-lg leading-none shrink-0 -mr-1 -mt-1 px-2 py-1"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className="overflow-y-auto flex-1 px-4 sm:px-5 py-3 sm:py-4">
+          <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed border-l-[3px] border-[#0e4d45] pl-2.5 italic font-serif">
+            &ldquo;{p.tagline}&rdquo;
+          </p>
+
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            {p.apy && (
+              <div className="bg-[#fef6f1] border border-[#e4d9cf] rounded-sm px-2 py-1.5 text-center">
+                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">APY</div>
+                <div className="font-serif font-bold text-[#0e4d45] text-sm">{p.apy}</div>
+              </div>
+            )}
+            <div className="bg-[#fef6f1] border border-[#e4d9cf] rounded-sm px-2 py-1.5 text-center">
+              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Fees</div>
+              <div className="font-serif font-bold text-black text-sm">{p.fees}</div>
+            </div>
+            <div className="bg-[#fef6f1] border border-[#e4d9cf] rounded-sm px-2 py-1.5 text-center">
+              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Min</div>
+              <div className="font-serif font-bold text-black text-sm">{p.minDeposit}</div>
+            </div>
+            {p.bonus && (
+              <div className="bg-[#fef6f1] border border-[#e4d9cf] rounded-sm px-2 py-1.5 text-center col-span-3">
+                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Bonus</div>
+                <div className="font-serif font-bold text-black text-sm">{p.bonus}</div>
+              </div>
+            )}
+          </div>
+
+          <div className="mt-3">
+            <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#540f04] mb-1">Best for</div>
+            <p className="text-[12px] text-[#1a1a1a]">{p.bestFor}</p>
+          </div>
+
+          <div className="mt-3 grid sm:grid-cols-2 gap-3">
+            <div>
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#0e4d45] mb-1">Highlights</div>
+              <ul className="space-y-1">
+                {p.highlights.slice(0, 4).map((h) => (
+                  <li key={h} className="flex items-start gap-1.5 text-[11.5px] text-[#1a1a1a] leading-snug">
+                    <span className="text-[#0e4d45] mt-0.5 shrink-0">✓</span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#5a5a5a] mb-1">Things to know</div>
+              <ul className="space-y-1">
+                {p.cons.slice(0, 3).map((c) => (
+                  <li key={c} className="flex items-start gap-1.5 text-[11.5px] text-[#5a5a5a] leading-snug">
+                    <span className="text-[#5a5a5a] mt-0.5 shrink-0">–</span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-[#e4d9cf] px-4 sm:px-5 py-3 grid grid-cols-2 gap-2 bg-[#fef6f1]">
+          <Link
+            to="/product/$slug"
+            params={{ slug: p.slug }}
+            onClick={onClose}
+            data-product={p.slug}
+            data-product-category={p.category}
+            data-placement={`${listName || "product-card"}-preview`}
+            className="text-center px-3 py-2 rounded-sm bg-[#0e4d45] text-[#fef6f1] text-[11px] font-semibold uppercase tracking-wider hover:bg-[#0a3832] transition-colors"
+          >
+            Read Full Review
+          </Link>
+          <a
+            href={productPartnerLink(p.slug, p.url, { placement: `${listName || "product-card"}-preview`, campaign })}
+            target="_blank"
+            rel="nofollow noopener noreferrer sponsored"
+            data-placement={`${listName || "product-card"}-preview`}
+            data-product={p.slug}
+            data-product-category={p.category}
+            className="text-center px-3 py-2 rounded-sm bg-white border border-[#d4c5b8] text-black text-[11px] font-semibold uppercase tracking-wider hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors"
+          >
+            Visit Site
+          </a>
+        </div>
+      </div>
+    </div>,
+    document.body
   );
 }
