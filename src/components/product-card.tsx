@@ -74,14 +74,22 @@ export function DisclosureIcon({ text, label }: { text: string; label?: string }
 
   useEffect(() => {
     if (!open) return;
-    function onScroll() { updateCoords(); }
+    let ticking = false;
+    function schedule() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        updateCoords();
+      });
+    }
     function onKey(e: KeyboardEvent) { if (e.key === "Escape") setOpen(false); }
-    window.addEventListener("scroll", onScroll, true);
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("scroll", schedule, true);
+    window.addEventListener("resize", schedule);
     document.addEventListener("keydown", onKey);
     return () => {
-      window.removeEventListener("scroll", onScroll, true);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", schedule, true);
+      window.removeEventListener("resize", schedule);
       document.removeEventListener("keydown", onKey);
     };
   }, [open]);
