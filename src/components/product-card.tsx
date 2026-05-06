@@ -327,7 +327,7 @@ export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; 
   );
 }
 
-function ProductPreviewModal({ p, listName, onClose }: { p: Product; listName?: string; onClose: () => void }) {
+export function ProductPreviewModal({ p, listName, onClose }: { p: Product; listName?: string; onClose: () => void }) {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
