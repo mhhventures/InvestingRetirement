@@ -332,6 +332,8 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
   const [dragY, setDragY] = useState(0);
   const [dragging, setDragging] = useState(false);
   const touchStartY = useRef<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const dragEnabledRef = useRef(false);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -361,18 +363,29 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartY.current = e.touches[0].clientY;
+    const scrollTop = scrollRef.current?.scrollTop ?? 0;
+    dragEnabledRef.current = scrollTop <= 0;
     setDragging(true);
   };
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartY.current == null) return;
     const delta = e.touches[0].clientY - touchStartY.current;
+    if (!dragEnabledRef.current) {
+      if ((scrollRef.current?.scrollTop ?? 0) <= 0 && delta > 0) {
+        dragEnabledRef.current = true;
+        touchStartY.current = e.touches[0].clientY;
+      } else {
+        return;
+      }
+    }
     if (delta > 0) setDragY(delta);
   };
   const handleTouchEnd = () => {
     if (touchStartY.current == null) return;
     touchStartY.current = null;
     setDragging(false);
-    if (dragY > 100) {
+    dragEnabledRef.current = false;
+    if (dragY > 120) {
       onClose();
     } else {
       setDragY(0);
@@ -392,16 +405,16 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
         className="bg-white w-full sm:max-w-md sm:rounded-sm rounded-t-lg border border-[#d4c5b8] shadow-xl max-h-[92vh] sm:max-h-[85vh] overflow-hidden flex flex-col"
         style={{
           transform: dragY > 0 ? `translateY(${dragY}px)` : undefined,
-          transition: dragging ? "none" : "transform 200ms ease-out",
+          transition: dragging ? "none" : "transform 220ms ease-out",
         }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
       >
         <div
-          className="sm:hidden pt-2 pb-2 -mb-1 cursor-grab active:cursor-grabbing touch-none"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          className="sm:hidden pt-2 pb-2 -mb-1"
           aria-label="Swipe down to dismiss"
-          role="button"
         >
           <div className="mx-auto h-1.5 w-12 rounded-full bg-[#d4c5b8]" />
         </div>
@@ -427,7 +440,7 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
           </button>
         </div>
 
-        <div className="overflow-y-auto flex-1 px-4 sm:px-5 py-3 sm:py-4">
+        <div ref={scrollRef} className="overflow-y-auto flex-1 px-4 sm:px-5 py-3 sm:py-4">
           <p className="text-[12.5px] text-[#1a1a1a] leading-relaxed border-l-[3px] border-[#0e4d45] pl-2.5 italic font-serif">
             &ldquo;{p.tagline}&rdquo;
           </p>
