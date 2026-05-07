@@ -203,7 +203,7 @@ function Home() {
                               navigate({ to: "/product/$slug", params: { slug: p.slug } });
                             }
                           }}
-                          className="hover:bg-[#fef6f1] transition-colors cursor-pointer group"
+                          className="hover:bg-[#fef6f1] active:bg-[#f7ebe2] active:scale-[0.995] transition-all cursor-pointer group outline-none focus-visible:bg-[#fef6f1] focus-visible:ring-2 focus-visible:ring-[#0e4d45]/40"
                         >
                           <td className="px-3 py-2.5 font-serif font-bold text-[#0e4d45]">{String(i + 1).padStart(2, '0')}</td>
                           <td className="px-3 py-2.5 font-semibold text-black group-hover:text-[#0e4d45]">{p.name}</td>
