@@ -1,5 +1,5 @@
 import type { Product } from "@/data/products";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { ProductLogo, StarRating } from "@/components/product-card";
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
@@ -383,6 +383,7 @@ export function HowWeTested({ product }: { product: Product }) {
 // ─── Enhanced Competitor Comparison Table ───────────────────────────────────
 
 export function CompetitorComparison({ product, competitors }: { product: Product; competitors: Product[] }) {
+  const navigate = useNavigate();
   if (competitors.length === 0) return null;
   const all = [product, ...competitors];
   const showApy = all.some((x) => x.apy);
@@ -413,10 +414,28 @@ export function CompetitorComparison({ product, competitors }: { product: Produc
           <tbody>
             {all.map((x) => {
               const isThis = x.slug === product.slug;
+              const rowClickProps = isThis
+                ? {}
+                : {
+                    role: "link",
+                    tabIndex: 0,
+                    onClick: () => navigate({ to: "/product/$slug", params: { slug: x.slug } }),
+                    onKeyDown: (e: React.KeyboardEvent<HTMLTableRowElement>) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        navigate({ to: "/product/$slug", params: { slug: x.slug } });
+                      }
+                    },
+                  };
               return (
                 <tr
                   key={x.slug}
-                  className={`border-b border-[#e4d9cf] last:border-b-0 ${isThis ? "bg-[#0e4d45]/5" : ""}`}
+                  {...rowClickProps}
+                  className={`border-b border-[#e4d9cf] last:border-b-0 group ${
+                    isThis
+                      ? "bg-[#0e4d45]/5"
+                      : "cursor-pointer hover:bg-[#fef6f1] transition-colors"
+                  }`}
                 >
                   <td className="px-3 py-2.5">
                     {isThis ? (
@@ -431,7 +450,8 @@ export function CompetitorComparison({ product, competitors }: { product: Produc
                       <Link
                         to="/product/$slug"
                         params={{ slug: x.slug }}
-                        className="flex items-center gap-2 group"
+                        className="flex items-center gap-2"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <ProductLogo p={x} size={22} />
                         <span className="font-semibold text-black group-hover:text-[#0e4d45] truncate">

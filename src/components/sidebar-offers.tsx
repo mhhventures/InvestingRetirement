@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { products } from "@/data/products";
 import { ProductLogo, StarRating } from "@/components/product-card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
@@ -35,17 +35,17 @@ const CURRENT_RATES = [
 ];
 
 const SAVINGS_COMPARE = [
-  { name: "SoFi Savings", apy: "4.00%", bonus: "$400" },
-  { name: "Marcus", apy: "3.50%", bonus: "None" },
-  { name: "Ally Savings", apy: "3.10%", bonus: "None" },
-  { name: "Chase Savings", apy: "0.01%", bonus: "$300" },
+  { slug: "sofi-checking-savings", name: "SoFi Savings", apy: "4.00%", bonus: "$400" },
+  { slug: "marcus-high-yield", name: "Marcus", apy: "3.50%", bonus: "None" },
+  { slug: "ally-online-savings", name: "Ally Savings", apy: "3.10%", bonus: "None" },
+  { slug: "chase-savings", name: "Chase Savings", apy: "0.01%", bonus: "$300" },
 ];
 
 const INVESTING_COMPARE = [
-  { name: "Fidelity", fees: "$0", bonus: "None" },
-  { name: "Robinhood", fees: "$0", bonus: "1% Match" },
-  { name: "Betterment", fees: "0.25%", bonus: "None" },
-  { name: "Schwab", fees: "$0", bonus: "None" },
+  { slug: "fidelity", name: "Fidelity", fees: "$0", bonus: "None" },
+  { slug: "robinhood", name: "Robinhood", fees: "$0", bonus: "1% Match" },
+  { slug: "betterment", name: "Betterment", fees: "0.25%", bonus: "None" },
+  { slug: "charles-schwab", name: "Schwab", fees: "$0", bonus: "None" },
 ];
 
 // Editorial sidebar block: white card, green uppercase label at top, thin green rule, content below.
@@ -82,6 +82,15 @@ function SidebarBlock({
 }
 
 export function Sidebar() {
+  const navigate = useNavigate();
+  const goToProduct = (slug: string) => () =>
+    navigate({ to: "/product/$slug", params: { slug } });
+  const onRowKey = (slug: string) => (e: React.KeyboardEvent<HTMLTableRowElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      navigate({ to: "/product/$slug", params: { slug } });
+    }
+  };
   return (
     <aside className="space-y-3 lg:sticky lg:top-20 lg:self-start">
       {/* Current Rates */}
@@ -174,8 +183,15 @@ export function Sidebar() {
             </thead>
             <tbody>
               {SAVINGS_COMPARE.map((row) => (
-                <tr key={row.name} className="bg-white border-b border-[#e4d9cf] last:border-b-0">
-                  <td className="py-1.5 text-black font-medium pl-3 pr-1">{row.name}</td>
+                <tr
+                  key={row.name}
+                  role="link"
+                  tabIndex={0}
+                  onClick={goToProduct(row.slug)}
+                  onKeyDown={onRowKey(row.slug)}
+                  className="bg-white border-b border-[#e4d9cf] last:border-b-0 cursor-pointer hover:bg-[#fef6f1] transition-colors group"
+                >
+                  <td className="py-1.5 text-black font-medium pl-3 pr-1 group-hover:text-[#0e4d45]">{row.name}</td>
                   <td className="py-1.5 text-right font-serif font-bold text-[#0e4d45] px-1">
                     {row.apy}
                   </td>
@@ -206,8 +222,15 @@ export function Sidebar() {
             </thead>
             <tbody>
               {INVESTING_COMPARE.map((row) => (
-                <tr key={row.name} className="bg-white border-b border-[#e4d9cf] last:border-b-0">
-                  <td className="py-1.5 text-black font-medium pl-3 pr-1">{row.name}</td>
+                <tr
+                  key={row.name}
+                  role="link"
+                  tabIndex={0}
+                  onClick={goToProduct(row.slug)}
+                  onKeyDown={onRowKey(row.slug)}
+                  className="bg-white border-b border-[#e4d9cf] last:border-b-0 cursor-pointer hover:bg-[#fef6f1] transition-colors group"
+                >
+                  <td className="py-1.5 text-black font-medium pl-3 pr-1 group-hover:text-[#0e4d45]">{row.name}</td>
                   <td className="py-1.5 text-right font-serif font-bold text-[#0e4d45] px-1">
                     {row.fees}
                   </td>
@@ -219,37 +242,37 @@ export function Sidebar() {
         </div>
       </SidebarBlock>
 
-      {/* Best Offers This Month — replace black promo block with editorial treatment */}
+      {/* Best Offers This Month — entire card clickable */}
       <SidebarBlock title="Best Offers This Month" action="View All" actionTo="/guides/best-bank-bonuses-this-month">
-        <div className="border-l-[3px] border-[#0e4d45] pl-3">
-          <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-[#540f04] mb-1.5">
-            &#9650; Limited Time
-          </div>
-          <div className="font-serif text-sm sm:text-base font-bold leading-tight mb-1.5 text-black">
-            Get up to $300 when you open a SoFi account
-          </div>
-          <p className="text-[10px] sm:text-[11px] text-[#5a5a5a] leading-snug mb-2.5">
-            Open a new SoFi Checking and Savings account with qualifying direct deposits.
-          </p>
-          {(() => {
-            const sofi = products.find((x) => x.slug === "sofi-checking-savings");
-            const href = productPartnerLink("sofi-checking-savings", sofi?.url || "#", {
-              placement: "sidebar-best-offers",
-              term: "sofi-checking-savings",
-              campaign: "best_offers_this_month",
-            });
-            return (
-              <a
-                href={href}
-                target="_blank"
-                rel="nofollow noopener sponsored"
-                className="inline-block w-full text-center text-[10px] sm:text-[11px] font-semibold bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] rounded-sm px-3 py-2 transition-colors uppercase tracking-wider"
-              >
+        {(() => {
+          const sofi = products.find((x) => x.slug === "sofi-checking-savings");
+          const href = productPartnerLink("sofi-checking-savings", sofi?.url || "#", {
+            placement: "sidebar-best-offers",
+            term: "sofi-checking-savings",
+            campaign: "best_offers_this_month",
+          });
+          return (
+            <a
+              href={href}
+              target="_blank"
+              rel="nofollow noopener sponsored"
+              className="block border-l-[3px] border-[#0e4d45] pl-3 -m-1 p-1 rounded-sm hover:bg-[#fef6f1] transition-colors group cursor-pointer"
+            >
+              <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-[#540f04] mb-1.5">
+                &#9650; Limited Time
+              </div>
+              <div className="font-serif text-sm sm:text-base font-bold leading-tight mb-1.5 text-black group-hover:text-[#0e4d45] transition-colors">
+                Get up to $300 when you open a SoFi account
+              </div>
+              <p className="text-[10px] sm:text-[11px] text-[#5a5a5a] leading-snug mb-2.5">
+                Open a new SoFi Checking and Savings account with qualifying direct deposits.
+              </p>
+              <span className="inline-block w-full text-center text-[10px] sm:text-[11px] font-semibold bg-[#0e4d45] group-hover:bg-[#0a3832] text-[#fef6f1] rounded-sm px-3 py-2 transition-colors uppercase tracking-wider">
                 See Offer
-              </a>
-            );
-          })()}
-        </div>
+              </span>
+            </a>
+          );
+        })()}
       </SidebarBlock>
 
       {/* Top Rated */}
