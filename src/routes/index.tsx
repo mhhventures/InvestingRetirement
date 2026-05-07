@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { products } from "@/data/products";
 import { ProductCard, ProductLogo } from "@/components/product-card";
 import { Sidebar } from "@/components/sidebar-offers";
@@ -55,6 +55,7 @@ function SectionHeader({ title, href, linkText }: { title: string; href?: string
 }
 
 function Home() {
+  const navigate = useNavigate();
   useSeo({
     title: "Compare the Best Financial Products 2026",
     description: "Expert reviews of the best high-yield savings, checking accounts, investing apps, and budgeting tools to match your financial goals.",
@@ -191,9 +192,21 @@ function Home() {
                     </thead>
                     <tbody className="divide-y divide-[#e4d9cf]">
                       {topSavings.map((p, i) => (
-                        <tr key={p.slug} className="hover:bg-[#fef6f1] transition-colors">
+                        <tr
+                          key={p.slug}
+                          role="link"
+                          tabIndex={0}
+                          onClick={() => navigate({ to: "/product/$slug", params: { slug: p.slug } })}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              navigate({ to: "/product/$slug", params: { slug: p.slug } });
+                            }
+                          }}
+                          className="hover:bg-[#fef6f1] active:bg-[#f7ebe2] active:scale-[0.995] transition-all cursor-pointer group outline-none focus-visible:bg-[#fef6f1] focus-visible:ring-2 focus-visible:ring-[#0e4d45]/40"
+                        >
                           <td className="px-3 py-2.5 font-serif font-bold text-[#0e4d45]">{String(i + 1).padStart(2, '0')}</td>
-                          <td className="px-3 py-2.5 font-semibold text-black">{p.name}</td>
+                          <td className="px-3 py-2.5 font-semibold text-black group-hover:text-[#0e4d45]">{p.name}</td>
                           <td className="px-3 py-2.5 font-serif font-bold text-[#0e4d45]">{p.apy}</td>
                           <td className="px-3 py-2.5 text-[#5a5a5a]">{p.minDeposit}</td>
                           <td className="px-3 py-2.5 font-semibold text-black">{p.bonus || "—"}</td>

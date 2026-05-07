@@ -189,9 +189,9 @@ export function Sidebar() {
                   tabIndex={0}
                   onClick={goToProduct(row.slug)}
                   onKeyDown={onRowKey(row.slug)}
-                  className="bg-white border-b border-[#e4d9cf] last:border-b-0 cursor-pointer hover:bg-[#fef6f1] transition-colors group"
+                  className="bg-white border-b border-[#e4d9cf] last:border-b-0 cursor-pointer hover:bg-[#fef6f1] active:bg-[#f7ebe2] transition-colors group outline-none focus-visible:bg-[#fef6f1] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0e4d45]/40"
                 >
-                  <td className="py-1.5 text-black font-medium pl-3 pr-1 group-hover:text-[#0e4d45]">{row.name}</td>
+                  <td className="py-1.5 text-black font-medium pl-3 pr-1 group-hover:text-[#0e4d45] group-active:text-[#0e4d45]">{row.name}</td>
                   <td className="py-1.5 text-right font-serif font-bold text-[#0e4d45] px-1">
                     {row.apy}
                   </td>
@@ -228,9 +228,9 @@ export function Sidebar() {
                   tabIndex={0}
                   onClick={goToProduct(row.slug)}
                   onKeyDown={onRowKey(row.slug)}
-                  className="bg-white border-b border-[#e4d9cf] last:border-b-0 cursor-pointer hover:bg-[#fef6f1] transition-colors group"
+                  className="bg-white border-b border-[#e4d9cf] last:border-b-0 cursor-pointer hover:bg-[#fef6f1] active:bg-[#f7ebe2] transition-colors group outline-none focus-visible:bg-[#fef6f1] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0e4d45]/40"
                 >
-                  <td className="py-1.5 text-black font-medium pl-3 pr-1 group-hover:text-[#0e4d45]">{row.name}</td>
+                  <td className="py-1.5 text-black font-medium pl-3 pr-1 group-hover:text-[#0e4d45] group-active:text-[#0e4d45]">{row.name}</td>
                   <td className="py-1.5 text-right font-serif font-bold text-[#0e4d45] px-1">
                     {row.fees}
                   </td>

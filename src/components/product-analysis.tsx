@@ -434,7 +434,7 @@ export function CompetitorComparison({ product, competitors }: { product: Produc
                   className={`border-b border-[#e4d9cf] last:border-b-0 group ${
                     isThis
                       ? "bg-[#0e4d45]/5"
-                      : "cursor-pointer hover:bg-[#fef6f1] transition-colors"
+                      : "cursor-pointer hover:bg-[#fef6f1] active:bg-[#f7ebe2] transition-colors outline-none focus-visible:bg-[#fef6f1] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0e4d45]/40"
                   }`}
                 >
                   <td className="px-3 py-2.5">

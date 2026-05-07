@@ -328,6 +328,11 @@ export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; 
 }
 
 export function ProductPreviewModal({ p, listName, onClose }: { p: Product; listName?: string; onClose: () => void }) {
+  const backdropDownRef = useRef(false);
+  const [dragY, setDragY] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const touchStartY = useRef<number | null>(null);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -346,19 +351,60 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
   const campaign =
     p.category === "bank" ? "bank-accounts" : p.category === "investing" ? "investing" : "financial-apps";
 
+  const handleBackdropMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    backdropDownRef.current = e.target === e.currentTarget;
+  };
+  const handleBackdropMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (backdropDownRef.current && e.target === e.currentTarget) onClose();
+    backdropDownRef.current = false;
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartY.current = e.touches[0].clientY;
+    setDragging(true);
+  };
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartY.current == null) return;
+    const delta = e.touches[0].clientY - touchStartY.current;
+    if (delta > 0) setDragY(delta);
+  };
+  const handleTouchEnd = () => {
+    if (touchStartY.current == null) return;
+    touchStartY.current = null;
+    setDragging(false);
+    if (dragY > 100) {
+      onClose();
+    } else {
+      setDragY(0);
+    }
+  };
+
   return createPortal(
     <div
       className="fixed inset-0 z-[70] bg-black/45 flex items-end sm:items-center justify-center p-0 sm:p-4"
-      onClick={onClose}
+      onMouseDown={handleBackdropMouseDown}
+      onMouseUp={handleBackdropMouseUp}
       role="dialog"
       aria-modal="true"
       aria-label={`${p.name} quick preview`}
     >
       <div
         className="bg-white w-full sm:max-w-md sm:rounded-sm rounded-t-lg border border-[#d4c5b8] shadow-xl max-h-[92vh] sm:max-h-[85vh] overflow-hidden flex flex-col"
-        onClick={(e) => e.stopPropagation()}
+        style={{
+          transform: dragY > 0 ? `translateY(${dragY}px)` : undefined,
+          transition: dragging ? "none" : "transform 200ms ease-out",
+        }}
       >
-        <div className="sm:hidden mx-auto mt-2 mb-1 h-1 w-10 rounded-full bg-[#d4c5b8]" />
+        <div
+          className="sm:hidden pt-2 pb-2 -mb-1 cursor-grab active:cursor-grabbing touch-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          aria-label="Swipe down to dismiss"
+          role="button"
+        >
+          <div className="mx-auto h-1.5 w-12 rounded-full bg-[#d4c5b8]" />
+        </div>
         <div className="px-4 sm:px-5 pt-3 sm:pt-4 pb-3 border-b border-[#e4d9cf] flex items-start justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
             <ProductLogo p={p} size={40} />
