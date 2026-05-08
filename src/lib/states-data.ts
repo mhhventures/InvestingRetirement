@@ -76,7 +76,7 @@ export const PRODUCT_TYPE_LABEL: Record<string, string> = {
   money_market: "Money Market",
 };
 
-// Popular cities per state — powers local SEO anchors and "banks near me in X"
+// Popular cities per state. Powers local SEO anchors and "banks near me in X"
 // copy on the state pages.
 export const STATE_CITIES: Record<string, string[]> = {
   CA: [
@@ -166,7 +166,7 @@ export const STATE_CITIES: Record<string, string[]> = {
 };
 
 // Approximate population + household figures used in intro copy and schema.
-// These do not need to be exact — they orient the reader and improve topical
+// These do not need to be exact. They orient the reader and improve topical
 // relevance for long-tail queries like "banks in california population".
 export const STATE_FACTS: Record<
   string,

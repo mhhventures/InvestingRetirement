@@ -7,7 +7,7 @@
 // we prefer those via the `uploadedLogos` map below.
 
 export const productDomains: Record<string, string> = {
-  // Bank accounts — high-yield savings
+  // Bank accounts: high-yield savings
   "sofi-checking-savings": "sofi.com",
   "ally-online-savings": "ally.com",
   "marcus-high-yield": "marcus.com",
@@ -26,7 +26,7 @@ export const productDomains: Record<string, string> = {
   "us-bank-savings": "usbank.com",
   "truist-one-savings": "truist.com",
 
-  // Bank accounts — checking
+  // Bank accounts: checking
   "chase-total-checking": "chase.com",
   "discover-cashback-checking": "discover.com",
   "chime-checking": "chime.com",
@@ -40,7 +40,7 @@ export const productDomains: Record<string, string> = {
   "etrade-checking": "etrade.com",
   "axos-rewards-checking": "axosbank.com",
 
-  // Investing — brokerages
+  // Investing: brokerages
   "fidelity": "fidelity.com",
   "robinhood": "robinhood.com",
   "vanguard": "vanguard.com",
@@ -51,13 +51,13 @@ export const productDomains: Record<string, string> = {
   "charles-schwab": "schwab.com",
   "moomoo": "moomoo.com",
 
-  // Investing — robo-advisors
+  // Investing: robo-advisors
   "m1-finance": "m1.com",
   "betterment": "betterment.com",
   "acorns": "acorns.com",
   "wealthfront": "wealthfront.com",
 
-  // Investing — crypto
+  // Investing: crypto
   "coinbase": "coinbase.com",
   "kraken": "kraken.com",
   "gemini": "gemini.com",
@@ -65,17 +65,17 @@ export const productDomains: Record<string, string> = {
   "uphold": "uphold.com",
   "okx": "okx.com",
 
-  // Investing — prediction markets
+  // Investing: prediction markets
   "kalshi": "kalshi.com",
   "polymarket": "polymarket.com",
 
-  // Financial apps — budgeting
+  // Financial apps: budgeting
   "ynab": "ynab.com",
   "monarch-money": "monarchmoney.com",
   "rocket-money": "rocketmoney.com",
   "empower": "empower.com",
 
-  // Financial apps — cash advance
+  // Financial apps: cash advance
   "earnin": "earnin.com",
   "dave": "dave.com",
   "albert": "albert.com",
@@ -84,21 +84,21 @@ export const productDomains: Record<string, string> = {
   "possible-finance": "possiblefinance.com",
   "tilt": "tilt.com",
 
-  // Financial apps — credit score
+  // Financial apps: credit score
   "sofi-credit-score": "sofi.com",
   "credit-karma": "creditkarma.com",
   "experian": "experian.com",
 
-  // Financial apps — banking (neobank)
+  // Financial apps: banking (neobank)
   "current": "current.com",
   "varo": "varomoney.com",
   "cash-app": "cash.app",
 
-  // Financial apps — credit & loans
+  // Financial apps: credit & loans
   "upgrade-app": "upgrade.com",
   "perpay": "perpay.com",
 
-  // Financial apps — research & analysis
+  // Financial apps: research & analysis
   "motley-fool": "fool.com",
   "seeking-alpha": "seekingalpha.com",
   "tipranks": "tipranks.com",
@@ -192,13 +192,13 @@ const uploadedLogoSlugMap: Record<string, keyof typeof brandLogoUrls> = {
   // Gemini
   "gemini": "gemini",
 
-  // SoFi — all SoFi products share the same brand mark
+  // SoFi: all SoFi products share the same brand mark
   "sofi-checking-savings": "sofi",
   "sofi-checking": "sofi",
   "sofi-invest": "sofi",
   "sofi-credit-score": "sofi",
 
-  // Ally — all Ally products share the same brand mark
+  // Ally: all Ally products share the same brand mark
   "ally-online-savings": "ally",
   "ally-interest-checking": "ally",
 
@@ -217,7 +217,7 @@ const uploadedLogoSlugMap: Record<string, keyof typeof brandLogoUrls> = {
   // Chase
   "chase-total-checking": "chase",
 
-  // American Express — all Amex products share the same brand mark
+  // American Express: all Amex products share the same brand mark
   "amex-high-yield-savings": "amex",
   "amex-rewards-checking": "amex",
 
@@ -227,7 +227,7 @@ const uploadedLogoSlugMap: Record<string, keyof typeof brandLogoUrls> = {
   // Discover
   "discover-cashback-checking": "discover",
 
-  // Chime — all Chime products share the same brand mark
+  // Chime: all Chime products share the same brand mark
   "chime-checking": "chime",
   "chime-mypay": "chime",
 
@@ -237,22 +237,22 @@ const uploadedLogoSlugMap: Record<string, keyof typeof brandLogoUrls> = {
   // NBKC
   "nbkc-everything-account": "nbkc",
 
-  // Upgrade — all Upgrade products share the same brand mark
+  // Upgrade: all Upgrade products share the same brand mark
   "upgrade-rewards-checking": "upgrade",
   "upgrade-app": "upgrade",
 
   // PNC
   "pnc-virtual-wallet": "pnc",
 
-  // E*TRADE — checking + invest share the same brand mark
+  // E*TRADE: checking + invest share the same brand mark
   "etrade-checking": "etrade",
   "etrade-invest": "etrade",
 
-  // Axos — all Axos products share the same brand mark
+  // Axos: all Axos products share the same brand mark
   "axos-rewards-checking": "axos",
   "axos-high-yield-savings": "axos",
 
-  // Chime HYSA — shares same brand mark
+  // Chime HYSA: shares same brand mark
   "chime-high-yield-savings": "chime",
 
   // Big bank savings
@@ -413,7 +413,7 @@ export function getDomainLogoUrl(domain: string, size: number = 128): string {
     });
     return `https://img.logo.dev/${clean}?${qs.toString()}`;
   }
-  // No logo.dev token configured — fall back to Google's favicon service,
+  // No logo.dev token configured: fall back to Google's favicon service,
   // which is keyless and returns a small real brand mark for most domains.
   // (Clearbit's free logo API was retired in 2023 and now 404s.)
   return `https://www.google.com/s2/favicons?sz=${Math.min(

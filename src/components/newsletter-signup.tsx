@@ -20,7 +20,7 @@ export function NewsletterSignup({
   variant = "sidebar",
   eyebrow = "Newsletter",
   headline = "The I&R Market Brief",
-  sub = "Where Reddit's best finance conversations meet curated insights. One scannable email every Thursday — rates, tool comparisons, headlines. Free, no spam.",
+  sub = "Where Reddit's best finance conversations meet curated insights. One scannable email every Thursday: rates, tool comparisons, headlines. Free, no spam.",
 }: Props) {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
@@ -57,7 +57,7 @@ export function NewsletterSignup({
         setMessage({ type: "err", text: data?.error || "Subscription failed. Please try again." });
         pushEvent("newsletter_signup_error", { placement: source, reason: (data?.error as string) || "http_error" });
       } else if (data?.status === "already_subscribed") {
-        setMessage({ type: "ok", text: "You're already subscribed — thanks!" });
+        setMessage({ type: "ok", text: "You're already subscribed. Thanks!" });
         setEmail("");
       } else {
         trackEvent("Subscribe", {
@@ -126,7 +126,7 @@ export function NewsletterSignup({
           </button>
         </div>
         <p className="mt-3 text-[11px] text-[#5a5a5a]">
-          Double opt-in. We&apos;ll send a confirmation link — you&apos;re not subscribed until you click it. Unsubscribe anytime.
+          Double opt-in. We&apos;ll send a confirmation link. You&apos;re not subscribed until you click it. Unsubscribe anytime.
         </p>
         {message && (
           <p

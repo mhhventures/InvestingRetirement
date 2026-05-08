@@ -20,7 +20,7 @@ function GuidesLayout() {
 
 function GuidesIndex() {
   useSeo({
-    title: "Financial Guides & Articles — Saving, Investing, Credit",
+    title: "Financial Guides & Articles: Saving, Investing, Credit",
     description: "Expert-written guides on saving, budgeting, investing, retirement, and credit. Clear, actionable advice to help you make smarter financial decisions.",
     path: "/guides",
     jsonLd: {

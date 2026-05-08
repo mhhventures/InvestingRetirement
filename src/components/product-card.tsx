@@ -46,7 +46,7 @@ export function StarRating({ rating, size = "sm" }: { rating: number; size?: "sm
   );
 }
 
-// Disclosure icon — small (?) button that reveals fine-print in a hover popover.
+// Disclosure icon: small (?) button that reveals fine-print in a hover popover.
 // Uses a portal + fixed positioning so the popover is never clipped by parent overflow.
 export function DisclosureIcon({ text, label }: { text: string; label?: string }) {
   const [open, setOpen] = useState(false);
@@ -159,7 +159,7 @@ export function ProductLogo({ p, size = 40, priority = false }: { p: Product; si
           src={logoUrl}
           srcSet={srcSet}
           sizes={`${size}px`}
-          alt={`${p.name} logo — ${p.provider} ${p.subcategory.toLowerCase()}`}
+          alt={`${p.name} logo, ${p.provider} ${p.subcategory.toLowerCase()}`}
           width={size}
           height={size}
           loading={priority ? "eager" : "lazy"}
@@ -293,7 +293,7 @@ export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; 
           )}
         </div>
 
-        {/* CTAs: mirror Guides card — primary filled green, secondary outlined */}
+        {/* CTAs: mirror Guides card. Primary filled green, secondary outlined */}
         <div className="mt-2.5 sm:mt-3 grid grid-cols-2 gap-1.5">
           <Link
             to="/product/$slug"

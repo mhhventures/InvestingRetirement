@@ -64,7 +64,7 @@ function CityBanksPage() {
   );
 
   useSeo({
-    title: `Best Banks in ${city}, ${info.name} ${new Date().getFullYear()} — Local Rates & Credit Unions`,
+    title: `Best Banks in ${city}, ${info.name} ${new Date().getFullYear()}: Local Rates & Credit Unions`,
     description: `Compare the best banks and credit unions serving ${city}, ${info.name}. Current savings APYs${
       topApy > 0 ? ` up to ${topApy.toFixed(2)}%` : ""
     }, monthly fees, and minimum deposit requirements.`,
@@ -157,7 +157,7 @@ function CityBanksPage() {
           <p className="text-sm text-[#1a1a1a] max-w-3xl leading-relaxed">
             {city} residents can open accounts with any of the banks and credit
             unions serving {info.name} statewide. We've highlighted the
-            top-rated options below — current APYs
+            top-rated options below, with current APYs
             {topApy > 0 ? ` up to ${topApy.toFixed(2)}%` : ""}, monthly fees,
             and minimum deposits verified this month.
           </p>
@@ -269,7 +269,7 @@ function CityBanksPage() {
         <div className="mt-6 text-[11px] text-[#5a5a5a] leading-relaxed">
           All institutions shown accept applications from {city} residents.
           Membership-based credit unions may have additional eligibility
-          requirements — see individual listings for details.
+          requirements. See individual listings for details.
         </div>
 
         <div className="mt-8 pt-6 border-t border-[#e4d9cf]">

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/financial-apps")({
 function FinancialApps() {
   const all = getByCategory("app");
   useSeo({
-    title: "Best Financial Apps 2026 — Budgeting & Credit",
+    title: "Best Financial Apps 2026: Budgeting & Credit",
     description:
       "Budgeting tools, cash advance apps, and credit score trackers to take control of your money. Independent reviews of every app we cover.",
     path: "/financial-apps",

@@ -39,7 +39,7 @@ export type Product = {
 
 export const products: Product[] = [
   // ============================================================
-  // BANK ACCOUNTS — HIGH-YIELD SAVINGS
+  // BANK ACCOUNTS: HIGH-YIELD SAVINGS
   // ============================================================
   {
     slug: "sofi-checking-savings",
@@ -188,7 +188,7 @@ export const products: Product[] = [
     tagline: "Up to 4.10% APY with 0.35% APY Boost for balances of $5,000+.",
     highlights: [
       "Up to 4.10% APY for 6 months on balances of $5,000 or more (as of May 2026)",
-      "0.35% APY Boost — earn up to 4.10% APY for 6 months. Terms apply.",
+      "0.35% APY Boost: earn up to 4.10% APY for 6 months. Terms apply.",
       "Lower tier APY (~0.25%) on balances under $5,000",
       "No monthly service fees",
     ],
@@ -200,7 +200,7 @@ export const products: Product[] = [
     cons: [
       "Balances under $5,000 earn a much lower rate",
       "$100 minimum to open",
-      "Boost rate applies for 6 months — reverts to standard APY after",
+      "Boost rate applies for 6 months, then reverts to standard APY",
     ],
     fees: "$0/month",
     minDeposit: "$100",
@@ -399,7 +399,7 @@ export const products: Product[] = [
     ],
     cons: [
       "Requires a Chime Checking account to open",
-      "Not a bank — services provided through partner banks",
+      "Not a bank. Services provided through partner banks",
     ],
     fees: "$0/month",
     minDeposit: "$0",
@@ -455,7 +455,7 @@ export const products: Product[] = [
     reviews: 4120,
     tagline: "Premium-tier savings at Wells Fargo with relationship benefits.",
     highlights: [
-      "0.25% standard APY — relationship bonus rates available with qualifying checking (as of May 2026)",
+      "0.25% standard APY. Relationship bonus rates available with qualifying checking (as of May 2026)",
       "Access to 4,400+ branches and 11,000+ ATMs",
       "$12 monthly service fee (waivable with $3,500 daily balance)",
     ],
@@ -489,7 +489,7 @@ export const products: Product[] = [
     reviews: 5240,
     tagline: "Bank of America's savings account with Preferred Rewards boost potential.",
     highlights: [
-      "0.01% APY base rate — up to 0.04% with Preferred Rewards Diamond tier (as of May 2026)",
+      "0.01% APY base rate, up to 0.04% with Preferred Rewards Diamond tier (as of May 2026)",
       "3,800+ branches and 15,000+ ATMs nationwide",
       "$8 monthly service fee (waivable with $500 balance or Preferred Rewards)",
     ],
@@ -557,7 +557,7 @@ export const products: Product[] = [
     reviews: 2180,
     tagline: "Traditional savings from the 5th-largest U.S. bank.",
     highlights: [
-      "0.01% APY standard — promotional rates available with Smartly Checking bundle (as of May 2026)",
+      "0.01% APY standard. Promotional rates available with Smartly Checking bundle (as of May 2026)",
       "2,000+ branches across 26 states",
       "$4 monthly fee (waivable with $300 balance or under age 18)",
     ],
@@ -591,7 +591,7 @@ export const products: Product[] = [
     reviews: 1640,
     tagline: "Relationship savings from the merger of BB&T and SunTrust.",
     highlights: [
-      "0.01% base APY — up to 0.05% with qualifying Truist One Checking (as of May 2026)",
+      "0.01% base APY, up to 0.05% with qualifying Truist One Checking (as of May 2026)",
       "2,000+ branches across 17 states plus D.C.",
       "$5 monthly fee (waivable with $300 balance or linked Truist checking)",
     ],
@@ -615,7 +615,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // BANK ACCOUNTS — CHECKING
+  // BANK ACCOUNTS: CHECKING
   // ============================================================
   {
     slug: "chase-total-checking",
@@ -704,7 +704,7 @@ export const products: Product[] = [
       "SpotMe covers small overdrafts at no cost",
     ],
     cons: [
-      "Not a bank — services provided through partner banks",
+      "Not a bank. Services provided through partner banks",
       "No joint accounts or physical branches",
     ],
     fees: "$0/month",
@@ -870,7 +870,7 @@ export const products: Product[] = [
     ],
     cons: [
       "Top cash back requires $1,000+ monthly direct deposit",
-      "Not a bank — banking provided by Cross River Bank",
+      "Not a bank. Banking provided by Cross River Bank",
     ],
     fees: "$0/month",
     minDeposit: "$0",
@@ -934,7 +934,7 @@ export const products: Product[] = [
       "Seamless integration with Ally Savings and Invest",
     ],
     cons: [
-      "Tiered APY — top rate requires $15K balance",
+      "Tiered APY. Top rate requires $15K balance",
       "No cash deposits (ACH or mobile check only)",
     ],
     fees: "$0/month",
@@ -987,7 +987,7 @@ export const products: Product[] = [
     gradeScore: 88,
     rating: 4.6,
     reviews: 2860,
-    tagline: "Up to 3.30% APY — one of the highest checking APYs in the U.S.",
+    tagline: "Up to 3.30% APY, one of the highest checking APYs in the U.S.",
     highlights: [
       "Up to 3.30% APY with qualifying monthly activity",
       "Unlimited domestic ATM fee reimbursements",
@@ -1012,7 +1012,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // INVESTING — BROKERAGES
+  // INVESTING: BROKERAGES
   // ============================================================
   {
     slug: "fidelity",
@@ -1102,7 +1102,7 @@ export const products: Product[] = [
     highlights: [
       "Industry-low 0.07% avg. expense ratio on Vanguard funds",
       "$0 commissions on stocks, ETFs, and Vanguard mutual funds",
-      "Client-owned structure — profits reinvested to lower fund fees",
+      "Client-owned structure. Profits reinvested to lower fund fees",
     ],
     pros: [
       "Lowest average fund expense ratios in the industry",
@@ -1346,7 +1346,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // INVESTING — ROBO-ADVISORS
+  // INVESTING: ROBO-ADVISORS
   // ============================================================
   {
     slug: "m1-finance",
@@ -1453,7 +1453,7 @@ export const products: Product[] = [
     bestFor: "Beginners starting with small amounts",
     url: "https://www.acorns.com/",
     accountTypes: ["Individual Brokerage (Acorns Invest)", "Traditional IRA (Acorns Later)", "Roth IRA (Acorns Later)", "SEP IRA (Acorns Later)", "Custodial UTMA/UGMA (Acorns Early)", "Acorns Checking", "Emergency Fund"],
-    assetsAvailable: ["ETF Portfolios (Conservative to Aggressive)", "ESG Portfolios", "Bitcoin ETF Allocation (Gold tier)", "Custom Portfolio (Gold tier — individual stocks)"],
+    assetsAvailable: ["ETF Portfolios (Conservative to Aggressive)", "ESG Portfolios", "Bitcoin ETF Allocation (Gold tier)", "Custom Portfolio (Gold tier, individual stocks)"],
     platformFeatures: ["Round-Ups® (spare change investing)", "Recurring Investments", "Smart Deposit (paycheck split)", "Earn Rewards (cashback at 15,000+ brands)", "Acorns Checking + Debit Card", "Emergency Fund", "3% IRA Match (Gold tier)", "Custom Portfolio (Gold)", "Acorns Early (kids investing)", "Mighty Oak Card (Gold)", "Banking with no overdraft fees"],
   },
   {
@@ -1495,7 +1495,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // INVESTING — CRYPTO
+  // INVESTING: CRYPTO
   // ============================================================
   {
     slug: "coinbase",
@@ -1554,7 +1554,7 @@ export const products: Product[] = [
     ],
     pros: [
       "Low maker/taker fees on Kraken Pro (as low as 0.00%/0.10%)",
-      "Long-standing security track record (since 2011) — no major hacks",
+      "Long-standing security track record (since 2011), no major hacks",
       "Margin and futures trading for qualified users",
       "Kraken Prime for institutions; 24/7 live chat support",
     ],
@@ -1586,7 +1586,7 @@ export const products: Product[] = [
     tagline: "Regulated crypto exchange built on institutional-grade security.",
     highlights: [
       "85+ cryptocurrencies available, including GUSD stablecoin",
-      "NYDFS-regulated trust company — a qualified custodian",
+      "NYDFS-regulated trust company, a qualified custodian",
       "Gemini ActiveTrader with maker fees from 0.00% / taker 0.03%",
     ],
     pros: [
@@ -1663,7 +1663,7 @@ export const products: Product[] = [
       "Staking rewards on 30+ assets with no lock-up on many coins",
     ],
     pros: [
-      "Unique multi-asset platform — crypto, metals, and stocks in one app",
+      "Unique multi-asset platform: crypto, metals, and stocks in one app",
       "Simple, intuitive mobile app",
       "Transparent real-time reserve reporting (Proof of Reserves)",
     ],
@@ -1704,7 +1704,7 @@ export const products: Product[] = [
       "OKX Earn with flexible and locked-term yields",
     ],
     cons: [
-      "U.S. (okx.com/us) offers spot only — no derivatives",
+      "U.S. (okx.com/us) offers spot only. No derivatives",
       "Not available in all U.S. states",
     ],
     fees: "0.08%–0.10%",
@@ -1720,7 +1720,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // INVESTING — PREDICTION MARKETS
+  // INVESTING: PREDICTION MARKETS
   // ============================================================
   {
     slug: "kalshi",
@@ -1734,7 +1734,7 @@ export const products: Product[] = [
     reviews: 3820,
     tagline: "The first CFTC-regulated prediction market exchange in the U.S.",
     highlights: [
-      "CFTC-regulated event contracts — fully legal in all 50 U.S. states",
+      "CFTC-regulated event contracts, fully legal in all 50 U.S. states",
       "Trade on elections, economics, culture, weather, and sports outcomes",
       "Contracts settle $0–$1 based on real-world yes/no events",
     ],
@@ -1745,7 +1745,7 @@ export const products: Product[] = [
     ],
     cons: [
       "Trading fees up to ~7% per contract depending on market",
-      "No margin or leverage — must post full collateral",
+      "No margin or leverage. Must post full collateral",
     ],
     fees: "Up to 7%",
     minDeposit: "$0",
@@ -1765,7 +1765,7 @@ export const products: Product[] = [
     grade: "A-",
     gradeScore: 85,
     reviews: 5210,
-    tagline: "The world's largest prediction market — trade on real-world events with crypto.",
+    tagline: "The world's largest prediction market. Trade on real-world events with crypto.",
     highlights: [
       "Billions in volume across politics, crypto, sports, and pop culture",
       "Settles in USDC on the Polygon blockchain (non-custodial trading)",
@@ -1773,12 +1773,12 @@ export const products: Product[] = [
     ],
     pros: [
       "Zero trading fees on most markets (liquidity providers earn spread)",
-      "Non-custodial — you hold your own funds via a self-custody wallet",
+      "Non-custodial: you hold your own funds via a self-custody wallet",
       "Massive market depth on major news and political events",
     ],
     cons: [
       "Requires a crypto wallet and USDC on Polygon",
-      "Restricted in several U.S. states — check eligibility before signing up",
+      "Restricted in several U.S. states. Check eligibility before signing up",
     ],
     fees: "$0 trading",
     minDeposit: "$1",
@@ -1789,7 +1789,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // FINANCIAL APPS — BUDGETING
+  // FINANCIAL APPS: BUDGETING
   // ============================================================
   {
     slug: "ynab",
@@ -1811,16 +1811,16 @@ export const products: Product[] = [
       "Detailed reports: net worth, spending by category, income vs. expense, age of money",
     ],
     pros: [
-      "Transforms financial habits — not just passive tracking",
+      "Transforms financial habits, not just passive tracking",
       "Outstanding 7-day-a-week customer support via email and live chat",
       "Engaged user community on Reddit (r/ynab) and Facebook with 200K+ members",
       "Apple Watch app for on-the-go category checks before purchases",
       "Two-factor authentication, read-only bank sync, and 256-bit encryption",
-      "Family sharing — up to 6 users on one subscription at no extra cost",
+      "Family sharing: up to 6 users on one subscription at no extra cost",
     ],
     cons: [
       "$14.99/month or $109/year subscription (no free tier)",
-      "Steep initial learning curve — most users need 2–3 months to internalize Four Rules",
+      "Steep initial learning curve. Most users need 2–3 months to internalize Four Rules",
       "No bill negotiation or subscription-cancel features (unlike Rocket Money)",
       "Investment tracking is limited compared to Monarch or Empower",
     ],
@@ -1849,22 +1849,22 @@ export const products: Product[] = [
     bonus: "50% off first year with annual plan",
     highlights: [
       "Sync unlimited accounts across 13,000+ banks, brokerages, crypto exchanges, and real estate platforms (Zillow integration)",
-      "Collaborative household budgeting — partner/spouse access included free, no separate subscription",
+      "Collaborative household budgeting with partner/spouse access included free, no separate subscription",
       "Customizable dashboards with drag-and-drop widgets, flexible category rules, and unlimited goal tracking",
       "Investment performance tracking with allocation breakdowns, holdings detail, and benchmark comparisons",
       "Cash flow forecasting up to 12 months ahead based on recurring income and bills",
-      "Advisor mode — financial planners can co-manage client accounts (separate Monarch for Advisors product)",
+      "Advisor mode: financial planners can co-manage client accounts (separate Monarch for Advisors product)",
     ],
     pros: [
       "Widely considered the strongest Mint replacement since Mint shut down in March 2024",
-      "Clean, modern interface with deep customization — light/dark mode, custom categories, and rules",
-      "Free partner/household access — no separate subscription required for spouse or family",
-      "Strong investment tracking alongside budgeting — rare in the budgeting-app category",
+      "Clean, modern interface with deep customization (light/dark mode, custom categories, and rules)",
+      "Free partner/household access, with no separate subscription required for spouse or family",
+      "Strong investment tracking alongside budgeting, rare in the budgeting-app category",
       "Active product team shipping updates monthly based on user feedback",
       "Native iOS, Android, and web apps with consistent feature parity",
     ],
     cons: [
-      "No free tier — paid subscription required after 7-day trial",
+      "No free tier. Paid subscription required after 7-day trial",
       "Occasional account-sync hiccups (common across all Plaid/MX-based aggregators)",
       "No built-in bill negotiation or subscription-cancel service (unlike Rocket Money)",
       "Learning curve for users coming from simpler apps like Mint or YNAB",
@@ -1892,22 +1892,22 @@ export const products: Product[] = [
       "Automatic subscription detection across linked accounts with one-tap concierge cancel",
       "Bill negotiation service for cable, internet, phone, and utilities (Rocket keeps 30–60% of first-year savings)",
       "Net worth, spending, and cash flow dashboards with month-over-month comparison",
-      "Smart Savings — automated savings transfers based on cash-flow analysis (Premium only)",
+      "Smart Savings: automated savings transfers based on cash-flow analysis (Premium only)",
       "Credit score monitoring with VantageScore 3.0 from TransUnion (Premium only)",
       "Sliding-scale Premium pricing: pay what you think is fair between $4–$12/month",
     ],
     pros: [
       "Free tier covers the core subscription tracker and budget basics",
-      "Genuinely saves users money on recurring bills — average savings of $200–$700/year per Rocket",
+      "Genuinely saves users money on recurring bills, with average savings of $200 to $700 per year per Rocket",
       "Easy 2-minute bank sync setup via Plaid",
       "Custom alerts for unusual spending, bill due dates, and low balances",
-      "Member of Rocket Companies (NYSE: RKT) — established financial services parent",
+      "Member of Rocket Companies (NYSE: RKT), an established financial services parent",
     ],
     cons: [
       "Premium upsells can feel pushy in the free tier",
       "Bill negotiation fee is a large share of savings (30–60%)",
       "Budgeting features are lighter than YNAB or Monarch",
-      "No collaborative household access — single-user only",
+      "No collaborative household access. Single-user only",
     ],
     logoText: "RM",
     color: "#16a34a",
@@ -1929,24 +1929,24 @@ export const products: Product[] = [
     minDeposit: "$0",
     highlights: [
       "Net worth tracking across 14,000+ banks, brokerages, 401(k) providers, mortgages, and crypto wallets",
-      "401(k) Fee Analyzer — uncovers hidden expense ratios and shows lifetime fee drag",
+      "401(k) Fee Analyzer: uncovers hidden expense ratios and shows lifetime fee drag",
       "Free Retirement Planner with Monte Carlo simulations across 1,000+ market scenarios",
-      "Investment Checkup — analyzes portfolio for sector concentration, fees, and asset-allocation gaps",
+      "Investment Checkup: analyzes portfolio for sector concentration, fees, and asset-allocation gaps",
       "Cash Flow analyzer with income/expense tracking and bill calendar",
       "Education Planner for college savings goals with 529 modeling",
     ],
     pros: [
-      "Comprehensive free financial dashboard — no premium tier required for most features",
+      "Comprehensive free financial dashboard, with no premium tier required for most features",
       "Institutional-grade analytics typically reserved for high-net-worth advisor clients",
       "Beautiful visualizations of spending, allocation, and projected retirement outcomes",
-      "Trusted brand — Empower manages $1.4T+ in assets across retirement plans",
+      "Trusted brand. Empower manages $1.4T+ in assets across retirement plans",
       "No ads or upsell prompts inside the dashboard interface",
     ],
     cons: [
       "Sales calls from Empower advisors for users with $100K+ in linked portfolios",
-      "Budgeting features are lighter than YNAB or Rocket Money — designed more for tracking than active envelope budgeting",
+      "Budgeting features are lighter than YNAB or Rocket Money, designed more for tracking than active envelope budgeting",
       "Mobile app is less polished than Monarch or YNAB",
-      "No collaborative/household access — single-user dashboard",
+      "No collaborative/household access. Single-user dashboard",
     ],
     logoText: "Emp",
     color: "#6d28d9",
@@ -1955,7 +1955,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // FINANCIAL APPS — CASH ADVANCE
+  // FINANCIAL APPS: CASH ADVANCE
   // ============================================================
   {
     slug: "earnin",
@@ -2088,7 +2088,7 @@ export const products: Product[] = [
     tagline: "Instant cash advances up to $250 with predictable flat pricing.",
     highlights: [
       "Instant advances up to $250 with no interest",
-      "Flat $9.99/mo Plus membership — no tips, no surprise fees",
+      "Flat $9.99/mo Plus membership, no tips, no surprise fees",
       "Credit Builder installment loan reports to all 3 bureaus",
       "Auto-Advance triggers when checking balance is about to overdraft",
       "Identity Theft Protection with up to $1M in coverage",
@@ -2170,7 +2170,7 @@ export const products: Product[] = [
     highlights: [
       "Installment loans up to $500 paid back over 4 installments",
       "Reports every on-time payment to Experian, Equifax, and TransUnion",
-      "No hard credit pull to qualify — uses banking data instead",
+      "No hard credit pull to qualify. Uses banking data instead",
       "Funds typically arrive within minutes via debit card",
       "Reschedule a payment up to 29 days with no penalty",
     ],
@@ -2205,7 +2205,7 @@ export const products: Product[] = [
     gradeScore: 74,
     rating: 4.1,
     reviews: 3240,
-    tagline: "Earned wage access for hourly workers — paid for hours already worked.",
+    tagline: "Earned wage access for hourly workers, paid for hours already worked.",
     highlights: [
       "On-demand access to wages already earned (not advances)",
       "No interest, flat per-transfer fee model",
@@ -2215,7 +2215,7 @@ export const products: Product[] = [
     ],
     pros: [
       "Transparent flat-fee pricing with no tips or hidden costs",
-      "No reliance on next paycheck — pay deducted from earned wages",
+      "No reliance on next paycheck. Pay deducted from earned wages",
       "Same-day access to earnings on payday or sooner",
       "Available regardless of credit history or banking status",
     ],
@@ -2236,7 +2236,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // FINANCIAL APPS — CREDIT SCORE
+  // FINANCIAL APPS: CREDIT SCORE
   // ============================================================
   {
     slug: "sofi-credit-score",
@@ -2250,21 +2250,21 @@ export const products: Product[] = [
     reviews: 18420,
     tagline: "Free credit score monitoring bundled with SoFi's no-fee money tools.",
     highlights: [
-      "Free credit score updated weekly — no credit card and no paid tier required",
+      "Free credit score updated weekly. No credit card and no paid tier required",
       "Bundled with SoFi Relay: spending, net worth, and credit score in one dashboard",
       "Score change alerts plus a simulator that previews the impact of common actions",
-      "No hard pull — checking your SoFi credit score never affects it",
+      "No hard pull. Checking your SoFi credit score never affects it",
       "Optional SoFi Checking & Savings add-on with 4.00% APY and up to $400 bonus",
     ],
     pros: [
-      "Genuinely free — no trial, no upsell to a paid monitoring tier",
+      "Genuinely free, with no trial and no upsell to a paid monitoring tier",
       "Weekly score refreshes with a clean, mobile-first dashboard",
       "Integrated view alongside accounts, spending, and net worth in SoFi Relay",
       "Actionable recommendations tailored to your current score band",
       "One SoFi login unlocks banking, investing, loans, and credit tracking",
     ],
     cons: [
-      "Shows a single bureau — not a 3-bureau view",
+      "Shows a single bureau, not a 3-bureau view",
       "Advanced identity-theft tools require a separate product",
     ],
     fees: "Free",
@@ -2300,7 +2300,7 @@ export const products: Product[] = [
       "Weekly credit score updates from TransUnion and Equifax",
       "Credit score simulator shows the impact of paying down debt, opening new accounts, or closing cards",
       "Approval Odds reduce the risk of hard inquiries from rejected applications",
-      "Owned by Intuit (TurboTax) — strong data security infrastructure",
+      "Owned by Intuit (TurboTax), with strong data security infrastructure",
       "iOS, Android, and full-featured web app",
     ],
     cons: [
@@ -2328,7 +2328,7 @@ export const products: Product[] = [
     reviews: 6410,
     tagline: "FICO Score 8 direct from one of the three credit bureaus.",
     highlights: [
-      "Free FICO Score 8 directly from Experian — the same score 90% of top lenders use",
+      "Free FICO Score 8 directly from Experian, the same score 90% of top lenders use",
       "Experian Boost adds on-time utility, phone, streaming, and rent payments to your credit file",
       "Dark Web Surveillance scans for your SSN, email, and bank account on illegal marketplaces",
       "Real-time alerts for new accounts, hard inquiries, and credit limit changes",
@@ -2338,14 +2338,14 @@ export const products: Product[] = [
     ],
     pros: [
       "Official FICO Score 8 (the score used by 90% of top lenders for credit decisions)",
-      "Experian Boost is unique in the industry — typical users see a 13-point increase",
-      "Direct from a credit bureau — no intermediary, fastest data updates",
+      "Experian Boost is unique in the industry. Typical users see a 13-point increase",
+      "Direct from a credit bureau, with no intermediary and the fastest data updates",
       "Premium tier includes 3-bureau FICO and $1 million identity theft insurance",
       "Strong identity protection tools (SSN trace, dark web monitoring, social media surveillance)",
       "Free credit report from Experian as often as every 30 days",
     ],
     cons: [
-      "Free tier only shows Experian data — no TransUnion or Equifax scores",
+      "Free tier only shows Experian data. No TransUnion or Equifax scores",
       "Frequent upsells to IdentityWorks Premium throughout the app and website",
       "Boost only works with a connected bank account (must share read-only banking access)",
       "Premium tier ($24.99/mo) is more expensive than competitor IdentityGuard or Aura",
@@ -2360,7 +2360,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // FINANCIAL APPS — BANKING (Neobank)
+  // FINANCIAL APPS: BANKING (Neobank)
   // ============================================================
   {
     slug: "current",
@@ -2376,7 +2376,7 @@ export const products: Product[] = [
     highlights: [
       "Up to $750 Paycheck Advance with $0 interest, $0 mandatory fees, and no credit check",
       "Up to 4.00% APY on Bonus Savings Pods (up to 3 Pods, $2,000 each)",
-      "Teen Banking with parental controls for ages 13–17 — chores, allowance, and spending insights",
+      "Teen Banking with parental controls for ages 13 to 17, including chores, allowance, and spending insights",
       "Crypto trading on 40+ coins directly inside the app",
       "Free instant gas hold reimbursements (up to $100)",
     ],
@@ -2388,7 +2388,7 @@ export const products: Product[] = [
       "Round-up Savings automatically saves spare change to Pods",
     ],
     cons: [
-      "Not a bank itself — banking services by Choice Financial Group, Member FDIC",
+      "Not a bank itself. Banking services by Choice Financial Group, Member FDIC",
       "Limited product lineup (no CDs, loans, mortgages, or investing accounts beyond crypto)",
       "Out-of-network ATM fees apply (no reimbursement)",
       "Paycheck Advance limits start at $25 and grow with usage history",
@@ -2427,7 +2427,7 @@ export const products: Product[] = [
       "Cash deposits at 90,000+ Green Dot retail locations",
     ],
     cons: [
-      "No physical branches — fully digital banking",
+      "No physical branches. Fully digital banking",
       "Top 5.00% APY requires $1,000+ direct deposits and 5+ debit purchases per month",
       "$2.50 fee for out-of-network ATM withdrawals",
       "Varo Advance fees: $0 for $20, up to $40 for the full $500 advance",
@@ -2459,7 +2459,7 @@ export const products: Product[] = [
       "Cash App Pay accepted at Best Buy, DoorDash, Uber, Lyft, and 10M+ merchants",
     ],
     pros: [
-      "Massive U.S. user base — 57M+ monthly actives — makes P2P frictionless",
+      "Massive U.S. user base (57M+ monthly actives) makes P2P frictionless",
       "Simple, clean mobile-first design with $cashtag identity",
       "Direct deposit with up to 2-day early pay",
       "Send & receive Bitcoin and stocks as gifts",
@@ -2468,7 +2468,7 @@ export const products: Product[] = [
     cons: [
       "1.5% – 1.75% fee for instant deposits to debit card (free for standard 1–3 day)",
       "3% fee when sending money via linked credit card",
-      "Customer support is primarily in-app — no 24/7 phone support",
+      "Customer support is primarily in-app, with no 24/7 phone support",
       "Bitcoin trading spreads can run higher than crypto-native exchanges",
       "Account limits until identity verification ($1,000 sending, $1,000 receiving per 30 days)",
     ],
@@ -2483,7 +2483,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // FINANCIAL APPS — CREDIT & LOANS
+  // FINANCIAL APPS: CREDIT & LOANS
   // ============================================================
   {
     slug: "upgrade-app",
@@ -2507,7 +2507,7 @@ export const products: Product[] = [
     ],
     pros: [
       "Prequalify with a soft credit pull (no impact on score)",
-      "Fixed rates and fixed monthly payments — no surprises",
+      "Fixed rates and fixed monthly payments, with no surprises",
       "0.25%–0.50% rate discount for Upgrade Rewards Checking customers",
       "Pays creditors directly for consolidation loans (saves a step)",
       "Cash Rewards Visa earns 1.5% unlimited cash back at the time of payment",
@@ -2516,7 +2516,7 @@ export const products: Product[] = [
     ],
     cons: [
       "Origination fees of 1.85%–9.99% deducted from loan proceeds upfront",
-      "APRs reach 35.99% — high end of the personal loan market",
+      "APRs reach 35.99%, the high end of the personal loan market",
       "No rate discount for autopay enrollment (some competitors offer this)",
       "Cash Rewards Visa requires Upgrade Checking to earn 1.5% (vs. 1% otherwise)",
       "Late payment fees of $10 if a payment is more than 15 days late",
@@ -2540,9 +2540,9 @@ export const products: Product[] = [
     gradeScore: 80,
     rating: 4.3,
     reviews: 5820,
-    tagline: "Shop now, pay from your paycheck — 0% interest, always.",
+    tagline: "Shop now, pay from your paycheck. 0% interest, always.",
     highlights: [
-      "0% interest and 0% APR on every purchase — no exceptions",
+      "0% interest and 0% APR on every purchase, no exceptions",
       "Marketplace with 1,000+ brands including Apple, Samsung, Sony, Dyson, KitchenAid",
       "Spending limits from $500 to $2,500 based on income and history",
       "PerPay+ Credit Builder ($2/mo) reports to Equifax, Experian, and TransUnion",
@@ -2551,7 +2551,7 @@ export const products: Product[] = [
       "No down payment required on most purchases",
     ],
     pros: [
-      "True 0% interest — never pay more than the sticker price",
+      "True 0% interest. Never pay more than the sticker price",
       "No credit check to start shopping (income verification only)",
       "On-time payments build credit history with all 3 major bureaus (with PerPay+)",
       "Thousands of name-brand products in the marketplace",
@@ -2563,7 +2563,7 @@ export const products: Product[] = [
       "Marketplace prices can run 5–15% higher than retail to offset 0% financing",
       "Requires steady direct deposit from a W-2 or 1099 employer",
       "Credit Builder feature costs $2/month (still cheaper than most alternatives)",
-      "Cannot pay off balances early to avoid interest (there is none — but no incentive either)",
+      "Cannot pay off balances early to avoid interest (there is none, but no incentive either)",
       "Limited to brands within the PerPay marketplace unless using Direct Card",
     ],
     fees: "$2/mo Credit Builder (optional)",
@@ -2577,7 +2577,7 @@ export const products: Product[] = [
   },
 
   // ============================================================
-  // FINANCIAL APPS — RESEARCH & ANALYSIS
+  // FINANCIAL APPS: RESEARCH & ANALYSIS
   // ============================================================
   {
     slug: "motley-fool",

@@ -99,7 +99,7 @@ function Variation1() {
           <div className="relative pl-6 sm:pl-8">
             <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#fef6f1]/60 mb-1.5">Editorial Verdict</div>
             <p className="text-sm sm:text-base font-serif italic leading-relaxed mb-2">
-              "One of the strongest all-in-one banking packages available today — a standout for consumers who want simplicity without sacrifice."
+              "One of the strongest all-in-one banking packages available today, a standout for consumers who want simplicity without sacrifice."
             </p>
             <div className="text-[10px] sm:text-[11px] text-[#fef6f1]/70">— I&R Editorial Team</div>
           </div>

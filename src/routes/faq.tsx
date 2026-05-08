@@ -7,7 +7,7 @@ const FAQS = [
     items: [
       {
         q: "What is Investing and Retirement?",
-        a: "Investing and Retirement is an independent financial research and comparison publication. I review and compare bank accounts, investing apps, crypto exchanges, and personal finance tools to help readers make informed decisions about where to put their money. Every review is based on hands-on testing, verified data, and transparent scoring criteria — not marketing copy.",
+        a: "Investing and Retirement is an independent financial research and comparison publication. I review and compare bank accounts, investing apps, crypto exchanges, and personal finance tools to help readers make informed decisions about where to put their money. Every review is based on hands-on testing, verified data, and transparent scoring criteria, not marketing copy.",
       },
       {
         q: "Who runs Investing and Retirement?",
@@ -15,11 +15,11 @@ const FAQS = [
       },
       {
         q: "When was Investing and Retirement founded?",
-        a: "Investing and Retirement Media LLC was founded in 2025 to give readers clear, honest, and actionable financial product research — free from the noise and bias that dominates much of the personal finance space.",
+        a: "Investing and Retirement Media LLC was founded in 2025 to give readers clear, honest, and actionable financial product research, free from the noise and bias that dominates much of the personal finance space.",
       },
       {
         q: "What makes Investing and Retirement different from other comparison sites?",
-        a: "Three things: (1) I actually open accounts and test the products I review, rather than summarizing press releases. (2) Partnership status with a brand has no effect on rankings — a partner product can and has been ranked below a non-partner. (3) Every piece of content is written and edited by a human, not AI-generated from scraped data.",
+        a: "Three things: (1) I actually open accounts and test the products I review, rather than summarizing press releases. (2) Partnership status with a brand has no effect on rankings. A partner product can and has been ranked below a non-partner. (3) Every piece of content is written and edited by a human, not AI-generated from scraped data.",
       },
     ],
   },
@@ -32,11 +32,11 @@ const FAQS = [
       },
       {
         q: "Is Investing and Retirement free to use?",
-        a: "Yes — completely free. Readers never pay to access any review, comparison, guide, or tool on this site. Revenue comes from affiliate partners, not readers.",
+        a: "Yes, completely free. Readers never pay to access any review, comparison, guide, or tool on this site. Revenue comes from affiliate partners, not readers.",
       },
       {
         q: "Does getting paid by partners affect your reviews?",
-        a: "No. Editorial rankings are determined by a fixed scoring methodology applied before any partnership consideration. Affiliate rates don't change where a product lands on a list. You'll find partners ranked below non-partners throughout the site — that's by design. For the full policy, see the Disclosure page.",
+        a: "No. Editorial rankings are determined by a fixed scoring methodology applied before any partnership consideration. Affiliate rates don't change where a product lands on a list. You'll find partners ranked below non-partners throughout the site. That's by design. For the full policy, see the Disclosure page.",
       },
     ],
   },
@@ -45,11 +45,11 @@ const FAQS = [
     items: [
       {
         q: "How does Investing and Retirement ensure unbiased reviews?",
-        a: "Every product is scored against the same 30+ criteria before any commercial conversation happens. Reviews are based on account-level testing, fee-schedule verification, and published data from the institutions themselves — not from the partners' marketing teams. When facts change, reviews are updated and the change is logged at the top of the article.",
+        a: "Every product is scored against the same 30+ criteria before any commercial conversation happens. Reviews are based on account-level testing, fee-schedule verification, and published data from the institutions themselves, not from the partners' marketing teams. When facts change, reviews are updated and the change is logged at the top of the article.",
       },
       {
         q: "How often are comparisons and reviews updated?",
-        a: "Rate-sensitive products (savings accounts, CDs, etc.) are reviewed at least monthly. Product features, fee structures, and rankings are reviewed quarterly at minimum. Any material change — a fee increase, a feature launch, a regulatory action — triggers an immediate update.",
+        a: "Rate-sensitive products (savings accounts, CDs, etc.) are reviewed at least monthly. Product features, fee structures, and rankings are reviewed quarterly at minimum. Any material change (a fee increase, a feature launch, a regulatory action) triggers an immediate update.",
       },
       {
         q: "What types of financial products do you compare?",
@@ -57,7 +57,7 @@ const FAQS = [
       },
       {
         q: "Can I trust the information on Investing and Retirement?",
-        a: "Every fact on the site is sourced from either the financial institution's official disclosures, regulatory filings, or direct account testing. If something turns out to be wrong, a correction is published openly — not silently edited. That's a core editorial standard, not a courtesy.",
+        a: "Every fact on the site is sourced from either the financial institution's official disclosures, regulatory filings, or direct account testing. If something turns out to be wrong, a correction is published openly, not silently edited. That's a core editorial standard, not a courtesy.",
       },
     ],
   },
@@ -66,7 +66,7 @@ const FAQS = [
     items: [
       {
         q: "How do I choose the right financial product for me?",
-        a: "Start with the category guide (Bank Accounts, Investing, Financial Apps) that matches your need. Each guide explains what to look for, what to avoid, and how to match a product to your situation. The comparison tables then let you filter by the features that matter to you — fees, minimums, rates, platform, etc.",
+        a: "Start with the category guide (Bank Accounts, Investing, Financial Apps) that matches your need. Each guide explains what to look for, what to avoid, and how to match a product to your situation. The comparison tables then let you filter by the features that matter to you: fees, minimums, rates, platform, etc.",
       },
       {
         q: "Do you offer financial advice?",
@@ -74,7 +74,7 @@ const FAQS = [
       },
       {
         q: "Is Investing and Retirement available outside the U.S.?",
-        a: "The site is published from the United States and the products covered are primarily available to U.S. residents. International readers are welcome, but eligibility, rates, fees, and regulations vary significantly by country — verify everything with the provider directly before opening an account abroad.",
+        a: "The site is published from the United States and the products covered are primarily available to U.S. residents. International readers are welcome, but eligibility, rates, fees, and regulations vary significantly by country. Verify everything with the provider directly before opening an account abroad.",
       },
       {
         q: "How do I report an error or outdated information?",
@@ -107,12 +107,12 @@ const FAQS = [
         a: "Send a short pitch to Partners@mhhventures.com with the product name, category, and a link to your product page. Products are reviewed on editorial merit; a partnership conversation only happens after the product qualifies editorially, if at all.",
       },
       {
-        q: "I'm a writer or analyst — can I contribute?",
+        q: "I'm a writer or analyst: can I contribute?",
         a: "The team is growing. If you have published financial writing, analyst experience, or deep expertise in a covered category (banking, investing, crypto, personal finance), send your background and writing samples to Partners@mhhventures.com.",
       },
       {
         q: "What's the best way to contact you?",
-        a: "Email Partners@mhhventures.com for anything — reader questions, corrections, partnership inquiries, or writer applications. The Contact page has additional details and a form if you prefer.",
+        a: "Email Partners@mhhventures.com for anything: reader questions, corrections, partnership inquiries, or writer applications. The Contact page has additional details and a form if you prefer.",
       },
     ],
   },
@@ -242,11 +242,11 @@ function FaqPage() {
             className="text-[22px] sm:text-[28px] md:text-[32px] leading-tight font-normal mb-3 sm:mb-4"
             style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
           >
-            Send a note — I read every email.
+            Send a note. I read every email.
           </h3>
           <p className="text-[13px] sm:text-[14px] leading-relaxed text-[#fef6f1]/75 max-w-2xl mb-5 sm:mb-6">
             Whether it&#39;s a question about a review, a correction, a partnership pitch, or a note
-            from a reader who&#39;s trying to figure out the right account for their situation — it
+            from a reader who&#39;s trying to figure out the right account for their situation, it
             all comes to the same inbox.
           </p>
           <div className="flex flex-wrap gap-2 sm:gap-3">

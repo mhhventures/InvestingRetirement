@@ -309,7 +309,7 @@ function StateBanksPage() {
   }, [stateFaqs, info.name, stats.topSavings, stats.bestCD, cities]);
 
   useSeo({
-    title: `Best Banks in ${info.name} ${new Date().getFullYear()} — Local Rates, Credit Unions & Banks Near Me`,
+    title: `Best Banks in ${info.name} ${new Date().getFullYear()}: Local Rates, Credit Unions & Banks Near Me`,
     description: `Compare the best banks and credit unions in ${info.name}. Current APYs up to ${
       stats.topSavings > 0 ? `${stats.topSavings.toFixed(2)}%` : "competitive"
     }, fees, minimums, and membership rules${
@@ -441,8 +441,8 @@ function StateBanksPage() {
             </p>
           ) : (
             <p className="speakable-intro text-sm text-[#1a1a1a] max-w-3xl leading-relaxed">
-              Compare the best banks and credit unions for {info.name} residents —
-              current APYs up to{" "}
+              Compare the best banks and credit unions for {info.name} residents.
+              Current APYs up to{" "}
               <strong>
                 {stats.topSavings > 0
                   ? `${stats.topSavings.toFixed(2)}%`
@@ -510,7 +510,7 @@ function StateBanksPage() {
 
           <p className="mt-4 text-[10px] text-[#5a5a5a] italic">
             Ranked by effective APY, fees, minimums, and FDIC/NCUA coverage.
-            Editorial independence guaranteed — we never accept payment for
+            Editorial independence guaranteed. We never accept payment for
             rankings.
           </p>
         </div>
@@ -785,7 +785,7 @@ function StateBanksPage() {
                     t: "Compare APYs against the national average",
                     d: `The national savings average is ~0.45%. Every institution on this page ${
                       stats.topSavings > 0
-                        ? `beats that — the top ${info.name} rate is ${stats.topSavings.toFixed(2)}%.`
+                        ? `beats that. The top ${info.name} rate is ${stats.topSavings.toFixed(2)}%.`
                         : "should beat that comfortably."
                     }`,
                   },
@@ -828,7 +828,7 @@ function StateBanksPage() {
                   Local coverage
                 </div>
                 <h2 className="font-serif font-bold text-2xl text-black mb-3">
-                  Best banks in {info.name} cities — {cities.slice(0, 3).join(", ")} & more
+                  Best banks in {info.name} cities: {cities.slice(0, 3).join(", ")} & more
                 </h2>
                 <p className="text-sm text-[#1a1a1a] leading-relaxed mb-3">
                   Our {info.name} directory covers online banks and credit
@@ -858,7 +858,7 @@ function StateBanksPage() {
                 FAQ
               </div>
               <h2 className="font-serif font-bold text-2xl text-black mb-3">
-                {info.name} banking FAQ — credit unions, rates & insurance
+                {info.name} banking FAQ: credit unions, rates & insurance
               </h2>
               <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm divide-y divide-[#e4d9cf]">
                 {faqs.map((f, i) => (
@@ -912,7 +912,7 @@ function StateBanksPage() {
                   {
                     to: "/guides/hysa-vs-money-market-vs-cds",
                     title: "HYSA vs Money Market vs CDs",
-                    blurb: "Which savings vehicle fits which goal — and when to mix them.",
+                    blurb: "Which savings vehicle fits which goal, and when to mix them.",
                   },
                   {
                     to: "/guides/best-high-yield-savings-accounts-may-2026",
@@ -922,7 +922,7 @@ function StateBanksPage() {
                   {
                     to: "/guides/best-bank-bonuses-this-month",
                     title: "Best Bank Account Bonuses This Month",
-                    blurb: "Sign-up offers worth chasing — and the ones with strings attached.",
+                    blurb: "Sign-up offers worth chasing, and the ones with strings attached.",
                   },
                 ].map((g) => (
                   <a
@@ -1594,7 +1594,7 @@ function buildFaqs(
     },
     {
       q: `Is my money safe at a local ${stateName} bank or credit union?`,
-      a: `Yes, if the institution is federally insured. Banks are covered by the FDIC up to $250,000 per depositor, per ownership category; credit unions by the NCUA at the same limits. Every institution in this directory carries one of those insurances — expand any row to see the FDIC or NCUA ID.`,
+      a: `Yes, if the institution is federally insured. Banks are covered by the FDIC up to $250,000 per depositor, per ownership category; credit unions by the NCUA at the same limits. Every institution in this directory carries one of those insurances. Expand any row to see the FDIC or NCUA ID.`,
     },
     {
       q: `How do I open a bank account in ${stateName}?`,
@@ -1602,7 +1602,7 @@ function buildFaqs(
     },
     {
       q: `Can I open a ${stateName} bank account online?`,
-      a: `Yes. Most banks and credit unions on this page offer fully online applications — you don't need to visit a branch. Applications typically take 5–10 minutes, and funding happens via ACH transfer, debit card, or mobile check deposit after approval.`,
+      a: `Yes. Most banks and credit unions on this page offer fully online applications, so you don't need to visit a branch. Applications typically take 5 to 10 minutes, and funding happens via ACH transfer, debit card, or mobile check deposit after approval.`,
     },
     {
       q: `Which ${stateName} banks have no monthly fees?`,

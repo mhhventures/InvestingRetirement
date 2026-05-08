@@ -49,7 +49,7 @@ const INVESTING_COMPARE = [
 ];
 
 // Editorial sidebar block: white card, green uppercase label at top, thin green rule, content below.
-// Mirrors the clean Guides card aesthetic — no black/green header fills.
+// Mirrors the clean Guides card aesthetic: no black/green header fills.
 function SidebarBlock({
   title,
   children,
@@ -164,7 +164,7 @@ export function Sidebar() {
         </div>
       </SidebarBlock>
 
-      {/* Quick Compare: Savings — ivory-deep header instead of solid green fill */}
+      {/* Quick Compare: Savings. Ivory-deep header instead of solid green fill */}
       <SidebarBlock title="Quick Compare: Savings" action="Full Table" actionTo="/bank-accounts">
         <div className="overflow-x-auto -mx-3">
           <table className="w-full text-[10px] sm:text-[11px] whitespace-nowrap">
@@ -242,7 +242,7 @@ export function Sidebar() {
         </div>
       </SidebarBlock>
 
-      {/* Best Offers This Month — entire card clickable */}
+      {/* Best Offers This Month: entire card clickable */}
       <SidebarBlock title="Best Offers This Month" action="View All" actionTo="/guides/best-bank-bonuses-this-month">
         {(() => {
           const sofi = products.find((x) => x.slug === "sofi-checking-savings");
