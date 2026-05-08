@@ -14,6 +14,7 @@ const PRODUCT_TO_PARTNER: Record<string, [string, string]> = {
   "sofi-checking-savings": ["sofi", "sofi-checking-savings"],
   "sofi-checking": ["sofi", "sofi-checking"],
   "sofi-invest": ["sofi", "sofi-invest"],
+  "sofi-credit-score": ["sofi", "sofi-credit-score"],
   "ally-online-savings": ["ally", "ally-online-savings"],
   "ally-interest-checking": ["ally", "ally-interest-checking"],
   "chase-savings": ["chase", "chase-savings"],
