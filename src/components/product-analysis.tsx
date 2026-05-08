@@ -546,23 +546,124 @@ export function KeyTakeaways({ product }: { product: Product }) {
 
 // ─── Product Primer — "What is [Product]?" ─────────────────────────────────
 
+function primerParagraphs(p: Product): string[] {
+  const sub = p.subcategory;
+  const apy = p.apy ? p.apy : null;
+  const providerClause = p.provider ? ` from ${p.provider}` : "";
+
+  if (sub === "High-Yield Savings") {
+    return [
+      `${p.name} is an online savings account${providerClause}${apy ? ` currently advertising up to ${apy} APY` : ""}. It sits in the category of direct banks that skip branch overhead and pass much of the savings to depositors through higher yields and lower fees.`,
+      `Deposits are FDIC-insured up to $250,000 per depositor, per ownership category, either directly or through partner banks in a sweep program. Day-to-day access runs through the website and mobile app, with funding via ACH, mobile check deposit, and in most cases external wires. Expect rates to move with the Fed; the headline APY is variable and can change at any time.`,
+    ];
+  }
+
+  if (sub === "Big Bank Savings") {
+    return [
+      `${p.name} is the standard savings product${providerClause}, one of the largest U.S. retail banks. Unlike direct-bank competitors, it is built around branch access and one-login integration with the bank's checking, credit card, and lending products.`,
+      `The tradeoff is straightforward: the advertised APY is almost always well below online banks, often at or near 0.01%. If you value branch service, teller-issued cashier's checks, or a single-institution financial setup, the rate gap is the cost of that convenience.`,
+    ];
+  }
+
+  if (sub === "Checking") {
+    return [
+      `${p.name} is a checking account${providerClause} built for everyday spending, bill pay, and direct deposit. Most consumers anchor their financial life to a checking account and then use savings, brokerage, and cards alongside it.`,
+      `Look past the welcome bonus and evaluate four things: monthly fee structure (and how to waive it), ATM network and reimbursement policy, overdraft rules, and whether direct deposit arrives early. Those mechanics determine what the account actually costs you over a year.`,
+    ];
+  }
+
+  if (sub === "Brokerage") {
+    return [
+      `${p.name} is a self-directed brokerage${providerClause}. Client assets are held in SIPC-member accounts covered up to $500,000, which includes $250,000 in cash. SIPC covers custodial failure, not market losses.`,
+      `Brokerages differ in ways that aren't obvious on a feature list: order routing and payment-for-order-flow practices, margin and options pricing, available account types (Roth IRA, SEP, custodial, trust), and the quality of research tools. The right broker depends less on commissions (most are $0 on stocks and ETFs) and more on what you actually trade.`,
+    ];
+  }
+
+  if (sub === "Robo-Advisor") {
+    return [
+      `${p.name} is a robo-advisor${providerClause}. You answer a short risk questionnaire, and the service builds a diversified portfolio of low-cost ETFs, rebalances it automatically, and in taxable accounts offers tax-loss harvesting.`,
+      `Robo-advisors charge a management fee on top of the underlying ETF expense ratios, typically 0.25% per year. Over a long horizon that is still far cheaper than a traditional advisor, but it stacks with fund costs, so the all-in fee is the number that matters. They're well-suited to savers who want an automated, hands-off approach rather than picking individual securities.`,
+    ];
+  }
+
+  if (sub === "Crypto") {
+    return [
+      `${p.name} is a centralized cryptocurrency exchange${providerClause}. You deposit U.S. dollars, convert to crypto at the exchange's quoted spread, and hold assets in a custodial wallet controlled by the platform.`,
+      `Crypto holdings are not SIPC-insured, and FDIC insurance on USD cash balances (where offered, through partner banks) does not extend to the crypto itself. Reputable exchanges keep the majority of customer assets in cold storage and publish proof-of-reserves, but exchange failure remains a real risk category. For long-term holdings, many investors move coins to self-custody hardware wallets.`,
+    ];
+  }
+
+  if (sub === "Prediction Markets") {
+    return [
+      `${p.name} is a prediction market${providerClause}, a venue where users trade yes/no contracts on future events at prices that reflect the market's implied probability.`,
+      `U.S. regulatory status is a defining feature here. CFTC-regulated platforms operate as designated contract markets with consumer protections; offshore venues do not. Read the counterparty and withdrawal terms before funding, and treat positions as event-contingent derivatives rather than investments.`,
+    ];
+  }
+
+  if (sub === "Budgeting") {
+    return [
+      `${p.name} is a personal-finance app${providerClause}. It connects to your bank, brokerage, and credit card accounts through read-only aggregation (Plaid or a similar provider) and categorizes transactions so you can see spending and net worth in one place.`,
+      `The honest test of a budgeting app is whether you still open it in month three. Most users drop off well before that. Before paying for a subscription, try the free tier or trial for at least two pay cycles and decide if the workflow matches how you actually think about money.`,
+    ];
+  }
+
+  if (sub === "Cash Advance") {
+    return [
+      `${p.name} is an earned-wage access or small-dollar cash advance app${providerClause}. It fronts a portion of wages you've already earned, or an unsecured small advance, and collects on your next payday via ACH.`,
+      `Pricing shows up as subscription fees, "optional" tips, or instant-transfer fees rather than a stated APR, but the effective annualized cost is often in the triple digits for short-duration advances. These products solve a real liquidity problem. They should not be a recurring solution.`,
+    ];
+  }
+
+  if (sub === "Credit Score") {
+    return [
+      `${p.name} is a credit-monitoring service${providerClause}. It pulls your credit file from one or more of the three bureaus (Equifax, Experian, TransUnion), presents a VantageScore or FICO variant, and alerts you to changes.`,
+      `The score shown by a free monitoring service is usually a VantageScore or educational FICO and can differ from what a lender sees at application. Use monitoring to track the direction of your credit and catch errors or fraud, not as the definitive number. The underlying report, not the score, is what lenders actually underwrite against.`,
+    ];
+  }
+
+  if (sub === "Neobanks") {
+    return [
+      `${p.name} is a neobank${providerClause}. It is not itself a bank: the consumer-facing app provides a user experience layered on top of a chartered partner bank that holds deposits and provides FDIC insurance.`,
+      `Neobank accounts often lead on features (early direct deposit, overdraft grace, rewards, no monthly fees) but rely on the partner bank for the underlying ledger. Confirm the FDIC-insured institution of record, and understand which services sit with the partner bank versus the app itself when issues arise.`,
+    ];
+  }
+
+  if (sub === "Credit & Loans") {
+    return [
+      `${p.name} is a consumer-credit platform${providerClause} offering unsecured personal loans, credit lines, or point-of-sale financing. Loans are originated either directly or through a partner bank, with rates priced to borrower credit tier.`,
+      `Compare the APR (not just the monthly payment), the origination fee, and any prepayment terms. Personal loans generally make sense to refinance higher-rate credit card balances; using them to fund discretionary spending trades revolving debt for installment debt without solving the underlying cash flow.`,
+    ];
+  }
+
+  if (sub === "Research & Analysis") {
+    return [
+      `${p.name} is an investment-research service${providerClause}. Subscribers get stock ideas, analyst ratings, model portfolios, or market data that supplement what a brokerage provides for free.`,
+      `Research products are judged on two things: the quality of the underlying analysis, and whether the format matches how you actually make decisions. A year of fund-beating picks is hard to attribute to skill; a clear, well-sourced framework you can use repeatedly is more valuable. Free-trial hard before subscribing.`,
+    ];
+  }
+
+  // Default fallback for any unmapped subcategory
+  return [
+    `${p.name} is a ${sub.toLowerCase()} product${providerClause}. It's used primarily by consumers who want ${p.bestFor.toLowerCase()}.`,
+    `Before committing, check fee structure, account protections, and how the service performs for your specific use case. The right product depends on your financial situation and goals more than on any headline feature.`,
+  ];
+}
+
 export function ProductPrimer({ product }: { product: Product }) {
   const p = product;
-  const text =
-    p.category === "bank"
-      ? `${p.name} is a ${p.subcategory.toLowerCase()} account offered by ${p.provider}. Deposits are FDIC-insured up to $250,000 per depositor, per ownership category, either directly or through partner banks in a sweep program. Like most online-first banks, ${p.name} operates without traditional branches. You manage everything through the website and mobile app, and you access cash via ATM networks, mobile check deposit, and ACH transfers.`
-      : p.category === "investing" && p.subcategory === "Brokerage"
-      ? `${p.name} is a self-directed brokerage platform from ${p.provider}. Client assets are held in SIPC-member accounts covered up to $500,000 (including $250,000 in cash). You can buy and sell stocks, ETFs, and typically options through the platform; account types, available assets, and order routing differ meaningfully between brokers, so the right choice depends on what you plan to trade.`
-      : p.subcategory === "Crypto"
-      ? `${p.name} is a cryptocurrency exchange operated by ${p.provider}. Unlike a brokerage account, crypto holdings are not SIPC-insured. Reputable exchanges keep the majority of customer assets in cold storage and publish proof-of-reserves; USD cash balances at some exchanges are FDIC-insured through partner banks, but crypto holdings themselves are not.`
-      : `${p.name} is a ${p.subcategory.toLowerCase()} app from ${p.provider}. It's not a bank or broker. It either connects to your existing accounts using read-only aggregation or provides a subscription service layered on top of financial institutions. Read the privacy policy to understand what account data is collected and how it's used.`;
-
+  const paragraphs = primerParagraphs(p);
   return (
     <section className="bg-white border border-[#e4d9cf] rounded p-3 sm:p-4 mb-3 sm:mb-5">
       <h2 className="text-[10px] sm:text-[11px] font-bold text-black uppercase tracking-widest border-b border-[#e4d9cf] pb-1.5 mb-2 sm:mb-3">
         What is {p.name}?
       </h2>
-      <p className="text-xs sm:text-sm text-black leading-relaxed">{text}</p>
+      <div className="space-y-2">
+        {paragraphs.map((t, i) => (
+          <p key={i} className="text-xs sm:text-sm text-black leading-relaxed">
+            {t}
+          </p>
+        ))}
+      </div>
     </section>
   );
 }
