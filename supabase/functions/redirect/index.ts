@@ -80,6 +80,50 @@ function appendUtm(rawUrl: string, params: Record<string, string>): string {
   }
 }
 
+// Everflow click-tracker hosts we have configured. When the destination URL
+// is one of these, we append Everflow's reserved passthrough params
+// (source_id, sub1..sub5) instead of UTMs. The UTMs get stripped on Everflow
+// redirect anyway, and Everflow reports on these sub slots in its UI.
+const EVERFLOW_HOSTS = new Set([
+  "www.mzemndf8trk.com",
+  "mzemndf8trk.com",
+]);
+
+function isEverflow(rawUrl: string): boolean {
+  try {
+    const u = new URL(rawUrl);
+    return EVERFLOW_HOSTS.has(u.host.toLowerCase());
+  } catch {
+    return false;
+  }
+}
+
+function appendEverflow(
+  rawUrl: string,
+  subs: { source_id: string; sub1: string; sub2: string; sub3: string; sub4: string; sub5: string },
+): string {
+  try {
+    const u = new URL(rawUrl);
+    // Preserve any existing params on the link (e.g. ?uid=41) and only set
+    // the sub slots if they aren't already specified by the partner URL.
+    for (const [k, v] of Object.entries(subs)) {
+      if (v && !u.searchParams.has(k)) u.searchParams.set(k, v);
+    }
+    return u.toString();
+  } catch {
+    return rawUrl;
+  }
+}
+
+function uuid(): string {
+  try {
+    // @ts-expect-error Deno supports crypto.randomUUID
+    return crypto.randomUUID();
+  } catch {
+    return Math.random().toString(36).slice(2) + Date.now().toString(36);
+  }
+}
+
 async function sha256(input: string): Promise<string> {
   const bytes = new TextEncoder().encode(input);
   const digest = await crypto.subtle.digest("SHA-256", bytes);
@@ -164,16 +208,29 @@ Deno.serve(async (req: Request) => {
 
     const placement = url.searchParams.get("p") || offerContent;
     const term = url.searchParams.get("t") || offerTerm;
+    const rank = url.searchParams.get("r") || "";
+    const pageRef = url.searchParams.get("pg") || "";
     const utmContent = placement || "";
     const utmCampaign = offerCampaign || offerSlug || partnerSlug;
 
-    const finalUrl = appendUtm(destination, {
-      utm_source: "investingandretirement",
-      utm_medium: "affiliate",
-      utm_campaign: utmCampaign,
-      utm_content: utmContent,
-      utm_term: term,
-    });
+    const clickId = uuid();
+
+    const finalUrl = isEverflow(destination)
+      ? appendEverflow(destination, {
+          source_id: "investingandretirement",
+          sub1: pageRef || offerSlug,
+          sub2: placement,
+          sub3: rank,
+          sub4: utmCampaign,
+          sub5: clickId,
+        })
+      : appendUtm(destination, {
+          utm_source: "investingandretirement",
+          utm_medium: "affiliate",
+          utm_campaign: utmCampaign,
+          utm_content: utmContent,
+          utm_term: term,
+        });
 
     const response = redirectWith(finalUrl);
 
@@ -207,6 +264,7 @@ Deno.serve(async (req: Request) => {
           utm_medium: "affiliate",
           utm_campaign: utmCampaign,
           utm_content: utmContent,
+          click_id: clickId,
         });
       } catch (e) {
         console.error("[redirect] click log error", e);

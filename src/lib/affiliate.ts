@@ -90,12 +90,14 @@ const PRODUCT_TO_PARTNER: Record<string, [string, string]> = {
 export function partnerLink(
   partnerSlug: string,
   offerSlug: string,
-  opts: { placement?: string; term?: string } = {},
+  opts: { placement?: string; term?: string; rank?: number | string; page?: string } = {},
 ): string {
   const base = `https://${partnerSlug}.${ROOT_DOMAIN}/${offerSlug}`;
   const params = new URLSearchParams();
   if (opts.placement) params.set("p", opts.placement);
   if (opts.term) params.set("t", opts.term);
+  if (opts.rank !== undefined && opts.rank !== "") params.set("r", String(opts.rank));
+  if (opts.page) params.set("pg", opts.page);
   const qs = params.toString();
   return qs ? `${base}?${qs}` : base;
 }
@@ -105,13 +107,15 @@ export function partnerLink(
 export function productPartnerLink(
   productSlug: string,
   fallbackUrl: string,
-  opts: { placement?: string; term?: string; campaign?: string } = {},
+  opts: { placement?: string; term?: string; campaign?: string; rank?: number | string; page?: string } = {},
 ): string {
   const mapped = PRODUCT_TO_PARTNER[productSlug];
   if (mapped) {
     return partnerLink(mapped[0], mapped[1], {
       placement: opts.placement,
       term: opts.term,
+      rank: opts.rank,
+      page: opts.page,
     });
   }
   return withUtm(fallbackUrl, {
