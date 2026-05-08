@@ -85,6 +85,7 @@ export const productDomains: Record<string, string> = {
   "tilt": "tilt.com",
 
   // Financial apps — credit score
+  "sofi-credit-score": "sofi.com",
   "credit-karma": "creditkarma.com",
   "experian": "experian.com",
 
@@ -195,6 +196,7 @@ const uploadedLogoSlugMap: Record<string, keyof typeof brandLogoUrls> = {
   "sofi-checking-savings": "sofi",
   "sofi-checking": "sofi",
   "sofi-invest": "sofi",
+  "sofi-credit-score": "sofi",
 
   // Ally — all Ally products share the same brand mark
   "ally-online-savings": "ally",
