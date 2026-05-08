@@ -546,10 +546,126 @@ export function KeyTakeaways({ product }: { product: Product }) {
 
 // ─── Product Primer — "What is [Product]?" ─────────────────────────────────
 
+// Per-product primers for financial apps. Each app in budgeting, cash-advance,
+// credit-score, neobank, credit-and-loans, and research verticals has its own
+// two-paragraph explainer so reviews don't read as templated within a category.
+const appPrimers: Record<string, [string, string]> = {
+  // Budgeting
+  "ynab": [
+    "YNAB (You Need A Budget) is a subscription budgeting app built around a zero-based method: every dollar you receive gets assigned a job before it's spent. Accounts are linked read-only and the app encourages manual reconciliation rather than hands-off auto-categorization.",
+    "The learning curve is real, and the annual fee is higher than most competitors. Users who stick with it cite measurable changes in savings rate within a few months; users who don't tend to abandon it inside the free trial. Try the full 34-day trial before paying.",
+  ],
+  "monarch-money": [
+    "Monarch Money is a subscription budgeting and net-worth tracker that positions itself as a Mint replacement for households. It supports joint accounts, goals, investment tracking, and manual transaction rules, with a cleaner interface than most legacy competitors.",
+    "Pricing is annual or monthly, with no meaningful free tier. The product fits couples and high-net-worth DIYers who want one dashboard across cash, brokerage, property, and crypto. If you mainly need cashflow tracking, a free option may be enough.",
+  ],
+  "rocket-money": [
+    "Rocket Money (formerly Truebill) is a subscription management and budgeting app. Its headline feature is automatic detection of recurring charges and a concierge that will negotiate or cancel subscriptions on your behalf for a cut of the first-year savings.",
+    "A free tier covers basic tracking, but most of the value (bill negotiation, smart savings, premium insights) sits behind a pay-what-you-want premium plan starting around $4/month. Judge it by how many forgotten subscriptions it surfaces in month one.",
+  ],
+  "empower": [
+    "Empower (formerly Personal Capital) is a free net-worth and investment-tracking platform from a registered investment advisor. Linking your accounts gets you dashboards for asset allocation, fee analysis, and retirement projections at no cost.",
+    "The tradeoff for the free tier: users with $100,000+ in investable assets get contacted about the firm's paid advisory service. The free tools are genuinely useful on their own. You can decline the consultation calls and keep using them indefinitely.",
+  ],
+  // Cash Advance
+  "earnin": [
+    "EarnIn is an earned-wage access app that lets workers withdraw a portion of wages they've already earned before payday. The app estimates earned pay based on hours worked and repays itself via ACH on your next scheduled payday.",
+    "There is no stated APR. EarnIn relies on optional \"tips\" and an instant-transfer fee instead. Used occasionally, the cost is modest; used every pay cycle, it often beats overdraft fees but becomes a dependency that obscures the real shortfall in the underlying budget.",
+  ],
+  "dave": [
+    "Dave is a cash-advance and neobank combo. The ExtraCash feature fronts up to $500 before payday; a companion Spending account offers early direct deposit and a Dave Card. Membership is a flat monthly fee plus optional express-transfer fees.",
+    "Dave markets itself as a lower-cost alternative to bank overdraft. For occasional shortfalls it usually is. The membership fee is charged regardless of usage, so if you go one or two months without needing an advance, the effective cost becomes unfavorable.",
+  ],
+  "albert": [
+    "Albert is a mixed financial app: cash advance, budgeting, automated savings, and a text-based \"Genius\" advice concierge, all bundled into a Genius subscription. Cash advances of up to $250 are offered with no mandatory interest or late fees.",
+    "The bundle is the pitch. If you'd use three of the four features (advance, savings, advice, cashback), the subscription pays for itself. If you only want the advance, a standalone advance app is usually cheaper.",
+  ],
+  "brigit": [
+    "Brigit is a subscription cash-advance app offering advances up to $250 alongside credit-building tools, identity theft protection, and spending insights. Unlike tip-based competitors, pricing is a flat monthly plan.",
+    "Brigit's credit-builder product is a small installment loan designed to report on-time payments to the bureaus. Useful for thin-file users, but the main subscription is only worth it if you actually use the advance; otherwise you're paying a monthly fee for features available free elsewhere.",
+  ],
+  "chime-mypay": [
+    "Chime MyPay is an early-wage-access feature built into the Chime mobile banking app. Eligible Chime members with qualifying direct deposits can access up to $500 of earned wages before their scheduled payday at no fee or a small instant-transfer fee.",
+    "Unlike standalone advance apps, MyPay is only available to Chime banking customers. If you already use Chime as your primary checking, it is one of the cheapest earned-wage options. If not, switching your direct deposit just to access it is rarely worth the hassle.",
+  ],
+  "possible-finance": [
+    "Possible Finance offers small installment loans (up to around $500) that report payments to the major credit bureaus, positioning itself as a credit-builder alternative to payday loans. Loans are typically repaid over four installments across two months.",
+    "The APR is transparent and regulated at the state level, but it's still high by consumer-loan standards because the loans are short and small. The value comes from the credit reporting: a borrower with thin or damaged credit can use Possible to build payment history they can't easily get elsewhere.",
+  ],
+  "tilt": [
+    "Tilt is a group-payment and bill-splitting app that lets friends, roommates, or teams collect money toward a shared goal. It's less of a personal-finance tool and more of a peer-to-peer workflow: request, collect, disburse.",
+    "Tilt doesn't extend credit and isn't a bank. It sits on top of ACH or card rails to move money between users. Evaluate it against Venmo, Cash App, or Splitwise based on which rails your group already uses and what fees apply to card-funded transfers.",
+  ],
+  // Credit Score
+  "sofi-credit-score": [
+    "SoFi Credit Score Monitoring is a free service inside the SoFi app that shows your VantageScore 3.0 from TransUnion, tracks month-over-month changes, and surfaces insights on the factors behind the number.",
+    "The score is educational and will generally differ from a FICO score a lender pulls at application. SoFi uses the feature as a customer-acquisition hook into its lending and banking products; you can use the monitoring indefinitely without taking any of those offers.",
+  ],
+  "credit-karma": [
+    "Credit Karma is an advertising-funded credit-monitoring service that provides free VantageScore 3.0 scores and full reports from both TransUnion and Equifax, refreshed weekly, alongside a product marketplace for cards, loans, and auto refinancing.",
+    "The trade: recommendations are funded by affiliate revenue, so offers shown are not necessarily the best rates available in the market. Use Credit Karma for the free report access and change tracking; cross-shop any recommended product against at least one non-affiliated source before applying.",
+  ],
+  "experian": [
+    "Experian is one of the three U.S. credit bureaus. Its consumer app offers a free FICO Score 8 based on your Experian file plus a paid IdentityWorks tier that layers monitoring across Experian, Equifax, and TransUnion with identity theft insurance.",
+    "Getting a FICO (not VantageScore) directly from a bureau is the main draw of the free tier. The premium tier is reasonable for users who want tri-bureau monitoring in one place, but the insurance component is not a substitute for freezing your credit, which is free and more effective against new-account fraud.",
+  ],
+  // Neobanks
+  "current": [
+    "Current is a neobank whose consumer-facing app sits on top of Choice Financial Group and Cross River Bank, both FDIC-member partner banks. It targets gig workers and younger consumers with features like early direct deposit, points rewards, and teen accounts.",
+    "Current isn't itself a chartered bank, so FDIC insurance runs through the partner banks. Its Save balances and crypto features use separate providers. That structure is common in the neobank category, but it matters when issues arise: know which entity to escalate to.",
+  ],
+  "varo": [
+    "Varo is the first consumer fintech to receive its own national bank charter, making it a full-stack digital bank rather than a neobank sitting on a partner. Deposits are FDIC-insured directly through Varo Bank, N.A.",
+    "The direct charter gives Varo more control over product roadmap and compliance than peer neobanks. Practically, the consumer experience (no monthly fees, early direct deposit, a small advance product, high-yield savings) is comparable to neobank competitors built on partner banks.",
+  ],
+  "cash-app": [
+    "Cash App is a peer-to-peer payments and financial-services app from Block, Inc. Beyond P2P transfers, it offers a debit card, a brokerage for stocks and Bitcoin, direct deposit, and a savings feature, with banking services provided through partner banks.",
+    "Cash App is tight integration, not full-service banking. The brokerage is introductory rather than research-driven, the Bitcoin spread is wider than dedicated exchanges, and savings balances route through a partner bank. It works well as a secondary account alongside a primary bank or broker.",
+  ],
+  // Credit & Loans
+  "upgrade-app": [
+    "The Upgrade app bundles Upgrade's personal loans, Rewards Checking, credit line, and credit health tools in one mobile experience. Loans are originated by partner banks with rates priced to borrower credit tier, and the Rewards Checking is FDIC-insured through Cross River Bank.",
+    "Treat the app as a portal into Upgrade's product family rather than a standalone tool. If you're taking a personal loan, shop the APR against at least two direct competitors; pre-qualification doesn't affect your credit score and makes that comparison easy.",
+  ],
+  "perpay": [
+    "Perpay is a point-of-sale installment financing app. Users shop from a curated catalog and repay via payroll deduction over multiple pay cycles, with no interest if paid on schedule and on-time payments reported to the credit bureaus.",
+    "The catalog markup is the real cost, not an APR. Compared against retail prices elsewhere, items often carry a premium that replaces explicit interest. It can be a useful credit-building tool for thin-file users who already plan to buy the specific items listed, but it's not a substitute for a low-rate card or personal loan.",
+  ],
+  // Research & Analysis
+  "motley-fool": [
+    "The Motley Fool Stock Advisor is a subscription stock-picking newsletter that has published a long-running track record of buy recommendations since 2002. Members receive two new recommendations each month plus ongoing commentary and \"best buy\" lists.",
+    "Long-term reported returns have beaten the S&P 500, but the publishing model means subscribers buying late can pay up for names that have already run. Treat the picks as research input, size positions conservatively, and remember a concentrated portfolio of growth names carries volatility the benchmark return doesn't show.",
+  ],
+  "seeking-alpha": [
+    "Seeking Alpha is a crowd-sourced investment research platform where independent contributors publish long-form analysis on individual securities. A paid Premium tier adds the Quant Rating system, earnings-call transcripts, and a dividend-grading framework.",
+    "The quality of contributor analysis varies by author, so the platform is most useful when you treat it as a starting point for due diligence rather than a recommendation service. The Quant tools on Premium are the most consistent value add, particularly for screening candidates before deeper work.",
+  ],
+  "tipranks": [
+    "TipRanks aggregates Wall Street analyst ratings, financial-blogger picks, insider trades, and hedge-fund holdings into a single dashboard. Its Smart Score distills these signals into a 1-to-10 rating for each stock.",
+    "The data aggregation is the product. Whether it translates into returns depends on how you use it: following consensus analyst picks produces index-like results; filtering for sentiment extremes and combining with your own research is where power users see value. The free tier is limited to older data.",
+  ],
+  "tradingview": [
+    "TradingView is a browser-based charting and social platform for active traders. Its core strengths are fast, flexible charts, a large library of built-in and community indicators, and a Pine Script language for custom studies.",
+    "The free tier is usable for casual chart-watching; active traders quickly hit limits on indicator count, intraday bars, and saved layouts. Paid plans remove those constraints but add real value only if you spend significant time charting. Execution still routes through your brokerage; TradingView is the lens, not the broker.",
+  ],
+  "cnbc-pro": [
+    "CNBC Pro is a subscription service from CNBC offering exclusive video coverage, the Investing Club run by Jim Cramer, and premium market commentary beyond what's available on the free website.",
+    "The Investing Club component is the most actionable piece: weekly meetings, buy/sell alerts on a model portfolio, and context on why positions move. Value depends on whether that cadence matches how you invest. Passive index investors get little additional utility; active consumers of financial media get the most.",
+  ],
+  "stock-analysis-pro": [
+    "Stock Analysis Pro is a subscription that unlocks advanced features on stockanalysis.com, including a full stock screener, financial data exports, and detailed analyst forecasts across global markets.",
+    "The free version of the site is already useful for fundamentals, so the Pro case rests on screening and data exports. If you're running repeatable quantitative screens or building a personal research spreadsheet, the subscription is cheap relative to professional data vendors. Casual users won't hit the free limits.",
+  ],
+};
+
 function primerParagraphs(p: Product): string[] {
   const sub = p.subcategory;
   const apy = p.apy ? p.apy : null;
   const providerClause = p.provider ? ` from ${p.provider}` : "";
+
+  // Per-product override for financial apps
+  const override = appPrimers[p.slug];
+  if (override) return [override[0], override[1]];
 
   if (sub === "High-Yield Savings") {
     return [
