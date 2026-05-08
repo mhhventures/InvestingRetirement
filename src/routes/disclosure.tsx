@@ -97,7 +97,7 @@ function Disclosure() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-black mb-3">Product Data &amp; Accuracy</h2>
             <p>
-              We make reasonable efforts to verify all product data — APYs, fees, promotional offers, minimum deposits, and features — from official sources including partner disclosures, regulatory filings, and product documentation. Rates and offers change frequently, and while we refresh our data on a regular schedule, we cannot guarantee that every figure on the site is accurate at the exact moment you read it.
+              We make reasonable efforts to verify all product data (APYs, fees, promotional offers, minimum deposits, and features) from official sources including partner disclosures, regulatory filings, and product documentation. Rates and offers change frequently, and while we refresh our data on a regular schedule, we cannot guarantee that every figure on the site is accurate at the exact moment you read it.
             </p>
             <p className="mt-3">
               <span className="font-semibold">Always confirm rates, fees, and terms directly with the product provider before opening an account or making a financial decision.</span> If you find a discrepancy, please email us at <span className="font-mono text-[12px]">Partners@mhhventures.com</span> and we will investigate and correct it.
@@ -111,7 +111,7 @@ function Disclosure() {
               Content on this site is provided for informational and educational purposes only. We are not your financial advisor, broker, or fiduciary. The products we review may not be appropriate for your personal situation, risk tolerance, or tax circumstances.
             </p>
             <p className="mt-3">
-              Before making any financial decision — opening a brokerage account, buying a security, moving retirement funds, or signing up for a credit product — consult with a licensed financial professional who understands your full situation.
+              Before making any financial decision, whether opening a brokerage account, buying a security, moving retirement funds, or signing up for a credit product, consult with a licensed financial professional who understands your full situation.
             </p>
           </section>
 

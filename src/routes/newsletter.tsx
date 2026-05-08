@@ -11,7 +11,7 @@ const BLOCKS = [
     n: "01",
     label: "Opening Insight",
     title: "Reddit Question Spotlight",
-    desc: "Each issue leads with a real question pulled from r/InvestingForBeginners, r/Trading, or r/SavingMoney — the kind of question thousands of readers are quietly Googling that week — answered in 150-200 words by the research desk.",
+    desc: "Each issue leads with a real question pulled from r/InvestingForBeginners, r/Trading, or r/SavingMoney (the kind of question thousands of readers are quietly Googling that week), answered in 150 to 200 words by the research desk.",
   },
   {
     n: "02",
@@ -23,19 +23,19 @@ const BLOCKS = [
     n: "03",
     label: "Tool & App Spotlight",
     title: "Finance apps worth your attention",
-    desc: "A weekly discovery of the finance apps, brokerages, and bank accounts the desk believes are worth using to build wealth faster — surfaced in a side-by-side table with fees, minimums, and the one or two details that usually get buried.",
+    desc: "A weekly discovery of the finance apps, brokerages, and bank accounts the desk believes are worth using to build wealth faster, surfaced in a side-by-side table with fees, minimums, and the one or two details that usually get buried.",
   },
   {
     n: "04",
     label: "Headlines",
     title: "What to know in five bullets",
-    desc: "The week in saving, investing, and retirement policy compressed into 75-100 words. Fed moves, tax updates, product launches, and industry shifts — filtered for signal.",
+    desc: "The week in saving, investing, and retirement policy compressed into 75 to 100 words. Fed moves, tax updates, product launches, and industry shifts, all filtered for signal.",
   },
   {
     n: "05",
     label: "Community",
     title: "Join the conversation",
-    desc: "Every issue closes with a direct callout to the week's featured subreddit — a specific thread, prompt, or question the desk wants reader input on. The newsletter and the communities feed each other.",
+    desc: "Every issue closes with a direct callout to the week's featured subreddit: a specific thread, prompt, or question the desk wants reader input on. The newsletter and the communities feed each other.",
   },
 ];
 
@@ -46,7 +46,7 @@ const AUDIENCE = [
   },
   {
     label: "Active Traders",
-    desc: "Self-directed investors managing their own positions. Want data, risk-management thinking, and honest takes on tools — not hot tips.",
+    desc: "Self-directed investors managing their own positions. Want data, risk-management thinking, and honest takes on tools, not hot tips.",
   },
   {
     label: "Savers & Budgeters",
@@ -57,15 +57,15 @@ const AUDIENCE = [
 const PROMISES: { head: string; body: React.ReactNode }[] = [
   {
     head: "Factual and research-oriented.",
-    body: "Every claim is traceable to a primary source — a bank's rate sheet, an issuer's disclosure, a federal agency, or a study we can link to. If we can't cite it, we don't print it.",
+    body: "Every claim is traceable to a primary source: a bank's rate sheet, an issuer's disclosure, a federal agency, or a study we can link to. If we can't cite it, we don't print it.",
   },
   {
     head: "Educational, never advisory.",
-    body: "Nothing we publish — including any stock, fund, or product we discuss — is personalized financial advice, a solicitation, or a guarantee of results. We share research, frameworks, and trade-offs so you can make informed decisions. Past performance is not indicative of future returns.",
+    body: "Nothing we publish, including any stock, fund, or product we discuss, is personalized financial advice, a solicitation, or a guarantee of results. We share research, frameworks, and trade-offs so you can make informed decisions. Past performance is not indicative of future returns.",
   },
   {
     head: "Built around the value of the read.",
-    body: "Every issue is written to be worth the two minutes it takes. If a block isn't useful that week, we cut it. Readers stay because the content earns it — not because we buried the unsubscribe link.",
+    body: "Every issue is written to be worth the two minutes it takes. If a block isn't useful that week, we cut it. Readers stay because the content earns it, not because we buried the unsubscribe link.",
   },
   {
     head: "Double opt-in, unsubscribe in one click.",
@@ -75,7 +75,7 @@ const PROMISES: { head: string; body: React.ReactNode }[] = [
 
 function NewsletterPage() {
   useSeo({
-    title: "The I&R Market Brief — Where Reddit's Best Finance Conversations Meet Curated Insights",
+    title: "The I&R Market Brief: Where Reddit's Best Finance Conversations Meet Curated Insights",
     description:
       "A free Thursday newsletter from the Investing & Retirement Research Desk. Reddit community questions answered, weekly market data, tool comparisons, and headlines for savers, traders, and retirement-account holders.",
     path: "/newsletter",

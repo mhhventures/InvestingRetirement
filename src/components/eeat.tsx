@@ -20,7 +20,7 @@ export function FtcDisclosure({ variant = "default" }: { variant?: "default" | "
           i
         </div>
         <div className="text-[11px] sm:text-xs text-black/80 leading-relaxed">
-          <strong className="text-black">Advertiser Disclosure:</strong> Investing and Retirement is an independent, advertising-supported publisher. Some offers on this page are from partners who compensate us, and that compensation may impact how and where offers appear. This never affects our editorial opinions, ratings, or reviews — which are based on our independent research and our editors' own testing.{" "}
+          <strong className="text-black">Advertiser Disclosure:</strong> Investing and Retirement is an independent, advertising-supported publisher. Some offers on this page are from partners who compensate us, and that compensation may impact how and where offers appear. This never affects our editorial opinions, ratings, or reviews, which are based on our independent research and our editors' own testing.{" "}
           <Link to="/disclosure" className="text-[#0e4d45] font-semibold hover:underline whitespace-nowrap">
             Full disclosure &rarr;
           </Link>
@@ -123,7 +123,7 @@ export function HowWeReview({ category }: { category: "bank" | "investing" | "ap
           <div className="text-[#0e4d45] font-serif text-lg font-bold leading-none mb-1">1.</div>
           <div className="font-semibold text-black mb-0.5">Hands-On Testing</div>
           <div className="text-black/60 text-[10px] sm:text-[11px] leading-snug">
-            Our editors open and use every account they review — not just read the marketing pages.
+            Our editors open and use every account they review, not just read the marketing pages.
           </div>
         </div>
         <div>

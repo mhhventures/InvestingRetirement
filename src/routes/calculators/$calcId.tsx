@@ -511,7 +511,7 @@ function BankDepositMatcher() {
     });
   }, []);
   useSeo({
-    title: "Bank Deposit Matcher — Compare HYSA & Checking Offers Instantly",
+    title: "Bank Deposit Matcher: Compare HYSA & Checking Offers Instantly",
     description:
       "Answer a few quick questions to see high-yield savings and checking offers matched to your deposit size. Results render inline, no redirect.",
     path: pagePath,

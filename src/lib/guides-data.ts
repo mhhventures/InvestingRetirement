@@ -59,7 +59,7 @@ export const guideHowTos: Record<string, { name: string; totalTime?: string; ste
       { name: "Calculate your monthly essentials", text: "Add up rent or mortgage, utilities, groceries, insurance, transportation, and minimum debt payments. That total is your one-month target." },
       { name: "Set a three-month goal", text: "Multiply the monthly number by three. This is the minimum balance your emergency fund should hold." },
       { name: "Open a dedicated high-yield savings account", text: "Keep the money separate from your checking account so it does not get spent. Choose a FDIC-insured online bank paying 4% APY or higher." },
-      { name: "Automate weekly transfers", text: "Set up an automatic transfer the day after each payday — start with 5–10% of take-home pay and raise it whenever you get a raise or bonus." },
+      { name: "Automate weekly transfers", text: "Set up an automatic transfer the day after each payday. Start with 5–10% of take-home pay and raise it whenever you get a raise or bonus." },
       { name: "Redirect windfalls to the fund", text: "Send tax refunds, work bonuses, and cash gifts directly to the account until you hit the three-month target." },
       { name: "Review quarterly", text: "Recheck your essentials every three months. If rent or insurance rises, top up the fund to stay at three months of coverage." },
     ],
@@ -69,7 +69,7 @@ export const guideHowTos: Record<string, { name: string; totalTime?: string; ste
     totalTime: "PT20M",
     steps: [
       { name: "Confirm you qualify", text: "Roth IRA contributions phase out above $161,000 (single) or $240,000 (married filing jointly) in 2026. If you earn less, you can contribute the full amount." },
-      { name: "Choose a brokerage", text: "Pick a zero-commission provider with a broad fund lineup — Fidelity, Schwab, and Vanguard all offer free Roth IRAs with no minimum." },
+      { name: "Choose a brokerage", text: "Pick a zero-commission provider with a broad fund lineup. Fidelity, Schwab, and Vanguard all offer free Roth IRAs with no minimum." },
       { name: "Open the account", text: "Complete the online application: name, SSN, employer, and a beneficiary. It typically takes under 10 minutes." },
       { name: "Link your bank and fund it", text: "Connect a checking account and transfer up to the annual limit ($7,000 in 2026; $8,000 if age 50+). You can make one lump contribution or recurring monthly deposits." },
       { name: "Pick your investments", text: "Inside the Roth, buy a low-cost index fund like a total-market or target-date fund. Leaving the money in cash defeats the purpose." },
@@ -80,9 +80,9 @@ export const guideHowTos: Record<string, { name: string; totalTime?: string; ste
     name: "How to Improve Your Credit Score in 90 Days",
     totalTime: "P90D",
     steps: [
-      { name: "Pull your free credit reports", text: "Get all three reports from AnnualCreditReport.com. Review each line item for errors — misspelled names, wrong balances, or accounts you do not recognize." },
+      { name: "Pull your free credit reports", text: "Get all three reports from AnnualCreditReport.com. Review each line item for errors: misspelled names, wrong balances, or accounts you do not recognize." },
       { name: "Dispute any inaccuracies", text: "File disputes online with each bureau for anything incorrect. Bureaus have 30 days to investigate and remove unverified items." },
-      { name: "Pay all balances below 30% utilization", text: "Card balances above 30% of the limit hurt your score most. Pay down or ask for a credit-limit increase to push utilization below 30% — under 10% is ideal." },
+      { name: "Pay all balances below 30% utilization", text: "Card balances above 30% of the limit hurt your score most. Pay down or ask for a credit-limit increase to push utilization below 30%. Under 10% is ideal." },
       { name: "Set every bill to autopay minimums", text: "Payment history is 35% of your score. Autopay the minimum on every card and loan so you never miss a due date again." },
       { name: "Become an authorized user", text: "Ask a family member with a long, clean card history to add you as an authorized user. Their history reports on your file, often boosting scores quickly." },
       { name: "Avoid new hard inquiries", text: "Do not apply for new cards or loans during the 90-day window. Each hard inquiry can drop your score 5–10 points." },
@@ -96,7 +96,7 @@ export const guideHowTos: Record<string, { name: string; totalTime?: string; ste
       { name: "Compare APY on the full balance", text: "Some accounts only pay the headline APY on balances under a cap. Check the rate sheet and read the footnotes for tiered APY." },
       { name: "Check for monthly fees and minimums", text: "The best high-yield savings accounts charge $0 in monthly fees and require $0 minimum deposit. Avoid accounts with maintenance fees that erase your interest." },
       { name: "Evaluate withdrawal limits and ATM access", text: "Federal rules limit some savings transfers to six per month. If you need frequent access, pick an account with unlimited transfers or an included debit card." },
-      { name: "Test the mobile app and transfer speed", text: "Before moving serious money, open the account with a small deposit. Time a transfer to and from your checking account — slow ACH (3–5 days) is a dealbreaker for emergency savings." },
+      { name: "Test the mobile app and transfer speed", text: "Before moving serious money, open the account with a small deposit. Time a transfer to and from your checking account. Slow ACH (3–5 days) is a dealbreaker for emergency savings." },
       { name: "Open the account and automate deposits", text: "Once you pick a winner, set up an automatic transfer the day after payday so the savings habit runs itself." },
     ],
   },
@@ -105,9 +105,9 @@ export const guideHowTos: Record<string, { name: string; totalTime?: string; ste
     totalTime: "PT45M",
     steps: [
       { name: "Pull three months of statements", text: "Download your last 90 days of checking and credit card statements. Print them or export to a spreadsheet." },
-      { name: "Highlight every recurring charge", text: "Mark anything that repeats monthly or annually — streaming, apps, gym memberships, cloud storage, subscription boxes, software." },
+      { name: "Highlight every recurring charge", text: "Mark anything that repeats monthly or annually. Streaming, apps, gym memberships, cloud storage, subscription boxes, software." },
       { name: "Categorize as Keep / Downgrade / Cancel", text: "For each line item, honestly ask: did I use it in the last 30 days? If not, downgrade to a lower tier or cancel it." },
-      { name: "Cancel directly with the provider", text: "Always cancel through the provider's website or app — not through a middleman. Screenshot the confirmation so you can dispute any future charge." },
+      { name: "Cancel directly with the provider", text: "Always cancel through the provider's website or app. Not through a middleman. Screenshot the confirmation so you can dispute any future charge." },
       { name: "Bundle or downgrade the keepers", text: "For services you still want, check for annual billing (usually 15–20% cheaper) or family/student tiers. Pick cheaper plans where the extra features are unused." },
       { name: "Set a quarterly review reminder", text: "Put a 30-minute 'subscription audit' on your calendar every three months. New free trials tend to convert silently." },
     ],
@@ -122,7 +122,7 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "6 min",
     description:
-      "A simple framework for allocating your income across needs, wants, and savings — the foundation of every strong financial plan.",
+      "A simple framework for allocating your income across needs, wants, and savings. The foundation of every strong financial plan.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Budgeting Apps",
     intro:
@@ -134,15 +134,15 @@ export const guides: GuideArticle[] = [
           "The rule divides your after-tax income into three simple buckets. It is designed to be flexible enough to fit almost any income level while still forcing you to prioritize savings.",
         ],
         bullets: [
-          "50% to Needs — rent or mortgage, utilities, groceries, insurance, transportation, and minimum debt payments.",
-          "30% to Wants — dining out, entertainment, travel, subscriptions, hobbies, and lifestyle upgrades.",
-          "20% to Savings & Debt — emergency fund, retirement contributions, investments, and extra debt payoff.",
+          "50% to Needs. Rent or mortgage, utilities, groceries, insurance, transportation, and minimum debt payments.",
+          "30% to Wants. Dining out, entertainment, travel, subscriptions, hobbies, and lifestyle upgrades.",
+          "20% to Savings & Debt. Emergency fund, retirement contributions, investments, and extra debt payoff.",
         ],
       },
       {
         heading: "Why the 20% Savings Bucket Matters Most",
         paragraphs: [
-          "Most Americans save less than 5% of their income. Committing to 20% — automatically, every paycheck — is what separates people who build wealth from those who stay stuck. Treat savings like a non-negotiable bill.",
+          "Most Americans save less than 5% of their income. Committing to 20%. Automatically, every paycheck. Is what separates people who build wealth from those who stay stuck. Treat savings like a non-negotiable bill.",
           "Automate transfers the day after payday. If the money never hits your checking account, you will not miss it.",
         ],
       },
@@ -159,23 +159,23 @@ export const guides: GuideArticle[] = [
       {
         heading: "A Sample 50/30/20 Budget for $60,000 Income",
         paragraphs: [
-          "Take-home pay on a $60,000 salary is roughly $4,000/month after federal, state, FICA, and standard 401(k) contributions. Here is exactly how the rule plays out in dollar terms — useful as a sanity check against your own budget.",
+          "Take-home pay on a $60,000 salary is roughly $4,000/month after federal, state, FICA, and standard 401(k) contributions. Here is exactly how the rule plays out in dollar terms. Useful as a sanity check against your own budget.",
         ],
         bullets: [
-          "Needs ($2,000/mo) — rent $1,300, utilities $150, groceries $350, gas/insurance $200.",
-          "Wants ($1,200/mo) — dining $300, streaming $50, hobbies/entertainment $400, shopping $250, gym $50, misc $150.",
-          "Savings & Debt ($800/mo) — Roth IRA $500, HYSA emergency fund $200, extra debt payoff $100.",
-          "At this rate, the Roth IRA alone hits $6,000/year — close to the annual contribution limit for tax-free growth.",
+          "Needs ($2,000/mo). Rent $1,300, utilities $150, groceries $350, gas/insurance $200.",
+          "Wants ($1,200/mo). Dining $300, streaming $50, hobbies/entertainment $400, shopping $250, gym $50, misc $150.",
+          "Savings & Debt ($800/mo). Roth IRA $500, HYSA emergency fund $200, extra debt payoff $100.",
+          "At this rate, the Roth IRA alone hits $6,000/year. Close to the annual contribution limit for tax-free growth.",
         ],
       },
       {
         heading: "Common Pitfalls That Quietly Break the Budget",
         bullets: [
-          "Counting employer 401(k) match as your 20% — it is bonus money, not your contribution.",
-          "Treating minimum debt payments as savings — minimums are a Need, only EXTRA debt payoff counts toward the 20%.",
-          "Lumping subscriptions into Needs — Netflix and Spotify are Wants, not utilities.",
-          "Forgetting irregular expenses — annual insurance premiums, holiday gifts, and car maintenance need a sinking fund line, or they blow up a single month.",
-          "Reviewing only once a year — the rule works because of monthly course-correction, not annual reckoning.",
+          "Counting employer 401(k) match as your 20%. It is bonus money, not your contribution.",
+          "Treating minimum debt payments as savings: minimums are a Need, only EXTRA debt payoff counts toward the 20%.",
+          "Lumping subscriptions into Needs: Netflix and Spotify are Wants, not utilities.",
+          "Forgetting irregular expenses: annual insurance premiums, holiday gifts, and car maintenance need a sinking fund line, or they blow up a single month.",
+          "Reviewing only once a year: the rule works because of monthly course-correction, not annual reckoning.",
         ],
       },
     ],
@@ -200,7 +200,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "How do I budget with irregular income?",
-        a: "Average your last 12 months of net income and use that as your baseline. In high-income months, sweep the surplus into a buffer account — drain it on low-income months. Most freelancers also pad needs to 55-60% to absorb volatility.",
+        a: "Average your last 12 months of net income and use that as your baseline. In high-income months, sweep the surplus into a buffer account. Drain it on low-income months. Most freelancers also pad needs to 55-60% to absorb volatility.",
       },
       {
         q: "Should I budget gross including pre-tax deductions?",
@@ -208,7 +208,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "How do I adjust 50/30/20 in a high-cost-of-living city?",
-        a: "In metros where rent alone is 40%+ of net income (SF, NYC, Boston), a 60/20/20 or 65/15/20 split is more realistic. Protect the 20% savings first, then squeeze the wants bucket before touching savings. If housing pushes above 40% of gross, the cheapest fix is almost always moving — no lifestyle tweak beats a smaller rent line.",
+        a: "In metros where rent alone is 40%+ of net income (SF, NYC, Boston), a 60/20/20 or 65/15/20 split is more realistic. Protect the 20% savings first, then squeeze the wants bucket before touching savings. If housing pushes above 40% of gross, the cheapest fix is almost always moving. No lifestyle tweak beats a smaller rent line.",
       },
       {
         q: "Where do HSA, FSA, and 529 contributions fit?",
@@ -226,12 +226,12 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/financial-apps",
     relatedLabel: "Bill Management Apps",
     intro:
-      "Subscription creep is the biggest silent budget killer. Streaming services, software trials, gym memberships, and app subscriptions add up fast — and because they are small individually, they rarely get reviewed. The average household loses nearly $1,000 a year to services they do not use.",
+      "Subscription creep is the biggest silent budget killer. Streaming services, software trials, gym memberships, and app subscriptions add up fast. And because they are small individually, they rarely get reviewed. The average household loses nearly $1,000 a year to services they do not use.",
     sections: [
       {
         heading: "The $924 Problem",
         paragraphs: [
-          "A 2023 consumer survey found that Americans underestimate their subscription spending by 250% on average. People think they spend around $86 per month; the real number is closer to $220. That gap — $134 per month — is $1,608 per year.",
+          "A 2023 consumer survey found that Americans underestimate their subscription spending by 250% on average. People think they spend around $86 per month; the real number is closer to $220. That gap: $134 per month. Is $1,608 per year.",
         ],
       },
       {
@@ -255,7 +255,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "The True Cost of a $15/Month Subscription",
         paragraphs: [
-          "Small recurring charges feel harmless but compound ruthlessly. A single $15/month streaming service you don't use is a $180/year waste — but the opportunity cost is much larger if you'd invested the money instead.",
+          "Small recurring charges feel harmless but compound ruthlessly. A single $15/month streaming service you don't use is a $180/year waste. But the opportunity cost is much larger if you'd invested the money instead.",
         ],
         bullets: [
           "$15/month for 10 years at 7% return = $2,597 of lost growth.",
@@ -267,12 +267,12 @@ export const guides: GuideArticle[] = [
       {
         heading: "Common Subscription Traps to Kill First",
         bullets: [
-          "Duplicate streaming — paying for Netflix, Hulu, Disney+, Max, and Prime Video simultaneously. Rotate one at a time.",
-          "Unused SaaS seats — Adobe Creative Cloud, Microsoft 365, Canva Pro after a project ends.",
-          "App Store auto-renewals — apps trialed once and forgotten (review in iOS Settings > Apple ID > Subscriptions).",
-          "Cloud storage overlap — paying for Google One, iCloud+, Dropbox, and OneDrive at once.",
-          "Gym membership you don't visit — 67% of gym members visit fewer than 4x/month. Switch to pay-per-class.",
-          "Credit monitoring services — most are redundant with free Credit Karma and your bank's alerts.",
+          "Duplicate streaming: paying for Netflix, Hulu, Disney+, Max, and Prime Video simultaneously. Rotate one at a time.",
+          "Unused SaaS seats: Adobe Creative Cloud, Microsoft 365, Canva Pro after a project ends.",
+          "App Store auto-renewals: apps trialed once and forgotten (review in iOS Settings > Apple ID > Subscriptions).",
+          "Cloud storage overlap: paying for Google One, iCloud+, Dropbox, and OneDrive at once.",
+          "Gym membership you don't visit, 67% of gym members visit fewer than 4x/month. Switch to pay-per-class.",
+          "Credit monitoring services: most are redundant with free Credit Karma and your bank's alerts.",
         ],
       },
     ],
@@ -294,11 +294,11 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "How do I stop free trials from converting silently?",
-        a: "Use a virtual card (Privacy.com, Capital One Eno, Apple Card single-use) with a $0.01 spending limit for every trial signup. The charge auto-declines when the trial ends — no cancellation call required. For Apple/Google subscriptions, disable auto-renew in Settings the moment you start the trial.",
+        a: "Use a virtual card (Privacy.com, Capital One Eno, Apple Card single-use) with a $0.01 spending limit for every trial signup. The charge auto-declines when the trial ends. No cancellation call required. For Apple/Google subscriptions, disable auto-renew in Settings the moment you start the trial.",
       },
       {
         q: "Can I dispute a charge for a subscription I already cancelled?",
-        a: "Yes, if the cancellation was confirmed and they charged you anyway. File a chargeback with your card issuer under 'services not rendered' or 'cancelled subscription charged' — you have 60 days from the statement date under the Fair Credit Billing Act.",
+        a: "Yes, if the cancellation was confirmed and they charged you anyway. File a chargeback with your card issuer under 'services not rendered' or 'cancelled subscription charged'. You have 60 days from the statement date under the Fair Credit Billing Act.",
       },
     ],
   },
@@ -319,7 +319,7 @@ export const guides: GuideArticle[] = [
         bullets: [
           "Plan meals weekly before shopping. Unplanned trips cost 25% more on average.",
           "Shop once per week maximum. Each extra trip adds ~$15 in impulse buys.",
-          "Buy store brands — same factories, same ingredients, 20-40% less.",
+          "Buy store brands: same factories, same ingredients, 20-40% less.",
           "Use the unit price, not the sticker price, to compare sizes.",
           "Stock up on sale items you use regularly (non-perishables, frozen, paper goods).",
         ],
@@ -346,25 +346,25 @@ export const guides: GuideArticle[] = [
           "Almost every product category has a predictable low-price window tied to inventory cycles. Buying in-season is almost always 20-40% cheaper than buying when you finally 'need' it.",
         ],
         bullets: [
-          "January — fitness gear, winter clothing clearance, bedding (white sales), TVs (pre-Super Bowl).",
-          "February — mattresses (Presidents Day), winter sports equipment, chocolate/candy (post-Valentine's).",
-          "March-April — luggage, vacuums, laptops (tax refund promos).",
-          "May — mattresses (Memorial Day), grills, refrigerators, outdoor furniture.",
-          "July — summer clothing clearance, Amazon Prime Day (tech, appliances).",
-          "August-September — back-to-school (laptops, office supplies), summer clothes, patio furniture clearance.",
-          "October — jeans, cookware, older iPhone models (post-launch discount).",
-          "November — Black Friday/Cyber Monday (TVs, electronics, toys, appliances).",
-          "December — gift cards (bonus offers), holiday decor bought Dec 26 for next year.",
+          "January: fitness gear, winter clothing clearance, bedding (white sales), TVs (pre-Super Bowl).",
+          "February: mattresses (Presidents Day), winter sports equipment, chocolate/candy (post-Valentine's).",
+          "March-April: luggage, vacuums, laptops (tax refund promos).",
+          "May: mattresses (Memorial Day), grills, refrigerators, outdoor furniture.",
+          "July: summer clothing clearance, Amazon Prime Day (tech, appliances).",
+          "August-September: back-to-school (laptops, office supplies), summer clothes, patio furniture clearance.",
+          "October: jeans, cookware, older iPhone models (post-launch discount).",
+          "November: Black Friday/Cyber Monday (TVs, electronics, toys, appliances).",
+          "December: gift cards (bonus offers), holiday decor bought Dec 26 for next year.",
         ],
       },
       {
         heading: "The Unit Price Formula (And Why It Matters)",
         paragraphs: [
-          "Unit price = total price ÷ quantity (oz, lb, count). It's the single most reliable grocery savings tool. Larger packages aren't always cheaper — shrinkflation and promotional pricing flip the math constantly.",
+          "Unit price = total price ÷ quantity (oz, lb, count). It's the single most reliable grocery savings tool. Larger packages aren't always cheaper. Shrinkflation and promotional pricing flip the math constantly.",
         ],
         bullets: [
           "Example: a 24oz jar of peanut butter at $5.99 = $0.25/oz; a 16oz jar at $3.49 = $0.218/oz. The smaller jar wins by 13%.",
-          "Most stores print unit price on the shelf tag in tiny font — train your eye to it.",
+          "Most stores print unit price on the shelf tag in tiny font. Train your eye to it.",
           "Beware mixed units (per oz vs per count vs per lb). Convert mentally to compare.",
           "Private label (store brand) unit prices are almost always 15-40% below name brand for identical specs.",
         ],
@@ -391,7 +391,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Is shrinkflation real and how do I spot it?",
-        a: "Yes — manufacturers reduce package size while keeping prices flat. Compare unit price over time (not absolute price), and check the net weight printed on packaging against older photos. Cereal boxes, ice cream, toilet paper, and chip bags have shrunk 5-15% in the last three years alone.",
+        a: "Yes: manufacturers reduce package size while keeping prices flat. Compare unit price over time (not absolute price), and check the net weight printed on packaging against older photos. Cereal boxes, ice cream, toilet paper, and chip bags have shrunk 5-15% in the last three years alone.",
       },
     ],
   },
@@ -401,11 +401,11 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "6 min",
     description:
-      "Book smarter, pack lighter, and cut travel costs 30-50% — without sacrificing the quality of your trip.",
+      "Book smarter, pack lighter, and cut travel costs 30-50%. Without sacrificing the quality of your trip.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Travel Rewards",
     intro:
-      "Travel is the #1 thing people say they wish they could do more of — and the #1 thing they say they cannot afford. The truth is that most travel costs are wildly inflated by timing, convenience fees, and lack of planning. A few smart habits cut the cost of a typical trip by a third.",
+      "Travel is the #1 thing people say they wish they could do more of. And the #1 thing they say they cannot afford. The truth is that most travel costs are wildly inflated by timing, convenience fees, and lack of planning. A few smart habits cut the cost of a typical trip by a third.",
     sections: [
       {
         heading: "The Booking Sweet Spot",
@@ -413,7 +413,7 @@ export const guides: GuideArticle[] = [
           "Domestic flights: book 1-3 months out, fly Tuesday or Wednesday.",
           "International flights: book 2-6 months out, avoid peak summer and holiday weeks.",
           "Hotels: prices drop 15-20% if you book directly vs. through OTAs for the same room.",
-          "Use Google Flights' flexible date view — shifting by 1-2 days often saves $100-300.",
+          "Use Google Flights' flexible date view. Shifting by 1-2 days often saves $100-300.",
         ],
       },
       {
@@ -425,7 +425,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "On the Ground",
         paragraphs: [
-          "Eat one meal a day from a grocery store or local market instead of restaurants — this alone saves 30-40% of food budget. Use public transit instead of rideshares when possible. Book activities directly with operators, not hotel concierges (often 20-30% cheaper).",
+          "Eat one meal a day from a grocery store or local market instead of restaurants. This alone saves 30-40% of food budget. Use public transit instead of rideshares when possible. Book activities directly with operators, not hotel concierges (often 20-30% cheaper).",
         ],
         callout: {
           title: "Cash Tip",
@@ -438,22 +438,22 @@ export const guides: GuideArticle[] = [
           "Not every point redemption is a good deal. Calculate cents-per-point (CPP) before booking: cash price ÷ points required. If CPP is below the baseline value, pay cash.",
         ],
         bullets: [
-          "Chase Ultimate Rewards baseline — 1.25-2.0 cents/point through Chase Travel or transfer partners.",
-          "Amex Membership Rewards baseline — 1.5-2.0 cents/point via transfer partners (Delta, Hyatt, Air France).",
-          "Hyatt points — consistently 1.7-2.5 cents/point (the most valuable hotel currency).",
-          "Hilton points — typically 0.5-0.6 cents/point (require 5-10x more points per night).",
+          "Chase Ultimate Rewards baseline: 1.25-2.0 cents/point through Chase Travel or transfer partners.",
+          "Amex Membership Rewards baseline: 1.5-2.0 cents/point via transfer partners (Delta, Hyatt, Air France).",
+          "Hyatt points: consistently 1.7-2.5 cents/point (the most valuable hotel currency).",
+          "Hilton points: typically 0.5-0.6 cents/point (require 5-10x more points per night).",
           "Rule of thumb: redeem for international business class (4-8 CPP) or Hyatt; pay cash for domestic economy and chain hotels (1-1.2 CPP).",
         ],
       },
       {
         heading: "Common Travel Money Mistakes",
         bullets: [
-          "Using a debit card abroad — 3% foreign transaction fee + $3-5 ATM fee per withdrawal. Use a no-FTF credit card or Charles Schwab debit (reimburses all ATM fees).",
-          "Accepting Dynamic Currency Conversion — always decline and pay in local currency.",
+          "Using a debit card abroad: 3% foreign transaction fee + $3-5 ATM fee per withdrawal. Use a no-FTF credit card or Charles Schwab debit (reimburses all ATM fees).",
+          "Accepting Dynamic Currency Conversion: always decline and pay in local currency.",
           "Buying travel insurance separately when your Chase Sapphire Preferred, Amex Platinum, or Capital One Venture X already includes it.",
-          "Booking hotels through OTAs (Expedia, Booking.com) — you forfeit elite status, often pay 5-10% more, and lose direct cancellation.",
+          "Booking hotels through OTAs (Expedia, Booking.com). You forfeit elite status, often pay 5-10% more, and lose direct cancellation.",
           "Paying airline checked-bag fees when your card issuer reimburses (Amex Platinum, Citi / AAdvantage, Delta SkyMiles cards).",
-          "Exchanging currency at airport kiosks — spreads of 10-15%. Use a no-FTF card or in-country ATM instead.",
+          "Exchanging currency at airport kiosks: spreads of 10-15%. Use a no-FTF card or in-country ATM instead.",
         ],
       },
     ],
@@ -474,11 +474,11 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "How do I avoid foreign transaction fees?",
-        a: "Use a credit card that explicitly waives them — Chase Sapphire Preferred/Reserve, Capital One Venture/Venture X, Amex Platinum, and most travel-branded cards. For cash, use a debit card like Charles Schwab Investor Checking or Fidelity Cash Management (both reimburse all global ATM fees with no FTF).",
+        a: "Use a credit card that explicitly waives them. Chase Sapphire Preferred/Reserve, Capital One Venture/Venture X, Amex Platinum, and most travel-branded cards. For cash, use a debit card like Charles Schwab Investor Checking or Fidelity Cash Management (both reimburse all global ATM fees with no FTF).",
       },
       {
         q: "What's the cheapest way to book a rental car internationally?",
-        a: "Use AutoSlash.com (auto-applies coupon codes and re-books if price drops). Decline all on-site insurance — most major credit cards include primary rental coverage abroad. Always read the fuel and drop-off terms twice.",
+        a: "Use AutoSlash.com (auto-applies coupon codes and re-books if price drops). Decline all on-site insurance: most major credit cards include primary rental coverage abroad. Always read the fuel and drop-off terms twice.",
       },
     ],
   },
@@ -488,7 +488,7 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "7 min",
     description:
-      "Cars, appliances, furniture, and electronics — how to research, time, and negotiate major purchases to save thousands.",
+      "Cars, appliances, furniture, and electronics. How to research, time, and negotiate major purchases to save thousands.",
     relatedCategory: "/bank-accounts",
     relatedLabel: "Savings Accounts",
     intro:
@@ -513,7 +513,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Negotiating Like a Pro",
         paragraphs: [
-          "Almost everything over $500 is negotiable, including items with posted prices. Get three written quotes, walk away from the first two, and ask each to beat the best offer. Be willing to leave — this is the single most effective negotiation tool.",
+          "Almost everything over $500 is negotiable, including items with posted prices. Get three written quotes, walk away from the first two, and ask each to beat the best offer. Be willing to leave: this is the single most effective negotiation tool.",
           "For big-ticket retail items (appliances, furniture, mattresses), ask about open-box, floor model, and dented-box discounts. These are often 20-40% off with no functional difference.",
         ],
         callout: {
@@ -524,15 +524,15 @@ export const guides: GuideArticle[] = [
       {
         heading: "New Car Depreciation: The Real Math",
         paragraphs: [
-          "A new car loses value the moment you drive it off the lot — and the depreciation curve isn't linear. Understanding the curve is the single best argument for buying lightly used instead of new.",
+          "A new car loses value the moment you drive it off the lot. And the depreciation curve isn't linear. Understanding the curve is the single best argument for buying lightly used instead of new.",
         ],
         bullets: [
-          "Year 1 — 20-25% lost (drive-off-lot drop + first year).",
-          "Year 3 — 46% lost (vs original sticker).",
-          "Year 5 — 60% lost on average.",
-          "Year 7-8 — depreciation flattens to ~5-8%/year.",
-          "Practical implication — buying a 2-3 year old CPO vehicle skips the worst depreciation at ~25-35% off MSRP while keeping 60-70% of the factory warranty.",
-          "Example — $40K new car is worth ~$30K after year 1, ~$21.6K after year 3. Buying it at year 3 and driving it to year 10 = same years of service for ~$18K less total cost.",
+          "Year 1: 20-25% lost (drive-off-lot drop + first year).",
+          "Year 3: 46% lost (vs original sticker).",
+          "Year 5: 60% lost on average.",
+          "Year 7-8: depreciation flattens to ~5-8%/year.",
+          "Practical implication: buying a 2-3 year old CPO vehicle skips the worst depreciation at ~25-35% off MSRP while keeping 60-70% of the factory warranty.",
+          "Example: $40K new car is worth ~$30K after year 1, ~$21.6K after year 3. Buying it at year 3 and driving it to year 10 = same years of service for ~$18K less total cost.",
         ],
       },
       {
@@ -541,36 +541,36 @@ export const guides: GuideArticle[] = [
           "A $35K car doesn't cost $35K. Budget for 5-year TCO: purchase price + financing + insurance + fuel + maintenance + depreciation. A 'cheap' truck can easily exceed a more expensive sedan on TCO.",
         ],
         bullets: [
-          "Financing — on a $35K loan at 7% APR over 60 months: $6,569 in interest.",
-          "Insurance — $1,500-2,400/year for a typical sedan; $1,800-3,000/year for SUVs/trucks.",
-          "Fuel — 25 MPG car × 12K miles/year × $3.50/gal = $1,680/year; 18 MPG truck = $2,333/year ($3,265 more over 5 years).",
-          "Maintenance — budget ~$100/month (oil, tires, brakes, fluids); German luxury doubles it.",
-          "Depreciation — typically the LARGEST cost — $14-18K on a $35K vehicle over 5 years.",
-          "Rule — total 5-year TCO is usually 1.5-2x the purchase price. Price a car by dividing TCO by months owned.",
+          "Financing: on a $35K loan at 7% APR over 60 months: $6,569 in interest.",
+          "Insurance: $1,500-2,400/year for a typical sedan; $1,800-3,000/year for SUVs/trucks.",
+          "Fuel: 25 MPG car × 12K miles/year × $3.50/gal = $1,680/year; 18 MPG truck = $2,333/year ($3,265 more over 5 years).",
+          "Maintenance: budget ~$100/month (oil, tires, brakes, fluids); German luxury doubles it.",
+          "Depreciation: typically the LARGEST cost, $14-18K on a $35K vehicle over 5 years.",
+          "Rule: total 5-year TCO is usually 1.5-2x the purchase price. Price a car by dividing TCO by months owned.",
         ],
       },
       {
         heading: "The 3-Bid Negotiation Playbook",
         bullets: [
-          "Step 1 — identify 3 dealers within 100 miles via TrueCar, CarsDirect, or Edmunds dealer inventory.",
-          "Step 2 — email each Internet Sales Manager with exact trim/VIN/color and request 'out-the-door price including all fees, taxes, and add-ons.' Get it in writing.",
-          "Step 3 — forward the lowest bid to the other two and ask: 'Can you beat this by $500?' Repeat until all three have submitted their final best.",
-          "Step 4 — arrive at the winning dealer with pre-approved financing from your credit union (rate + term in writing).",
-          "Step 5 — refuse every add-on in the finance office: extended warranty (markup often 2-4x wholesale), GAP insurance (buy from your insurer for 50% less), fabric protection, VIN etching.",
-          "Step 6 — review the purchase contract line-by-line before signing. Walk away from any 'doc fee' over $200-300 (varies by state).",
+          "Step 1: identify 3 dealers within 100 miles via TrueCar, CarsDirect, or Edmunds dealer inventory.",
+          "Step 2: email each Internet Sales Manager with exact trim/VIN/color and request 'out-the-door price including all fees, taxes, and add-ons.' Get it in writing.",
+          "Step 3: forward the lowest bid to the other two and ask: 'Can you beat this by $500?' Repeat until all three have submitted their final best.",
+          "Step 4: arrive at the winning dealer with pre-approved financing from your credit union (rate + term in writing).",
+          "Step 5: refuse every add-on in the finance office: extended warranty (markup often 2-4x wholesale), GAP insurance (buy from your insurer for 50% less), fabric protection, VIN etching.",
+          "Step 6: review the purchase contract line-by-line before signing. Walk away from any 'doc fee' over $200-300 (varies by state).",
         ],
       },
     ],
     keyTakeaways: [
       "Research at least an hour for any purchase over $500.",
-      "Shop the calendar — timing alone often saves 15-30%.",
+      "Shop the calendar: timing alone often saves 15-30%.",
       "Get three quotes and be willing to walk away.",
       "Pre-arrange financing separately from the seller.",
-      "5-year TCO is typically 1.5-2x a car's sticker price — budget accordingly.",
+      "5-year TCO is typically 1.5-2x a car's sticker price. Budget accordingly.",
     ],
     faqs: [
       {
-        q: "Extended warranties — buy or skip?",
+        q: "Extended warranties: buy or skip?",
         a: "Skip 90% of the time. They are high-margin products for retailers. Exceptions: major appliances with known reliability issues and laptops used heavily for work.",
       },
       {
@@ -597,15 +597,15 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/bank-accounts",
     relatedLabel: "High-Yield Savings",
     intro:
-      "An emergency fund is the foundation of financial security. Without one, a single unexpected expense — car repair, medical bill, job loss — forces you into debt and derails every long-term goal. With one, setbacks become inconveniences instead of disasters.",
+      "An emergency fund is the foundation of financial security. Without one, a single unexpected expense. Car repair, medical bill, job loss. Forces you into debt and derails every long-term goal. With one, setbacks become inconveniences instead of disasters.",
     sections: [
       {
         heading: "How Much Is Enough?",
         bullets: [
-          "Starter fund: $1,000 — enough to cover most small emergencies and break the paycheck-to-paycheck cycle.",
-          "Standard fund: 3 months of essential expenses — minimum for single-income households with stable jobs.",
-          "Full fund: 6 months of essential expenses — ideal for most families; required for freelancers and commission earners.",
-          "Extended fund: 9-12 months — for single-income households with dependents, or anyone in a volatile industry.",
+          "Starter fund: $1,000. Enough to cover most small emergencies and break the paycheck-to-paycheck cycle.",
+          "Standard fund: 3 months of essential expenses. Minimum for single-income households with stable jobs.",
+          "Full fund: 6 months of essential expenses. Ideal for most families; required for freelancers and commission earners.",
+          "Extended fund: 9-12 months. For single-income households with dependents, or anyone in a volatile industry.",
         ],
       },
       {
@@ -618,46 +618,46 @@ export const guides: GuideArticle[] = [
       {
         heading: "HYSA vs Money Market vs T-Bills vs I Bonds",
         paragraphs: [
-          "Once you have more than the starter $1,000, it's worth understanding the tradeoffs between the four main 'safe cash' options. The answer for most people is still HYSA — but for large balances ($50K+), a blend can add 0.5-1% without giving up much access.",
+          "Once you have more than the starter $1,000, it's worth understanding the tradeoffs between the four main 'safe cash' options. The answer for most people is still HYSA. But for large balances ($50K+), a blend can add 0.5-1% without giving up much access.",
         ],
         bullets: [
-          "HYSA — 4.00-4.10% APY, FDIC-insured to $250K, ACH access in 1-2 days, state-taxable interest. Best for: emergency fund core.",
-          "Money Market Account — 3.75-4.25% APY, FDIC-insured, check-writing, typically $5K+ minimums. Best for: larger balances needing quick bill-pay access.",
-          "4-week T-Bills — ~4.3-4.4% yield (May 2026), backed by US Treasury, state-tax-free (saves ~5-13% in high-tax states), roll every 4 weeks on TreasuryDirect. Best for: balances above $50K in states like CA, NY.",
-          "I Bonds — 3.11% composite rate (May 2026), inflation-protected, state-tax-free, but locked for 12 months with 3-month interest penalty if redeemed before 5 years. Best for: the SECOND half of your emergency fund, once the first half is liquid.",
-          "Tax rule — a 4% HYSA in a 24% federal + 6% state bracket delivers 2.8% after tax. A 4.3% T-bill delivers 3.27% in the same scenario. For high earners in high-tax states, T-bills can beat HYSAs even at lower headline yields.",
+          "HYSA: 4.00-4.10% APY, FDIC-insured to $250K, ACH access in 1-2 days, state-taxable interest. Best for: emergency fund core.",
+          "Money Market Account: 3.75-4.25% APY, FDIC-insured, check-writing, typically $5K+ minimums. Best for: larger balances needing quick bill-pay access.",
+          "4-week T-Bills, ~4.3-4.4% yield (May 2026), backed by US Treasury, state-tax-free (saves ~5-13% in high-tax states), roll every 4 weeks on TreasuryDirect. Best for: balances above $50K in states like CA, NY.",
+          "I Bonds: 3.11% composite rate (May 2026), inflation-protected, state-tax-free, but locked for 12 months with 3-month interest penalty if redeemed before 5 years. Best for: the SECOND half of your emergency fund, once the first half is liquid.",
+          "Tax rule: a 4% HYSA in a 24% federal + 6% state bracket delivers 2.8% after tax. A 4.3% T-bill delivers 3.27% in the same scenario. For high earners in high-tax states, T-bills can beat HYSAs even at lower headline yields.",
         ],
       },
       {
         heading: "Building It Faster",
         paragraphs: [
-          "If you are starting from zero, direct every tax refund, bonus, and side-income dollar into the fund until you hit your number. Automate a recurring transfer — even $50 per week — so the fund grows without you having to think about it.",
+          "If you are starting from zero, direct every tax refund, bonus, and side-income dollar into the fund until you hit your number. Automate a recurring transfer: even $50 per week. So the fund grows without you having to think about it.",
         ],
         callout: {
           title: "Rule of Thumb",
-          body: "Do not invest another dollar in anything risky until your starter $1,000 is in place. Missing a 401(k) match is the one exception — take the match, then race to finish the emergency fund.",
+          body: "Do not invest another dollar in anything risky until your starter $1,000 is in place. Missing a 401(k) match is the one exception. Take the match, then race to finish the emergency fund.",
         },
       },
       {
         heading: "What Counts as 'Essential Expenses'",
         paragraphs: [
-          "The biggest mistake people make sizing their emergency fund is using their TOTAL monthly spending. The right number is your bare-bones survival budget — what you'd spend in a true crisis with no discretionary spending.",
+          "The biggest mistake people make sizing their emergency fund is using their TOTAL monthly spending. The right number is your bare-bones survival budget. What you'd spend in a true crisis with no discretionary spending.",
         ],
         bullets: [
-          "Include — rent/mortgage, utilities, groceries (not dining), insurance premiums, minimum debt payments, transportation to work, phone.",
-          "Exclude — restaurants, entertainment, subscriptions, vacations, hobbies, retirement contributions, gym memberships.",
+          "Include: rent/mortgage, utilities, groceries (not dining), insurance premiums, minimum debt payments, transportation to work, phone.",
+          "Exclude: restaurants, entertainment, subscriptions, vacations, hobbies, retirement contributions, gym memberships.",
           "For a typical household spending $5,000/mo total, essential expenses are usually $3,000-$3,500. That means 6 months of essentials is $18,000-$21,000, not $30,000.",
-          "This distinction often cuts the target fund size by 30-40% — making the goal much more achievable.",
+          "This distinction often cuts the target fund size by 30-40%. Making the goal much more achievable.",
         ],
       },
       {
         heading: "Common Emergency Fund Mistakes",
         bullets: [
-          "Keeping it at the same bank as your checking — too easy to 'borrow' for non-emergencies. Use a separate online HYSA.",
-          "Investing it in stocks for higher returns — emergencies tend to coincide with market crashes. You'd take a 30% loss right when you need the cash.",
-          "Tapping it for predictable expenses — car registration, holiday gifts, and annual insurance premiums are not emergencies. Use sinking funds for those.",
-          "Never refilling after a withdrawal — once you use it, the next 60 days should be focused entirely on rebuilding it.",
-          "Letting it sit at 0.01% APY — at 4.5% APY, a $20,000 emergency fund earns $900/year. Switch banks if your rate is below 4%.",
+          "Keeping it at the same bank as your checking. Too easy to 'borrow' for non-emergencies. Use a separate online HYSA.",
+          "Investing it in stocks for higher returns. Emergencies tend to coincide with market crashes. You'd take a 30% loss right when you need the cash.",
+          "Tapping it for predictable expenses: car registration, holiday gifts, and annual insurance premiums are not emergencies. Use sinking funds for those.",
+          "Never refilling after a withdrawal: once you use it, the next 60 days should be focused entirely on rebuilding it.",
+          "Letting it sit at 0.01% APY. At 4.5% APY, a $20,000 emergency fund earns $900/year. Switch banks if your rate is below 4%.",
         ],
       },
     ],
@@ -665,7 +665,7 @@ export const guides: GuideArticle[] = [
       "Start with a $1,000 baseline, then build to 3-6 months of expenses.",
       "Keep the full balance in an FDIC-insured high-yield savings account.",
       "Automate weekly transfers to grow the fund without willpower.",
-      "Refill it immediately after any withdrawal — treat it as sacred.",
+      "Refill it immediately after any withdrawal: treat it as sacred.",
     ],
     faqs: [
       {
@@ -678,11 +678,11 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Is FDIC insurance still reliable after the 2023 banking failures?",
-        a: "Yes. When Silicon Valley Bank, Signature Bank, and First Republic failed in 2023, 100% of insured depositors were made whole within days. The lesson isn't that FDIC is unreliable — it's that balances above $250K per bank per ownership category are what actually got wiped out (temporarily). Keep each account under the $250K limit or split across banks.",
+        a: "Yes. When Silicon Valley Bank, Signature Bank, and First Republic failed in 2023, 100% of insured depositors were made whole within days. The lesson isn't that FDIC is unreliable. It's that balances above $250K per bank per ownership category are what actually got wiped out (temporarily). Keep each account under the $250K limit or split across banks.",
       },
       {
         q: "What's the difference between FDIC and SIPC?",
-        a: "FDIC covers bank deposit accounts (checking, savings, CDs) up to $250K. SIPC covers brokerage accounts up to $500K ($250K cash) against the brokerage failing — NOT against market losses. Emergency funds should always be in FDIC-insured accounts, not brokerage sweep accounts.",
+        a: "FDIC covers bank deposit accounts (checking, savings, CDs) up to $250K. SIPC covers brokerage accounts up to $500K ($250K cash) against the brokerage failing. NOT against market losses. Emergency funds should always be in FDIC-insured accounts, not brokerage sweep accounts.",
       },
     ],
   },
@@ -696,12 +696,12 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/bank-accounts",
     relatedLabel: "Bank Accounts",
     intro:
-      "Where you keep your savings should depend on when you need the money. A single savings account for every goal is inefficient — you either sacrifice yield or give up access you did not need to give up. This guide matches each savings goal to its ideal home.",
+      "Where you keep your savings should depend on when you need the money. A single savings account for every goal is inefficient. You either sacrifice yield or give up access you did not need to give up. This guide matches each savings goal to its ideal home.",
     sections: [
       {
         heading: "By Timeline",
         bullets: [
-          "0-6 months (emergencies, short-term): High-yield savings account (HYSA) — 4-5% APY, liquid, FDIC insured.",
+          "0-6 months (emergencies, short-term): High-yield savings account (HYSA), 4-5% APY, liquid, FDIC insured.",
           "6-18 months (house down payment, wedding, car): Money market account or 6-12 month CD ladder.",
           "18 months - 5 years (mid-term goals): Short-term bond fund or I Bonds.",
           "5+ years (retirement, long-term wealth): Brokerage or retirement account invested in index funds.",
@@ -711,7 +711,7 @@ export const guides: GuideArticle[] = [
         heading: "What Makes a Great HYSA",
         paragraphs: [
           "The best high-yield savings account checks five boxes: competitive APY (within 0.25% of the top rate), no monthly fees, no minimum balance, FDIC insurance up to $250,000, and easy transfers to your checking account.",
-          "Rates change monthly. Review your HYSA rate quarterly — if it has fallen more than 0.5% below the top available rate, it is worth switching.",
+          "Rates change monthly. Review your HYSA rate quarterly: if it has fallen more than 0.5% below the top available rate, it is worth switching.",
         ],
       },
       {
@@ -729,7 +729,7 @@ export const guides: GuideArticle[] = [
       "Match the account type to how soon you will need the money.",
       "Use a HYSA for any money needed within 6 months.",
       "Ladder CDs to boost yield while keeping periodic access.",
-      "Review rates quarterly — switch if yours falls 0.5% behind.",
+      "Review rates quarterly: switch if yours falls 0.5% behind.",
     ],
     faqs: [
       {
@@ -741,12 +741,12 @@ export const guides: GuideArticle[] = [
         a: "Rates are usually similar. Money markets may come with check-writing privileges, which makes them useful for larger bill payments.",
       },
       {
-        q: "CD ladder vs Treasury Bill ladder — which is better?",
+        q: "CD ladder vs Treasury Bill ladder: which is better?",
         a: "T-bill ladders are almost always better for taxable money. Current 4-week through 52-week Treasuries yield 4.0-4.4% (May 2026), are state-tax-free (worth 0.5-1% more to high-tax-state residents), and can be sold anytime on the secondary market. CDs offer similar yields but charge early-withdrawal penalties (3-6 months of interest) and their interest is fully state-taxable.",
       },
       {
         q: "How do I build a T-bill ladder in practice?",
-        a: "Open a TreasuryDirect.gov account (free) or use your brokerage (Fidelity, Schwab, Vanguard). For a 12-month ladder with $12K: buy $1K of a 52-week T-bill each month for 12 months. After month 12, one matures monthly — reinvest at the longest term. Minimum is $100 per bill; fractional treasuries aren't available, so round down.",
+        a: "Open a TreasuryDirect.gov account (free) or use your brokerage (Fidelity, Schwab, Vanguard). For a 12-month ladder with $12K: buy $1K of a 52-week T-bill each month for 12 months. After month 12, one matures monthly. Reinvest at the longest term. Minimum is $100 per bill; fractional treasuries aren't available, so round down.",
       },
     ],
   },
@@ -758,7 +758,7 @@ export const guides: GuideArticle[] = [
     category: "Investing",
     readTime: "9 min",
     description:
-      "A plain-English starting point for understanding what stocks, bonds, and funds actually are — and how risk really works.",
+      "A plain-English starting point for understanding what stocks, bonds, and funds actually are. And how risk really works.",
     relatedCategory: "/investing",
     relatedLabel: "Investing Platforms",
     intro:
@@ -767,31 +767,31 @@ export const guides: GuideArticle[] = [
       {
         heading: "The Three Core Asset Classes",
         bullets: [
-          "Stocks (equities) — ownership in a company. Higher long-term return (~10% historical average), higher short-term volatility.",
-          "Bonds (fixed income) — loans to governments or corporations. Lower return (~4-5% historical), much lower volatility.",
-          "Cash & equivalents — checking, savings, money market, short-term CDs. Lowest return, effectively no risk.",
+          "Stocks (equities): ownership in a company. Higher long-term return (~10% historical average), higher short-term volatility.",
+          "Bonds (fixed income): loans to governments or corporations. Lower return (~4-5% historical), much lower volatility.",
+          "Cash & equivalents. Checking, savings, money market, short-term CDs. Lowest return, effectively no risk.",
         ],
       },
       {
         heading: "Funds: The Easy Button",
         paragraphs: [
-          "Instead of buying individual stocks or bonds, most investors should buy funds — single purchases that hold hundreds or thousands of underlying securities. The two most important types:",
+          "Instead of buying individual stocks or bonds, most investors should buy funds. Single purchases that hold hundreds or thousands of underlying securities. The two most important types:",
         ],
         bullets: [
-          "Index funds — mirror a market index like the S&P 500. Low fees (0.03-0.20%), no manager trying to beat the market.",
-          "ETFs (Exchange-Traded Funds) — trade like stocks, often index-based, typically lower minimums than mutual funds.",
+          "Index funds: mirror a market index like the S&P 500. Low fees (0.03-0.20%), no manager trying to beat the market.",
+          "ETFs (Exchange-Traded Funds): trade like stocks, often index-based, typically lower minimums than mutual funds.",
         ],
       },
       {
         heading: "The Power of Compound Interest",
         paragraphs: [
-          "Compound interest is the most important concept in investing. It is interest earned on interest — your gains generate their own gains, and the curve gets steeper every year. Albert Einstein reportedly called it the eighth wonder of the world.",
-          "A simple example: $10,000 invested at a 7% real annual return becomes $19,672 in 10 years, $38,697 in 20 years, and $76,123 in 30 years. The first 10 years add ~$10K. The third decade alone adds ~$37K — almost 4x as much, with no additional contribution.",
+          "Compound interest is the most important concept in investing. It is interest earned on interest: your gains generate their own gains, and the curve gets steeper every year. Albert Einstein reportedly called it the eighth wonder of the world.",
+          "A simple example: $10,000 invested at a 7% real annual return becomes $19,672 in 10 years, $38,697 in 20 years, and $76,123 in 30 years. The first 10 years add ~$10K. The third decade alone adds ~$37K. Almost 4x as much, with no additional contribution.",
         ],
         bullets: [
           "$300/month invested from age 25 to 65 at 7% = $787,000.",
           "$300/month invested from age 35 to 65 at 7% = $367,000.",
-          "That 10-year delay costs $420,000 — more than 2x what the early starter actually contributed.",
+          "That 10-year delay costs $420,000. More than 2x what the early starter actually contributed.",
           "The Rule of 72: divide 72 by your return rate to find how long it takes to double your money. At 7%, money doubles every ~10 years.",
         ],
         callout: {
@@ -802,7 +802,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Understanding Real Risk",
         paragraphs: [
-          "Risk is not just 'can I lose money?' — it is the probability and size of loss given your time horizon. Over any 1-year period, stocks have lost money about 25% of the time. Over any 20-year period, they have never lost money (inflation-adjusted). Your time horizon is the most important risk factor.",
+          "Risk is not just 'can I lose money?'. It is the probability and size of loss given your time horizon. Over any 1-year period, stocks have lost money about 25% of the time. Over any 20-year period, they have never lost money (inflation-adjusted). Your time horizon is the most important risk factor.",
           "Short-term volatility is the price of admission for long-term returns. Anyone who tells you to avoid volatility while achieving stock-like returns is selling something.",
         ],
         callout: {
@@ -813,14 +813,14 @@ export const guides: GuideArticle[] = [
       {
         heading: "Nominal vs Real Returns: What You Actually Keep",
         paragraphs: [
-          "The 10% average S&P 500 return you see quoted is NOMINAL — before inflation. Real returns (what your purchasing power actually grew) are 2-3 percentage points lower. Plan in real terms to avoid overestimating retirement wealth.",
+          "The 10% average S&P 500 return you see quoted is NOMINAL. Before inflation. Real returns (what your purchasing power actually grew) are 2-3 percentage points lower. Plan in real terms to avoid overestimating retirement wealth.",
         ],
         bullets: [
-          "S&P 500 1928-2024 — 10.1% nominal average, 7.0% real (inflation-adjusted).",
-          "Bonds (10-yr Treasury) 1928-2024 — 4.9% nominal, 1.9% real.",
-          "Cash (T-Bills) 1928-2024 — 3.3% nominal, 0.3% real — cash barely beats inflation.",
-          "Gold 1928-2024 — 4.6% nominal, 1.6% real — worse than stocks in every long window.",
-          "Planning rule — use 6-7% real (not 10% nominal) when projecting decades-out goals in today's dollars.",
+          "S&P 500 1928-2024–10.1% nominal average, 7.0% real (inflation-adjusted).",
+          "Bonds (10-yr Treasury) 1928-2024–4.9% nominal, 1.9% real.",
+          "Cash (T-Bills) 1928-2024–3.3% nominal, 0.3% real. Cash barely beats inflation.",
+          "Gold 1928-2024–4.6% nominal, 1.6% real. Worse than stocks in every long window.",
+          "Planning rule: use 6-7% real (not 10% nominal) when projecting decades-out goals in today's dollars.",
         ],
       },
       {
@@ -829,13 +829,13 @@ export const guides: GuideArticle[] = [
           "Bear markets (20%+ drawdowns) happen roughly every 5-7 years. If you plan to invest for 40 years, you will live through 6-8 of them. Knowing this in advance is how you avoid panic-selling.",
         ],
         bullets: [
-          "1973-74 — -48% (oil shock, stagflation), recovery: 3.5 years.",
-          "2000-2002 Dot-com — -49%, recovery: 5+ years.",
-          "2008-09 Financial Crisis — -57%, recovery: 4 years.",
-          "2020 COVID crash — -34% in 5 weeks, recovery: 5 months.",
-          "2022 — -25% (rate hikes), recovery: 18 months.",
-          "Pattern — severity doesn't predict recovery time. Short, sharp drops often recover fastest. Slow grinds (2000-02) take years.",
-          "Cost of panic — an investor who sold at the 2008 bottom and re-entered 2 years later missed 55% of the recovery.",
+          "1973-74, -48% (oil shock, stagflation), recovery: 3.5 years.",
+          "2000-2002 Dot-com, -49%, recovery: 5+ years.",
+          "2008-09 Financial Crisis, -57%, recovery: 4 years.",
+          "2020 COVID crash, -34% in 5 weeks, recovery: 5 months.",
+          "2022, -25% (rate hikes), recovery: 18 months.",
+          "Pattern: severity doesn't predict recovery time. Short, sharp drops often recover fastest. Slow grinds (2000-02) take years.",
+          "Cost of panic: an investor who sold at the 2008 bottom and re-entered 2 years later missed 55% of the recovery.",
         ],
       },
       {
@@ -845,10 +845,10 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "$100K invested for 40 years at 7% nominal, 0.03% fee (VTI/FSKAX) → $1,463,000.",
-          "$100K invested for 40 years at 7% nominal, 0.50% fee (typical active fund) → $1,206,000 — 18% less.",
-          "$100K invested for 40 years at 7% nominal, 1.00% fee (advisor-managed fund) → $1,003,000 — 31% less.",
-          "Practical rule — target weighted portfolio expense ratio under 0.10%. It's achievable with any major index fund lineup.",
-          "Annuities, variable life insurance, and most actively managed mutual funds charge 1.5-3%+ — mathematically incompatible with wealth-building.",
+          "$100K invested for 40 years at 7% nominal, 0.50% fee (typical active fund) → $1,206,000–18% less.",
+          "$100K invested for 40 years at 7% nominal, 1.00% fee (advisor-managed fund) → $1,003,000–31% less.",
+          "Practical rule: target weighted portfolio expense ratio under 0.10%. It's achievable with any major index fund lineup.",
+          "Annuities, variable life insurance, and most actively managed mutual funds charge 1.5-3%+. Mathematically incompatible with wealth-building.",
         ],
       },
     ],
@@ -856,7 +856,7 @@ export const guides: GuideArticle[] = [
       "Stocks grow faster long-term; bonds smooth short-term volatility.",
       "Index funds give instant diversification at low cost.",
       "Your time horizon drives how much risk you can take.",
-      "Time in the market beats timing the market — always.",
+      "Time in the market beats timing the market. Always.",
     ],
     faqs: [
       {
@@ -869,7 +869,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What's the difference between price and total return?",
-        a: "Price return ignores dividends. Total return includes them. Over the past century, dividends have accounted for roughly 40% of the S&P 500's total return — never compare investments on price alone.",
+        a: "Price return ignores dividends. Total return includes them. Over the past century, dividends have accounted for roughly 40% of the S&P 500's total return. Never compare investments on price alone.",
       },
       {
         q: "How do I handle a market crash emotionally?",
@@ -877,11 +877,11 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What's the Rule of 72 and how do I use it?",
-        a: "Divide 72 by your expected annual return to estimate years to double your money. At 7% real return, money doubles every ~10.3 years. At 10% nominal, every 7.2 years. Useful for quick mental math — $50K today becomes ~$400K in 30 years at 7% (three doublings).",
+        a: "Divide 72 by your expected annual return to estimate years to double your money. At 7% real return, money doubles every ~10.3 years. At 10% nominal, every 7.2 years. Useful for quick mental math: $50K today becomes ~$400K in 30 years at 7% (three doublings).",
       },
       {
-        q: "Dividends vs growth — which matters more?",
-        a: "Total return is what matters. Dividends have historically provided ~40% of the S&P 500's total return — reinvest them. Don't chase high-yield dividend stocks (often value traps with stretched balance sheets). A total-market index fund captures both dividend and growth components automatically.",
+        q: "Dividends vs growth: which matters more?",
+        a: "Total return is what matters. Dividends have historically provided ~40% of the S&P 500's total return. Reinvest them. Don't chase high-yield dividend stocks (often value traps with stretched balance sheets). A total-market index fund captures both dividend and growth components automatically.",
       },
     ],
   },
@@ -895,7 +895,7 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/investing",
     relatedLabel: "Investing Platforms",
     intro:
-      "Most people say they want to invest, but they have no concrete goal, no timeline, and no plan. The SMART framework — Specific, Measurable, Achievable, Relevant, Time-bound — turns fuzzy intent into a plan you can actually execute and measure.",
+      "Most people say they want to invest, but they have no concrete goal, no timeline, and no plan. The SMART framework: Specific, Measurable, Achievable, Relevant, Time-bound. Turns fuzzy intent into a plan you can actually execute and measure.",
     sections: [
       {
         heading: "Specific",
@@ -906,7 +906,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Measurable & Achievable",
         paragraphs: [
-          "Use a compound interest calculator to work backward. Example: reaching $1 million in 30 years at a 7% real return requires about $820 per month. That number tells you whether the goal is achievable at your income — and what you need to change if not.",
+          "Use a compound interest calculator to work backward. Example: reaching $1 million in 30 years at a 7% real return requires about $820 per month. That number tells you whether the goal is achievable at your income. And what you need to change if not.",
         ],
       },
       {
@@ -932,17 +932,17 @@ export const guides: GuideArticle[] = [
           "$1M in 30 years → $820/month (why starting 5 years earlier matters).",
           "$2M in 30 years → $1,640/month.",
           "$2M in 40 years → $790/month (why starting 10 years earlier matters even more).",
-          "Formula — PMT = FV × (r/12) / ((1 + r/12)^(12n) - 1). At r=0.07 and n=years.",
+          "Formula: PMT = FV × (r/12) / ((1 + r/12)^(12n) - 1). At r=0.07 and n=years.",
         ],
       },
       {
         heading: "Common SMART Goal Mistakes",
         bullets: [
-          "Using nominal returns (10%) instead of real (6-7%) — overstates wealth by 40%+ over 30 years.",
-          "Ignoring contribution limits — an IRA caps at $7K/year in 2026. If your plan requires $1,500/month, you need a 401(k) or taxable account too.",
-          "Forgetting sequence-of-returns risk — hitting your number at retirement doesn't help if a 30% crash comes in year 1. Shift toward bonds 5-10 years from the goal.",
-          "Treating the target as fixed in today's dollars — $1M in 2056 buys what ~$500K buys today (assuming 2.5% inflation).",
-          "Not stress-testing the plan against missed years — miss 2-3 years of contributions and the final number drops 15-25%.",
+          "Using nominal returns (10%) instead of real (6-7%). Overstates wealth by 40%+ over 30 years.",
+          "Ignoring contribution limits: an IRA caps at $7K/year in 2026. If your plan requires $1,500/month, you need a 401(k) or taxable account too.",
+          "Forgetting sequence-of-returns risk: hitting your number at retirement doesn't help if a 30% crash comes in year 1. Shift toward bonds 5-10 years from the goal.",
+          "Treating the target as fixed in today's dollars, $1M in 2056 buys what ~$500K buys today (assuming 2.5% inflation).",
+          "Not stress-testing the plan against missed years. Miss 2-3 years of contributions and the final number drops 15-25%.",
         ],
       },
     ],
@@ -973,11 +973,11 @@ export const guides: GuideArticle[] = [
     category: "Investing",
     readTime: "8 min",
     description:
-      "The single most important investment decision you will make — and how to get it right without overcomplicating it.",
+      "The single most important investment decision you will make. And how to get it right without overcomplicating it.",
     relatedCategory: "/investing",
     relatedLabel: "Investing Platforms",
     intro:
-      "Asset allocation — the split between stocks, bonds, and cash — determines over 90% of your portfolio's long-term performance and volatility. Getting this right matters far more than picking the 'best' individual fund.",
+      "Asset allocation: the split between stocks, bonds, and cash. Determines over 90% of your portfolio's long-term performance and volatility. Getting this right matters far more than picking the 'best' individual fund.",
     sections: [
       {
         heading: "The Age-Based Starting Point",
@@ -991,9 +991,9 @@ export const guides: GuideArticle[] = [
           "You do not need dozens of funds to be diversified. A three-fund portfolio covers almost the entire global market:",
         ],
         bullets: [
-          "Total US Stock Market Index (e.g., VTI, FSKAX) — 50-60% of stock allocation.",
-          "Total International Stock Index (e.g., VXUS, FTIHX) — 30-40% of stock allocation.",
-          "Total Bond Market Index (e.g., BND, FXNAX) — full bond allocation.",
+          "Total US Stock Market Index (e.g., VTI, FSKAX), 50-60% of stock allocation.",
+          "Total International Stock Index (e.g., VXUS, FTIHX), 30-40% of stock allocation.",
+          "Total Bond Market Index (e.g., BND, FXNAX). Full bond allocation.",
         ],
       },
       {
@@ -1009,14 +1009,14 @@ export const guides: GuideArticle[] = [
       {
         heading: "How Allocation Changes Returns and Volatility",
         paragraphs: [
-          "Historical data (1970-2024) shows just how much asset allocation drives outcomes. The differences are dramatic over a 30-year time horizon — and the worst single-year loss is what causes most investors to panic-sell.",
+          "Historical data (1970-2024) shows just how much asset allocation drives outcomes. The differences are dramatic over a 30-year time horizon. And the worst single-year loss is what causes most investors to panic-sell.",
         ],
         bullets: [
-          "100% Stocks — ~10.2% avg annual return, worst year -37% (2008). Best for 30+ year horizons.",
-          "80/20 Stocks/Bonds — ~9.5% avg return, worst year -29%. Classic 'aggressive' allocation.",
-          "60/40 Stocks/Bonds — ~8.7% avg return, worst year -20%. The benchmark balanced portfolio.",
-          "40/60 Stocks/Bonds — ~7.5% avg return, worst year -12%. Suitable approaching retirement.",
-          "20/80 Stocks/Bonds — ~6.2% avg return, worst year -6%. Capital preservation focus.",
+          "100% Stocks, ~10.2% avg annual return, worst year -37% (2008). Best for 30+ year horizons.",
+          "80/20 Stocks/Bonds, ~9.5% avg return, worst year -29%. Classic 'aggressive' allocation.",
+          "60/40 Stocks/Bonds, ~8.7% avg return, worst year -20%. The benchmark balanced portfolio.",
+          "40/60 Stocks/Bonds, ~7.5% avg return, worst year -12%. Suitable approaching retirement.",
+          "20/80 Stocks/Bonds, ~6.2% avg return, worst year -6%. Capital preservation focus.",
           "On a $100K portfolio over 30 years at these returns: 100% stocks → $1.87M, 60/40 → $1.23M, 20/80 → $612K. The cost of being too conservative early is enormous.",
         ],
       },
@@ -1027,34 +1027,34 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "Taxable brokerage → US/international stock index ETFs (VTI, VXUS), municipal bonds.",
-          "Roth IRA → highest expected-return assets (small-cap, emerging markets) — tax-free forever.",
+          "Roth IRA → highest expected-return assets (small-cap, emerging markets). Tax-free forever.",
           "Traditional 401(k)/IRA → taxable bonds, REITs, anything that throws off ordinary income.",
-          "This single optimization can add 0.3-0.7% per year to after-tax returns — over 30 years, that's hundreds of thousands of dollars.",
+          "This single optimization can add 0.3-0.7% per year to after-tax returns. Over 30 years, that's hundreds of thousands of dollars.",
         ],
       },
       {
         heading: "Tax Location: Three Worked Portfolios",
         paragraphs: [
-          "Abstract rules don't move the needle until you see the dollars. Below are three portfolios — $100K, $500K, and $2M — each held in a 70/30 stock/bond allocation split across taxable, Traditional 401(k), and Roth IRA. We compare a 'naive' mirror-allocation (same 70/30 in every account) against 'optimized' placement. Assumptions: 24% federal + 6% state marginal rate, 15% long-term capital gains, bonds yield 4.5% taxable interest, stocks yield 1.5% qualified dividends + 5.5% unrealized appreciation, 30-year horizon, no rebalancing-driven capital-gains drag.",
+          "Abstract rules don't move the needle until you see the dollars. Below are three portfolios: $100K, $500K, and $2M. Each held in a 70/30 stock/bond allocation split across taxable, Traditional 401(k), and Roth IRA. We compare a 'naive' mirror-allocation (same 70/30 in every account) against 'optimized' placement. Assumptions: 24% federal + 6% state marginal rate, 15% long-term capital gains, bonds yield 4.5% taxable interest, stocks yield 1.5% qualified dividends + 5.5% unrealized appreciation, 30-year horizon, no rebalancing-driven capital-gains drag.",
         ],
         bullets: [
-          "Portfolio A — $100K (40% taxable / 30% Trad 401(k) / 30% Roth IRA).",
-          "Naive mirror — each account holds 70% stocks / 30% bonds. Bond interest in the $40K taxable portion generates ~$540/year in 30% combined-rate tax = $162/year drag. Over 30 years at 7% gross return → ending wealth after tax ≈ $636,400.",
-          "Optimized — taxable = 100% stocks (VTI/VXUS), Traditional 401(k) = 100% bonds (BND), Roth = 100% stocks (small-cap tilt). Bond income is now fully sheltered; taxable stocks generate only 1.5% qualified dividends taxed at 15% = ~$90/year drag on $40K. Ending wealth after tax ≈ $654,800.",
-          "Delta for $100K portfolio — $18,400 extra over 30 years (~0.30% annualized after-tax boost). Modest but free.",
-          "Portfolio B — $500K (40% / 30% / 30%). Same structure, 10x balance.",
-          "Naive mirror — bond interest in $200K taxable bucket = ~$2,700/year in tax drag. Over 30 years → ending wealth after tax ≈ $3,182,000.",
-          "Optimized — taxable 100% stocks, Traditional bonds-heavy, Roth stocks-heavy. Drag falls to ~$450/year. Ending wealth after tax ≈ $3,274,000.",
-          "Delta for $500K portfolio — $92,000 extra over 30 years (~0.37% annualized). Now meaningful.",
-          "Portfolio C — $2M (50% taxable / 25% Trad / 25% Roth). Large taxable bias is typical for maxed-out HSA/401(k)/IRA households.",
-          "Naive mirror — $1M taxable × 30% bonds × 4.5% yield × 30% tax = ~$4,050/year drag. REITs (if held) add another $2,000-3,000/year. Ending wealth after tax ≈ $12,728,000.",
-          "Optimized — taxable 100% broad-market stock ETFs, Traditional holds 100% bonds + any REIT sleeve, Roth holds highest-expected-return stocks. Drag shrinks to ~$800/year on qualified dividends. Ending wealth after tax ≈ $13,237,000.",
-          "Delta for $2M portfolio — $509,000 extra over 30 years (~0.70% annualized). This is why advisors call tax-location 'the free lunch of investing.'",
-          "Implementation — rebalance quarterly by directing new contributions to underweight buckets inside each account. Only sell when drift exceeds 5%, and prefer sales inside tax-advantaged accounts to avoid realizing capital gains in taxable.",
+          "Portfolio A: $100K (40% taxable / 30% Trad 401(k) / 30% Roth IRA).",
+          "Naive mirror: each account holds 70% stocks / 30% bonds. Bond interest in the $40K taxable portion generates ~$540/year in 30% combined-rate tax = $162/year drag. Over 30 years at 7% gross return → ending wealth after tax ≈ $636,400.",
+          "Optimized: taxable = 100% stocks (VTI/VXUS), Traditional 401(k) = 100% bonds (BND), Roth = 100% stocks (small-cap tilt). Bond income is now fully sheltered; taxable stocks generate only 1.5% qualified dividends taxed at 15% = ~$90/year drag on $40K. Ending wealth after tax ≈ $654,800.",
+          "Delta for $100K portfolio: $18,400 extra over 30 years (~0.30% annualized after-tax boost). Modest but free.",
+          "Portfolio B: $500K (40% / 30% / 30%). Same structure, 10x balance.",
+          "Naive mirror: bond interest in $200K taxable bucket = ~$2,700/year in tax drag. Over 30 years → ending wealth after tax ≈ $3,182,000.",
+          "Optimized: taxable 100% stocks, Traditional bonds-heavy, Roth stocks-heavy. Drag falls to ~$450/year. Ending wealth after tax ≈ $3,274,000.",
+          "Delta for $500K portfolio: $92,000 extra over 30 years (~0.37% annualized). Now meaningful.",
+          "Portfolio C: $2M (50% taxable / 25% Trad / 25% Roth). Large taxable bias is typical for maxed-out HSA/401(k)/IRA households.",
+          "Naive mirror: $1M taxable × 30% bonds × 4.5% yield × 30% tax = ~$4,050/year drag. REITs (if held) add another $2,000-3,000/year. Ending wealth after tax ≈ $12,728,000.",
+          "Optimized: taxable 100% broad-market stock ETFs, Traditional holds 100% bonds + any REIT sleeve, Roth holds highest-expected-return stocks. Drag shrinks to ~$800/year on qualified dividends. Ending wealth after tax ≈ $13,237,000.",
+          "Delta for $2M portfolio: $509,000 extra over 30 years (~0.70% annualized). This is why advisors call tax-location 'the free lunch of investing.'",
+          "Implementation: rebalance quarterly by directing new contributions to underweight buckets inside each account. Only sell when drift exceeds 5%, and prefer sales inside tax-advantaged accounts to avoid realizing capital gains in taxable.",
         ],
         callout: {
           title: "The Scaling Rule",
-          body: "Tax-location benefit scales roughly with (a) taxable-account share of total portfolio and (b) your marginal tax rate. Below ~$50K total assets the work isn't worth it; above $500K it compounds into six figures. High earners in CA/NY/NJ see the largest gains — often 0.8-1.1% annualized after-tax lift.",
+          body: "Tax-location benefit scales roughly with (a) taxable-account share of total portfolio and (b) your marginal tax rate. Below ~$50K total assets the work isn't worth it; above $500K it compounds into six figures. High earners in CA/NY/NJ see the largest gains. Often 0.8-1.1% annualized after-tax lift.",
         },
       },
       {
@@ -1063,11 +1063,11 @@ export const guides: GuideArticle[] = [
           "The rule 'bonds in Traditional, stocks in Roth' is a default, not a law. Three situations flip the math.",
         ],
         bullets: [
-          "Low marginal rate today, high rate expected in retirement — young earner in 12% bracket. Putting bonds in Traditional 'saves' only 12% now but forces you to withdraw at 22-24% later. Put stocks in Traditional here; future growth is taxed at ordinary rates but the base is smaller.",
-          "Very small taxable account (under $25K) — the dollar-level drag is trivial and the operational complexity of mirroring isn't worth it. Just hold a target-date fund everywhere until balances grow.",
-          "Roth is your ONLY tax-advantaged account — if bonds only exist in taxable, municipal-bond funds (VTEB, VWIUX) often beat taxable bonds on after-tax yield for anyone in the 24%+ bracket. A 3.5% muni yield equals a ~5.0% taxable bond yield at 30% combined rate.",
-          "International stocks in Roth — the Foreign Tax Credit (worth 15-40 bps/yr) is WASTED inside a Roth because you paid no US tax to offset. Hold international index funds in TAXABLE instead to claim the credit on Schedule 3 (Form 1040).",
-          "High-yield stock ETFs (SCHD, VYM) throw off qualified dividends but at 2.5-3.5% yield — higher tax drag than broad-market. Hold these in Roth or Traditional, not taxable.",
+          "Low marginal rate today, high rate expected in retirement. Young earner in 12% bracket. Putting bonds in Traditional 'saves' only 12% now but forces you to withdraw at 22-24% later. Put stocks in Traditional here; future growth is taxed at ordinary rates but the base is smaller.",
+          "Very small taxable account (under $25K): the dollar-level drag is trivial and the operational complexity of mirroring isn't worth it. Just hold a target-date fund everywhere until balances grow.",
+          "Roth is your ONLY tax-advantaged account: if bonds only exist in taxable, municipal-bond funds (VTEB, VWIUX) often beat taxable bonds on after-tax yield for anyone in the 24%+ bracket. A 3.5% muni yield equals a ~5.0% taxable bond yield at 30% combined rate.",
+          "International stocks in Roth: the Foreign Tax Credit (worth 15-40 bps/yr) is WASTED inside a Roth because you paid no US tax to offset. Hold international index funds in TAXABLE instead to claim the credit on Schedule 3 (Form 1040).",
+          "High-yield stock ETFs (SCHD, VYM) throw off qualified dividends but at 2.5-3.5% yield. Higher tax drag than broad-market. Hold these in Roth or Traditional, not taxable.",
         ],
       },
     ],
@@ -1088,7 +1088,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "How does tax-location really save 0.3-0.7% per year?",
-        a: "Bonds and REITs throw off ordinary-income distributions taxed at your marginal rate (22-37%). Held in a taxable account, that drag is 0.8-1.5% per year. Moved to a Traditional IRA or 401(k), it's zero. Swap the space with a total-market index ETF (VTI/FSKAX) — those throw off almost no taxable distributions, so the taxable account keeps most of its yield. On a $500K portfolio, that's $1,500-3,500/year saved, forever.",
+        a: "Bonds and REITs throw off ordinary-income distributions taxed at your marginal rate (22-37%). Held in a taxable account, that drag is 0.8-1.5% per year. Moved to a Traditional IRA or 401(k), it's zero. Swap the space with a total-market index ETF (VTI/FSKAX). Those throw off almost no taxable distributions, so the taxable account keeps most of its yield. On a $500K portfolio, that's $1,500-3,500/year saved, forever.",
       },
       {
         q: "How much of my stock allocation should be international?",
@@ -1102,7 +1102,7 @@ export const guides: GuideArticle[] = [
     category: "Investing",
     readTime: "7 min",
     description:
-      "How to keep a portfolio on target year after year — and when to consider REITs, commodities, or other alternatives.",
+      "How to keep a portfolio on target year after year. And when to consider REITs, commodities, or other alternatives.",
     relatedCategory: "/investing",
     relatedLabel: "Investing Platforms",
     intro:
@@ -1111,12 +1111,12 @@ export const guides: GuideArticle[] = [
       {
         heading: "Rebalancing 101",
         paragraphs: [
-          "Rebalancing means returning your portfolio to its target allocation. If stocks have surged, you are now overexposed to stocks — you sell some to buy bonds and reset. This forces you to buy low and sell high automatically.",
+          "Rebalancing means returning your portfolio to its target allocation. If stocks have surged, you are now overexposed to stocks. You sell some to buy bonds and reset. This forces you to buy low and sell high automatically.",
         ],
         bullets: [
           "Check allocations once per year (e.g., every January).",
           "Rebalance if any asset class has drifted more than 5% from its target.",
-          "Do most rebalancing by directing new contributions to underweight asset classes — it avoids taxes.",
+          "Do most rebalancing by directing new contributions to underweight asset classes. It avoids taxes.",
         ],
       },
       {
@@ -1163,7 +1163,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "When should I consider I Bonds vs TIPS for inflation protection?",
-        a: "I Bonds are for individuals — $10K/year limit, 12-month lockup, state-tax-free, ideal for a 3-5 year hedge sleeve. TIPS (Treasury Inflation-Protected Securities) are better for larger allocations since they have no purchase cap and can be held via a fund (SCHP, VTIP, VAIPX). Use I Bonds first up to the $10K limit, TIPS for anything beyond.",
+        a: "I Bonds are for individuals: $10K/year limit, 12-month lockup, state-tax-free, ideal for a 3-5 year hedge sleeve. TIPS (Treasury Inflation-Protected Securities) are better for larger allocations since they have no purchase cap and can be held via a fund (SCHP, VTIP, VAIPX). Use I Bonds first up to the $10K limit, TIPS for anything beyond.",
       },
     ],
   },
@@ -1192,24 +1192,24 @@ export const guides: GuideArticle[] = [
           "Fidelity's widely-cited benchmarks give you a quick gut-check on whether you're on track. They assume you save 15% annually starting at 25 and retire at 67.",
         ],
         bullets: [
-          "By age 30 — 1x your annual salary saved.",
-          "By age 40 — 3x your annual salary saved.",
-          "By age 50 — 6x your annual salary saved.",
-          "By age 60 — 8x your annual salary saved.",
-          "By age 67 — 10x your annual salary saved.",
+          "By age 30: 1x your annual salary saved.",
+          "By age 40: 3x your annual salary saved.",
+          "By age 50: 6x your annual salary saved.",
+          "By age 60: 8x your annual salary saved.",
+          "By age 67: 10x your annual salary saved.",
           "Behind these numbers? Don't panic. Bumping savings rate from 10% to 20% closes the gap faster than market returns ever will.",
         ],
         callout: {
           title: "What If You Started Late?",
-          body: "A 45-year-old with $50K saved who starts contributing $1,500/month at 7% returns hits $1.1M by age 65. Late starts work — they just require a higher savings rate and discipline.",
+          body: "A 45-year-old with $50K saved who starts contributing $1,500/month at 7% returns hits $1.1M by age 65. Late starts work: they just require a higher savings rate and discipline.",
         },
       },
       {
         heading: "The Priority Order",
         bullets: [
-          "1. 401(k) up to employer match — this is a 50-100% instant return.",
-          "2. High-interest debt (credit cards, any debt over 7%) — paid off aggressively.",
-          "3. HSA (if you have a high-deductible health plan) — triple tax advantage.",
+          "1. 401(k) up to employer match. This is a 50-100% instant return.",
+          "2. High-interest debt (credit cards, any debt over 7%). Paid off aggressively.",
+          "3. HSA (if you have a high-deductible health plan). Triple tax advantage.",
           "4. Roth IRA to the annual limit ($7,000 in 2026).",
           "5. 401(k) / 403(b) to the annual limit ($23,500 in 2026).",
           "6. Taxable brokerage account for anything above that.",
@@ -1232,11 +1232,11 @@ export const guides: GuideArticle[] = [
           "The Trinity Study (Bengen 1994, updated through 2024) found that a 50/50 to 75/25 stock/bond portfolio supported a 4% inflation-adjusted withdrawal for 30 years in 96%+ of historical periods. That's where '25x expenses' comes from. But the rule has known failure modes.",
         ],
         bullets: [
-          "Horizon sensitivity — 4% is for 30-year retirements. Early retirees (40-year horizon) should use 3.3-3.5%; 20-year horizons can safely take 5%.",
-          "Sequence-of-returns risk — a 30% drop in years 1-2 of retirement is the #1 failure driver. Solution: hold 2-3 years of expenses in bonds/cash as a 'bond tent' around retirement.",
-          "Bond-heavy portfolios fail — a 30/70 allocation historically fails ~15% of the time over 30 years because bonds can't outpace inflation + withdrawals long-term.",
-          "Dynamic SWR — Guyton-Klinger guardrails (raise 4-5% in up markets, cut to 3-3.5% in deep drawdowns) lift safe initial rates to 4.5-5% with the same 95%+ survival rate.",
-          "IRMAA & tax impact — Social Security + RMDs can push retirees into higher Medicare premium brackets ($250-500/mo extra per person above $106K MAGI). Plan Roth conversions in the 59½-73 window to flatten lifetime taxes.",
+          "Horizon sensitivity: 4% is for 30-year retirements. Early retirees (40-year horizon) should use 3.3-3.5%; 20-year horizons can safely take 5%.",
+          "Sequence-of-returns risk: a 30% drop in years 1-2 of retirement is the #1 failure driver. Solution: hold 2-3 years of expenses in bonds/cash as a 'bond tent' around retirement.",
+          "Bond-heavy portfolios fail: a 30/70 allocation historically fails ~15% of the time over 30 years because bonds can't outpace inflation + withdrawals long-term.",
+          "Dynamic SWR: Guyton-Klinger guardrails (raise 4-5% in up markets, cut to 3-3.5% in deep drawdowns) lift safe initial rates to 4.5-5% with the same 95%+ survival rate.",
+          "IRMAA & tax impact. Social Security + RMDs can push retirees into higher Medicare premium brackets ($250-500/mo extra per person above $106K MAGI). Plan Roth conversions in the 59½-73 window to flatten lifetime taxes.",
         ],
       },
       {
@@ -1245,24 +1245,24 @@ export const guides: GuideArticle[] = [
           "If you want to access Traditional 401(k)/IRA funds before age 59½ without the 10% penalty, the Roth Conversion Ladder is the cleanest legal path.",
         ],
         bullets: [
-          "Step 1 — rollover Traditional 401(k) to a Traditional IRA after leaving your job (no tax event).",
-          "Step 2 — each year, convert one year's worth of expenses from Traditional IRA to Roth IRA. You pay ordinary income tax on each conversion — ideally in a low-income year.",
-          "Step 3 — wait 5 tax years from each conversion. The converted principal can then be withdrawn tax-free and penalty-free, even if you're under 59½.",
-          "Step 4 — repeat annually. Once the ladder is rolling, each year's expenses come from a conversion made 5 years earlier.",
-          "Bridge funding — need 5 years of taxable account or Roth contribution withdrawals (always penalty-free) to live on while the ladder fills.",
-          "Tax win — early retirees in the 12% bracket can convert hundreds of thousands of dollars at dramatically lower rates than a 22-24% working-year rate.",
+          "Step 1: rollover Traditional 401(k) to a Traditional IRA after leaving your job (no tax event).",
+          "Step 2: each year, convert one year's worth of expenses from Traditional IRA to Roth IRA. You pay ordinary income tax on each conversion. Ideally in a low-income year.",
+          "Step 3: wait 5 tax years from each conversion. The converted principal can then be withdrawn tax-free and penalty-free, even if you're under 59½.",
+          "Step 4: repeat annually. Once the ladder is rolling, each year's expenses come from a conversion made 5 years earlier.",
+          "Bridge funding: need 5 years of taxable account or Roth contribution withdrawals (always penalty-free) to live on while the ladder fills.",
+          "Tax win: early retirees in the 12% bracket can convert hundreds of thousands of dollars at dramatically lower rates than a 22-24% working-year rate.",
         ],
       },
       {
         heading: "Starting Late: Three Realistic Scenarios",
         paragraphs: [
-          "Behind where you 'should' be? The math still works — it just requires higher savings rates.",
+          "Behind where you 'should' be? The math still works. It just requires higher savings rates.",
         ],
         bullets: [
-          "Age 35 with $10K saved, $70K income — contributing 15% ($875/mo) at 7% real → $1.18M at age 65.",
-          "Age 45 with $50K saved, $85K income — contributing 25% ($1,770/mo) at 7% real → $1.02M at age 65.",
-          "Age 55 with $150K saved, $100K income — contributing 35% ($2,915/mo) at 6% real → $868K at age 65 + Social Security covers the gap. Catch-up contributions (age 50+) add $7,500/year extra to 401(k)s.",
-          "Working 3-5 years longer is the single most powerful late-start lever — it adds contributions while cutting the years the portfolio needs to support.",
+          "Age 35 with $10K saved, $70K income. Contributing 15% ($875/mo) at 7% real → $1.18M at age 65.",
+          "Age 45 with $50K saved, $85K income. Contributing 25% ($1,770/mo) at 7% real → $1.02M at age 65.",
+          "Age 55 with $150K saved, $100K income. Contributing 35% ($2,915/mo) at 6% real → $868K at age 65 + Social Security covers the gap. Catch-up contributions (age 50+) add $7,500/year extra to 401(k)s.",
+          "Working 3-5 years longer is the single most powerful late-start lever. It adds contributions while cutting the years the portfolio needs to support.",
         ],
       },
     ],
@@ -1284,15 +1284,15 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What's the difference between a 401(k) and an IRA?",
-        a: "A 401(k) is offered by your employer with much higher contribution limits ($23,500 in 2026 vs $7,000 for an IRA) and often an employer match. An IRA is opened independently at any brokerage and gives you broader investment choices. Most people use both — 401(k) for the match and IRA for the better fund options.",
+        a: "A 401(k) is offered by your employer with much higher contribution limits ($23,500 in 2026 vs $7,000 for an IRA) and often an employer match. An IRA is opened independently at any brokerage and gives you broader investment choices. Most people use both: 401(k) for the match and IRA for the better fund options.",
       },
       {
         q: "What is a Mega Backdoor Roth?",
-        a: "An advanced strategy for high earners whose 401(k) plans allow after-tax contributions and in-service rollovers. You contribute up to ~$46,000 of after-tax dollars annually (above the standard $23,500 limit), then immediately roll them to a Roth account for tax-free growth. Only ~40% of plans support it — check your plan documents.",
+        a: "An advanced strategy for high earners whose 401(k) plans allow after-tax contributions and in-service rollovers. You contribute up to ~$46,000 of after-tax dollars annually (above the standard $23,500 limit), then immediately roll them to a Roth account for tax-free growth. Only ~40% of plans support it. Check your plan documents.",
       },
       {
         q: "How do RMDs affect my tax bracket in retirement?",
-        a: "Required Minimum Distributions start at age 73 (75 if born 1960+) and force withdrawals from Traditional accounts whether you need the money or not. A $1.5M Traditional IRA forces a ~$56,600 withdrawal at age 73 — pushing many retirees into higher brackets and triggering IRMAA Medicare surcharges. Mitigate with Roth conversions between ages 59½-73 during low-income windows.",
+        a: "Required Minimum Distributions start at age 73 (75 if born 1960+) and force withdrawals from Traditional accounts whether you need the money or not. A $1.5M Traditional IRA forces a ~$56,600 withdrawal at age 73. Pushing many retirees into higher brackets and triggering IRMAA Medicare surcharges. Mitigate with Roth conversions between ages 59½-73 during low-income windows.",
       },
       {
         q: "What's the IRMAA cliff and how do I avoid it?",
@@ -1312,7 +1312,7 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/investing",
     relatedLabel: "Trading Platforms",
     intro:
-      "Trading and investing are different disciplines. Investing holds for years and focuses on fundamentals. Trading holds for days to weeks and focuses on price action, volume, and risk management. Most retail traders lose money — the ones who succeed treat it like a business with strict rules.",
+      "Trading and investing are different disciplines. Investing holds for years and focuses on fundamentals. Trading holds for days to weeks and focuses on price action, volume, and risk management. Most retail traders lose money: the ones who succeed treat it like a business with strict rules.",
     sections: [
       {
         heading: "Define Your Strategy Before You Trade",
@@ -1320,20 +1320,20 @@ export const guides: GuideArticle[] = [
           "Every successful trader uses a repeatable strategy with clear entry, exit, and risk rules. Choose one style and master it before trying others.",
         ],
         bullets: [
-          "Swing trading — hold days to weeks based on technical patterns and momentum.",
-          "Trend following — ride established up- or down-trends until they break.",
-          "Mean reversion — buy oversold, sell overbought; works well in range-bound markets.",
-          "Position trading — longer holds of weeks to months based on macro or sector themes.",
+          "Swing trading: hold days to weeks based on technical patterns and momentum.",
+          "Trend following: ride established up- or down-trends until they break.",
+          "Mean reversion: buy oversold, sell overbought; works well in range-bound markets.",
+          "Position trading: longer holds of weeks to months based on macro or sector themes.",
         ],
       },
       {
         heading: "Order Types That Matter",
         bullets: [
-          "Market order — buys or sells immediately at the current price. Fast but can slip in volatile markets.",
-          "Limit order — only executes at your chosen price or better. Slower but prevents overpaying.",
-          "Stop-loss order — automatically sells if price drops to your set level; essential for risk control.",
-          "Stop-limit order — combines a stop trigger with a limit price to prevent bad fills in fast moves.",
-          "Trailing stop — follows price up and locks in gains automatically.",
+          "Market order: buys or sells immediately at the current price. Fast but can slip in volatile markets.",
+          "Limit order: only executes at your chosen price or better. Slower but prevents overpaying.",
+          "Stop-loss order: automatically sells if price drops to your set level; essential for risk control.",
+          "Stop-limit order: combines a stop trigger with a limit price to prevent bad fills in fast moves.",
+          "Trailing stop: follows price up and locks in gains automatically.",
         ],
       },
       {
@@ -1343,9 +1343,9 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "Never risk more than 1-2% of your account on a single trade.",
-          "Always set a stop loss before entering a trade — at a level the thesis is proven wrong.",
+          "Always set a stop loss before entering a trade. At a level the thesis is proven wrong.",
           "Target a minimum 2:1 reward-to-risk ratio on every setup.",
-          "Keep a trading journal — record setup, entry, exit, outcome, and lessons.",
+          "Keep a trading journal: record setup, entry, exit, outcome, and lessons.",
           "Review the journal monthly to find what is actually working.",
         ],
         callout: {
@@ -1357,10 +1357,10 @@ export const guides: GuideArticle[] = [
         heading: "Position Sizing: The Math That Keeps You Alive",
         paragraphs: [
           "Position sizing is the link between your stop loss and your account risk. Get it right, and you can be wrong 50% of the time and still profit. Get it wrong, and one bad trade ends your trading career.",
-          "The formula: Position Size = (Account × Risk%) ÷ (Entry Price - Stop Price). Example: $50,000 account, 1% risk ($500), buy at $100, stop at $95 ($5 risk per share). Position size = $500 ÷ $5 = 100 shares ($10,000 position). If stopped out, you lose exactly $500 — 1% of your account.",
+          "The formula: Position Size = (Account × Risk%) ÷ (Entry Price - Stop Price). Example: $50,000 account, 1% risk ($500), buy at $100, stop at $95 ($5 risk per share). Position size = $500 ÷ $5 = 100 shares ($10,000 position). If stopped out, you lose exactly $500–1% of your account.",
         ],
         bullets: [
-          "Never let position size exceed 20% of total account, even if math allows — concentration risk.",
+          "Never let position size exceed 20% of total account, even if math allows. Concentration risk.",
           "After 3 consecutive losses, cut position size in half until you have a winner.",
           "Track your win rate AND your average win-to-loss ratio. A 40% win rate with 3:1 R:R is profitable; an 80% win rate with 1:3 R:R is bankruptcy.",
         ],
@@ -1368,19 +1368,19 @@ export const guides: GuideArticle[] = [
       {
         heading: "Common Trader Mistakes That Drain Accounts",
         bullets: [
-          "Revenge trading — trying to win back losses by sizing up. Locks in the worst sequence of trades.",
-          "Moving stop losses further away to avoid being stopped out — turns small losses into account-killers.",
-          "Adding to losing positions ('averaging down') without a defined plan — works until it doesn't, then takes you out.",
-          "Trading too many setups — every strategy works in some market regime, none work in all of them.",
-          "Ignoring commissions and slippage on small accounts — $7 round-trip costs are 1.4% on a $500 trade.",
-          "Not separating trading capital from living expenses — the moment you NEED to make money, you stop trading well.",
+          "Revenge trading: trying to win back losses by sizing up. Locks in the worst sequence of trades.",
+          "Moving stop losses further away to avoid being stopped out. Turns small losses into account-killers.",
+          "Adding to losing positions ('averaging down') without a defined plan. Works until it doesn't, then takes you out.",
+          "Trading too many setups: every strategy works in some market regime, none work in all of them.",
+          "Ignoring commissions and slippage on small accounts, $7 round-trip costs are 1.4% on a $500 trade.",
+          "Not separating trading capital from living expenses. The moment you NEED to make money, you stop trading well.",
         ],
       },
     ],
     keyTakeaways: [
       "Pick one strategy and stay disciplined until you master it.",
       "Never risk more than 1-2% of account equity per trade.",
-      "Use stop losses on every trade — no exceptions.",
+      "Use stop losses on every trade: no exceptions.",
       "Target 2:1 minimum reward-to-risk on every setup.",
       "Keep the vast majority of your net worth invested, not traded.",
     ],
@@ -1395,15 +1395,15 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Options or stocks to start?",
-        a: "Stocks. Learn price action and risk management first. Options add leverage that amplifies both gains and mistakes — start there only after 1-2 years of profitable stock trading.",
+        a: "Stocks. Learn price action and risk management first. Options add leverage that amplifies both gains and mistakes. Start there only after 1-2 years of profitable stock trading.",
       },
       {
         q: "How do taxes work on short-term trades?",
-        a: "Positions held under 1 year are taxed as short-term capital gains at your ordinary income rate (10-37%). Long-term gains (12+ months held) are taxed at 0/15/20%. High-frequency traders can easily lose 30-40% of gross profit to federal + state taxes. Consider trading inside a Roth IRA to eliminate all capital gains tax — the tradeoff is no loss harvesting.",
+        a: "Positions held under 1 year are taxed as short-term capital gains at your ordinary income rate (10-37%). Long-term gains (12+ months held) are taxed at 0/15/20%. High-frequency traders can easily lose 30-40% of gross profit to federal + state taxes. Consider trading inside a Roth IRA to eliminate all capital gains tax. The tradeoff is no loss harvesting.",
       },
       {
         q: "What is the wash-sale rule and when does it apply?",
-        a: "If you sell a security at a loss and buy a 'substantially identical' security within 30 days (before OR after the sale), the loss is disallowed for that tax year — it adds to the cost basis of the new position. Applies across all accounts including IRAs (losses in your brokerage triggered by IRA buys are PERMANENTLY lost). Swap losing positions to a similar but not identical fund (e.g., VOO → IVV) to harvest losses legally.",
+        a: "If you sell a security at a loss and buy a 'substantially identical' security within 30 days (before OR after the sale), the loss is disallowed for that tax year. It adds to the cost basis of the new position. Applies across all accounts including IRAs (losses in your brokerage triggered by IRA buys are PERMANENTLY lost). Swap losing positions to a similar but not identical fund (e.g., VOO → IVV) to harvest losses legally.",
       },
     ],
   },
@@ -1415,28 +1415,28 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "7 min",
     description:
-      "A practical checklist for choosing the right high-yield savings account — APY, fees, access, and FDIC insurance all matter.",
+      "A practical checklist for choosing the right high-yield savings account. APY, fees, access, and FDIC insurance all matter.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Banking Apps",
     intro:
-      "A high-yield savings account (HYSA) is the single easiest financial upgrade you can make. Moving $10,000 from a 0.01% big-bank account to a 4.5% HYSA earns you roughly $450 more per year — with zero risk and zero effort after setup. But not all HYSAs are equal. Teaser rates, hidden fees, and clunky transfer policies can quietly erode the advantage. Here is exactly what to look for.",
+      "A high-yield savings account (HYSA) is the single easiest financial upgrade you can make. Moving $10,000 from a 0.01% big-bank account to a 4.5% HYSA earns you roughly $450 more per year. With zero risk and zero effort after setup. But not all HYSAs are equal. Teaser rates, hidden fees, and clunky transfer policies can quietly erode the advantage. Here is exactly what to look for.",
     sections: [
       {
-        heading: "Start With APY — But Read the Fine Print",
+        heading: "Start With APY: But Read the Fine Print",
         paragraphs: [
           "Annual Percentage Yield is the headline number, but the rate you see advertised is not always the rate you get. Some banks offer promotional rates that drop after 3-6 months. Others tier the rate so only balances under a certain amount earn the top APY.",
         ],
         bullets: [
           "Check whether the advertised APY is promotional or ongoing.",
           "Confirm the rate applies to your full balance, not just the first $5,000 or $25,000.",
-          "Look up the bank's rate history — consistently competitive banks (Marcus, Ally, SoFi) rarely drop below market.",
-          "A 0.25% difference on $25,000 is $62.50 per year — meaningful, but not worth chasing if it costs convenience.",
+          "Look up the bank's rate history. Consistently competitive banks (Marcus, Ally, SoFi) rarely drop below market.",
+          "A 0.25% difference on $25,000 is $62.50 per year. Meaningful, but not worth chasing if it costs convenience.",
         ],
       },
       {
         heading: "Fees Should Be Zero",
         paragraphs: [
-          "Any HYSA worth using charges no monthly maintenance fee, no minimum balance fee, and no transfer fee. If a bank charges any of these, move on — there are at least a dozen no-fee alternatives with competitive rates.",
+          "Any HYSA worth using charges no monthly maintenance fee, no minimum balance fee, and no transfer fee. If a bank charges any of these, move on. There are at least a dozen no-fee alternatives with competitive rates.",
         ],
         callout: {
           title: "Red Flag",
@@ -1452,7 +1452,7 @@ export const guides: GuideArticle[] = [
           "ACH transfers: 1-3 business days (standard for most HYSAs).",
           "Same-bank transfers: instant if the HYSA and your checking are at the same bank.",
           "Debit card access: SoFi, Ally, and Discover offer this; Marcus does not.",
-          "Reg D limits: most banks cap savings withdrawals at 6 per month — plan around it.",
+          "Reg D limits: most banks cap savings withdrawals at 6 per month. Plan around it.",
         ],
       },
       {
@@ -1470,13 +1470,13 @@ export const guides: GuideArticle[] = [
           "Mobile app with mobile check deposit.",
           "External account linking (ACH) for easy transfers.",
           "Savings buckets or sub-accounts for goal tracking (Ally, SoFi).",
-          "Clear, published rate history — not just a promotional splash.",
+          "Clear, published rate history. Not just a promotional splash.",
         ],
       },
       {
         heading: "What That 0.25% Difference Actually Means",
         paragraphs: [
-          "The yield gap between the top HYSAs and second-tier accounts is usually 0.25-0.50%. On small balances that is a few dollars a year. On large balances it is real money — but it is also frequently smaller than the cost of switching banks if your current setup has automation, bill pay, and direct deposit linked to it.",
+          "The yield gap between the top HYSAs and second-tier accounts is usually 0.25-0.50%. On small balances that is a few dollars a year. On large balances it is real money. But it is also frequently smaller than the cost of switching banks if your current setup has automation, bill pay, and direct deposit linked to it.",
         ],
         bullets: [
           "$5,000 balance × 0.25% gap = $12.50/year. Not worth switching for.",
@@ -1492,22 +1492,22 @@ export const guides: GuideArticle[] = [
         ],
         callout: {
           title: "The Hidden Cost of Promo Rates",
-          body: "Banks that offer 5.5% APY for 3 months then drop to 3.5% are betting on inertia — most customers don't notice and stick around. If you're going to chase a promo, calendar the day it expires and be ready to move.",
+          body: "Banks that offer 5.5% APY for 3 months then drop to 3.5% are betting on inertia. Most customers don't notice and stick around. If you're going to chase a promo, calendar the day it expires and be ready to move.",
         },
       },
       {
         heading: "May 2026 Rate Benchmarks and 12-Month History",
         paragraphs: [
-          "Use these as a reference point when comparing offers. APYs move roughly with the Fed Funds rate — expect the floor to drop 0.25-0.50% over the next 6 months if cuts materialize.",
+          "Use these as a reference point when comparing offers. APYs move roughly with the Fed Funds rate. Expect the floor to drop 0.25-0.50% over the next 6 months if cuts materialize.",
         ],
         bullets: [
-          "CIT Platinum Savings — 4.10% APY (balances $5K+). 12-mo range: 4.55% → 4.10%.",
-          "Bread Savings — 4.00% APY. 12-mo range: 4.40% → 4.00%.",
-          "SoFi (with direct deposit) — 3.80% APY. 12-mo range: 4.30% → 3.80%.",
-          "Marcus by Goldman Sachs — 3.50% APY. 12-mo range: 4.00% → 3.50%.",
-          "Ally Online Savings — 3.10% APY. 12-mo range: 4.00% → 3.10%.",
-          "Capital One 360 Performance Savings — 3.40% APY. 12-mo range: 3.90% → 3.40%.",
-          "Big-bank 'standard' savings (Chase, BofA, Wells) — 0.01-0.05% APY. Unchanged for years.",
+          "CIT Platinum Savings: 4.10% APY (balances $5K+). 12-mo range: 4.55% → 4.10%.",
+          "Bread Savings: 4.00% APY. 12-mo range: 4.40% → 4.00%.",
+          "SoFi (with direct deposit): 3.80% APY. 12-mo range: 4.30% → 3.80%.",
+          "Marcus by Goldman Sachs: 3.50% APY. 12-mo range: 4.00% → 3.50%.",
+          "Ally Online Savings: 3.10% APY. 12-mo range: 4.00% → 3.10%.",
+          "Capital One 360 Performance Savings: 3.40% APY. 12-mo range: 3.90% → 3.40%.",
+          "Big-bank 'standard' savings (Chase, BofA, Wells), 0.01-0.05% APY. Unchanged for years.",
           "The 4%-vs-0.01% gap on $25K balance = $1,000/year of free money. This is the largest no-risk upgrade in personal finance.",
         ],
       },
@@ -1517,11 +1517,11 @@ export const guides: GuideArticle[] = [
           "HYSA interest is taxed as ordinary income at federal + state rates. For high earners in high-tax states, T-bills often beat HYSAs on after-tax yield despite a lower headline rate.",
         ],
         bullets: [
-          "24% federal + 0% state (TX, FL) — 4.00% HYSA → 3.04% after-tax.",
-          "24% federal + 6% state (most states) — 4.00% HYSA → 2.80% after-tax.",
-          "32% federal + 9.3% state (CA high earner) — 4.00% HYSA → 2.35% after-tax.",
-          "Same 32% + 9.3% investor in a 4.3% T-bill (state-tax-exempt) → 2.92% after-tax — 0.57% better than HYSA despite lower headline rate.",
-          "Practical rule — if your combined marginal rate is above 30% and you have $50K+ in cash, split between HYSA (emergency liquidity) and 4-week T-bill ladder (balance).",
+          "24% federal + 0% state (TX, FL), 4.00% HYSA → 3.04% after-tax.",
+          "24% federal + 6% state (most states), 4.00% HYSA → 2.80% after-tax.",
+          "32% federal + 9.3% state (CA high earner), 4.00% HYSA → 2.35% after-tax.",
+          "Same 32% + 9.3% investor in a 4.3% T-bill (state-tax-exempt) → 2.92% after-tax, 0.57% better than HYSA despite lower headline rate.",
+          "Practical rule: if your combined marginal rate is above 30% and you have $50K+ in cash, split between HYSA (emergency liquidity) and 4-week T-bill ladder (balance).",
         ],
       },
     ],
@@ -1535,7 +1535,7 @@ export const guides: GuideArticle[] = [
     faqs: [
       {
         q: "Is a 4.5% APY safe or too good to be true?",
-        a: "Safe, as long as the bank is FDIC-insured. High APYs reflect the current interest rate environment — they will drift lower when the Fed cuts rates.",
+        a: "Safe, as long as the bank is FDIC-insured. High APYs reflect the current interest rate environment. They will drift lower when the Fed cuts rates.",
       },
       {
         q: "Can I have multiple HYSAs?",
@@ -1547,11 +1547,11 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "How does FDIC coverage work for joint accounts?",
-        a: "Each co-owner gets $250K of coverage per bank — so a joint account gets $500K total. Revocable trust accounts with named beneficiaries get up to $250K per beneficiary (capped at 5 beneficiaries = $1.25M per owner per bank). Verify your exact coverage on FDIC's EDIE calculator.",
+        a: "Each co-owner gets $250K of coverage per bank. So a joint account gets $500K total. Revocable trust accounts with named beneficiaries get up to $250K per beneficiary (capped at 5 beneficiaries = $1.25M per owner per bank). Verify your exact coverage on FDIC's EDIE calculator.",
       },
       {
         q: "What about brokerage 'sweep' accounts like Fidelity SPAXX?",
-        a: "These are money market funds (MMFs), not FDIC-insured savings. They're SIPC-covered for brokerage failure only, NOT against MMF losses (rare but possible — Reserve Primary Fund broke the buck in 2008). Yields are typically 4.0-4.3% (May 2026) and state-tax-free if the fund holds Treasuries. Good alternative for brokerage-adjacent cash; don't use for the core emergency fund.",
+        a: "These are money market funds (MMFs), not FDIC-insured savings. They're SIPC-covered for brokerage failure only, NOT against MMF losses (rare but possible. Reserve Primary Fund broke the buck in 2008). Yields are typically 4.0-4.3% (May 2026) and state-tax-free if the fund holds Treasuries. Good alternative for brokerage-adjacent cash; don't use for the core emergency fund.",
       },
     ],
   },
@@ -1565,13 +1565,13 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/investing",
     relatedLabel: "Investing Platforms",
     intro:
-      "Roth and Traditional IRAs are the two most powerful retirement accounts available to individuals. Both let your money grow tax-free for decades. The only meaningful difference is when you pay taxes — now or in retirement. Getting that choice right can mean tens of thousands of extra dollars by the time you retire.",
+      "Roth and Traditional IRAs are the two most powerful retirement accounts available to individuals. Both let your money grow tax-free for decades. The only meaningful difference is when you pay taxes. Now or in retirement. Getting that choice right can mean tens of thousands of extra dollars by the time you retire.",
     sections: [
       {
         heading: "The One Real Difference: Tax Timing",
         paragraphs: [
           "A Traditional IRA gives you a tax deduction today. You contribute pre-tax dollars, your money grows tax-deferred, and you pay ordinary income tax on every dollar you withdraw in retirement.",
-          "A Roth IRA gives you no deduction today. You contribute after-tax dollars, your money grows tax-free, and qualified withdrawals in retirement are 100% tax-free — growth and principal.",
+          "A Roth IRA gives you no deduction today. You contribute after-tax dollars, your money grows tax-free, and qualified withdrawals in retirement are 100% tax-free. Growth and principal.",
         ],
         bullets: [
           "Traditional: tax break now, taxed later.",
@@ -1588,13 +1588,13 @@ export const guides: GuideArticle[] = [
         ],
         callout: {
           title: "Rule of Thumb",
-          body: "Young professionals in the 12-22% federal bracket almost always benefit from Roth — their income (and tax rate) will very likely be higher in their 50s and 60s. High earners in the 32-37% bracket typically favor Traditional.",
+          body: "Young professionals in the 12-22% federal bracket almost always benefit from Roth. Their income (and tax rate) will very likely be higher in their 50s and 60s. High earners in the 32-37% bracket typically favor Traditional.",
         },
       },
       {
         heading: "Income Limits Matter",
         paragraphs: [
-          "Roth IRA contributions phase out above $146,000 (single) or $230,000 (married) in 2024. Above those limits, direct Roth contributions are not allowed — but the Backdoor Roth strategy remains available.",
+          "Roth IRA contributions phase out above $146,000 (single) or $230,000 (married) in 2024. Above those limits, direct Roth contributions are not allowed. But the Backdoor Roth strategy remains available.",
           "Traditional IRA deductions phase out at much lower income levels if you or your spouse is covered by a workplace retirement plan. You can still contribute to a non-deductible Traditional IRA at any income.",
         ],
       },
@@ -1604,21 +1604,21 @@ export const guides: GuideArticle[] = [
           "Plug real numbers in and the answer becomes obvious in most cases. Assume $7,000/year contributed for 30 years at 7% returns = $660,000 at retirement.",
         ],
         bullets: [
-          "Scenario A — Currently 22% bracket, retire in 22% bracket: Roth and Traditional produce IDENTICAL after-tax wealth. Coin flip.",
-          "Scenario B — Currently 12% bracket, retire in 22% bracket: Roth wins by ~$66,000 after tax. Younger workers usually win here.",
-          "Scenario C — Currently 32% bracket, retire in 22% bracket: Traditional wins by ~$66,000 after tax. High earners near retirement usually win here.",
-          "Scenario D — Currently 24% bracket, retire in 12% bracket (downsize, low-cost area): Traditional wins by ~$80,000.",
+          "Scenario A: Currently 22% bracket, retire in 22% bracket: Roth and Traditional produce IDENTICAL after-tax wealth. Coin flip.",
+          "Scenario B: Currently 12% bracket, retire in 22% bracket: Roth wins by ~$66,000 after tax. Younger workers usually win here.",
+          "Scenario C: Currently 32% bracket, retire in 22% bracket: Traditional wins by ~$66,000 after tax. High earners near retirement usually win here.",
+          "Scenario D: Currently 24% bracket, retire in 12% bracket (downsize, low-cost area): Traditional wins by ~$80,000.",
           "The wider the gap between current and future tax rates, the more the choice matters. Same rate? Mathematically a wash.",
         ],
       },
       {
         heading: "Flexibility and Access",
         bullets: [
-          "Roth: contributions (not earnings) can be withdrawn anytime, tax-free and penalty-free — making it a stealth emergency fund.",
+          "Roth: contributions (not earnings) can be withdrawn anytime, tax-free and penalty-free. Making it a stealth emergency fund.",
           "Traditional: withdrawals before 59½ trigger a 10% penalty plus income tax.",
           "Roth: no Required Minimum Distributions during your lifetime.",
-          "Traditional: RMDs start at age 73 — you must withdraw and pay tax whether you need the money or not.",
-          "Roth: better for leaving to heirs — they inherit tax-free.",
+          "Traditional: RMDs start at age 73. You must withdraw and pay tax whether you need the money or not.",
+          "Roth: better for leaving to heirs. They inherit tax-free.",
         ],
       },
       {
@@ -1639,10 +1639,10 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "The IRS treats ALL Traditional IRAs as one pool for the pro-rata rule. Conversion is taxed proportionally on pre-tax vs after-tax dollars across every Traditional IRA you own.",
-          "Example — $7K non-deductible contribution + $63K pre-tax Traditional IRA from an old rollover. Total = $70K; only 10% is after-tax. Converting $7K creates $6,300 of taxable income at your marginal rate (~$1,500-2,500 tax bill).",
-          "Fix — roll pre-tax Traditional IRA balances INTO your current 401(k) before doing the Backdoor Roth. 401(k) balances don't count for the pro-rata calculation.",
-          "Form 8606 — you MUST file this form every year you make a non-deductible contribution. Skipping it double-taxes the basis on future withdrawals.",
-          "Step transaction doctrine — the IRS has signaled that same-day contribute-and-convert is fine. Wait 1 day if you want to be conservative; no need to wait longer.",
+          "Example: $7K non-deductible contribution + $63K pre-tax Traditional IRA from an old rollover. Total = $70K; only 10% is after-tax. Converting $7K creates $6,300 of taxable income at your marginal rate (~$1,500-2,500 tax bill).",
+          "Fix: roll pre-tax Traditional IRA balances INTO your current 401(k) before doing the Backdoor Roth. 401(k) balances don't count for the pro-rata calculation.",
+          "Form 8606: you MUST file this form every year you make a non-deductible contribution. Skipping it double-taxes the basis on future withdrawals.",
+          "Step transaction doctrine: the IRS has signaled that same-day contribute-and-convert is fine. Wait 1 day if you want to be conservative; no need to wait longer.",
         ],
       },
       {
@@ -1651,13 +1651,13 @@ export const guides: GuideArticle[] = [
           "For a $7,000/year contribution over 30 years at 7% real return = $660,000 at retirement. Here's what each scenario leaves you after tax.",
         ],
         bullets: [
-          "Current 12% / Future 22% — Roth wins by $66K (+10%). Choose Roth.",
-          "Current 12% / Future 12% — Dead even. Choose Roth for the flexibility bonus.",
-          "Current 22% / Future 22% — Dead even. Slight Roth edge for no RMDs.",
-          "Current 24% / Future 22% — Traditional wins by $13K (+2%). Coin flip; consider split.",
-          "Current 32% / Future 22% — Traditional wins by $66K (+10%). Choose Traditional.",
-          "Current 37% / Future 24% — Traditional wins by $86K (+13%). Choose Traditional.",
-          "Young high earner rule — if you're under 35 and in the 22-24% bracket, Roth is almost always right despite the higher current rate, because your peak earning years (and tax rate) are ahead.",
+          "Current 12% / Future 22%. Roth wins by $66K (+10%). Choose Roth.",
+          "Current 12% / Future 12%. Dead even. Choose Roth for the flexibility bonus.",
+          "Current 22% / Future 22%. Dead even. Slight Roth edge for no RMDs.",
+          "Current 24% / Future 22%. Traditional wins by $13K (+2%). Coin flip; consider split.",
+          "Current 32% / Future 22%. Traditional wins by $66K (+10%). Choose Traditional.",
+          "Current 37% / Future 24%. Traditional wins by $86K (+13%). Choose Traditional.",
+          "Young high earner rule: if you're under 35 and in the 22-24% bracket, Roth is almost always right despite the higher current rate, because your peak earning years (and tax rate) are ahead.",
         ],
       },
     ],
@@ -1665,7 +1665,7 @@ export const guides: GuideArticle[] = [
       "Roth = pay tax now, tax-free forever. Traditional = tax break now, taxed later.",
       "Young earners in low brackets almost always win with Roth.",
       "High earners often prefer Traditional for the current-year deduction.",
-      "Roth contributions (not earnings) can be withdrawn anytime — making it a flexible safety net.",
+      "Roth contributions (not earnings) can be withdrawn anytime. Making it a flexible safety net.",
       "If you cannot decide, split: half Roth, half Traditional. Diversify tax exposure.",
     ],
     faqs: [
@@ -1675,7 +1675,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What is a Backdoor Roth?",
-        a: "A legal workaround for high earners. Contribute to a non-deductible Traditional IRA, then convert it to a Roth. The conversion is taxable only on pre-tax amounts — which is zero if you have no other Traditional IRA balance.",
+        a: "A legal workaround for high earners. Contribute to a non-deductible Traditional IRA, then convert it to a Roth. The conversion is taxable only on pre-tax amounts. Which is zero if you have no other Traditional IRA balance.",
       },
       {
         q: "Can I convert a Traditional IRA to a Roth?",
@@ -1683,7 +1683,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What is the 5-year rule for Roth withdrawals?",
-        a: "Two separate 5-year clocks exist. (1) Contributions — the Roth must be open 5 tax years AND you must be 59½ to withdraw EARNINGS tax-free. Contributions themselves can be withdrawn anytime. (2) Conversions — each conversion has its own 5-year clock before the converted principal can be withdrawn penalty-free if you're under 59½. Start a Roth with $1 as early as possible to start the first clock.",
+        a: "Two separate 5-year clocks exist. (1) Contributions. The Roth must be open 5 tax years AND you must be 59½ to withdraw EARNINGS tax-free. Contributions themselves can be withdrawn anytime. (2) Conversions. Each conversion has its own 5-year clock before the converted principal can be withdrawn penalty-free if you're under 59½. Start a Roth with $1 as early as possible to start the first clock.",
       },
       {
         q: "Does a 401(k) Roth have the same rules as a Roth IRA?",
@@ -1697,11 +1697,11 @@ export const guides: GuideArticle[] = [
     category: "Credit & Debt",
     readTime: "9 min",
     description:
-      "A realistic, week-by-week action plan to boost your credit score by 30-80 points in three months — no gimmicks.",
+      "A realistic, week-by-week action plan to boost your credit score by 30-80 points in three months. No gimmicks.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Credit Monitoring Apps",
     intro:
-      "Your credit score controls the interest rate on your mortgage, car loan, and credit cards — and a 50-point swing can save or cost you tens of thousands over a lifetime. The good news: credit moves faster than most people think. With focused effort, a 30-80 point gain in 90 days is realistic. Here is the exact playbook.",
+      "Your credit score controls the interest rate on your mortgage, car loan, and credit cards. And a 50-point swing can save or cost you tens of thousands over a lifetime. The good news: credit moves faster than most people think. With focused effort, a 30-80 point gain in 90 days is realistic. Here is the exact playbook.",
     sections: [
       {
         heading: "Understand What Moves Your Score",
@@ -1709,17 +1709,17 @@ export const guides: GuideArticle[] = [
           "FICO scores are built from five factors. Focus effort where the leverage is highest.",
         ],
         bullets: [
-          "Payment history (35%) — any missed payment crushes your score for years.",
-          "Credit utilization (30%) — the ratio of balances to limits. The fastest lever to move.",
-          "Length of credit history (15%) — time does this on its own. Do not close old cards.",
-          "Credit mix (10%) — a mix of cards and loans helps slightly.",
-          "New credit (10%) — too many applications in a short window hurts.",
+          "Payment history (35%). Any missed payment crushes your score for years.",
+          "Credit utilization (30%). The ratio of balances to limits. The fastest lever to move.",
+          "Length of credit history (15%). Time does this on its own. Do not close old cards.",
+          "Credit mix (10%). A mix of cards and loans helps slightly.",
+          "New credit (10%). Too many applications in a short window hurts.",
         ],
       },
       {
         heading: "Week 1: Pull Reports and Find Errors",
         paragraphs: [
-          "Pull all three credit reports for free at AnnualCreditReport.com. Read every line. One in five reports contains errors that drag scores down — wrong balances, accounts that are not yours, late payments that were actually on time.",
+          "Pull all three credit reports for free at AnnualCreditReport.com. Read every line. One in five reports contains errors that drag scores down. Wrong balances, accounts that are not yours, late payments that were actually on time.",
         ],
         bullets: [
           "Dispute errors directly with Experian, Equifax, and TransUnion online.",
@@ -1730,11 +1730,11 @@ export const guides: GuideArticle[] = [
       {
         heading: "Weeks 2-4: Crush Credit Card Utilization",
         paragraphs: [
-          "Utilization is the second-largest factor in your score and the one you can move the fastest. Credit bureaus snapshot your balance once per month — usually on the statement date. The goal is to have balances near zero when that snapshot happens.",
+          "Utilization is the second-largest factor in your score and the one you can move the fastest. Credit bureaus snapshot your balance once per month. Usually on the statement date. The goal is to have balances near zero when that snapshot happens.",
         ],
         bullets: [
           "Target total utilization under 10%, never above 30%.",
-          "Pay down the highest-utilization card first — a single maxed card hurts more than several moderately used ones.",
+          "Pay down the highest-utilization card first: a single maxed card hurts more than several moderately used ones.",
           "Ask for credit limit increases on existing cards (soft pull at most issuers). Higher limits + same balance = lower utilization.",
           "Pay mid-cycle, before the statement closes, to show a low balance to bureaus.",
         ],
@@ -1746,15 +1746,15 @@ export const guides: GuideArticle[] = [
       {
         heading: "What Each Score Range Means for Borrowing",
         paragraphs: [
-          "Knowing your score's tier matters more than the exact number — lenders price loans in bands. Moving from one tier to the next is what saves real money.",
+          "Knowing your score's tier matters more than the exact number. Lenders price loans in bands. Moving from one tier to the next is what saves real money.",
         ],
         bullets: [
-          "800+ (Exceptional) — Best rates available. ~21% of Americans.",
-          "740-799 (Very Good) — Qualifies for nearly all best rates. Typical mortgage rate 0.25-0.5% above 800+.",
-          "670-739 (Good) — Approved for most products at average rates.",
-          "580-669 (Fair) — Approved for many products but at noticeably higher rates. 30-yr mortgage rate ~1-1.5% higher than 740+.",
-          "Below 580 (Poor) — Limited approvals, often subprime rates. Auto loan APRs 15-20%+ vs 6-7% for prime borrowers.",
-          "Real cost example — a 670 score vs a 740 score on a $400K mortgage costs ~$60,000 more in interest over 30 years.",
+          "800+ (Exceptional). Best rates available. ~21% of Americans.",
+          "740-799 (Very Good). Qualifies for nearly all best rates. Typical mortgage rate 0.25-0.5% above 800+.",
+          "670-739 (Good). Approved for most products at average rates.",
+          "580-669 (Fair). Approved for many products but at noticeably higher rates. 30-yr mortgage rate ~1-1.5% higher than 740+.",
+          "Below 580 (Poor): Limited approvals, often subprime rates. Auto loan APRs 15-20%+ vs 6-7% for prime borrowers.",
+          "Real cost example: a 670 score vs a 740 score on a $400K mortgage costs ~$60,000 more in interest over 30 years.",
         ],
       },
       {
@@ -1763,9 +1763,9 @@ export const guides: GuideArticle[] = [
           "If your credit file is thin or damaged, add positive tradelines. Several options work without risk.",
         ],
         bullets: [
-          "Become an authorized user on a family member's old, well-paid card — inherits their history.",
+          "Become an authorized user on a family member's old, well-paid card. Inherits their history.",
           "Use Experian Boost to add utility, phone, and streaming payments as positive history (free).",
-          "Open a secured credit card if you cannot qualify for a regular one — treat it as a training card.",
+          "Open a secured credit card if you cannot qualify for a regular one. Treat it as a training card.",
           "Use self-reporting services (Self, Kikoff) that report small installment loans to bureaus.",
         ],
       },
@@ -1775,19 +1775,19 @@ export const guides: GuideArticle[] = [
           "The final month is about not undoing your progress. Missing a single payment now can erase the 40-60 points you just gained.",
         ],
         bullets: [
-          "Set autopay on every card and loan — at minimum the minimum payment.",
+          "Set autopay on every card and loan. At minimum the minimum payment.",
           "Keep all old cards open, even those with no balance (do not close them).",
-          "Avoid applying for new credit for at least 90 days — each hard pull costs 5-10 points short-term.",
+          "Avoid applying for new credit for at least 90 days. Each hard pull costs 5-10 points short-term.",
           "Check your score monthly via Credit Karma or your bank's free tool.",
         ],
       },
       {
         heading: "What Does Not Work",
         bullets: [
-          "Paying for 'credit repair' — they cannot do anything you cannot do yourself for free.",
-          "Closing old cards to 'clean up' your report — this shortens your history and raises utilization.",
-          "Opening multiple cards at once hoping for more credit — it triggers hard inquiries and lowers average account age.",
-          "Paying off a collection without a 'pay for delete' letter — paid collections can still hurt scores on older FICO models.",
+          "Paying for 'credit repair'. They cannot do anything you cannot do yourself for free.",
+          "Closing old cards to 'clean up' your report. This shortens your history and raises utilization.",
+          "Opening multiple cards at once hoping for more credit. It triggers hard inquiries and lowers average account age.",
+          "Paying off a collection without a 'pay for delete' letter. Paid collections can still hurt scores on older FICO models.",
         ],
       },
       {
@@ -1796,11 +1796,11 @@ export const guides: GuideArticle[] = [
           "Score tiers translate directly to APR. Moving from 'Good' (680) to 'Excellent' (760) saves tens of thousands over a lifetime of borrowing.",
         ],
         bullets: [
-          "30-year mortgage, $400K — 680 score ~7.2% APR → $978K lifetime interest. 760 score ~6.5% APR → $910K. Savings: $68,000.",
-          "60-month auto loan, $30K — 680 score ~9.5% APR → $7,576 interest. 760 score ~6.0% APR → $4,799. Savings: $2,777.",
-          "Credit card APR — 680 score averages 24-28% APR; 760+ averages 18-22%. On $5K revolving = ~$300/year difference.",
-          "Insurance — most states let insurers use credit-based scoring. Fair credit pays 30-50% more for auto insurance in many states.",
-          "Rental applications — landlords increasingly hard-require 650+ scores; 720+ typically waives extra deposits.",
+          "30-year mortgage, $400K: 680 score ~7.2% APR → $978K lifetime interest. 760 score ~6.5% APR → $910K. Savings: $68,000.",
+          "60-month auto loan, $30K: 680 score ~9.5% APR → $7,576 interest. 760 score ~6.0% APR → $4,799. Savings: $2,777.",
+          "Credit card APR: 680 score averages 24-28% APR; 760+ averages 18-22%. On $5K revolving = ~$300/year difference.",
+          "Insurance: most states let insurers use credit-based scoring. Fair credit pays 30-50% more for auto insurance in many states.",
+          "Rental applications: landlords increasingly hard-require 650+ scores; 720+ typically waives extra deposits.",
         ],
       },
       {
@@ -1809,12 +1809,12 @@ export const guides: GuideArticle[] = [
           "There's no single FICO score. Different lenders pull different versions, and your 'score' can vary 30-80 points between them.",
         ],
         bullets: [
-          "FICO 8 — the most common model. Used by most credit cards and auto lenders. Paid collections under $100 are ignored.",
-          "FICO 9 — less common but growing. Ignores paid collections entirely; weighs medical debt less.",
-          "FICO 10 / 10T — newest, incorporating trended data (utilization patterns over 24 months, not just current snapshot).",
-          "Mortgage FICO (2, 4, 5) — OLDER models still used for home loans. Paid collections still hurt. Medical debt fully counted. This is why mortgage pulls often score lower than your Credit Karma number.",
-          "VantageScore — a competing model (what Credit Karma shows). Directionally similar but can be 20-40 points different from FICO.",
-          "Practical — if applying for a mortgage, pull your actual mortgage tri-merge score from myFICO.com ~60 days before applying to know exactly what lenders see.",
+          "FICO 8: the most common model. Used by most credit cards and auto lenders. Paid collections under $100 are ignored.",
+          "FICO 9: less common but growing. Ignores paid collections entirely; weighs medical debt less.",
+          "FICO 10 / 10T: newest, incorporating trended data (utilization patterns over 24 months, not just current snapshot).",
+          "Mortgage FICO (2, 4, 5). OLDER models still used for home loans. Paid collections still hurt. Medical debt fully counted. This is why mortgage pulls often score lower than your Credit Karma number.",
+          "VantageScore: a competing model (what Credit Karma shows). Directionally similar but can be 20-40 points different from FICO.",
+          "Practical: if applying for a mortgage, pull your actual mortgage tri-merge score from myFICO.com ~60 days before applying to know exactly what lenders see.",
         ],
       },
       {
@@ -1823,17 +1823,17 @@ export const guides: GuideArticle[] = [
           "If a creditor charges off $600+ of your debt (settles for less than owed, forgives a balance, or writes it off), they send you a Form 1099-C. The forgiven amount counts as ordinary income on your federal return.",
         ],
         bullets: [
-          "Example — settling a $10K credit card debt for $4K = $6K of taxable 1099-C income. At a 22% marginal rate, you owe $1,320 in additional tax.",
-          "Exceptions — debt cancelled in Chapter 7/13 bankruptcy, insolvency (liabilities exceeded assets immediately before forgiveness), qualified principal residence indebtedness, qualified student loan forgiveness.",
-          "Insolvency worksheet — IRS Form 982. If you can document you were insolvent at the time of cancellation, you can exclude the income.",
-          "Plan — never settle a debt in Q4 without considering the tax bill you'll owe the following April. Sometimes paying in full is cheaper after tax.",
+          "Example: settling a $10K credit card debt for $4K = $6K of taxable 1099-C income. At a 22% marginal rate, you owe $1,320 in additional tax.",
+          "Exceptions: debt cancelled in Chapter 7/13 bankruptcy, insolvency (liabilities exceeded assets immediately before forgiveness), qualified principal residence indebtedness, qualified student loan forgiveness.",
+          "Insolvency worksheet: IRS Form 982. If you can document you were insolvent at the time of cancellation, you can exclude the income.",
+          "Plan: never settle a debt in Q4 without considering the tax bill you'll owe the following April. Sometimes paying in full is cheaper after tax.",
         ],
       },
     ],
     keyTakeaways: [
-      "Dispute credit report errors first — fastest possible gain.",
+      "Dispute credit report errors first: fastest possible gain.",
       "Drop credit card utilization below 10% for the biggest score bump.",
-      "Never miss a payment — set autopay on everything.",
+      "Never miss a payment: set autopay on everything.",
       "Keep old cards open to preserve history and available credit.",
       "Avoid new credit applications during the 90-day push.",
     ],
@@ -1860,7 +1860,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "How long do negative items stay on my report?",
-        a: "Late payments: 7 years from the date of delinquency. Collections: 7 years from the original delinquency (not the date sold). Chapter 7 bankruptcy: 10 years. Chapter 13: 7 years. Hard inquiries: 2 years (but only affect score for 12 months). Tax liens: 7 years after paid. Send a dispute for anything past the reporting window — it's a legal violation to keep reporting it.",
+        a: "Late payments: 7 years from the date of delinquency. Collections: 7 years from the original delinquency (not the date sold). Chapter 7 bankruptcy: 10 years. Chapter 13: 7 years. Hard inquiries: 2 years (but only affect score for 12 months). Tax liens: 7 years after paid. Send a dispute for anything past the reporting window. It's a legal violation to keep reporting it.",
       },
     ],
   },
@@ -1874,15 +1874,15 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/bank-accounts",
     relatedLabel: "Compare Bank Accounts",
     intro:
-      "High-yield savings accounts (HYSAs) pay 10 to 15 times more interest than the national average. As of May 2026, the best online HYSAs offer APYs between 3.10% and 4.10% — with no monthly fees, no minimum balances, and FDIC insurance up to $250,000 per depositor. Compare the top accounts side-by-side below, then open one in under 10 minutes.",
+      "High-yield savings accounts (HYSAs) pay 10 to 15 times more interest than the national average. As of May 2026, the best online HYSAs offer APYs between 3.10% and 4.10%. With no monthly fees, no minimum balances, and FDIC insurance up to $250,000 per depositor. Compare the top accounts side-by-side below, then open one in under 10 minutes.",
     sections: [
       {
-        heading: "Our Top 6 Picks — Compare & Open in Minutes",
+        heading: "Our Top 6 Picks: Compare & Open in Minutes",
         paragraphs: [
           "We evaluated 30+ online savings accounts and narrowed the list to six standouts. Each combines a competitive APY with zero monthly fees, fast access to your money, and strong mobile tools. Click any CTA to apply directly with the provider.",
         ],
         productTable: {
-          title: "Best High-Yield Savings Accounts — May 2026",
+          title: "Best High-Yield Savings Accounts: May 2026",
           subtitle: "Ranked by APY, fees, access, and tools. Rates verified as of May 2026.",
           rows: [
             {
@@ -1897,7 +1897,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$0",
               bonus: "Up to $400",
-              bestFor: "Best overall — high APY, $0 fees, $0 min, plus up to $400 bonus",
+              bestFor: "Best overall: high APY, $0 fees, $0 min, plus up to $400 bonus",
               rating: 4.8,
               ctaLabel: "Open SoFi Account",
               ctaUrl: "https://www.sofi.com/banking/",
@@ -1915,7 +1915,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$100",
               monthlyFee: "$0",
               bonus: "0.35% APY Boost",
-              bestFor: "Highest APY — best for $5K+ balances",
+              bestFor: "Highest APY: best for $5K+ balances",
               rating: 4.6,
               ctaLabel: "Open CIT Account",
               ctaUrl: "https://www.cit.com/bank/savings/platinum-savings",
@@ -1931,7 +1931,7 @@ export const guides: GuideArticle[] = [
               apyNote: "on all balances",
               minDeposit: "$0",
               monthlyFee: "$0",
-              bestFor: "Best global brand — no minimums, no fees",
+              bestFor: "Best global brand: no minimums, no fees",
               rating: 4.5,
               ctaLabel: "Open Barclays Account",
               ctaUrl: "https://www.banking.barclaysus.com/online-savings.html",
@@ -1947,7 +1947,7 @@ export const guides: GuideArticle[] = [
               apyNote: "on all balances",
               minDeposit: "$0",
               monthlyFee: "$0",
-              bestFor: "Best for simplicity — no tiers, no gimmicks",
+              bestFor: "Best for simplicity: no tiers, no gimmicks",
               rating: 4.6,
               ctaLabel: "Open Marcus Account",
               ctaUrl: "https://www.marcus.com/us/en/savings/high-yield-savings",
@@ -1979,7 +1979,7 @@ export const guides: GuideArticle[] = [
               apyNote: "on all balances",
               minDeposit: "$100",
               monthlyFee: "$0",
-              bestFor: "Best simple high-yield — no tiers",
+              bestFor: "Best simple high-yield: no tiers",
               rating: 4.4,
               ctaLabel: "Open Bread Account",
               ctaUrl: "https://www.breadsavings.com/savings/",
@@ -1993,10 +1993,10 @@ export const guides: GuideArticle[] = [
           "Not all HYSAs are created equal. The APY matters, but it is only one of four factors that determine whether an account is actually worth opening.",
         ],
         bullets: [
-          "APY — The annual percentage yield. Higher is better, but watch for promotional rates that drop after 6 months.",
-          "Fees — The best accounts charge nothing. No monthly fees, no minimum balance fees, no transfer fees.",
-          "Access — How fast can you move money in and out? Look for same-day ACH transfers and mobile check deposit.",
-          "Tools — Sub-accounts, automatic transfers, and goal trackers turn a savings account into a real financial planning tool.",
+          "APY: The annual percentage yield. Higher is better, but watch for promotional rates that drop after 6 months.",
+          "Fees: The best accounts charge nothing. No monthly fees, no minimum balance fees, no transfer fees.",
+          "Access: How fast can you move money in and out? Look for same-day ACH transfers and mobile check deposit.",
+          "Tools: Sub-accounts, automatic transfers, and goal trackers turn a savings account into a real financial planning tool.",
         ],
         callout: {
           title: "APY Tip",
@@ -2006,7 +2006,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best Overall: SoFi Checking & Savings (4.00% APY + up to $400 Bonus)",
         paragraphs: [
-          "SoFi Checking & Savings takes our top spot because it pairs a 4.00% APY on savings with a tiered cash bonus worth up to $400, zero fees, and a $0 minimum to open. Unlike CIT's top tier, the full 4.00% rate applies from the very first dollar with a qualifying direct deposit — there is no $5,000 balance requirement to unlock it.",
+          "SoFi Checking & Savings takes our top spot because it pairs a 4.00% APY on savings with a tiered cash bonus worth up to $400, zero fees, and a $0 minimum to open. Unlike CIT's top tier, the full 4.00% rate applies from the very first dollar with a qualifying direct deposit. There is no $5,000 balance requirement to unlock it.",
           "That combination of a high flat APY, a real cash bonus, and a bundled checking account makes SoFi the strongest overall choice for most savers in May 2026. You get the yield of a dedicated HYSA plus a no-fee checking account in a single app.",
         ],
         bullets: [
@@ -2035,7 +2035,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Simplicity: Marcus by Goldman Sachs (3.50% APY)",
         paragraphs: [
-          "Marcus is the no-nonsense choice. There are no fees, no minimums, and no promotional rate games — you get 3.50% from day one on any balance. The mobile app is clean, and same-day transfers to linked external accounts make it easy to access your money when needed.",
+          "Marcus is the no-nonsense choice. There are no fees, no minimums, and no promotional rate games. You get 3.50% from day one on any balance. The mobile app is clean, and same-day transfers to linked external accounts make it easy to access your money when needed.",
           "Marcus is best for savers who want a simple, high-yield place to park cash without managing direct deposits, tiered rates, or sub-accounts.",
         ],
         bullets: [
@@ -2046,8 +2046,8 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Goal-Based Savers: Ally Online Savings (3.10% APY)",
         paragraphs: [
-          "Ally offers Savings Buckets, which let you divide one savings account into up to 30 sub-accounts for different goals — emergency fund, vacation, house down payment, etc. Combined with the Surprise Savings tool (which auto-transfers small amounts from your checking when it detects extra cash), Ally turns saving into something closer to a game.",
-          "The 3.10% APY is lower than CIT or SoFi, but the tools are the best in the business — worth the trade-off if goal-tracking matters more than chasing the absolute top rate.",
+          "Ally offers Savings Buckets, which let you divide one savings account into up to 30 sub-accounts for different goals. Emergency fund, vacation, house down payment, etc. Combined with the Surprise Savings tool (which auto-transfers small amounts from your checking when it detects extra cash), Ally turns saving into something closer to a game.",
+          "The 3.10% APY is lower than CIT or SoFi, but the tools are the best in the business. Worth the trade-off if goal-tracking matters more than chasing the absolute top rate.",
         ],
         bullets: [
           "Pros: Savings Buckets for goal tracking, 24/7 live support, robust mobile app, no fees.",
@@ -2057,7 +2057,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Also Great: Barclays, SoFi, and Bread",
         paragraphs: [
-          "Barclays Online Savings (3.65% APY) is a strong all-around pick from a global banking leader, with zero fees and no minimums. SoFi Checking & Savings (4.00% APY) is the best combined checking-and-savings product if you can set up direct deposit, and currently offers up to a $400 welcome bonus. Bread Savings (4.00% APY) is a simple, no-tiers high-yield account ideal for savers who want a flat rate without balance requirements — note the $100 minimum to open.",
+          "Barclays Online Savings (3.65% APY) is a strong all-around pick from a global banking leader, with zero fees and no minimums. SoFi Checking & Savings (4.00% APY) is the best combined checking-and-savings product if you can set up direct deposit, and currently offers up to a $400 welcome bonus. Bread Savings (4.00% APY) is a simple, no-tiers high-yield account ideal for savers who want a flat rate without balance requirements. Note the $100 minimum to open.",
         ],
       },
       {
@@ -2066,10 +2066,10 @@ export const guides: GuideArticle[] = [
           "We reviewed 30+ online savings accounts from national banks, online-only banks, and credit unions. Each account was scored across four weighted categories:",
         ],
         bullets: [
-          "APY (40%) — Base rate for deposits under $10,000, with penalties for tiered or promotional rates.",
-          "Fees (25%) — Monthly fees, minimum balance fees, transfer fees, and overdraft policies.",
-          "Access (20%) — Transfer speeds, ATM access, branch network, mobile deposit.",
-          "Tools (15%) — Sub-accounts, automation, goal tracking, and customer support quality.",
+          "APY (40%). Base rate for deposits under $10,000, with penalties for tiered or promotional rates.",
+          "Fees (25%). Monthly fees, minimum balance fees, transfer fees, and overdraft policies.",
+          "Access (20%). Transfer speeds, ATM access, branch network, mobile deposit.",
+          "Tools (15%). Sub-accounts, automation, goal tracking, and customer support quality.",
         ],
         callout: {
           title: "Editorial Independence",
@@ -2079,7 +2079,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "HYSA vs. Money Market vs. CD vs. T-Bills",
         paragraphs: [
-          "A high-yield savings account is the right tool for most people most of the time — but it is not the only option. Here is how it compares to other common places to park cash.",
+          "A high-yield savings account is the right tool for most people most of the time. But it is not the only option. Here is how it compares to other common places to park cash.",
         ],
         bullets: [
           "HYSA: Liquid, FDIC-insured, variable APY around 3.10-4.10%. Best for emergency funds and short-term savings.",
@@ -2097,7 +2097,7 @@ export const guides: GuideArticle[] = [
           "Choose the account that matches your needs (see our picks above).",
           "Apply online. Most applications take 5-7 minutes.",
           "Link your existing bank via Plaid or manual routing/account number entry.",
-          "Make an initial deposit ($1 is fine for most accounts — there is no minimum at our top picks).",
+          "Make an initial deposit ($1 is fine for most accounts. There is no minimum at our top picks).",
           "Set up automatic transfers from checking on payday. This is the single most important step.",
         ],
       },
@@ -2107,7 +2107,7 @@ export const guides: GuideArticle[] = [
       "CIT Platinum Savings leads with up to 4.10% APY on $5K+ balances; SoFi offers 4.00% with direct deposit and a $400 bonus.",
       "All FDIC-insured accounts are safe up to $250,000 per depositor per bank.",
       "Automate transfers from checking on payday to make saving effortless.",
-      "Review your APY every 6 months — rates change and promotional periods expire.",
+      "Review your APY every 6 months: rates change and promotional periods expire.",
     ],
     faqs: [
       {
@@ -2120,7 +2120,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "How often should I switch accounts for a better APY?",
-        a: "Review your rate every 6 months. If your current bank is more than 0.50% below the top of the market, it is worth moving — especially for balances over $10,000.",
+        a: "Review your rate every 6 months. If your current bank is more than 0.50% below the top of the market, it is worth moving. Especially for balances over $10,000.",
       },
       {
         q: "Can I have more than one HYSA?",
@@ -2142,19 +2142,19 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "10 min",
     description:
-      "Our top 4 budgeting apps for 2026, ranked by features, ease of use, automation, and price — find the app that fits your style.",
+      "Our top 4 budgeting apps for 2026, ranked by features, ease of use, automation, and price. Find the app that fits your style.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Compare Budgeting Apps",
     intro:
-      "A good budgeting app turns financial chaos into clarity in under an hour. The best apps in 2026 connect to all your accounts, auto-categorize transactions, and show you exactly where every dollar is going — without the spreadsheet headaches. We tested 20+ apps and narrowed it down to four standouts that fit different budgeting styles, from hands-off trackers to zero-based power tools.",
+      "A good budgeting app turns financial chaos into clarity in under an hour. The best apps in 2026 connect to all your accounts, auto-categorize transactions, and show you exactly where every dollar is going. Without the spreadsheet headaches. We tested 20+ apps and narrowed it down to four standouts that fit different budgeting styles, from hands-off trackers to zero-based power tools.",
     sections: [
       {
-        heading: "Our Top 4 Picks — Compare & Start in Minutes",
+        heading: "Our Top 4 Picks: Compare & Start in Minutes",
         paragraphs: [
           "We evaluated 20+ budgeting apps across four weighted categories: features, ease of use, automation, and price. Each of our top picks excels in at least one area and delivers a complete budgeting experience. Click any CTA to start a free trial or sign up directly.",
         ],
         productTable: {
-          title: "Best Budgeting Apps — 2026",
+          title: "Best Budgeting Apps: 2026",
           subtitle: "Ranked by features, ease of use, automation, and price. Verified as of 2026.",
           rows: [
             {
@@ -2169,7 +2169,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$14.99/mo",
               bonus: "34-day free trial",
-              bestFor: "Best overall — proven zero-based budgeting system",
+              bestFor: "Best overall: proven zero-based budgeting system",
               rating: 4.8,
               ctaLabel: "Try YNAB Free",
               ctaUrl: "https://www.ynab.com/",
@@ -2221,7 +2221,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$13/mo",
               bonus: "First month free",
-              bestFor: "Best design — iOS/Mac users who value beautiful UX",
+              bestFor: "Best design: iOS/Mac users who value beautiful UX",
               rating: 4.6,
               ctaLabel: "Try Copilot Free",
               ctaUrl: "https://copilot.money/",
@@ -2232,13 +2232,13 @@ export const guides: GuideArticle[] = [
       {
         heading: "What Makes a Great Budgeting App",
         paragraphs: [
-          "The market is flooded with budgeting tools, but most fall short in at least one critical area. After testing dozens of apps, we found that the best ones excel across four dimensions — and dropping even one dimension makes an app frustrating to use long-term.",
+          "The market is flooded with budgeting tools, but most fall short in at least one critical area. After testing dozens of apps, we found that the best ones excel across four dimensions. And dropping even one dimension makes an app frustrating to use long-term.",
         ],
         bullets: [
-          "Features — Budget methodology, goal tracking, net worth, investment sync, bill reminders, and custom reports.",
-          "Ease of Use — Fast onboarding, clean interface, quick transaction categorization, intuitive mobile apps.",
-          "Automation — Reliable bank sync via Plaid or MX, smart auto-categorization, rule-based splits, subscription detection.",
-          "Price — Transparent pricing, fair free tiers, and real value at the paid level. The best apps cost $5-15 per month.",
+          "Features: Budget methodology, goal tracking, net worth, investment sync, bill reminders, and custom reports.",
+          "Ease of Use: Fast onboarding, clean interface, quick transaction categorization, intuitive mobile apps.",
+          "Automation: Reliable bank sync via Plaid or MX, smart auto-categorization, rule-based splits, subscription detection.",
+          "Price: Transparent pricing, fair free tiers, and real value at the paid level. The best apps cost $5-15 per month.",
         ],
         callout: {
           title: "Budget Tip",
@@ -2248,7 +2248,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best Overall: YNAB (Zero-Based Budgeting)",
         paragraphs: [
-          "YNAB has been the gold standard for intentional budgeting since 2004 and remains our top pick in 2026. Its zero-based method — give every dollar a job before you spend it — is the most effective system we have tested for breaking the paycheck-to-paycheck cycle. YNAB reports that new users save an average of $600 in their first two months and $6,000 in their first year.",
+          "YNAB has been the gold standard for intentional budgeting since 2004 and remains our top pick in 2026. Its zero-based method: give every dollar a job before you spend it. Is the most effective system we have tested for breaking the paycheck-to-paycheck cycle. YNAB reports that new users save an average of $600 in their first two months and $6,000 in their first year.",
           "The $14.99/month price tag is higher than some competitors, but the 34-day free trial is the longest in the industry. YNAB also offers a free year for college students. The learning curve is real (plan for 2-3 hours of onboarding), but once it clicks, no other app comes close.",
         ],
         bullets: [
@@ -2277,7 +2277,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Couples: Monarch Money (All-in-One)",
         paragraphs: [
-          "Monarch Money emerged as the top Mint replacement after Intuit shut Mint down in 2024, and it is our pick for anyone who wants a single dashboard for budgets, net worth, investments, and shared finances. It is the only app on this list built from the ground up for shared household use — both partners get full access at no extra cost.",
+          "Monarch Money emerged as the top Mint replacement after Intuit shut Mint down in 2024, and it is our pick for anyone who wants a single dashboard for budgets, net worth, investments, and shared finances. It is the only app on this list built from the ground up for shared household use. Both partners get full access at no extra cost.",
           "The app syncs with over 13,000 institutions, tracks net worth automatically, forecasts cash flow, and supports multiple budgeting methods (envelope, 50/30/20, or custom). At $14.99/month (or $99/year), it is priced the same as YNAB but offers broader functionality for households managing money together.",
         ],
         bullets: [
@@ -2288,7 +2288,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Killing Subscriptions: Rocket Money (Automated)",
         paragraphs: [
-          "Rocket Money (formerly Truebill) takes a different approach: instead of asking you to build a budget, it scans your transactions for forgotten subscriptions, unused memberships, and overcharges — and cancels them for you. Users save an average of $720 per year through the cancellation and bill negotiation features alone.",
+          "Rocket Money (formerly Truebill) takes a different approach: instead of asking you to build a budget, it scans your transactions for forgotten subscriptions, unused memberships, and overcharges. And cancels them for you. Users save an average of $720 per year through the cancellation and bill negotiation features alone.",
           "There is a free tier that handles basic tracking, but the real value is in the Premium tier ($4-12/month, pay-what-you-want). Rocket Money also negotiates cable, internet, and cell phone bills on your behalf for a one-time 30-60% cut of the savings.",
         ],
         bullets: [
@@ -2299,8 +2299,8 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best Design: Copilot (AI-Powered, iOS/Mac Only)",
         paragraphs: [
-          "Copilot is the most beautiful budgeting app we tested in 2026, and it is the best choice for Apple users who want an app that feels native to iOS and macOS. Its AI-powered categorization learns your spending patterns over time and gets smarter every month — by month three, it categorizes 95%+ of transactions correctly without any manual input.",
-          "At $13/month ($95/year), it is priced competitively. The tradeoff: it is iOS and Mac only — there is no Android or web version. For Apple households, it is the most pleasant daily-use budgeting app on the market.",
+          "Copilot is the most beautiful budgeting app we tested in 2026, and it is the best choice for Apple users who want an app that feels native to iOS and macOS. Its AI-powered categorization learns your spending patterns over time and gets smarter every month. By month three, it categorizes 95%+ of transactions correctly without any manual input.",
+          "At $13/month ($95/year), it is priced competitively. The tradeoff: it is iOS and Mac only. There is no Android or web version. For Apple households, it is the most pleasant daily-use budgeting app on the market.",
         ],
         bullets: [
           "Pros: Gorgeous UI, best-in-class AI categorization, investment tracking built in, first month free.",
@@ -2313,10 +2313,10 @@ export const guides: GuideArticle[] = [
           "We reviewed 20+ budgeting apps across personal finance, couples, subscription management, and investment-focused categories. Each app was scored across four weighted categories:",
         ],
         bullets: [
-          "Features (35%) — Budget methodology, goal tracking, investments, net worth, reports, bill reminders.",
-          "Ease of Use (25%) — Onboarding speed, interface clarity, mobile app quality, support responsiveness.",
-          "Automation (25%) — Bank sync reliability, auto-categorization accuracy, subscription detection, rule engine.",
-          "Price (15%) — Monthly cost, free tier value, trial length, student or household discounts.",
+          "Features (35%). Budget methodology, goal tracking, investments, net worth, reports, bill reminders.",
+          "Ease of Use (25%). Onboarding speed, interface clarity, mobile app quality, support responsiveness.",
+          "Automation (25%). Bank sync reliability, auto-categorization accuracy, subscription detection, rule engine.",
+          "Price (15%). Monthly cost, free tier value, trial length, student or household discounts.",
         ],
         callout: {
           title: "Editorial Independence",
@@ -2344,7 +2344,7 @@ export const guides: GuideArticle[] = [
           "Sign up and start the free trial (all 4 apps offer one).",
           "Link your bank accounts, credit cards, loans, and investment accounts via Plaid.",
           "Review auto-imported transactions for the last 30-90 days and recategorize any that look off.",
-          "Set up your first budget categories (start with 8-10 — do not try to track 30 categories on day one).",
+          "Set up your first budget categories (start with 8-10. Do not try to track 30 categories on day one).",
           "Turn on bill reminders and set savings goals so the app nudges you toward progress.",
         ],
       },
@@ -2353,13 +2353,13 @@ export const guides: GuideArticle[] = [
       "The best budgeting apps in 2026 cost $4-15/month and save users $600+ in the first 90 days.",
       "YNAB leads for intentional zero-based budgeting; Monarch is the top all-in-one for couples.",
       "Rocket Money is the best pick if your goal is killing subscriptions, not building a budget.",
-      "Copilot wins on design and AI categorization — but only for iOS and Mac users.",
-      "All four apps connect securely via Plaid/MX — they never store your banking credentials directly.",
+      "Copilot wins on design and AI categorization. But only for iOS and Mac users.",
+      "All four apps connect securely via Plaid/MX. They never store your banking credentials directly.",
     ],
     faqs: [
       {
         q: "Are budgeting apps safe to link to my bank?",
-        a: "Yes. All four apps use Plaid or MX — the same bank-grade encryption used by Venmo, Robinhood, and Chime. Your credentials are never stored inside the budgeting app itself. Plaid uses read-only access, so apps cannot move money from your accounts.",
+        a: "Yes. All four apps use Plaid or MX. The same bank-grade encryption used by Venmo, Robinhood, and Chime. Your credentials are never stored inside the budgeting app itself. Plaid uses read-only access, so apps cannot move money from your accounts.",
       },
       {
         q: "Is there a free budgeting app that is actually good?",
@@ -2379,7 +2379,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Do I still need a budgeting app if I use a spreadsheet?",
-        a: "Spreadsheets work if you have the discipline to update them weekly — most people do not. Apps win on automation: transactions sync automatically, categories apply instantly, and reports update in real time. The $10-15/month cost typically pays for itself within weeks.",
+        a: "Spreadsheets work if you have the discipline to update them weekly. Most people do not. Apps win on automation: transactions sync automatically, categories apply instantly, and reports update in real time. The $10-15/month cost typically pays for itself within weeks.",
       },
     ],
   },
@@ -2389,19 +2389,19 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "12 min",
     description:
-      "Our top 7 cash advance and small-loan apps for May 2026, ranked by speed, fees, limits, and credit-building — find the right app for a paycheck gap.",
+      "Our top 7 cash advance and small-loan apps for May 2026, ranked by speed, fees, limits, and credit-building. Find the right app for a paycheck gap.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Compare Cash Advance Apps",
     intro:
-      "When payday is still a week away and rent is due tomorrow, a good cash advance app can bridge the gap without the 400% APR trap of a traditional payday loan. The best apps in 2026 offer instant access to $150–$500, charge no interest, and never run a hard credit check. We tested every major player in the space and narrowed it down to seven standouts — each built for a different kind of borrower, from hourly workers to credit builders to existing Chime customers.",
+      "When payday is still a week away and rent is due tomorrow, a good cash advance app can bridge the gap without the 400% APR trap of a traditional payday loan. The best apps in 2026 offer instant access to $150–$500, charge no interest, and never run a hard credit check. We tested every major player in the space and narrowed it down to seven standouts. Each built for a different kind of borrower, from hourly workers to credit builders to existing Chime customers.",
     sections: [
       {
-        heading: "Our Top 7 Picks — Compare & Get Funded Fast",
+        heading: "Our Top 7 Picks: Compare & Get Funded Fast",
         paragraphs: [
           "We evaluated 15+ cash advance and small-loan apps across four weighted categories: advance limits, total cost (fees, tips, subscriptions), funding speed, and extra features like credit building and overdraft protection. Each pick below excels in at least one area and can get cash in your account today.",
         ],
         productTable: {
-          title: "Best Cash Advance & Loans Apps — May 2026",
+          title: "Best Cash Advance & Loans Apps. May 2026",
           subtitle: "Ranked by advance limits, total cost, funding speed, and extras. Verified as of May 2026.",
           rows: [
             {
@@ -2416,7 +2416,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$0 (optional tips)",
               bonus: "No required fees",
-              bestFor: "Best overall — earned wage access with no required fees",
+              bestFor: "Best overall: earned wage access with no required fees",
               rating: 4.3,
               ctaLabel: "Try EarnIn Free",
               ctaUrl: "https://www.earnin.com/",
@@ -2434,7 +2434,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$0",
               bonus: "Free standard transfer",
-              bestFor: "Best for Chime users — built into the app",
+              bestFor: "Best for Chime users: built into the app",
               rating: 4.5,
               ctaLabel: "Get Chime MyPay",
               ctaUrl: "https://www.chime.com/mypay/",
@@ -2451,7 +2451,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$1/mo",
               bonus: "Side hustle finder",
-              bestFor: "Best low-cost membership — $1/mo flat",
+              bestFor: "Best low-cost membership: $1/mo flat",
               rating: 4.2,
               ctaLabel: "Try Dave",
               ctaUrl: "https://dave.com/",
@@ -2485,7 +2485,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$14.99/mo Genius",
               bonus: "Human advisors",
-              bestFor: "Best all-in-one — cash, savings, invest, advice",
+              bestFor: "Best all-in-one: cash, savings, invest, advice",
               rating: 4.4,
               ctaLabel: "Try Albert",
               ctaUrl: "https://albert.com/",
@@ -2530,24 +2530,24 @@ export const guides: GuideArticle[] = [
       {
         heading: "What Makes a Great Cash Advance App",
         paragraphs: [
-          "Cash advance apps are a massive upgrade over payday loans — but they are not all created equal. After testing the major players, we found that the best apps excel across four dimensions. Fall short in any one area and the app becomes more expensive or less reliable than it looks on the surface.",
+          "Cash advance apps are a massive upgrade over payday loans. But they are not all created equal. After testing the major players, we found that the best apps excel across four dimensions. Fall short in any one area and the app becomes more expensive or less reliable than it looks on the surface.",
         ],
         bullets: [
-          "Advance Limits — How much you can borrow per pay period. Best apps offer $500+ to established users.",
-          "Total Cost — Subscription fees, express-transfer fees, and optional tips. The best apps keep total cost under $10 per advance.",
-          "Funding Speed — Free standard transfer (1–3 days) vs. paid instant (minutes). Best apps offer both.",
-          "Extras — Credit-building features, overdraft protection, budgeting tools, and side-hustle finders add real value.",
+          "Advance Limits: How much you can borrow per pay period. Best apps offer $500+ to established users.",
+          "Total Cost: Subscription fees, express-transfer fees, and optional tips. The best apps keep total cost under $10 per advance.",
+          "Funding Speed: Free standard transfer (1–3 days) vs. paid instant (minutes). Best apps offer both.",
+          "Extras: Credit-building features, overdraft protection, budgeting tools, and side-hustle finders add real value.",
         ],
         callout: {
           title: "Important",
-          body: "Cash advance apps are NOT a long-term solution. If you need to borrow from your next paycheck every month, the root problem is a budgeting or income gap — not a cash-flow timing issue. Pair any app on this list with a budgeting app and an emergency fund goal.",
+          body: "Cash advance apps are NOT a long-term solution. If you need to borrow from your next paycheck every month, the root problem is a budgeting or income gap. Not a cash-flow timing issue. Pair any app on this list with a budgeting app and an emergency fund goal.",
         },
       },
       {
         heading: "Best Overall: EarnIn (No Required Fees)",
         paragraphs: [
           "EarnIn is our top pick in May 2026 because it is the only app on this list with truly no mandatory fees. You can Cash Out up to $150 per day and $750 per pay period of wages you have already earned, with zero subscription, zero interest, and zero required tips. The only cost is an optional Lightning Speed fee if you want the funds in minutes instead of 1–3 business days.",
-          "EarnIn also offers Balance Shield, which automatically sends a small advance when your bank balance drops below a threshold you set — effectively free overdraft protection. The catch: you must have consistent direct deposit from an employer, and advances are capped at what you have already earned for hours worked.",
+          "EarnIn also offers Balance Shield, which automatically sends a small advance when your bank balance drops below a threshold you set. Effectively free overdraft protection. The catch: you must have consistent direct deposit from an employer, and advances are capped at what you have already earned for hours worked.",
         ],
         bullets: [
           "Pros: No subscription, no interest, no mandatory fees; up to $750/pay period; Balance Shield overdraft protection.",
@@ -2575,7 +2575,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Chime Users: Chime MyPay",
         paragraphs: [
-          "If you already bank with Chime, MyPay is effectively a free $500 safety net built right into your existing app. Chime will front up to $500 of your next paycheck with no interest, no credit check, and free standard transfer (instant has a small fee). Because it is baked into the Chime Checking experience, there is nothing new to sign up for — eligibility is based on your direct deposit history.",
+          "If you already bank with Chime, MyPay is effectively a free $500 safety net built right into your existing app. Chime will front up to $500 of your next paycheck with no interest, no credit check, and free standard transfer (instant has a small fee). Because it is baked into the Chime Checking experience, there is nothing new to sign up for. Eligibility is based on your direct deposit history.",
           "MyPay launched nationally in 2024 and has become one of the most widely used cash advance products in the country thanks to Chime's 20M+ user base. The downside: it is only available to existing Chime Checking customers, so if you bank elsewhere, this one is not an option.",
         ],
         bullets: [
@@ -2586,8 +2586,8 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best Low-Cost Membership: Dave (ExtraCash)",
         paragraphs: [
-          "Dave's ExtraCash advances go up to $500 for a flat $1 per month — the cheapest subscription on this list. There is no interest and no mandatory tip, though Dave does nudge you to tip the app and donate to a rainforest charity at checkout. Funding is same-day to a Dave Spending account (free) or same-day to an external bank with an Express fee.",
-          "Dave has also built a solid budgeting layer on top of the advance — paycheck prediction, upcoming-bill alerts, and a side-hustle marketplace. For users who want an advance plus light budgeting for a buck a month, Dave is hard to beat.",
+          "Dave's ExtraCash advances go up to $500 for a flat $1 per month. The cheapest subscription on this list. There is no interest and no mandatory tip, though Dave does nudge you to tip the app and donate to a rainforest charity at checkout. Funding is same-day to a Dave Spending account (free) or same-day to an external bank with an Express fee.",
+          "Dave has also built a solid budgeting layer on top of the advance. Paycheck prediction, upcoming-bill alerts, and a side-hustle marketplace. For users who want an advance plus light budgeting for a buck a month, Dave is hard to beat.",
         ],
         bullets: [
           "Pros: $1/month membership is the lowest on this list; up to $500 advance; side-hustle finder and budgeting tools.",
@@ -2597,7 +2597,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best Flat-Fee Pricing: Brigit (Predictable Cost)",
         paragraphs: [
-          "Brigit charges a flat $9.99/month for its Plus plan, which unlocks instant advances up to $250 with no optional tips, no express fees, and no surprises. If you use the advance 2+ times per month, Brigit often works out cheaper than tip-based apps. It also offers Credit Builder — a small installment loan that reports to all three bureaus and can raise your FICO score 60+ points over 12 months.",
+          "Brigit charges a flat $9.99/month for its Plus plan, which unlocks instant advances up to $250 with no optional tips, no express fees, and no surprises. If you use the advance 2+ times per month, Brigit often works out cheaper than tip-based apps. It also offers Credit Builder: a small installment loan that reports to all three bureaus and can raise your FICO score 60+ points over 12 months.",
           "Brigit's auto-advance feature monitors your linked bank balance and automatically fronts you cash before you overdraft, which is a legitimate game-changer if you tend to cut it close. Just be aware: you need to meet income and banking activity requirements to qualify.",
         ],
         bullets: [
@@ -2609,7 +2609,7 @@ export const guides: GuideArticle[] = [
         heading: "Best All-in-One: Albert (Cash, Savings, Invest, Advice)",
         paragraphs: [
           "Albert packages an instant cash advance of up to $250 alongside automated Smart Savings transfers, a checking account, fractional-share investing, and text-based access to human financial advisors called Geniuses. If you want one app instead of five, Albert is the most complete on this list.",
-          "The catch is the pricing — Genius (the tier that unlocks instant advances and the advisors) is a 'pay what is fair' subscription starting at roughly $14.99/month. For someone using just the cash advance, that is steep. But if you use the savings automation, investing, and advice features regularly, the total value easily clears $15/month.",
+          "The catch is the pricing: Genius (the tier that unlocks instant advances and the advisors) is a 'pay what is fair' subscription starting at roughly $14.99/month. For someone using just the cash advance, that is steep. But if you use the savings automation, investing, and advice features regularly, the total value easily clears $15/month.",
         ],
         bullets: [
           "Pros: Cash advance + savings + invest + human advice in one app; no interest on advances; solid all-rounder.",
@@ -2619,7 +2619,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Building Credit: Possible Finance (Installment Loans)",
         paragraphs: [
-          "Possible Finance is the only app on this list that actually reports your repayments to Experian, Equifax, and TransUnion — so every on-time installment builds credit history. Loans go up to $500 and are structured as small installment loans (typically 4 payments over 2 months) rather than a single balloon repayment. There is no hard credit pull to qualify.",
+          "Possible Finance is the only app on this list that actually reports your repayments to Experian, Equifax, and TransUnion. So every on-time installment builds credit history. Loans go up to $500 and are structured as small installment loans (typically 4 payments over 2 months) rather than a single balloon repayment. There is no hard credit pull to qualify.",
           "The tradeoff: Possible charges interest, and APRs are high compared to bank loans (though far cheaper than traditional payday lenders and capped by state regulations). If your primary goal is building credit and you cannot qualify for a credit-builder loan through a bank, Possible is a legitimate option.",
         ],
         bullets: [
@@ -2630,7 +2630,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Hourly Workers: Tilt (Employer-Integrated EWA)",
         paragraphs: [
-          "Tilt is an earned wage access benefit offered through participating employers. If your company offers Tilt, you can access wages for hours you have already worked in real time — with a transparent flat per-transfer fee and no subscription. Because Tilt integrates directly with your employer's time-tracking, there is no guesswork about what you have earned.",
+          "Tilt is an earned wage access benefit offered through participating employers. If your company offers Tilt, you can access wages for hours you have already worked in real time. With a transparent flat per-transfer fee and no subscription. Because Tilt integrates directly with your employer's time-tracking, there is no guesswork about what you have earned.",
           "The obvious limitation: your employer has to offer Tilt. It is common in retail, hospitality, and staffing sectors but still less widely available than EarnIn or DailyPay. If you work hourly at a participating employer, Tilt is often cheaper and faster than any direct-to-consumer app.",
         ],
         bullets: [
@@ -2644,10 +2644,10 @@ export const guides: GuideArticle[] = [
           "We reviewed 15+ cash advance and small-loan apps across earned wage access, subscription-based advance, and installment loan categories. Each app was scored across four weighted categories:",
         ],
         bullets: [
-          "Advance Limits (30%) — Maximum available, how quickly limits grow, cap relative to paycheck size.",
-          "Total Cost (30%) — Subscription fees, express-transfer fees, tips, and APR (for installment products).",
-          "Funding Speed (20%) — Free standard transfer time and whether instant funding is available.",
-          "Extras (20%) — Credit building, overdraft protection, budgeting tools, side-hustle features, advisor access.",
+          "Advance Limits (30%). Maximum available, how quickly limits grow, cap relative to paycheck size.",
+          "Total Cost (30%). Subscription fees, express-transfer fees, tips, and APR (for installment products).",
+          "Funding Speed (20%). Free standard transfer time and whether instant funding is available.",
+          "Extras (20%). Credit building, overdraft protection, budgeting tools, side-hustle features, advisor access.",
         ],
         callout: {
           title: "Editorial Independence",
@@ -2661,7 +2661,7 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "Cash Advance App: Advances wages you have already earned (or a small amount against your next paycheck). No interest. Fees are subscription or optional tip. Best choice for short-term gaps.",
-          "Payday Loan: Traditional storefront loan due in full on your next payday. APRs commonly 300–500%. Avoid unless you have no alternatives — and even then, try any app on this list first.",
+          "Payday Loan: Traditional storefront loan due in full on your next payday. APRs commonly 300–500%. Avoid unless you have no alternatives: and even then, try any app on this list first.",
           "Installment Loan (e.g. Possible): Small loan repaid over multiple installments. Interest-based, APRs 100–200%. Worth it only if you need to build credit and cannot qualify for a bank credit-builder product.",
         ],
       },
@@ -2672,36 +2672,36 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "Download the app and sign up with your phone number and email.",
-          "Link your primary checking account via Plaid — the app verifies your income from direct deposits.",
+          "Link your primary checking account via Plaid. The app verifies your income from direct deposits.",
           "Verify your identity with government ID (most apps use auto-capture of your driver's license).",
-          "Request your first advance — limits start small ($25–$100) and grow as you build repayment history.",
+          "Request your first advance: limits start small ($25–$100) and grow as you build repayment history.",
           "Choose standard transfer (free, 1–3 days) or instant transfer (small fee, minutes).",
         ],
       },
     ],
     keyTakeaways: [
-      "The best cash advance apps in May 2026 offer $150–$750 with no interest and no required fees — a massive upgrade over payday loans.",
+      "The best cash advance apps in May 2026 offer $150–$750 with no interest and no required fees. A massive upgrade over payday loans.",
       "EarnIn leads for no required fees; Chime MyPay wins for existing Chime users; Dave is the cheapest subscription at $1/month.",
       "Brigit's flat $9.99/mo beats tip-based apps if you use advances 2+ times per month.",
-      "Possible Finance is the only app that reports repayments to all 3 credit bureaus — use it only if credit building is your goal.",
+      "Possible Finance is the only app that reports repayments to all 3 credit bureaus. Use it only if credit building is your goal.",
       "Cash advance apps are a bridge, not a solution. Pair any app on this list with a budgeting app and an emergency fund goal.",
     ],
     faqs: [
       {
         q: "Do cash advance apps check your credit?",
-        a: "No. None of the apps on this list run a hard credit check to qualify you for an advance. Eligibility is based on your bank account activity and direct deposit history — not your FICO score. Possible Finance does a soft pull for its installment loan product, which does not affect your score.",
+        a: "No. None of the apps on this list run a hard credit check to qualify you for an advance. Eligibility is based on your bank account activity and direct deposit history. Not your FICO score. Possible Finance does a soft pull for its installment loan product, which does not affect your score.",
       },
       {
         q: "Are cash advance apps safe?",
-        a: "Yes. All seven apps use Plaid or similar bank-grade encryption to link your account — the same infrastructure used by Venmo, Robinhood, and most major fintechs. Your banking credentials are never stored inside the cash advance app itself.",
+        a: "Yes. All seven apps use Plaid or similar bank-grade encryption to link your account. The same infrastructure used by Venmo, Robinhood, and most major fintechs. Your banking credentials are never stored inside the cash advance app itself.",
       },
       {
         q: "How is this different from a payday loan?",
-        a: "Cash advance apps charge no interest and no mandatory fees — just optional tips, small subscriptions ($1–$15/month), or express-transfer fees. Traditional payday loans charge 300–500% APR. Even the highest-fee app on this list costs dramatically less than a storefront payday loan.",
+        a: "Cash advance apps charge no interest and no mandatory fees. Just optional tips, small subscriptions ($1–$15/month), or express-transfer fees. Traditional payday loans charge 300–500% APR. Even the highest-fee app on this list costs dramatically less than a storefront payday loan.",
       },
       {
         q: "Will a cash advance app hurt my credit score?",
-        a: "No. Standard cash advance apps (EarnIn, Dave, Brigit, Albert, Chime MyPay, Tilt) do not report to credit bureaus at all, so they cannot help or hurt your score. Possible Finance does report — on-time payments build credit, missed payments can damage it.",
+        a: "No. Standard cash advance apps (EarnIn, Dave, Brigit, Albert, Chime MyPay, Tilt) do not report to credit bureaus at all, so they cannot help or hurt your score. Possible Finance does report: on-time payments build credit, missed payments can damage it.",
       },
       {
         q: "How fast can I get the money?",
@@ -2713,7 +2713,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What happens if I cannot repay on payday?",
-        a: "Apps will automatically attempt to debit the advance plus any fees from your linked bank account on your next payday. If the debit fails, you may face overdraft fees from your bank. Apps like EarnIn and Dave offer repayment extensions — reach out to support before your due date if you know you cannot repay.",
+        a: "Apps will automatically attempt to debit the advance plus any fees from your linked bank account on your next payday. If the debit fails, you may face overdraft fees from your bank. Apps like EarnIn and Dave offer repayment extensions. Reach out to support before your due date if you know you cannot repay.",
       },
     ],
   },
@@ -2727,15 +2727,15 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/investing",
     relatedLabel: "Compare Investing Tools",
     intro:
-      "Picking individual stocks is hard. Even professional fund managers underperform the S&P 500 over long stretches — which is exactly why a good stock picking service can be worth its price tag. The best services give you vetted recommendations, deep research, and the analytical tools to make your own decisions. We tested the major paid services on the market and narrowed it down to five standouts — each built for a different kind of investor, from long-term buy-and-hold fans to fundamental deep-divers to market news junkies.",
+      "Picking individual stocks is hard. Even professional fund managers underperform the S&P 500 over long stretches. Which is exactly why a good stock picking service can be worth its price tag. The best services give you vetted recommendations, deep research, and the analytical tools to make your own decisions. We tested the major paid services on the market and narrowed it down to five standouts. Each built for a different kind of investor, from long-term buy-and-hold fans to fundamental deep-divers to market news junkies.",
     sections: [
       {
-        heading: "Our Top 5 Picks — Compare Stock Picking Services",
+        heading: "Our Top 5 Picks: Compare Stock Picking Services",
         paragraphs: [
           "We evaluated 12+ stock picking and research services across four weighted categories: pick quality and track record, research depth, value for money, and platform usability. Each pick below excels in at least one area and has a proven history of helping retail investors make better decisions.",
         ],
         productTable: {
-          title: "Best Stock Picking Services — May 2026",
+          title: "Best Stock Picking Services: May 2026",
           subtitle: "Ranked by pick quality, research depth, value, and usability. Verified as of May 2026.",
           rows: [
             {
@@ -2750,7 +2750,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$199/yr",
               bonus: "Often discounted 1st yr",
-              bestFor: "Best overall — long-term buy-and-hold stock picks",
+              bestFor: "Best overall: long-term buy-and-hold stock picks",
               rating: 4.6,
               ctaLabel: "Try Stock Advisor",
               ctaUrl: "https://www.fool.com/services/stock-advisor/",
@@ -2819,7 +2819,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$99/yr",
               bonus: "Ad-free experience",
-              bestFor: "Best value — fundamental analysis on a budget",
+              bestFor: "Best value: fundamental analysis on a budget",
               rating: 4.5,
               ctaLabel: "Try Stock Analysis Pro",
               ctaUrl: "https://stockanalysis.com/pro/",
@@ -2830,24 +2830,24 @@ export const guides: GuideArticle[] = [
       {
         heading: "What Makes a Great Stock Picking Service",
         paragraphs: [
-          "Stock picking services range from $99/year research dashboards to $499/year curated pick lists. They are not all created equal — and the right one depends entirely on your investing style. After testing the major players, we found that the best services excel across four dimensions. Fall short in any one area and the subscription stops earning its keep.",
+          "Stock picking services range from $99/year research dashboards to $499/year curated pick lists. They are not all created equal: and the right one depends entirely on your investing style. After testing the major players, we found that the best services excel across four dimensions. Fall short in any one area and the subscription stops earning its keep.",
         ],
         bullets: [
-          "Pick Quality & Track Record — Documented performance vs. the S&P 500 over 5+ years, clear buy/sell guidance, and transparency on losses.",
-          "Research Depth — Full write-ups explaining the thesis, risks, and catalysts — not just ticker lists.",
-          "Value for Money — Subscription cost relative to the portfolio size where the advice becomes worth it.",
-          "Usability — Clean interface, mobile access, and screeners or tools that help you act on the research.",
+          "Pick Quality & Track Record. Documented performance vs. the S&P 500 over 5+ years, clear buy/sell guidance, and transparency on losses.",
+          "Research Depth: Full write-ups explaining the thesis, risks, and catalysts. Not just ticker lists.",
+          "Value for Money: Subscription cost relative to the portfolio size where the advice becomes worth it.",
+          "Usability: Clean interface, mobile access, and screeners or tools that help you act on the research.",
         ],
         callout: {
           title: "Important",
-          body: "No stock picking service can guarantee returns. Even the best services have losing picks. The goal is a consistent edge over time — not a crystal ball. Never invest money you cannot afford to lose based on a single recommendation, no matter how confident the write-up sounds.",
+          body: "No stock picking service can guarantee returns. Even the best services have losing picks. The goal is a consistent edge over time. Not a crystal ball. Never invest money you cannot afford to lose based on a single recommendation, no matter how confident the write-up sounds.",
         },
       },
       {
         heading: "Best Overall: Motley Fool Stock Advisor",
         paragraphs: [
           "Motley Fool Stock Advisor is our top pick in May 2026 because it combines the longest public track record in the industry with the clearest, most beginner-friendly format. Every month, co-founders David and Tom Gardner each issue one new stock recommendation, plus refresh their Best Buys Now and Starter Stocks lists. The philosophy is simple: buy great companies, hold them for 3–5 years minimum, and let compounding do the heavy lifting.",
-          "Stock Advisor's historical picks have beaten the S&P 500 over most long-term windows, though the service is transparent that individual picks can lag for years before paying off. At $199/year (frequently discounted to $89–$99 for new subscribers), it is also one of the most affordable services on this list — the math works even with a modest portfolio.",
+          "Stock Advisor's historical picks have beaten the S&P 500 over most long-term windows, though the service is transparent that individual picks can lag for years before paying off. At $199/year (frequently discounted to $89–$99 for new subscribers), it is also one of the most affordable services on this list. The math works even with a modest portfolio.",
         ],
         bullets: [
           "Pros: Long documented track record; clear buy recommendations with full write-ups; beginner-friendly; affordable first-year pricing.",
@@ -2875,8 +2875,8 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Deep Research: Seeking Alpha Premium",
         paragraphs: [
-          "Seeking Alpha is the largest crowd-sourced equity research platform on the internet — thousands of contributor articles covering virtually every public stock, with full bull and bear perspectives side-by-side. Premium ($239/year) unlocks all articles plus Quant Ratings and Factor Grades, a proprietary scoring system that has outperformed the market in backtests.",
-          "Seeking Alpha's biggest strength is diversity of thought. Where Motley Fool gives you two analysts' views, Seeking Alpha gives you twenty on the same stock — bulls, bears, and neutrals. The tradeoff is that contributor quality varies, so you need to develop a feel for which analysts to trust. For readers who want to understand a stock deeply before buying, nothing else comes close.",
+          "Seeking Alpha is the largest crowd-sourced equity research platform on the internet. Thousands of contributor articles covering virtually every public stock, with full bull and bear perspectives side-by-side. Premium ($239/year) unlocks all articles plus Quant Ratings and Factor Grades, a proprietary scoring system that has outperformed the market in backtests.",
+          "Seeking Alpha's biggest strength is diversity of thought. Where Motley Fool gives you two analysts' views, Seeking Alpha gives you twenty on the same stock. Bulls, bears, and neutrals. The tradeoff is that contributor quality varies, so you need to develop a feel for which analysts to trust. For readers who want to understand a stock deeply before buying, nothing else comes close.",
         ],
         bullets: [
           "Pros: Deepest library of independent research on the internet; Quant Ratings are a legitimate quantitative edge; earnings call transcripts included.",
@@ -2886,7 +2886,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Analyst Sentiment: TipRanks Premium",
         paragraphs: [
-          "TipRanks aggregates ratings from 6,000+ Wall Street analysts, insider transactions, hedge fund holdings, and financial blogger sentiment into a single Smart Score (1–10) on every stock. It is the only service on this list that gives you a real-time institutional view alongside retail sentiment — useful for spotting where smart money is moving before it shows up in the price.",
+          "TipRanks aggregates ratings from 6,000+ Wall Street analysts, insider transactions, hedge fund holdings, and financial blogger sentiment into a single Smart Score (1–10) on every stock. It is the only service on this list that gives you a real-time institutional view alongside retail sentiment. Useful for spotting where smart money is moving before it shows up in the price.",
           "Premium ($359/year) unlocks the full Smart Score history, unlimited stock screens, and hedge fund tracking. It is pricier than Motley Fool or Stock Analysis Pro, but if you actively trade around earnings and want to see the consensus shift in real time, TipRanks has no real competitor in this niche.",
         ],
         bullets: [
@@ -2897,8 +2897,8 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Market News: CNBC Pro",
         paragraphs: [
-          "CNBC Pro is less of a stock picking service and more of a premium financial news subscription — but for investors who follow the market daily, it earns its spot. You get exclusive CNBC reporting, Pro Talks interviews with top investors and CEOs, a livestream of CNBC TV, and deeper macro coverage than the free site offers.",
-          "At $299.99/year, CNBC Pro makes sense if you already consume a lot of CNBC content and want the premium reporting without the ads. It is not the right choice for anyone looking for specific buy recommendations or analytical screening tools — for that, pair it with one of the other services on this list.",
+          "CNBC Pro is less of a stock picking service and more of a premium financial news subscription. But for investors who follow the market daily, it earns its spot. You get exclusive CNBC reporting, Pro Talks interviews with top investors and CEOs, a livestream of CNBC TV, and deeper macro coverage than the free site offers.",
+          "At $299.99/year, CNBC Pro makes sense if you already consume a lot of CNBC content and want the premium reporting without the ads. It is not the right choice for anyone looking for specific buy recommendations or analytical screening tools. For that, pair it with one of the other services on this list.",
         ],
         bullets: [
           "Pros: Trusted newsroom brand; real-time breaking market news; exclusive Pro Talks and interviews; livestream of CNBC TV.",
@@ -2908,12 +2908,12 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best Value: Stock Analysis Pro",
         paragraphs: [
-          "Stock Analysis Pro is the budget-friendly pick on this list at $99/year — less than half the price of most competitors. What you get is a clean, ad-free interface covering 10+ years of financial statement history, a fast customizable stock screener, and the cleanest fundamental data UI we have tested. It is the tool we reach for when we want to quickly check revenue growth, margin trends, or valuation multiples without wading through ads or slow-loading pages.",
-          "Stock Analysis Pro does not hand you stock picks — you have to do that work yourself. But if you have basic investing knowledge and want a Bloomberg-lite experience for under $10/month, nothing else comes close on price or data quality.",
+          "Stock Analysis Pro is the budget-friendly pick on this list at $99/year. Less than half the price of most competitors. What you get is a clean, ad-free interface covering 10+ years of financial statement history, a fast customizable stock screener, and the cleanest fundamental data UI we have tested. It is the tool we reach for when we want to quickly check revenue growth, margin trends, or valuation multiples without wading through ads or slow-loading pages.",
+          "Stock Analysis Pro does not hand you stock picks. You have to do that work yourself. But if you have basic investing knowledge and want a Bloomberg-lite experience for under $10/month, nothing else comes close on price or data quality.",
         ],
         bullets: [
           "Pros: $99/year is the cheapest on this list; cleanest fundamental data UI available; ad-free, fast-loading; great for DIY valuation work.",
-          "Cons: No community or social features; charting tools are basic vs. TradingView; no curated picks — you do the research yourself.",
+          "Cons: No community or social features; charting tools are basic vs. TradingView; no curated picks. You do the research yourself.",
         ],
       },
       {
@@ -2922,10 +2922,10 @@ export const guides: GuideArticle[] = [
           "We reviewed 12+ stock picking and research services across curated pick, research platform, and fundamental data categories. Each service was scored across four weighted categories:",
         ],
         bullets: [
-          "Pick Quality & Track Record (35%) — Historical performance vs. the S&P 500, transparency on losing picks, and consistency over 5+ year windows.",
-          "Research Depth (25%) — Written thesis quality, breadth of coverage, and access to earnings transcripts or proprietary data.",
-          "Value for Money (25%) — Subscription price relative to the portfolio size where the advice starts paying for itself.",
-          "Usability (15%) — Clean interface, mobile access, and screeners or tools that help you act on the research.",
+          "Pick Quality & Track Record (35%). Historical performance vs. the S&P 500, transparency on losing picks, and consistency over 5+ year windows.",
+          "Research Depth (25%). Written thesis quality, breadth of coverage, and access to earnings transcripts or proprietary data.",
+          "Value for Money (25%). Subscription price relative to the portfolio size where the advice starts paying for itself.",
+          "Usability (15%). Clean interface, mobile access, and screeners or tools that help you act on the research.",
         ],
         callout: {
           title: "Editorial Independence",
@@ -2939,7 +2939,7 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "Curated Picks (Motley Fool, Alpha Picks): You get specific buy recommendations with a thesis and hold-guidance. Best for investors who want someone else to do the heavy lifting.",
-          "Research Platforms (Seeking Alpha, TipRanks): You get tools, ratings, and research — but you make the buy decision yourself. Best for investors who want data and diverse viewpoints to inform their own picks.",
+          "Research Platforms (Seeking Alpha, TipRanks): You get tools, ratings, and research. But you make the buy decision yourself. Best for investors who want data and diverse viewpoints to inform their own picks.",
           "Data Tools (Stock Analysis Pro, CNBC Pro): Pure data and news access, no recommendations or ratings. Best for experienced investors who just need a clean workflow.",
         ],
       },
@@ -2949,10 +2949,10 @@ export const guides: GuideArticle[] = [
           "Every service on this list has a similar onboarding flow. Most offer a free trial (30 days is common) or a heavily discounted first year, so you can test before committing.",
         ],
         bullets: [
-          "Pick one service that matches your style — curated picks if you want recommendations, research platform if you want to make your own calls.",
-          "Sign up with the first-year discount or free trial — never pay the full list price on your first subscription.",
+          "Pick one service that matches your style. Curated picks if you want recommendations, research platform if you want to make your own calls.",
+          "Sign up with the first-year discount or free trial. Never pay the full list price on your first subscription.",
           "Spend 30 minutes exploring the current recommendations or research dashboard to understand the format.",
-          "Pick 2–3 stocks from the service to watch for 30 days before buying — confirm the thesis still holds.",
+          "Pick 2–3 stocks from the service to watch for 30 days before buying. Confirm the thesis still holds.",
           "Size your positions conservatively (1–5% of portfolio each) until you build confidence in the service's track record.",
         ],
       },
@@ -2960,18 +2960,18 @@ export const guides: GuideArticle[] = [
     keyTakeaways: [
       "The best stock picking services in May 2026 cost $99–$359/year and cover three distinct styles: curated picks, research platforms, and fundamental data tools.",
       "Motley Fool Stock Advisor leads for long-term buy-and-hold simplicity; Seeking Alpha wins for research depth; TipRanks is best for analyst sentiment.",
-      "Stock Analysis Pro at $99/year is the best value — half the price of competitors with the cleanest fundamental data UI.",
-      "CNBC Pro is a news subscription, not a picking service — only subscribe if you already consume CNBC content daily.",
+      "Stock Analysis Pro at $99/year is the best value. Half the price of competitors with the cleanest fundamental data UI.",
+      "CNBC Pro is a news subscription, not a picking service. Only subscribe if you already consume CNBC content daily.",
       "No service can guarantee returns. Pair any subscription with conservative position sizing (1–5% per pick) and a 3–5 year minimum holding period.",
     ],
     faqs: [
       {
         q: "Are stock picking services worth the money?",
-        a: "They can be, but the math depends on portfolio size. A $199/year service needs to generate at least an extra 1% per year on a $20,000 portfolio to break even on fees. On a $5,000 portfolio, it needs to generate 4% extra — a much higher bar. Smaller portfolios should usually start with free resources before paying for picks.",
+        a: "They can be, but the math depends on portfolio size. A $199/year service needs to generate at least an extra 1% per year on a $20,000 portfolio to break even on fees. On a $5,000 portfolio, it needs to generate 4% extra. A much higher bar. Smaller portfolios should usually start with free resources before paying for picks.",
       },
       {
         q: "Do stock picking services beat the S&P 500?",
-        a: "Some do, some do not — and past performance is no guarantee. Motley Fool Stock Advisor has publicly documented outperformance over long windows. Most services show backtests, but live returns are harder to find. Always check the live, verified track record — not just backtests — before subscribing.",
+        a: "Some do, some do not. And past performance is no guarantee. Motley Fool Stock Advisor has publicly documented outperformance over long windows. Most services show backtests, but live returns are harder to find. Always check the live, verified track record. Not just backtests. Before subscribing.",
       },
       {
         q: "Can I try these services before paying?",
@@ -2987,7 +2987,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What happens if I cancel my subscription?",
-        a: "You lose access to the platform, new picks, and any research dashboards. Most services let you export your notes before cancellation. Pick lists you have already bought from are yours to keep — the service does not unwind your positions. Cancel anytime from your account settings; most offer prorated refunds within the first 30 days.",
+        a: "You lose access to the platform, new picks, and any research dashboards. Most services let you export your notes before cancellation. Pick lists you have already bought from are yours to keep. The service does not unwind your positions. Cancel anytime from your account settings; most offer prorated refunds within the first 30 days.",
       },
     ],
   },
@@ -2998,11 +2998,11 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "8 min",
     description:
-      "The highest-paying checking and savings account bonuses available right now — vetted, ranked, and broken down by deposit requirements and difficulty.",
+      "The highest-paying checking and savings account bonuses available right now. Vetted, ranked, and broken down by deposit requirements and difficulty.",
     relatedCategory: "/bank-accounts",
     relatedLabel: "Bank Accounts",
     intro:
-      "Bank bonuses are one of the easiest ways to add a few hundred — or even a few thousand — dollars to your bottom line each year. Banks pay these promotions to acquire new customers, and the offers move constantly. Below is our updated list of the best, most reliably paid bonuses for this month, with the exact requirements, timing, and trade-offs for each.",
+      "Bank bonuses are one of the easiest ways to add a few hundred. Or even a few thousand. Dollars to your bottom line each year. Banks pay these promotions to acquire new customers, and the offers move constantly. Below is our updated list of the best, most reliably paid bonuses for this month, with the exact requirements, timing, and trade-offs for each.",
     sections: [
       {
         heading: "How We Rank Bank Bonuses",
@@ -3010,10 +3010,10 @@ export const guides: GuideArticle[] = [
           "Not all bonuses are created equal. A $400 bonus that requires a $25,000 deposit locked up for 90 days is worth far less than a $300 bonus you can earn with a $1,500 direct deposit. We rank offers by effective dollars-per-hour and dollars-per-dollar-tied-up.",
         ],
         bullets: [
-          "Difficulty — How hard are the direct deposit, balance, or debit requirements to hit?",
-          "Time to payout — How many weeks until the bonus actually lands in your account?",
-          "Reliability — Has the bank historically paid out cleanly, or are there reports of denied bonuses?",
-          "Account quality — Is the underlying account worth keeping after the bonus posts?",
+          "Difficulty: How hard are the direct deposit, balance, or debit requirements to hit?",
+          "Time to payout: How many weeks until the bonus actually lands in your account?",
+          "Reliability: Has the bank historically paid out cleanly, or are there reports of denied bonuses?",
+          "Account quality: Is the underlying account worth keeping after the bonus posts?",
         ],
       },
       {
@@ -3022,7 +3022,7 @@ export const guides: GuideArticle[] = [
           "These are the highest-value, most accessible bonuses available this month. All are open to new customers nationwide and have been verified as actively paying out.",
         ],
         productTable: {
-          title: "Best Bank Bonuses — This Month",
+          title: "Best Bank Bonuses: This Month",
           subtitle: "Ranked by effective value and ease of qualification",
           rows: [
             {
@@ -3037,7 +3037,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$0",
               bonus: "Tiered: $50 ($1K–$4,999 DD) · $300 ($5K+ DD) · +$100 with $5K savings balance · 25-day window",
-              bestFor: "Best overall — biggest combined bonus + APY value",
+              bestFor: "Best overall: biggest combined bonus + APY value",
               rating: 4.8,
               ctaLabel: "Open",
               ctaUrl: "https://www.sofi.com/banking/?utm_source=investingandretirement&utm_medium=affiliate&utm_campaign=best-bank-bonuses-this-month&utm_content=sofi-checking-savings&utm_term=rank-1",
@@ -3070,7 +3070,7 @@ export const guides: GuideArticle[] = [
               apyNote: "with 0.35% APY Boost on $5K+",
               minDeposit: "$100",
               monthlyFee: "$0",
-              bonus: "0.35% APY Boost (6 months) on $5K+ · no cash bonus — rate is the incentive",
+              bonus: "0.35% APY Boost (6 months) on $5K+ · no cash bonus. Rate is the incentive",
               bestFor: "Highest ongoing APY",
               rating: 4.6,
               ctaLabel: "Open",
@@ -3101,10 +3101,10 @@ export const guides: GuideArticle[] = [
           "Most bank bonuses are soft-pull only, meaning they do not affect your credit score. That makes it possible to open multiple bonus accounts per year without consequences, as long as you stay organized.",
         ],
         bullets: [
-          "Track every account in a spreadsheet — open date, bonus amount, requirements, and payout date.",
+          "Track every account in a spreadsheet: open date, bonus amount, requirements, and payout date.",
           "Set calendar reminders for the deadline to complete direct deposits or balance requirements.",
           "Wait until each bonus posts and clears (typically 60 days) before closing accounts to avoid clawbacks.",
-          "Never close a bonus account in less than 6 months — most banks will reverse the bonus if you do.",
+          "Never close a bonus account in less than 6 months. Most banks will reverse the bonus if you do.",
         ],
         callout: {
           title: "Tax Reminder",
@@ -3117,7 +3117,7 @@ export const guides: GuideArticle[] = [
           "The single biggest reason bonuses get denied is failing the direct deposit requirement. Each bank defines 'qualifying direct deposit' differently, and not every ACH transfer counts.",
         ],
         bullets: [
-          "Payroll from your employer almost always qualifies — this is the safest path.",
+          "Payroll from your employer almost always qualifies. This is the safest path.",
           "Government benefits (Social Security, pensions, unemployment) typically qualify.",
           "ACH transfers from external bank accounts usually do NOT qualify, even if labeled 'direct deposit'.",
           "Zelle, Venmo, PayPal, and Cash App transfers almost never qualify as direct deposits.",
@@ -3127,19 +3127,19 @@ export const guides: GuideArticle[] = [
       {
         heading: "Bonus Requirements, Decoded",
         paragraphs: [
-          "Every bonus above looks simple on the surface — but each one has specific fine print that determines whether you actually get paid. Here is exactly what you need to do for each offer on our list, in plain English.",
+          "Every bonus above looks simple on the surface. But each one has specific fine print that determines whether you actually get paid. Here is exactly what you need to do for each offer on our list, in plain English.",
         ],
         bullets: [
-          "Chase Total Checking ($400) — Open a new Total Checking account, enroll in direct deposit, and receive a qualifying direct deposit of $500+ within 90 days of account opening. Bonus typically posts within 10 business days of meeting the requirement. You must keep the account open for at least 6 months or Chase may claw back the bonus. Offer valid through 7/15/26.",
-          "SoFi Checking & Savings (up to $400) — Tiered structure: receive $50 for $1,000–$4,999 in direct deposits within 25 days, or $300 for $5,000+. Add a $100 savings balance bonus for maintaining $5,000+ in SoFi Savings during the qualification window. Direct deposits must be payroll, government benefits, or pension — ACH transfers from other banks do NOT qualify.",
-          "CIT Platinum Savings (APY Boost) — No cash bonus, but new customers get a 0.35% APY Boost on balances of $5,000+ for the first 6 months, bringing the effective yield to 4.10%. After 6 months, the rate reverts to the standard Platinum tier (~3.75%). Balances under $5,000 earn the base savings rate (~0.25%) — this is NOT the account for small balances.",
-          "Bread Savings (ongoing APY) — No promotional bonus and no tiers. You earn 4.00% APY on every dollar from the moment the account funds, with a $100 minimum to open. This is the right choice if you hate tracking bonus deadlines and just want a high flat rate.",
+          "Chase Total Checking ($400): Open a new Total Checking account, enroll in direct deposit, and receive a qualifying direct deposit of $500+ within 90 days of account opening. Bonus typically posts within 10 business days of meeting the requirement. You must keep the account open for at least 6 months or Chase may claw back the bonus. Offer valid through 7/15/26.",
+          "SoFi Checking & Savings (up to $400). Tiered structure: receive $50 for $1,000–$4,999 in direct deposits within 25 days, or $300 for $5,000+. Add a $100 savings balance bonus for maintaining $5,000+ in SoFi Savings during the qualification window. Direct deposits must be payroll, government benefits, or pension. ACH transfers from other banks do NOT qualify.",
+          "CIT Platinum Savings (APY Boost): No cash bonus, but new customers get a 0.35% APY Boost on balances of $5,000+ for the first 6 months, bringing the effective yield to 4.10%. After 6 months, the rate reverts to the standard Platinum tier (~3.75%). Balances under $5,000 earn the base savings rate (~0.25%). This is NOT the account for small balances.",
+          "Bread Savings (ongoing APY): No promotional bonus and no tiers. You earn 4.00% APY on every dollar from the moment the account funds, with a $100 minimum to open. This is the right choice if you hate tracking bonus deadlines and just want a high flat rate.",
         ],
       },
       {
         heading: "Math: Which Offer Actually Pays the Most?",
         paragraphs: [
-          "A $400 cash bonus sounds better than “just” a high APY — but over a full year, the comparison is not always obvious. Here is the 12-month return on $10,000 for each option on our list, assuming you meet every requirement.",
+          "A $400 cash bonus sounds better than “just” a high APY. But over a full year, the comparison is not always obvious. Here is the 12-month return on $10,000 for each option on our list, assuming you meet every requirement.",
         ],
         bullets: [
           "Chase Total Checking: $400 bonus + ~$0 interest (0.00% APY) = ~$400 total first-year value.",
@@ -3159,20 +3159,20 @@ export const guides: GuideArticle[] = [
           "Not every advertised bonus is worth your time. Watch out for offers that lock up large balances at low rates, require excessive debit transactions, or come from banks with a history of denying payouts on technicalities. We exclude any bonus where the effective hourly rate falls below $50 after factoring in setup time and balance lockup.",
         ],
         bullets: [
-          "Bonuses requiring $25,000+ deposits for under $500 — the opportunity cost of pulling that money from a 4% HYSA often exceeds the bonus itself.",
-          "Offers requiring 10+ debit card transactions per month for 3+ months — the tracking overhead rarely justifies a $200 payout.",
-          "In-branch-only bonuses from regional banks — fine if you live nearby, but the travel time destroys the hourly value.",
+          "Bonuses requiring $25,000+ deposits for under $500. The opportunity cost of pulling that money from a 4% HYSA often exceeds the bonus itself.",
+          "Offers requiring 10+ debit card transactions per month for 3+ months. The tracking overhead rarely justifies a $200 payout.",
+          "In-branch-only bonuses from regional banks: fine if you live nearby, but the travel time destroys the hourly value.",
           "Bonuses from banks with a documented history of denying payouts on technicalities (we rotate our avoid list based on reader reports).",
         ],
       },
     ],
     keyTakeaways: [
-      "SoFi Checking & Savings is our #1 pick — up to $400 tiered bonus plus 4.00% APY on savings for ~$800 first-year value on $10K.",
-      "Chase Total Checking is the easiest standalone $400 bonus if you only want one cash payout — $500+ direct deposit within 90 days, valid through 7/15/26.",
+      "SoFi Checking & Savings is our #1 pick. Up to $400 tiered bonus plus 4.00% APY on savings for ~$800 first-year value on $10K.",
+      "Chase Total Checking is the easiest standalone $400 bonus if you only want one cash payout, $500+ direct deposit within 90 days, valid through 7/15/26.",
       "CIT Platinum and Bread Savings skip the cash bonus but pay top-tier ongoing APY (4.10% and 4.00% respectively).",
       "Stacking SoFi + CIT + Chase is a realistic $1,000+ first-year strategy.",
       "Track every bonus in a spreadsheet and never close accounts within 6 months or banks can claw back the payout.",
-      "Only payroll and government benefit deposits reliably qualify — ACH transfers from other banks almost never count.",
+      "Only payroll and government benefit deposits reliably qualify. ACH transfers from other banks almost never count.",
     ],
     faqs: [
       {
@@ -3208,11 +3208,11 @@ export const guides: GuideArticle[] = [
     category: "Investing",
     readTime: "10 min",
     description:
-      "Our updated ranking of the top 5 investing apps for May 2026 — commission-free trading, fractional shares, and retirement accounts.",
+      "Our updated ranking of the top 5 investing apps for May 2026. Commission-free trading, fractional shares, and retirement accounts.",
     relatedCategory: "/investing",
     relatedLabel: "Investing",
     intro:
-      "The investing app landscape in May 2026 is more competitive than ever. Commission-free trading is now table stakes, and the platforms that stand out are the ones offering meaningful extras — high-yield cash sweeps, retirement accounts, fractional shares, advanced charting, and access to alternative assets like crypto, options, and futures. We tested the leading apps across account opening speed, fee structure, asset selection, research tools, and mobile experience to bring you this updated ranking of the top 5 for May 2026.",
+      "The investing app landscape in May 2026 is more competitive than ever. Commission-free trading is now table stakes, and the platforms that stand out are the ones offering meaningful extras. High-yield cash sweeps, retirement accounts, fractional shares, advanced charting, and access to alternative assets like crypto, options, and futures. We tested the leading apps across account opening speed, fee structure, asset selection, research tools, and mobile experience to bring you this updated ranking of the top 5 for May 2026.",
     sections: [
       {
         heading: "How We Ranked the Best Investing Apps for May 2026",
@@ -3220,12 +3220,12 @@ export const guides: GuideArticle[] = [
           "Our editorial team independently evaluated 22 investing platforms over the past 60 days. Each app was scored across six categories: cost (commissions, spreads, account fees), asset breadth (stocks, ETFs, options, crypto, futures, fractional shares), account types (taxable, IRA, Roth IRA, custodial), research and tools, mobile experience, and customer support. The five apps below scored highest overall and represent the best choices across different investor profiles.",
         ],
         bullets: [
-          "Cost — commission structure, payment for order flow, margin rates, and hidden fees.",
-          "Asset breadth — stocks, ETFs, options, crypto, futures, IPOs, and fractional shares.",
-          "Account types — taxable brokerage, Traditional IRA, Roth IRA, SEP IRA, and custodial.",
-          "Research and tools — screeners, charting, news feeds, and analyst ratings.",
-          "Mobile experience — speed, reliability, and feature parity with desktop.",
-          "Customer support — phone, chat, and email response times.",
+          "Cost: commission structure, payment for order flow, margin rates, and hidden fees.",
+          "Asset breadth: stocks, ETFs, options, crypto, futures, IPOs, and fractional shares.",
+          "Account types: taxable brokerage, Traditional IRA, Roth IRA, SEP IRA, and custodial.",
+          "Research and tools: screeners, charting, news feeds, and analyst ratings.",
+          "Mobile experience: speed, reliability, and feature parity with desktop.",
+          "Customer support: phone, chat, and email response times.",
         ],
       },
       {
@@ -3246,7 +3246,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$0",
               monthlyFee: "$0 (Gold $5/mo)",
               bonus: "3% IRA match with Gold",
-              bestFor: "Best overall — mobile-first investing with the only 3% IRA match",
+              bestFor: "Best overall: mobile-first investing with the only 3% IRA match",
               rating: 4.8,
               ctaLabel: "Open Account",
               ctaUrl: "https://robinhood.com/",
@@ -3323,12 +3323,12 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Beginners: SoFi Invest",
         paragraphs: [
-          "SoFi Invest is our top pick for first-time investors in May 2026. The interface is genuinely beginner-friendly, account opening takes under 5 minutes, and there are no minimums on either taxable or retirement accounts. SoFi also bundles checking, savings, and investing into a single app — useful for users who want one place to manage their money.",
+          "SoFi Invest is our top pick for first-time investors in May 2026. The interface is genuinely beginner-friendly, account opening takes under 5 minutes, and there are no minimums on either taxable or retirement accounts. SoFi also bundles checking, savings, and investing into a single app. Useful for users who want one place to manage their money.",
           "What seals the deal: SoFi offers a 1% IRA match (up to limits) and a current sign-up bonus of up to $1,000 in free stock when you fund a new account. The platform supports stocks, ETFs, fractional shares, and crypto.",
         ],
         bullets: [
           "$0 commissions on stocks, ETFs, and options.",
-          "Fractional shares from $5 — buy slices of expensive stocks like Berkshire or NVDA.",
+          "Fractional shares from $5: buy slices of expensive stocks like Berkshire or NVDA.",
           "Automated investing portfolios with no advisory fee.",
           "Traditional IRA, Roth IRA, and SEP IRA support.",
         ],
@@ -3337,14 +3337,14 @@ export const guides: GuideArticle[] = [
         heading: "Best for Active Traders: Webull",
         paragraphs: [
           "Webull continues to lead among self-directed active traders in May 2026. The mobile and desktop charting tools are best-in-class for a free platform, with over 50 technical indicators, advanced order types, and pre/post-market trading from 4am to 8pm ET. Options trading is commission-free with no contract fees.",
-          "For May 2026, Webull is running an aggressive promotion — up to 75 free stocks (worth $30 to $30,000 depending on the deposit) for new accounts that fund within 30 days. This is one of the most generous welcome offers in the industry right now.",
+          "For May 2026, Webull is running an aggressive promotion. Up to 75 free stocks (worth $30 to $30,000 depending on the deposit) for new accounts that fund within 30 days. This is one of the most generous welcome offers in the industry right now.",
         ],
       },
       {
         heading: "Best for Research: Charles Schwab",
         paragraphs: [
           "Schwab remains the gold standard for investors who rely on research. After absorbing TD Ameritrade's thinkorswim platform, Schwab now offers institutional-grade charting, screening, and analyst reports completely free. The thinkorswim mobile app is unmatched for technical traders who want to do real analysis on the go.",
-          "Schwab's research includes proprietary equity ratings, Morningstar reports, Credit Suisse research, and Argus reports — all free with any account. There is no minimum to open a brokerage account, and the platform supports every major account type including custodial and 529s.",
+          "Schwab's research includes proprietary equity ratings, Morningstar reports, Credit Suisse research, and Argus reports. All free with any account. There is no minimum to open a brokerage account, and the platform supports every major account type including custodial and 529s.",
         ],
         callout: {
           title: "Editor's Note",
@@ -3367,12 +3367,12 @@ export const guides: GuideArticle[] = [
       {
         heading: "What to Look For When Choosing an Investing App in 2026",
         bullets: [
-          "Cash sweep APY — uninvested cash should earn at least 4% in 2026. Anything less is a waste.",
-          "Account fees — top apps charge $0 for account maintenance, transfers, and inactivity.",
-          "Asset breadth — make sure the app supports every asset class you want to trade now and in 5 years.",
-          "Retirement accounts — if you do not yet have an IRA, choose an app that offers Traditional and Roth IRAs at minimum.",
-          "Research quality — for buy-and-hold investors, Schwab and Fidelity are unbeatable. For active traders, Webull and thinkorswim lead.",
-          "Mobile reliability — test the app's order entry and chart loading speed on a slow connection before depositing real money.",
+          "Cash sweep APY: uninvested cash should earn at least 4% in 2026. Anything less is a waste.",
+          "Account fees: top apps charge $0 for account maintenance, transfers, and inactivity.",
+          "Asset breadth: make sure the app supports every asset class you want to trade now and in 5 years.",
+          "Retirement accounts: if you do not yet have an IRA, choose an app that offers Traditional and Roth IRAs at minimum.",
+          "Research quality: for buy-and-hold investors, Schwab and Fidelity are unbeatable. For active traders, Webull and thinkorswim lead.",
+          "Mobile reliability: test the app's order entry and chart loading speed on a slow connection before depositing real money.",
         ],
         callout: {
           title: "Action Step",
@@ -3388,12 +3388,12 @@ export const guides: GuideArticle[] = [
       },
     ],
     keyTakeaways: [
-      "Robinhood is our #1 overall pick for May 2026 — best mobile experience, 3% IRA match (Gold), and up to 5.00% on uninvested cash.",
+      "Robinhood is our #1 overall pick for May 2026. Best mobile experience, 3% IRA match (Gold), and up to 5.00% on uninvested cash.",
       "Fidelity is our top pick for retirement and cash management, with a 4.95% sweep and full asset breadth.",
       "Webull leads for active traders with up to 75 free stocks for new accounts in May 2026.",
-      "Schwab is the research king — institutional-grade tools and reports, completely free.",
+      "Schwab is the research king: institutional-grade tools and reports, completely free.",
       "SoFi Invest is the easiest on-ramp for first-time investors with bundled banking and investing.",
-      "Cash sweep APY matters — top apps now pay 4% to 5% on uninvested cash.",
+      "Cash sweep APY matters: top apps now pay 4% to 5% on uninvested cash.",
     ],
     faqs: [
       {
@@ -3406,7 +3406,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What is a cash sweep and why does it matter?",
-        a: "A cash sweep automatically moves your uninvested cash into a money market fund or partner bank that earns interest. In 2026, top sweep rates are 4–5%, while bottom-tier brokers pay 0.01%. On a $50,000 cash balance, that difference is $2,500/year — real money for doing nothing.",
+        a: "A cash sweep automatically moves your uninvested cash into a money market fund or partner bank that earns interest. In 2026, top sweep rates are 4–5%, while bottom-tier brokers pay 0.01%. On a $50,000 cash balance, that difference is $2,500/year. Real money for doing nothing.",
       },
       {
         q: "Should I choose an app based on the sign-up bonus?",
@@ -3432,7 +3432,7 @@ export const guides: GuideArticle[] = [
     category: "Investing",
     readTime: "11 min",
     description:
-      "The top 6 crypto exchanges and wallets for U.S. users in 2026 — ranked by fees, security, asset selection, staking yields, and Web3 features.",
+      "The top 6 crypto exchanges and wallets for U.S. users in 2026. Ranked by fees, security, asset selection, staking yields, and Web3 features.",
     relatedCategory: "/financial-apps",
     relatedLabel: "Crypto Apps",
     intro:
@@ -3455,7 +3455,7 @@ export const guides: GuideArticle[] = [
               minDeposit: "$2",
               monthlyFee: "$0 (Coinbase One $29.99/mo)",
               bonus: "Up to $200 in crypto",
-              bestFor: "Best overall — beginners and U.S. trust",
+              bestFor: "Best overall: beginners and U.S. trust",
               rating: 4.5,
               ctaLabel: "Open Account",
               ctaUrl: "https://www.coinbase.com/",
@@ -3545,7 +3545,7 @@ export const guides: GuideArticle[] = [
         heading: "Best Overall: Coinbase",
         paragraphs: [
           "Coinbase is our #1 pick for 2026 because it strikes the best balance between trust, security, and usability for U.S. users. As the only publicly traded major U.S. crypto exchange (NASDAQ: COIN), Coinbase is held to public-company disclosure standards, with SOC 1 and SOC 2 reporting and FDIC pass-through insurance on USD balances up to $250,000.",
-          "For active users, Coinbase Advanced Trade drops fees to as low as 0.00% maker / 0.05% taker — competitive with Kraken Pro. The Coinbase One subscription ($29.99/month) unlocks zero-fee trading on eligible pairs, boosted USDC rewards, and prepaid gas credits — worth it for users trading more than ~$5,000/month.",
+          "For active users, Coinbase Advanced Trade drops fees to as low as 0.00% maker / 0.05% taker. Competitive with Kraken Pro. The Coinbase One subscription ($29.99/month) unlocks zero-fee trading on eligible pairs, boosted USDC rewards, and prepaid gas credits. Worth it for users trading more than ~$5,000/month.",
         ],
         bullets: [
           "260+ cryptocurrencies available to U.S. customers.",
@@ -3558,22 +3558,22 @@ export const guides: GuideArticle[] = [
         heading: "Best for Active Traders: Kraken",
         paragraphs: [
           "Kraken is the trader's exchange. Operating since 2011 with no major hacks, Kraken combines deep liquidity with one of the most respected pro trading platforms in the industry. Kraken Pro offers maker fees as low as 0.00% and taker fees from 0.10%, with advanced order types, margin, and (for qualified users) perpetual futures.",
-          "Kraken Earn pays staking rewards on 20+ assets, though availability varies by U.S. state. For institutions and high-volume traders, Kraken Prime offers OTC desks, white-glove onboarding, and 24/7 live chat support — features rare at this price point.",
+          "Kraken Earn pays staking rewards on 20+ assets, though availability varies by U.S. state. For institutions and high-volume traders, Kraken Prime offers OTC desks, white-glove onboarding, and 24/7 live chat support. Features rare at this price point.",
         ],
         callout: {
           title: "Editor's Note",
-          body: "If you are a U.S. trader who wants pro tools without paying institutional rates, Kraken Pro is hard to beat. Just stick to Kraken Pro — the basic Kraken Instant Buy interface charges noticeably more.",
+          body: "If you are a U.S. trader who wants pro tools without paying institutional rates, Kraken Pro is hard to beat. Just stick to Kraken Pro: the basic Kraken Instant Buy interface charges noticeably more.",
         },
       },
       {
         heading: "Best for Security & Compliance: Gemini",
         paragraphs: [
-          "Gemini was built from day one as a regulated trust company under the New York Department of Financial Services (NYDFS). That means Gemini is a qualified custodian — the same legal status as a bank trust department — making it a top choice for compliance-focused investors, RIAs, and family offices.",
-          "For everyday users, Gemini ActiveTrader offers maker fees from 0.00% / taker 0.03%, and the Gemini Credit Card earns up to 3% crypto back on dining, 2% on groceries, and 1% on everything else — paid out instantly in any of 60+ supported coins.",
+          "Gemini was built from day one as a regulated trust company under the New York Department of Financial Services (NYDFS). That means Gemini is a qualified custodian. The same legal status as a bank trust department. Making it a top choice for compliance-focused investors, RIAs, and family offices.",
+          "For everyday users, Gemini ActiveTrader offers maker fees from 0.00% / taker 0.03%, and the Gemini Credit Card earns up to 3% crypto back on dining, 2% on groceries, and 1% on everything else. Paid out instantly in any of 60+ supported coins.",
         ],
         bullets: [
           "NYDFS-regulated trust company and qualified custodian.",
-          "SOC 1 Type 2 and SOC 2 Type 2 certified — top-tier audit standards.",
+          "SOC 1 Type 2 and SOC 2 Type 2 certified. Top-tier audit standards.",
           "FDIC pass-through insurance on USD balances up to $250K.",
           "Gemini Credit Card with up to 3% crypto back, no annual fee.",
         ],
@@ -3581,11 +3581,11 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best for Mobile & Card Rewards: Crypto.com",
         paragraphs: [
-          "Crypto.com bundles a crypto exchange, DeFi wallet, NFT marketplace, and a rewards Visa card into a single mobile-first experience. The Crypto.com Visa Card offers up to 5% cashback in CRO based on staking tiers, with the entry-level (no-stake) card still earning 1% — better than most cash-back credit cards.",
+          "Crypto.com bundles a crypto exchange, DeFi wallet, NFT marketplace, and a rewards Visa card into a single mobile-first experience. The Crypto.com Visa Card offers up to 5% cashback in CRO based on staking tiers, with the entry-level (no-stake) card still earning 1%. Better than most cash-back credit cards.",
           "Crypto Earn is the standout feature: flexible and fixed-term yields up to ~14.5% APY on select coins, with one of the broadest supported asset lists in the industry. Combined with 350+ supported cryptocurrencies, Crypto.com is the most feature-dense mobile crypto app available in 2026.",
         ],
         bullets: [
-          "350+ cryptocurrencies — one of the largest U.S.-available selections.",
+          "350+ cryptocurrencies. One of the largest U.S.-available selections.",
           "Visa Card with up to 5% crypto cashback (CRO stake tiers).",
           "Crypto Earn yields up to ~14.5% APY on select assets.",
           "DeFi Wallet (self-custody) integrated with the main app.",
@@ -3594,15 +3594,15 @@ export const guides: GuideArticle[] = [
       {
         heading: "Best Multi-Asset Platform: Uphold",
         paragraphs: [
-          "Uphold is a unique platform that lets you hold and trade crypto, precious metals (gold, silver, platinum, palladium), 50+ U.S. equities, and fiat currencies — all from one wallet. Their Anything-to-Anything trading lets you swap directly between asset classes in a single step, with no need to convert through USD.",
-          "Uphold publishes real-time Proof of Reserves, showing 1:1 backing of all customer assets — a level of transparency that became table stakes after FTX. Staking rewards are available on 30+ assets, many with no lock-up period, making Uphold a flexible choice for yield-seekers.",
+          "Uphold is a unique platform that lets you hold and trade crypto, precious metals (gold, silver, platinum, palladium), 50+ U.S. equities, and fiat currencies. All from one wallet. Their Anything-to-Anything trading lets you swap directly between asset classes in a single step, with no need to convert through USD.",
+          "Uphold publishes real-time Proof of Reserves, showing 1:1 backing of all customer assets. A level of transparency that became table stakes after FTX. Staking rewards are available on 30+ assets, many with no lock-up period, making Uphold a flexible choice for yield-seekers.",
         ],
       },
       {
         heading: "Best for Web3 & DeFi: OKX",
         paragraphs: [
-          "OKX is one of the largest global crypto exchanges by volume, and its OKX Web3 Wallet has emerged as one of the most powerful self-custody wallets available. The wallet supports 80+ chains and includes a built-in DEX aggregator, NFT marketplace, and access to thousands of DeFi protocols — making it a strong alternative to MetaMask for users who want a single app.",
-          "On the exchange side, OKX offers spot trading at fees as low as 0.08% maker / 0.10% taker. U.S. users access OKX through okx.com/us (spot only — no derivatives), while users in supported regions can access perpetual futures, options, and margin trading. Note that OKX U.S. is not available in all states; check the website for state-by-state availability.",
+          "OKX is one of the largest global crypto exchanges by volume, and its OKX Web3 Wallet has emerged as one of the most powerful self-custody wallets available. The wallet supports 80+ chains and includes a built-in DEX aggregator, NFT marketplace, and access to thousands of DeFi protocols. Making it a strong alternative to MetaMask for users who want a single app.",
+          "On the exchange side, OKX offers spot trading at fees as low as 0.08% maker / 0.10% taker. U.S. users access OKX through okx.com/us (spot only. No derivatives), while users in supported regions can access perpetual futures, options, and margin trading. Note that OKX U.S. is not available in all states; check the website for state-by-state availability.",
         ],
         callout: {
           title: "Self-Custody Tip",
@@ -3612,12 +3612,12 @@ export const guides: GuideArticle[] = [
       {
         heading: "What to Look For When Choosing a Crypto App in 2026",
         bullets: [
-          "U.S. availability — many global exchanges are restricted in the U.S. or specific states. Always confirm before depositing.",
-          "Fees — use the pro/advanced interface (Coinbase Advanced Trade, Kraken Pro, Gemini ActiveTrader) for fees as low as 0.00–0.10%, instead of basic interfaces that charge 1.49%+.",
-          "Security — look for SOC 1 / SOC 2 audits, regulated custody, and Proof of Reserves. Avoid exchanges without published audit reports.",
-          "Staking & yield — APYs vary widely. Compare net yields after the platform's commission cut, and check whether staking is available in your state.",
-          "Self-custody integration — the best apps make it easy to move funds to your own wallet for long-term storage and DeFi access.",
-          "Card rewards — Crypto.com (5% cashback) and Gemini (3% back) lead the market for everyday spending in crypto rewards.",
+          "U.S. availability: many global exchanges are restricted in the U.S. or specific states. Always confirm before depositing.",
+          "Fees: use the pro/advanced interface (Coinbase Advanced Trade, Kraken Pro, Gemini ActiveTrader) for fees as low as 0.00–0.10%, instead of basic interfaces that charge 1.49%+.",
+          "Security: look for SOC 1 / SOC 2 audits, regulated custody, and Proof of Reserves. Avoid exchanges without published audit reports.",
+          "Staking & yield. APYs vary widely. Compare net yields after the platform's commission cut, and check whether staking is available in your state.",
+          "Self-custody integration: the best apps make it easy to move funds to your own wallet for long-term storage and DeFi access.",
+          "Card rewards: Crypto.com (5% cashback) and Gemini (3% back) lead the market for everyday spending in crypto rewards.",
         ],
       },
       {
@@ -3629,22 +3629,22 @@ export const guides: GuideArticle[] = [
       },
     ],
     keyTakeaways: [
-      "Coinbase is our #1 pick for 2026 — publicly traded, FDIC-insured USD, and best balance of trust and features.",
+      "Coinbase is our #1 pick for 2026. Publicly traded, FDIC-insured USD, and best balance of trust and features.",
       "Kraken Pro leads for active traders with fees as low as 0.00% maker and a 13+ year clean security track record.",
-      "Gemini is the top pick for compliance — NYDFS trust company status and SOC 2 Type 2 audits.",
+      "Gemini is the top pick for compliance. NYDFS trust company status and SOC 2 Type 2 audits.",
       "Crypto.com offers the best mobile experience with up to 5% Visa cashback and ~14.5% APY on Crypto Earn.",
       "Uphold is unique for trading crypto, metals, and equities from one wallet with Proof of Reserves.",
-      "OKX leads for Web3 — its self-custody wallet supports 80+ chains and replaces MetaMask for many users.",
-      "Always use the pro/advanced trading interface — basic interfaces charge 10x+ in fees.",
+      "OKX leads for Web3: its self-custody wallet supports 80+ chains and replaces MetaMask for many users.",
+      "Always use the pro/advanced trading interface: basic interfaces charge 10x+ in fees.",
     ],
     faqs: [
       {
         q: "Are these crypto apps safe?",
-        a: "All six platforms are among the most secure in the industry. Coinbase, Kraken, and Gemini have completed SOC 2 Type 2 audits and publish Proof of Reserves. Gemini is a NYDFS-regulated trust company. That said, no exchange is 100% safe — long-term holdings should be moved to a self-custody wallet (Coinbase Wallet, OKX Web3 Wallet, Ledger).",
+        a: "All six platforms are among the most secure in the industry. Coinbase, Kraken, and Gemini have completed SOC 2 Type 2 audits and publish Proof of Reserves. Gemini is a NYDFS-regulated trust company. That said, no exchange is 100% safe. Long-term holdings should be moved to a self-custody wallet (Coinbase Wallet, OKX Web3 Wallet, Ledger).",
       },
       {
         q: "What is the difference between an exchange and a wallet?",
-        a: "An exchange (like Coinbase or Kraken) custodies your crypto for you — they hold the keys. A self-custody wallet (like Coinbase Wallet or OKX Web3 Wallet) means you hold the private keys yourself. Self-custody is safer for long-term storage but requires you to securely back up your seed phrase.",
+        a: "An exchange (like Coinbase or Kraken) custodies your crypto for you. They hold the keys. A self-custody wallet (like Coinbase Wallet or OKX Web3 Wallet) means you hold the private keys yourself. Self-custody is safer for long-term storage but requires you to securely back up your seed phrase.",
       },
       {
         q: "What is staking and how does it work?",
@@ -3656,7 +3656,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Can I move crypto between exchanges?",
-        a: "Yes. All six platforms support deposits and withdrawals to external wallets. Withdrawal fees vary by coin and network — Bitcoin and Ethereum withdrawals can cost $1–$30 depending on network congestion. Use Layer 2 networks (Base, Arbitrum, Optimism) for cheaper transfers when possible.",
+        a: "Yes. All six platforms support deposits and withdrawals to external wallets. Withdrawal fees vary by coin and network. Bitcoin and Ethereum withdrawals can cost $1–$30 depending on network congestion. Use Layer 2 networks (Base, Arbitrum, Optimism) for cheaper transfers when possible.",
       },
       {
         q: "What is the minimum to buy crypto?",
@@ -3674,7 +3674,7 @@ export const guides: GuideArticle[] = [
     category: "Saving Money",
     readTime: "8 min",
     description:
-      "High-yield savings, money market accounts, and CDs all pay strong interest in 2026 — but they serve very different jobs. Here is how to choose.",
+      "High-yield savings, money market accounts, and CDs all pay strong interest in 2026. But they serve very different jobs. Here is how to choose.",
     relatedCategory: "/bank-accounts",
     relatedLabel: "Compare Bank Accounts",
     intro:
@@ -3683,9 +3683,9 @@ export const guides: GuideArticle[] = [
       {
         heading: "The 30-Second Summary",
         bullets: [
-          "HYSA — best for emergency funds and flexible savings. Variable rate, fully liquid, no term commitment.",
-          "Money Market — best for larger balances that need check-writing or debit access. Variable rate, often tiered.",
-          "CDs — best for money you will not need for a fixed period (3 months to 5 years). Fixed rate, locked term, early withdrawal penalty.",
+          "HYSA: best for emergency funds and flexible savings. Variable rate, fully liquid, no term commitment.",
+          "Money Market: best for larger balances that need check-writing or debit access. Variable rate, often tiered.",
+          "CDs: best for money you will not need for a fixed period (3 months to 5 years). Fixed rate, locked term, early withdrawal penalty.",
         ],
         callout: {
           title: "Quick Rule of Thumb",
@@ -3695,7 +3695,7 @@ export const guides: GuideArticle[] = [
       {
         heading: "High-Yield Savings (HYSA)",
         paragraphs: [
-          "HYSAs are the workhorse of personal finance. They pay 10-15x the national average, charge no fees at top online banks, and let you transfer money in and out via ACH within 1-3 business days. The rate is variable — it moves with the Fed — but for emergency funds and short-term savings, that flexibility is worth more than locking in a fixed rate.",
+          "HYSAs are the workhorse of personal finance. They pay 10-15x the national average, charge no fees at top online banks, and let you transfer money in and out via ACH within 1-3 business days. The rate is variable: it moves with the Fed. But for emergency funds and short-term savings, that flexibility is worth more than locking in a fixed rate.",
         ],
         bullets: [
           "Typical APY (2026): 3.8% to 4.5%",
@@ -3712,24 +3712,24 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "Typical APY (2026): 3.5% to 4.3%, often tiered by balance",
-          "Access: checks, debit card, ACH — more flexible than HYSA",
+          "Access: checks, debit card, ACH. More flexible than HYSA",
           "FDIC insured (banks) or NCUA insured (credit unions)",
           "Some require $1,000-$10,000 minimums to earn the top tier",
           "Best for: high cash balances, retirees, business operating cash",
         ],
         callout: {
-          title: "HYSA vs MMA — The Honest Take",
+          title: "HYSA vs MMA: The Honest Take",
           body: "For most people, a top-tier HYSA wins. MMAs are worth it only if you genuinely use the check-writing or want a tiered rate boost on a six-figure balance.",
         },
       },
       {
         heading: "Certificates of Deposit (CDs)",
         paragraphs: [
-          "CDs lock your money for a fixed term — anywhere from 3 months to 5 years — in exchange for a guaranteed fixed rate. The trade-off: pulling money out early triggers a penalty (typically 3-12 months of interest). When rates are expected to fall, CDs let you lock in today's APY before it disappears.",
+          "CDs lock your money for a fixed term. Anywhere from 3 months to 5 years. In exchange for a guaranteed fixed rate. The trade-off: pulling money out early triggers a penalty (typically 3-12 months of interest). When rates are expected to fall, CDs let you lock in today's APY before it disappears.",
         ],
         bullets: [
           "Typical APY (2026): 4.0% to 5.0% on 6-12 month terms",
-          "Fixed rate — does not change for the duration of the term",
+          "Fixed rate: does not change for the duration of the term",
           "Early withdrawal penalty: usually 3-6 months of interest on shorter CDs",
           "FDIC insured up to $250,000",
           "Best for: known future expenses (down payment in 18 months, tuition next year)",
@@ -3738,11 +3738,11 @@ export const guides: GuideArticle[] = [
       {
         heading: "The CD Ladder Strategy",
         paragraphs: [
-          "If you like the rate-lock of CDs but want some liquidity, build a ladder. Split your money into 5 equal CDs with terms of 1, 2, 3, 4, and 5 years. Each year one matures — you can either spend it or roll it into a new 5-year CD. After year 5, you have a 5-year CD maturing every year while still earning long-term rates.",
+          "If you like the rate-lock of CDs but want some liquidity, build a ladder. Split your money into 5 equal CDs with terms of 1, 2, 3, 4, and 5 years. Each year one matures: you can either spend it or roll it into a new 5-year CD. After year 5, you have a 5-year CD maturing every year while still earning long-term rates.",
         ],
       },
       {
-        heading: "How to Decide — A Simple Framework",
+        heading: "How to Decide: A Simple Framework",
         bullets: [
           "Need it within 30 days? → HYSA",
           "Need flexible access plus checks/debit? → MMA",
@@ -3753,7 +3753,7 @@ export const guides: GuideArticle[] = [
       },
     ],
     keyTakeaways: [
-      "HYSAs win for emergency funds and flexibility — variable rate, fully liquid.",
+      "HYSAs win for emergency funds and flexibility. Variable rate, fully liquid.",
       "MMAs are worth it only for large balances that need check or debit access.",
       "CDs lock in today's rate but charge a penalty for early withdrawal.",
       "Use a CD ladder to balance rate-lock with annual liquidity.",
@@ -3762,15 +3762,15 @@ export const guides: GuideArticle[] = [
     faqs: [
       {
         q: "Which pays the highest rate in 2026?",
-        a: "Short-term CDs (6-12 months) typically lead, followed by top HYSAs, then MMAs. The gap is usually 0.25% to 0.75% — meaningful only on larger balances.",
+        a: "Short-term CDs (6-12 months) typically lead, followed by top HYSAs, then MMAs. The gap is usually 0.25% to 0.75%. Meaningful only on larger balances.",
       },
       {
         q: "Are CD rates worth the lock-up?",
-        a: "Yes when the Fed is expected to cut rates. No when rates are rising — you'd be locking in below-market yield. As of 2026, with rates near peak, locking a portion makes sense.",
+        a: "Yes when the Fed is expected to cut rates. No when rates are rising: you'd be locking in below-market yield. As of 2026, with rates near peak, locking a portion makes sense.",
       },
       {
         q: "Can I lose money in any of these?",
-        a: "Not in nominal terms — all three are FDIC or NCUA insured up to $250,000. You can lose purchasing power if inflation outpaces your APY, but principal is protected.",
+        a: "Not in nominal terms: all three are FDIC or NCUA insured up to $250,000. You can lose purchasing power if inflation outpaces your APY, but principal is protected.",
       },
       {
         q: "Should I split between all three?",
@@ -3788,25 +3788,25 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/investing",
     relatedLabel: "Compare Brokerages",
     intro:
-      "Index funds, ETFs, and mutual funds are the three building blocks of nearly every modern portfolio. They all pool money from many investors to buy a basket of securities — but the way they trade, what they cost, and how they are taxed are meaningfully different. Picking the right wrapper for the right account can save you thousands over a lifetime.",
+      "Index funds, ETFs, and mutual funds are the three building blocks of nearly every modern portfolio. They all pool money from many investors to buy a basket of securities. But the way they trade, what they cost, and how they are taxed are meaningfully different. Picking the right wrapper for the right account can save you thousands over a lifetime.",
     sections: [
       {
         heading: "The 30-Second Summary",
         bullets: [
-          "Index Fund — a strategy (track an index passively). Can be packaged as a mutual fund or an ETF.",
-          "ETF (Exchange-Traded Fund) — trades like a stock all day, ultra-low fees, highly tax-efficient.",
-          "Mutual Fund — priced once per day after market close, can be active or passive, often higher fees.",
+          "Index Fund: a strategy (track an index passively). Can be packaged as a mutual fund or an ETF.",
+          "ETF (Exchange-Traded Fund): trades like a stock all day, ultra-low fees, highly tax-efficient.",
+          "Mutual Fund: priced once per day after market close, can be active or passive, often higher fees.",
         ],
         callout: {
           title: "The Key Insight Most People Miss",
-          body: "\"Index fund\" is not a separate category — it is a strategy. An S&P 500 index fund can be either a mutual fund (like VFIAX) or an ETF (like VOO). The wrapper changes how it trades and is taxed; the underlying holdings are identical.",
+          body: "\"Index fund\" is not a separate category. It is a strategy. An S&P 500 index fund can be either a mutual fund (like VFIAX) or an ETF (like VOO). The wrapper changes how it trades and is taxed; the underlying holdings are identical.",
         },
       },
       {
         heading: "Side-by-Side Comparison",
         productTable: {
           title: "Index Funds vs ETFs vs Mutual Funds",
-          subtitle: "Real flagship products from major brokerages — apples-to-apples",
+          subtitle: "Real flagship products from major brokerages: apples-to-apples",
           rows: [
             {
               rank: 1,
@@ -3895,22 +3895,22 @@ export const guides: GuideArticle[] = [
       {
         heading: "How They Actually Differ",
         bullets: [
-          "Trading — ETFs trade all day at market price; mutual funds settle once after 4pm at NAV.",
-          "Minimums — ETFs require buying whole shares (or fractional at supportive brokers); mutual funds often have $0-$3,000 minimums.",
-          "Fees — passive index ETFs and index mutual funds both run 0.00%-0.10%; active mutual funds average 0.5%-1.0%.",
-          "Taxes — ETFs use an 'in-kind' creation/redemption process that almost never triggers capital gains. Mutual funds pass annual capital gains to all shareholders.",
-          "Auto-invest — Mutual funds let you DCA an exact dollar amount monthly. ETFs require fractional-share support (Fidelity, Schwab, Robinhood do; Vanguard does not).",
+          "Trading: ETFs trade all day at market price; mutual funds settle once after 4pm at NAV.",
+          "Minimums: ETFs require buying whole shares (or fractional at supportive brokers); mutual funds often have $0-$3,000 minimums.",
+          "Fees: passive index ETFs and index mutual funds both run 0.00%-0.10%; active mutual funds average 0.5%-1.0%.",
+          "Taxes: ETFs use an 'in-kind' creation/redemption process that almost never triggers capital gains. Mutual funds pass annual capital gains to all shareholders.",
+          "Auto-invest: Mutual funds let you DCA an exact dollar amount monthly. ETFs require fractional-share support (Fidelity, Schwab, Robinhood do; Vanguard does not).",
         ],
       },
       {
-        heading: "Tax Efficiency — Why ETFs Win in Taxable Accounts",
+        heading: "Tax Efficiency: Why ETFs Win in Taxable Accounts",
         paragraphs: [
-          "This is the single biggest reason advisors recommend ETFs for taxable brokerage accounts. When a mutual fund manager sells holdings to meet redemptions or rebalance, every shareholder gets a 1099-DIV at year-end with their share of the capital gain — even if you never sold a share. ETFs avoid this through in-kind redemptions, so you only pay tax when YOU sell.",
-          "In tax-advantaged accounts (401(k), IRA, Roth IRA), this difference does not matter — gains compound tax-free either way. That's why mutual funds remain popular in retirement plans.",
+          "This is the single biggest reason advisors recommend ETFs for taxable brokerage accounts. When a mutual fund manager sells holdings to meet redemptions or rebalance, every shareholder gets a 1099-DIV at year-end with their share of the capital gain. Even if you never sold a share. ETFs avoid this through in-kind redemptions, so you only pay tax when YOU sell.",
+          "In tax-advantaged accounts (401(k), IRA, Roth IRA), this difference does not matter. Gains compound tax-free either way. That's why mutual funds remain popular in retirement plans.",
         ],
       },
       {
-        heading: "How to Choose — A Simple Framework",
+        heading: "How to Choose: A Simple Framework",
         bullets: [
           "Taxable brokerage account → ETF (VOO, VTI, SCHB) for tax efficiency",
           "401(k) or IRA → either works; pick whatever your plan offers cheapest",
@@ -3920,7 +3920,7 @@ export const guides: GuideArticle[] = [
         ],
         callout: {
           title: "The Boring Truth",
-          body: "Over 20-year periods, roughly 85-90% of actively managed mutual funds underperform a simple S&P 500 index fund — and the few that win are nearly impossible to identify in advance. For most investors, a low-cost index ETF or index mutual fund is the right answer.",
+          body: "Over 20-year periods, roughly 85-90% of actively managed mutual funds underperform a simple S&P 500 index fund. And the few that win are nearly impossible to identify in advance. For most investors, a low-cost index ETF or index mutual fund is the right answer.",
         },
       },
     ],
@@ -3928,7 +3928,7 @@ export const guides: GuideArticle[] = [
       "Index funds are a strategy; ETFs and mutual funds are wrappers.",
       "ETFs trade all day; mutual funds price once at 4pm market close.",
       "ETFs are dramatically more tax-efficient in taxable accounts.",
-      "Index ETFs and index mutual funds both charge 0.00%-0.10% — fees are basically tied.",
+      "Index ETFs and index mutual funds both charge 0.00%-0.10%. Fees are basically tied.",
       "Active mutual funds underperform index funds ~85% of the time over 20+ years.",
     ],
     faqs: [
@@ -3942,7 +3942,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What's the deal with Fidelity ZERO funds?",
-        a: "FZROX, FZILX, etc. charge a 0.00% expense ratio but only exist inside Fidelity accounts — you can't transfer them to another broker. Great for IRAs you'll never move; risky if you might switch brokerages.",
+        a: "FZROX, FZILX, etc. charge a 0.00% expense ratio but only exist inside Fidelity accounts. You can't transfer them to another broker. Great for IRAs you'll never move; risky if you might switch brokerages.",
       },
       {
         q: "Should I ever pick an active mutual fund?",
@@ -3961,7 +3961,7 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/investing",
     relatedLabel: "Investing Apps",
     intro:
-      "Most beginner investing guides stop at 'open an account and buy an index fund.' That leaves out the parts that actually trip people up: picking a broker you won't regret in three years, choosing between a Roth IRA and a taxable account, understanding what happens when you click Buy, and knowing which 1099 forms show up in your mailbox next February. This guide walks you from $0 to a fully funded, automated portfolio — with every decision explained in plain English.",
+      "Most beginner investing guides stop at 'open an account and buy an index fund.' That leaves out the parts that actually trip people up: picking a broker you won't regret in three years, choosing between a Roth IRA and a taxable account, understanding what happens when you click Buy, and knowing which 1099 forms show up in your mailbox next February. This guide walks you from $0 to a fully funded, automated portfolio. With every decision explained in plain English.",
     sections: [
       {
         heading: "Step 1: Pick the Right Broker for You",
@@ -3969,9 +3969,9 @@ export const guides: GuideArticle[] = [
           "Every major broker now charges $0 commission on stock and ETF trades, so the decision comes down to fund quality, fractional shares, auto-invest features, and cash management. Three brokers dominate for beginners for very specific reasons.",
         ],
         bullets: [
-          "Fidelity — best all-around. Zero-expense-ratio index funds (FZROX, FZILX), fractional shares on stocks AND ETFs, excellent Roth IRA experience, 5%+ yield on idle cash by default.",
-          "Charles Schwab — closest competitor. Strong mutual fund lineup (SWPPX, SWTSX), best customer service, excellent mobile app, but idle cash sits at ~0.45% unless you manually move it.",
-          "Vanguard — cheapest on legacy index mutual funds, but the platform feels dated and lacks fractional ETF trading. Best if you already use it for a 401(k) rollover.",
+          "Fidelity: best all-around. Zero-expense-ratio index funds (FZROX, FZILX), fractional shares on stocks AND ETFs, excellent Roth IRA experience, 5%+ yield on idle cash by default.",
+          "Charles Schwab: closest competitor. Strong mutual fund lineup (SWPPX, SWTSX), best customer service, excellent mobile app, but idle cash sits at ~0.45% unless you manually move it.",
+          "Vanguard: cheapest on legacy index mutual funds, but the platform feels dated and lacks fractional ETF trading. Best if you already use it for a 401(k) rollover.",
         ],
         callout: {
           title: "Skip These for a First Account",
@@ -3984,11 +3984,11 @@ export const guides: GuideArticle[] = [
           "The account type matters more than the investments you hold inside it. Same S&P 500 ETF in a Roth IRA grows tax-free forever; in a taxable brokerage you pay capital gains every time you sell. For most beginners the priority order is clear.",
         ],
         bullets: [
-          "401(k) up to the match — if your employer matches, contribute at least enough to get the full match. It is a 50-100% instant return.",
-          "Roth IRA — $7,000/year ($8,000 if 50+) in 2026. Tax-free growth and withdrawals in retirement. Best for anyone under 35 or expecting higher future income.",
-          "401(k) to the max — $23,500 in 2026. Traditional if your current tax bracket is 24%+, Roth 401(k) if 22% or lower.",
-          "HSA if eligible — $4,300 single / $8,550 family in 2026. Triple tax-advantaged; treat it as a stealth retirement account.",
-          "Taxable brokerage — unlimited contributions, no tax break going in, but full flexibility. Use this after tax-advantaged accounts are maxed or for goals before age 59½.",
+          "401(k) up to the match. If your employer matches, contribute at least enough to get the full match. It is a 50-100% instant return.",
+          "Roth IRA: $7,000/year ($8,000 if 50+) in 2026. Tax-free growth and withdrawals in retirement. Best for anyone under 35 or expecting higher future income.",
+          "401(k) to the max, $23,500 in 2026. Traditional if your current tax bracket is 24%+, Roth 401(k) if 22% or lower.",
+          "HSA if eligible: $4,300 single / $8,550 family in 2026. Triple tax-advantaged; treat it as a stealth retirement account.",
+          "Taxable brokerage: unlimited contributions, no tax break going in, but full flexibility. Use this after tax-advantaged accounts are maxed or for goals before age 59½.",
         ],
       },
       {
@@ -3997,11 +3997,11 @@ export const guides: GuideArticle[] = [
           "Opening the account takes about 10 minutes online. Funding it is the step most people botch by doing a wire transfer and paying unnecessary fees.",
         ],
         bullets: [
-          "ACH transfer — free, 1-3 business days. Link your checking account via Plaid or manual routing/account numbers.",
-          "Wire transfer — same day but typically $15-30. Only worth it for large time-sensitive transfers.",
-          "Check deposit — mobile check deposit works but adds 5-10 business days before funds are investable.",
-          "401(k) rollover — for rollovers from old jobs, request a direct trustee-to-trustee transfer, NOT a check. A check triggers 20% mandatory withholding even if you intend to roll it.",
-          "Settlement period — after ACH deposits, cash is usually investable immediately but cannot be withdrawn back to your bank for 5-7 days.",
+          "ACH transfer: free, 1-3 business days. Link your checking account via Plaid or manual routing/account numbers.",
+          "Wire transfer: same day but typically $15-30. Only worth it for large time-sensitive transfers.",
+          "Check deposit: mobile check deposit works but adds 5-10 business days before funds are investable.",
+          "401(k) rollover. For rollovers from old jobs, request a direct trustee-to-trustee transfer, NOT a check. A check triggers 20% mandatory withholding even if you intend to roll it.",
+          "Settlement period: after ACH deposits, cash is usually investable immediately but cannot be withdrawn back to your bank for 5-7 days.",
         ],
       },
       {
@@ -4010,11 +4010,11 @@ export const guides: GuideArticle[] = [
           "The order type determines the price you actually pay. For buy-and-hold index investing the difference is small, but understanding it prevents expensive mistakes on less-liquid stocks.",
         ],
         bullets: [
-          "Market order — buys immediately at the current offer price. Fine for high-volume ETFs (VOO, VTI, QQQ) where spreads are a penny. Dangerous on thinly-traded stocks where spreads can be 0.5%+.",
-          "Limit order — buys only at your specified price or lower. Use this for any stock trading under $10/share or with volume under 500K shares/day.",
-          "Stop-loss order — sells automatically if price drops to your trigger. Common in active trading; unnecessary and often harmful for long-term index investors (you sell at the worst moment).",
-          "Good-till-canceled (GTC) — keeps a limit order alive up to 90 days. Good-for-day cancels at 4pm same day.",
-          "Extended-hours trading — available 4am-8pm ET at most brokers, but spreads widen dramatically. Avoid unless you have a specific reason.",
+          "Market order: buys immediately at the current offer price. Fine for high-volume ETFs (VOO, VTI, QQQ) where spreads are a penny. Dangerous on thinly-traded stocks where spreads can be 0.5%+.",
+          "Limit order: buys only at your specified price or lower. Use this for any stock trading under $10/share or with volume under 500K shares/day.",
+          "Stop-loss order: sells automatically if price drops to your trigger. Common in active trading; unnecessary and often harmful for long-term index investors (you sell at the worst moment).",
+          "Good-till-canceled (GTC): keeps a limit order alive up to 90 days. Good-for-day cancels at 4pm same day.",
+          "Extended-hours trading: available 4am-8pm ET at most brokers, but spreads widen dramatically. Avoid unless you have a specific reason.",
         ],
         callout: {
           title: "The Rule of Thumb",
@@ -4022,7 +4022,7 @@ export const guides: GuideArticle[] = [
         },
       },
       {
-        heading: "Step 5: Your First Purchase — A Worked Example",
+        heading: "Step 5: Your First Purchase. A Worked Example",
         paragraphs: [
           "You've opened a Roth IRA at Fidelity and transferred $1,000. Here is the exact sequence to get invested in the next 5 minutes.",
         ],
@@ -4031,7 +4031,7 @@ export const guides: GuideArticle[] = [
           "Click Trade → Buy → VTI.",
           "Order type: Limit. Quantity: type '1,000' in the dollar amount field (Fidelity supports fractional shares).",
           "Limit price: look at the current ask, add 2 cents. If VTI is trading $280.12 ask, set limit at $280.14.",
-          "Time-in-force: Day. Click Preview. Confirm. Done — you now own roughly 3.57 shares of VTI.",
+          "Time-in-force: Day. Click Preview. Confirm. Done: you now own roughly 3.57 shares of VTI.",
           "Alternative: buy VOO (S&P 500) if you prefer US large-caps only, or a target-date fund like FDKLX (Fidelity Freedom Index 2060) for fully-hands-off glidepath investing.",
         ],
       },
@@ -4042,8 +4042,8 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "Set up automatic ACH pull from checking to brokerage on the day after payday.",
-          "Schedule automatic recurring investments — most brokers let you buy fractional ETF shares on a fixed dollar schedule ($500 every 2 weeks, etc.).",
-          "Turn on dividend reinvestment (DRIP) — dividends automatically buy more shares instead of sitting as cash.",
+          "Schedule automatic recurring investments: most brokers let you buy fractional ETF shares on a fixed dollar schedule ($500 every 2 weeks, etc.).",
+          "Turn on dividend reinvestment (DRIP): dividends automatically buy more shares instead of sitting as cash.",
           "Set a calendar reminder for January: rebalance, check contribution limits, review fund choices.",
           "Ignore the account balance between reviews. Checking daily correlates with worse returns (behavioral studies show active checkers sell more during drawdowns).",
         ],
@@ -4051,20 +4051,20 @@ export const guides: GuideArticle[] = [
       {
         heading: "Step 7: The Year-One Checklist",
         bullets: [
-          "Jan-Feb — expect Form 1099-DIV (dividends), 1099-B (sales), and 1099-INT (interest on cash). File with your tax return.",
+          "Jan-Feb: expect Form 1099-DIV (dividends), 1099-B (sales), and 1099-INT (interest on cash). File with your tax return.",
           "If you maxed your Roth IRA, confirm the contribution year on Form 5498 (mailed by May).",
-          "Review expense ratios — anything above 0.20% for a broad index fund should be replaced.",
+          "Review expense ratios: anything above 0.20% for a broad index fund should be replaced.",
           "Rebalance if any position has drifted more than 5 percentage points from target (e.g., target 70% stocks, now 78% → sell some, buy bonds).",
-          "Increase automatic contributions by 1% of income each January — 'save more tomorrow' beats 'save more today' psychologically.",
+          "Increase automatic contributions by 1% of income each January, 'save more tomorrow' beats 'save more today' psychologically.",
         ],
       },
       {
         heading: "Beginner Mistakes That Cost Real Money",
         bullets: [
-          "Buying individual stocks before owning a broad index fund — concentrates risk before you understand what you own.",
-          "Checking the account daily — strongly correlated with panic-selling during corrections.",
+          "Buying individual stocks before owning a broad index fund. Concentrates risk before you understand what you own.",
+          "Checking the account daily: strongly correlated with panic-selling during corrections.",
           "Holding high-fee mutual funds from a 401(k) rollover without replacing them with index equivalents.",
-          "Skipping the Roth IRA in favor of taxable investing because the paperwork 'looks complicated' — a 15-minute setup costs nothing and saves tens of thousands over decades.",
+          "Skipping the Roth IRA in favor of taxable investing because the paperwork 'looks complicated'. A 15-minute setup costs nothing and saves tens of thousands over decades.",
           "Keeping idle cash in a 0.01% broker sweep when alternatives like SPAXX (Fidelity) or SWVXX (Schwab) pay 4%+.",
           "Selling during the first 20%+ drawdown. Every generation of investors faces one. The ones who hold through it win; the ones who sell lock in losses.",
         ],
@@ -4074,7 +4074,7 @@ export const guides: GuideArticle[] = [
       "Fidelity or Schwab is the right first broker for 90% of people.",
       "Contribute to tax-advantaged accounts (401(k) match, Roth IRA) before taxable brokerage.",
       "Use limit orders for anything under 1M daily volume.",
-      "Automate contributions and reinvest dividends — remove emotion from the loop.",
+      "Automate contributions and reinvest dividends: remove emotion from the loop.",
       "Expect 1099 tax forms each February and review expense ratios annually.",
     ],
     faqs: [
@@ -4084,7 +4084,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Should I lump-sum invest or dollar-cost average?",
-        a: "Lump-sum wins about two-thirds of the time because markets trend up. But DCA reduces regret risk — if you lump-sum the day before a 20% crash, you'll feel it. For amounts under 3x your monthly income, lump-sum. For larger amounts (inheritance, bonus, rollover), splitting over 3-6 months is psychologically easier without giving up much expected return.",
+        a: "Lump-sum wins about two-thirds of the time because markets trend up. But DCA reduces regret risk: if you lump-sum the day before a 20% crash, you'll feel it. For amounts under 3x your monthly income, lump-sum. For larger amounts (inheritance, bonus, rollover), splitting over 3-6 months is psychologically easier without giving up much expected return.",
       },
       {
         q: "Can I lose money in an index fund?",
@@ -4092,15 +4092,15 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Do I need to pick winning stocks to do well?",
-        a: "No — and actively trying usually hurts. An S&P 500 ETF outperforms ~85% of professional managers over 20 years. Stock picking is a hobby, not a strategy.",
+        a: "No: and actively trying usually hurts. An S&P 500 ETF outperforms ~85% of professional managers over 20 years. Stock picking is a hobby, not a strategy.",
       },
       {
-        q: "What if I already have a 401(k) — do I still need a Roth IRA?",
+        q: "What if I already have a 401(k). Do I still need a Roth IRA?",
         a: "Yes if you can afford it. They are separate accounts with separate limits. 401(k) is $23,500 in 2026; Roth IRA is a separate $7,000. Together you can shelter $30,500/year before HSA or taxable additions.",
       },
       {
         q: "How do taxes work when I sell?",
-        a: "In a taxable brokerage, selling a position held 1+ years triggers long-term capital gains at 0%, 15%, or 20% based on income. Under 1 year is short-term and taxed as ordinary income (10-37%). Inside a Roth IRA, no tax on any sale — ever.",
+        a: "In a taxable brokerage, selling a position held 1+ years triggers long-term capital gains at 0%, 15%, or 20% based on income. Under 1 year is short-term and taxed as ordinary income (10-37%). Inside a Roth IRA, no tax on any sale. Ever.",
       },
     ],
   },
@@ -4124,15 +4124,15 @@ export const guides: GuideArticle[] = [
           "When you sell an investment for more than you paid, the profit is a capital gain. The tax rate depends on one thing: how long you held it.",
         ],
         bullets: [
-          "Short-term (held 1 year or less) — taxed as ordinary income. Rate: 10%, 12%, 22%, 24%, 32%, 35%, or 37% based on your bracket.",
-          "Long-term (held more than 1 year) — taxed at preferential rates. Rate: 0%, 15%, or 20%.",
+          "Short-term (held 1 year or less): taxed as ordinary income. Rate: 10%, 12%, 22%, 24%, 32%, 35%, or 37% based on your bracket.",
+          "Long-term (held more than 1 year): taxed at preferential rates. Rate: 0%, 15%, or 20%.",
           "2026 long-term thresholds (single): 0% up to $48,350, 15% up to $533,400, 20% above.",
           "2026 long-term thresholds (married filing jointly): 0% up to $96,700, 15% up to $600,050, 20% above.",
-          "Holding period counts the day after purchase through the day of sale — one day short of a year means short-term rates.",
+          "Holding period counts the day after purchase through the day of sale. One day short of a year means short-term rates.",
         ],
         callout: {
           title: "A Dollar Example",
-          body: "You buy 100 shares of VTI at $280 ($28,000). One year and one day later you sell at $340 ($34,000) — a $6,000 long-term gain. At the 15% bracket you pay $900 in federal tax. If you had sold one day earlier (short-term) in a 24% bracket, you'd owe $1,440 — a $540 swing for 24 hours of extra holding.",
+          body: "You buy 100 shares of VTI at $280 ($28,000). One year and one day later you sell at $340 ($34,000). A $6,000 long-term gain. At the 15% bracket you pay $900 in federal tax. If you had sold one day earlier (short-term) in a 24% bracket, you'd owe $1,440. A $540 swing for 24 hours of extra holding.",
         },
       },
       {
@@ -4145,7 +4145,7 @@ export const guides: GuideArticle[] = [
           "Married filing jointly: NIIT applies above $250,000 modified AGI.",
           "The 3.8% is on the LESSER of investment income or the amount above the threshold.",
           "Effective top rate on long-term gains becomes 23.8% (20% + 3.8%); short-term becomes 40.8% (37% + 3.8%).",
-          "State taxes stack on top — California high earners pay ~37.1% on long-term gains after combining federal + NIIT + state.",
+          "State taxes stack on top: California high earners pay ~37.1% on long-term gains after combining federal + NIIT + state.",
         ],
       },
       {
@@ -4156,29 +4156,29 @@ export const guides: GuideArticle[] = [
         bullets: [
           "Capital losses first offset capital gains of the same type (short vs long). Net losses then offset the opposite type.",
           "Up to $3,000 of remaining loss offsets ordinary income per year ($1,500 if married filing separately).",
-          "Excess losses carry forward indefinitely — there is no expiration.",
+          "Excess losses carry forward indefinitely: there is no expiration.",
           "Only available in taxable accounts; losses in IRAs and 401(k)s are not deductible.",
         ],
         callout: {
-          title: "Worked Example — $9,000 Harvest",
-          body: "Your brokerage shows an unrealized loss of $9,000 on an international fund. You sell it on November 15. You use $6,000 of the loss to offset a $6,000 gain from selling Apple earlier that year (tax savings: $1,620 at a 27% combined rate). The remaining $3,000 reduces your taxable wages (tax savings: $720 at 24%). Total tax saved: $2,340 — from a paper loss you were already holding.",
+          title: "Worked Example: $9,000 Harvest",
+          body: "Your brokerage shows an unrealized loss of $9,000 on an international fund. You sell it on November 15. You use $6,000 of the loss to offset a $6,000 gain from selling Apple earlier that year (tax savings: $1,620 at a 27% combined rate). The remaining $3,000 reduces your taxable wages (tax savings: $720 at 24%). Total tax saved: $2,340. From a paper loss you were already holding.",
         },
       },
       {
-        heading: "The Wash-Sale Rule — Don't Waste the Harvest",
+        heading: "The Wash-Sale Rule: Don't Waste the Harvest",
         paragraphs: [
           "If you sell at a loss and buy a 'substantially identical' security within 30 days before OR after the sale, the loss is disallowed and added to the basis of the replacement. The rule exists to prevent fake losses while maintaining the same exposure.",
         ],
         bullets: [
           "Window: 30 days before + day of + 30 days after = 61-day danger zone.",
           "'Substantially identical' is undefined but clearly covers the same ticker and near-identical index funds. VOO → IVV (both track the S&P 500) is debated; most tax pros avoid it.",
-          "Wash sales across accounts count — including your IRA, your spouse's accounts, and joint accounts. An IRA-triggered wash permanently loses the deduction (basis can't be added to an IRA).",
+          "Wash sales across accounts count: including your IRA, your spouse's accounts, and joint accounts. An IRA-triggered wash permanently loses the deduction (basis can't be added to an IRA).",
           "Safe swaps: VTI (total market) → SCHB (slightly different index, different sponsor) or VOO (S&P 500) → VONE (Russell 1000).",
-          "401(k) dividend reinvestments can inadvertently trigger wash sales if you hold the same fund in both accounts — audit annually.",
+          "401(k) dividend reinvestments can inadvertently trigger wash sales if you hold the same fund in both accounts. Audit annually.",
         ],
       },
       {
-        heading: "Step-Up in Basis — The Biggest Gift in the Tax Code",
+        heading: "Step-Up in Basis: The Biggest Gift in the Tax Code",
         paragraphs: [
           "When an investor dies, assets in taxable accounts get a 'step-up' in cost basis to the fair market value on the date of death. The heir inherits at the new basis, so all pre-death gains escape capital gains tax forever.",
         ],
@@ -4188,7 +4188,7 @@ export const guides: GuideArticle[] = [
         },
         bullets: [
           "Applies to taxable brokerage accounts and real estate. Does NOT apply to Traditional IRAs, 401(k)s, or annuities (those are taxed as ordinary income to the heir).",
-          "Does apply to Roth IRAs — but those were already tax-free, so basis doesn't matter for income tax.",
+          "Does apply to Roth IRAs: but those were already tax-free, so basis doesn't matter for income tax.",
           "Community-property states (CA, TX, AZ, WA, etc.) give surviving spouses a 100% step-up on all community assets; common-law states only step up the deceased spouse's half.",
           "Changes the investing math for anyone 65+: harvesting gains before death wastes the step-up, while gifting appreciated assets transfers the low basis (heir pays gains, beats recipient later).",
         ],
@@ -4207,20 +4207,20 @@ export const guides: GuideArticle[] = [
         ],
         callout: {
           title: "The Tax Trap Most Heirs Walk Into",
-          body: "A 45-year-old doctor inherits a $800,000 Traditional IRA. Waiting until year 10 to withdraw lump-sum pushes her into the 37% federal bracket — roughly $296,000 in federal tax plus state. Spreading it evenly at $80,000/year over 10 years keeps her in the 24% bracket, saving ~$100,000 in total tax. The withdrawal schedule matters more than any investment decision.",
+          body: "A 45-year-old doctor inherits a $800,000 Traditional IRA. Waiting until year 10 to withdraw lump-sum pushes her into the 37% federal bracket. Roughly $296,000 in federal tax plus state. Spreading it evenly at $80,000/year over 10 years keeps her in the 24% bracket, saving ~$100,000 in total tax. The withdrawal schedule matters more than any investment decision.",
         },
       },
       {
         heading: "Beneficiary Designations Override Your Will",
         paragraphs: [
-          "This is the most under-appreciated rule in estate planning: the beneficiary on file at your brokerage, IRA, 401(k), and life insurance company controls who inherits those assets — regardless of what your will says. A will is useless for assets with named beneficiaries.",
+          "This is the most under-appreciated rule in estate planning: the beneficiary on file at your brokerage, IRA, 401(k), and life insurance company controls who inherits those assets. Regardless of what your will says. A will is useless for assets with named beneficiaries.",
         ],
         bullets: [
           "Audit every account annually: IRAs, 401(k)s, HSAs, life insurance, taxable brokerage TOD (transfer-on-death), annuities.",
           "Common failure: ex-spouses left as beneficiary after divorce. Some states auto-revoke, many do not.",
           "Primary AND contingent beneficiaries should be named. If both die before you and no contingent is named, the asset goes through probate.",
-          "For minors, name a testamentary trust or UTMA custodian — never name a minor directly (courts control the money until age 18/21).",
-          "Per stirpes vs per capita — 'per stirpes' passes a deceased beneficiary's share to their children. 'Per capita' splits equally among survivors. Get this right in the form.",
+          "For minors, name a testamentary trust or UTMA custodian. Never name a minor directly (courts control the money until age 18/21).",
+          "Per stirpes vs per capita: 'per stirpes' passes a deceased beneficiary's share to their children. 'Per capita' splits equally among survivors. Get this right in the form.",
         ],
       },
       {
@@ -4230,8 +4230,8 @@ export const guides: GuideArticle[] = [
           "Lifetime estate/gift exemption: $13.99 million per individual in 2026, sunsetting to ~$7M in 2026 unless Congress acts (TCJA sunset).",
           "Gifts above the annual exclusion eat into the lifetime exemption but generate no immediate tax.",
           "529 superfunding: you can front-load 5 years of gifts ($95,000 single / $190,000 couple in 2026) into a 529 without touching the lifetime exemption.",
-          "Pay tuition or medical bills directly to the institution — unlimited, doesn't count against any exclusion.",
-          "Gift of appreciated stock carries your cost basis — recipient owes capital gains when they sell. Low-income recipients can pay 0% long-term rate, making gifts of appreciated stock a tax-efficient transfer.",
+          "Pay tuition or medical bills directly to the institution. Unlimited, doesn't count against any exclusion.",
+          "Gift of appreciated stock carries your cost basis. Recipient owes capital gains when they sell. Low-income recipients can pay 0% long-term rate, making gifts of appreciated stock a tax-efficient transfer.",
         ],
       },
       {
@@ -4240,24 +4240,24 @@ export const guides: GuideArticle[] = [
           "Revocable living trusts avoid probate (the court process of validating a will) and keep your estate private. They are oversold for smaller estates but genuinely useful in specific cases.",
         ],
         bullets: [
-          "Own real estate in multiple states — trust avoids ancillary probate in each state.",
+          "Own real estate in multiple states: trust avoids ancillary probate in each state.",
           "Want to control distributions after death (e.g., money doled out to heirs over time rather than lump sum).",
           "Estate size exceeds the lifetime exemption and state inheritance tax is a concern (see list below).",
-          "Have minor children — a trust lets you specify ages, conditions, and trustees.",
+          "Have minor children: a trust lets you specify ages, conditions, and trustees.",
           "Skip the trust if: single state, assets under $500K, no complex family situation, and all major accounts have proper beneficiary designations. A well-funded beneficiary-TOD strategy achieves most of the same goals at zero cost.",
         ],
       },
       {
         heading: "State Inheritance and Estate Taxes",
         paragraphs: [
-          "Twelve states plus DC impose their own estate tax, and six states impose an inheritance tax (paid by the heir). Thresholds are much lower than federal — some as low as $1-2 million.",
+          "Twelve states plus DC impose their own estate tax, and six states impose an inheritance tax (paid by the heir). Thresholds are much lower than federal: some as low as $1-2 million.",
         ],
         bullets: [
           "State estate tax states: CT, DC, HI, IL, ME, MD, MA ($2M threshold), MN, NY, OR, RI, VT, WA (progressive to 20%).",
           "State inheritance tax states: IA (phasing out), KY, MD, NE, NJ, PA.",
           "MD imposes BOTH estate and inheritance tax.",
           "Spouses are universally exempt; children and grandchildren are usually exempt from inheritance tax but not estate tax.",
-          "Residency matters more than property location for most state taxes — moving to FL, TX, NV in retirement can shield estates from state-level tax entirely.",
+          "Residency matters more than property location for most state taxes. Moving to FL, TX, NV in retirement can shield estates from state-level tax entirely.",
         ],
       },
       {
@@ -4265,24 +4265,24 @@ export const guides: GuideArticle[] = [
         bullets: [
           "Hold tax-inefficient assets (bonds, REITs, high-dividend funds, actively-traded positions) in IRAs and 401(k)s.",
           "Hold tax-efficient assets (broad-market ETFs like VTI, VOO) in taxable accounts where step-up in basis works for you.",
-          "Tax-loss harvest every November — review red positions, swap to non-identical alternatives, bank the loss.",
+          "Tax-loss harvest every November: review red positions, swap to non-identical alternatives, bank the loss.",
           "Review beneficiaries every January and after every major life event (marriage, divorce, birth, death).",
           "In retirement, use Roth conversions in low-income years to fill lower brackets and reduce future RMDs.",
-          "After 65, stop harvesting gains in taxable — hold for step-up. Harvest losses still, but let gains ride to heirs.",
+          "After 65, stop harvesting gains in taxable. Hold for step-up. Harvest losses still, but let gains ride to heirs.",
         ],
       },
     ],
     keyTakeaways: [
       "Hold investments 1+ year for long-term capital gains rates (0/15/20% vs 10-37%).",
-      "Tax-loss harvest annually — the wash-sale rule's 61-day window is the only real constraint.",
+      "Tax-loss harvest annually: the wash-sale rule's 61-day window is the only real constraint.",
       "Step-up in basis at death eliminates all pre-death gains in taxable accounts.",
       "Inherited IRAs must be emptied within 10 years (SECURE Act, non-spouse beneficiaries).",
-      "Beneficiary designations override your will — audit every account annually.",
+      "Beneficiary designations override your will: audit every account annually.",
     ],
     faqs: [
       {
         q: "Do I pay capital gains tax if I reinvest dividends?",
-        a: "Yes — dividends are taxable in the year received regardless of what you do with them. Reinvested dividends increase your cost basis, which reduces capital gains when you eventually sell.",
+        a: "Yes: dividends are taxable in the year received regardless of what you do with them. Reinvested dividends increase your cost basis, which reduces capital gains when you eventually sell.",
       },
       {
         q: "What happens if I sell in December but the settlement is in January?",
@@ -4290,23 +4290,23 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Can I gift appreciated stock to my child in college to avoid capital gains?",
-        a: "Yes — if the child is in the 0% long-term capital gains bracket (2026: under $48,350 single income), they can sell the stock and pay zero federal tax. Watch the kiddie tax if they are under 24 and a full-time student — unearned income over $2,700 is taxed at the parents' rate.",
+        a: "Yes: if the child is in the 0% long-term capital gains bracket (2026: under $48,350 single income), they can sell the stock and pay zero federal tax. Watch the kiddie tax if they are under 24 and a full-time student. Unearned income over $2,700 is taxed at the parents' rate.",
       },
       {
-        q: "My parent died with a Traditional IRA — what do I do first?",
-        a: "Before touching the account, ask the custodian to title it as an 'Inherited IRA FBO [Your Name]' — do NOT roll it into your own IRA (that triggers immediate full taxation). Then plan distributions over the 10-year window to avoid bracket bunching.",
+        q: "My parent died with a Traditional IRA. What do I do first?",
+        a: "Before touching the account, ask the custodian to title it as an 'Inherited IRA FBO [Your Name]'. Do NOT roll it into your own IRA (that triggers immediate full taxation). Then plan distributions over the 10-year window to avoid bracket bunching.",
       },
       {
         q: "Is a Roth IRA subject to the 10-year rule for heirs?",
-        a: "Yes — non-spouse beneficiaries must empty an inherited Roth IRA within 10 years. But all distributions are tax-free, so the rule is less painful. Strategy: let it compound all 10 years and withdraw in year 10 to maximize tax-free growth.",
+        a: "Yes: non-spouse beneficiaries must empty an inherited Roth IRA within 10 years. But all distributions are tax-free, so the rule is less painful. Strategy: let it compound all 10 years and withdraw in year 10 to maximize tax-free growth.",
       },
       {
         q: "Does the wash-sale rule apply to crypto?",
-        a: "Not currently — crypto is treated as property, not securities, so wash-sale rules do not apply as of 2026. Legislation has been proposed to close this gap; assume it may change.",
+        a: "Not currently: crypto is treated as property, not securities, so wash-sale rules do not apply as of 2026. Legislation has been proposed to close this gap; assume it may change.",
       },
       {
         q: "Should I convert Traditional IRA to Roth IRA?",
-        a: "It depends on your current vs expected future tax bracket. Convert when your current rate is LOWER than expected retirement rate — most commonly, in gap years between jobs, early retirement before Social Security/RMDs, or after a business loss. Never convert enough to push yourself into a higher bracket; fill to the top of your current bracket each year.",
+        a: "It depends on your current vs expected future tax bracket. Convert when your current rate is LOWER than expected retirement rate. Most commonly, in gap years between jobs, early retirement before Social Security/RMDs, or after a business loss. Never convert enough to push yourself into a higher bracket; fill to the top of your current bracket each year.",
       },
     ],
   },
@@ -4318,27 +4318,27 @@ export const guides: GuideArticle[] = [
     category: "Trading",
     readTime: "11 min",
     description:
-      "A technical but accessible intro to options — contracts, strikes, expiration, intrinsic vs extrinsic value, and payoff diagram math.",
+      "A technical but accessible intro to options. Contracts, strikes, expiration, intrinsic vs extrinsic value, and payoff diagram math.",
     relatedCategory: "/investing",
     relatedLabel: "Trading Platforms",
     intro:
-      "Options are contracts that let you control 100 shares of stock for a fraction of the cost of owning them outright. That leverage is the reason options can multiply wealth quickly — and also why they destroy retail accounts faster than almost any other financial product. Before you trade a single contract, you need to understand exactly what you are buying, how it is priced, and what can go wrong. This guide covers the fundamentals with actual dollar math and no hand-waving.",
+      "Options are contracts that let you control 100 shares of stock for a fraction of the cost of owning them outright. That leverage is the reason options can multiply wealth quickly. And also why they destroy retail accounts faster than almost any other financial product. Before you trade a single contract, you need to understand exactly what you are buying, how it is priced, and what can go wrong. This guide covers the fundamentals with actual dollar math and no hand-waving.",
     sections: [
       {
         heading: "What an Options Contract Actually Is",
         paragraphs: [
-          "An options contract gives the buyer the right — but not the obligation — to buy or sell 100 shares of a stock at a specific price, on or before a specific date. The seller of the contract takes on the obligation in exchange for the premium paid upfront.",
+          "An options contract gives the buyer the right. But not the obligation. To buy or sell 100 shares of a stock at a specific price, on or before a specific date. The seller of the contract takes on the obligation in exchange for the premium paid upfront.",
         ],
         bullets: [
-          "Call option — right to BUY 100 shares at the strike price. Bullish bet.",
-          "Put option — right to SELL 100 shares at the strike price. Bearish bet or hedge.",
-          "Strike price — the agreed-upon buy/sell price written into the contract.",
-          "Expiration — the last day the option can be exercised. Weekly, monthly, quarterly, or LEAPS (1-3 years).",
-          "Premium — the price to buy or sell the contract, quoted per share (×100 for dollar cost).",
+          "Call option: right to BUY 100 shares at the strike price. Bullish bet.",
+          "Put option: right to SELL 100 shares at the strike price. Bearish bet or hedge.",
+          "Strike price: the agreed-upon buy/sell price written into the contract.",
+          "Expiration: the last day the option can be exercised. Weekly, monthly, quarterly, or LEAPS (1-3 years).",
+          "Premium: the price to buy or sell the contract, quoted per share (×100 for dollar cost).",
         ],
         callout: {
           title: "The 100-Share Multiplier",
-          body: "A call quoted at $2.50 costs $250 to buy (2.50 × 100 shares). A put quoted at $0.75 costs $75. This multiplier is the first place beginners misread risk — a screen showing '$1.20' is $120 per contract, not $1.20.",
+          body: "A call quoted at $2.50 costs $250 to buy (2.50 × 100 shares). A put quoted at $0.75 costs $75. This multiplier is the first place beginners misread risk. A screen showing '$1.20' is $120 per contract, not $1.20.",
         },
       },
       {
@@ -4347,71 +4347,71 @@ export const guides: GuideArticle[] = [
           "Every option's premium breaks down into two components. Understanding the split is the foundation of everything that follows.",
         ],
         bullets: [
-          "Intrinsic value — how much in-the-money the option is RIGHT NOW. A $100 call with stock at $105 has $5 of intrinsic value.",
-          "Extrinsic value (time value) — everything else. It decays to zero at expiration.",
-          "In-the-money (ITM) — call strike below stock price, or put strike above stock price. Has intrinsic value.",
-          "Out-of-the-money (OTM) — call strike above stock price, or put strike below stock price. All premium is extrinsic.",
-          "At-the-money (ATM) — strike near current price. All premium is extrinsic; highest time value.",
+          "Intrinsic value: how much in-the-money the option is RIGHT NOW. A $100 call with stock at $105 has $5 of intrinsic value.",
+          "Extrinsic value (time value): everything else. It decays to zero at expiration.",
+          "In-the-money (ITM): call strike below stock price, or put strike above stock price. Has intrinsic value.",
+          "Out-of-the-money (OTM): call strike above stock price, or put strike below stock price. All premium is extrinsic.",
+          "At-the-money (ATM): strike near current price. All premium is extrinsic; highest time value.",
         ],
         callout: {
           title: "A Concrete Breakdown",
-          body: "Stock XYZ trades at $102. The $100 call with 30 days to expiration costs $3.50. Intrinsic = $2 (102 - 100). Extrinsic = $1.50 (the rest). If XYZ stays flat at $102 until expiration, the call will be worth exactly $2.00 at expiry — you lose $1.50 per share to time decay ($150 per contract) without the stock moving against you.",
+          body: "Stock XYZ trades at $102. The $100 call with 30 days to expiration costs $3.50. Intrinsic = $2 (102 - 100). Extrinsic = $1.50 (the rest). If XYZ stays flat at $102 until expiration, the call will be worth exactly $2.00 at expiry. You lose $1.50 per share to time decay ($150 per contract) without the stock moving against you.",
         },
       },
       {
-        heading: "The Call Option Payoff — Worked Example",
+        heading: "The Call Option Payoff: Worked Example",
         paragraphs: [
           "Assume XYZ trades at $100. You buy the 30-day $100 call for $3.00 ($300 per contract). Your max loss is $300 (the premium). Your break-even at expiration is $103 (strike + premium).",
         ],
         bullets: [
-          "At $95 at expiry — call expires worthless. Loss: -$300 (-100%).",
-          "At $100 at expiry — call expires worthless. Loss: -$300 (-100%).",
-          "At $103 at expiry — intrinsic value is $3, matching premium. Break-even (-$0).",
-          "At $110 at expiry — intrinsic value is $10. Profit: $700 per contract (+233%).",
-          "At $120 at expiry — intrinsic value is $20. Profit: $1,700 per contract (+567%).",
-          "Above $100 before expiry — profit also includes remaining time value.",
+          "At $95 at expiry: call expires worthless. Loss: -$300 (-100%).",
+          "At $100 at expiry: call expires worthless. Loss: -$300 (-100%).",
+          "At $103 at expiry: intrinsic value is $3, matching premium. Break-even (-$0).",
+          "At $110 at expiry: intrinsic value is $10. Profit: $700 per contract (+233%).",
+          "At $120 at expiry: intrinsic value is $20. Profit: $1,700 per contract (+567%).",
+          "Above $100 before expiry: profit also includes remaining time value.",
         ],
       },
       {
-        heading: "The Put Option Payoff — Worked Example",
+        heading: "The Put Option Payoff: Worked Example",
         paragraphs: [
           "Same XYZ at $100. You buy the 30-day $100 put for $2.80 ($280 per contract). Max loss is $280. Break-even at expiration is $97.20 (strike - premium).",
         ],
         bullets: [
-          "At $105 at expiry — put expires worthless. Loss: -$280.",
-          "At $100 at expiry — put expires worthless. Loss: -$280.",
-          "At $97.20 at expiry — break-even.",
-          "At $90 at expiry — intrinsic value is $10. Profit: $720 per contract (+257%).",
-          "At $80 at expiry — intrinsic value is $20. Profit: $1,720 per contract (+614%).",
+          "At $105 at expiry: put expires worthless. Loss: -$280.",
+          "At $100 at expiry: put expires worthless. Loss: -$280.",
+          "At $97.20 at expiry: break-even.",
+          "At $90 at expiry: intrinsic value is $10. Profit: $720 per contract (+257%).",
+          "At $80 at expiry: intrinsic value is $20. Profit: $1,720 per contract (+614%).",
           "The put's max theoretical gain is capped at (strike × 100 - premium) if stock goes to zero.",
         ],
       },
       {
-        heading: "Writing (Selling) Options — The Other Side of the Trade",
+        heading: "Writing (Selling) Options: The Other Side of the Trade",
         paragraphs: [
           "When you buy a call or put, someone is writing it to you. Writers collect the premium upfront but take on the obligation to buy or deliver shares if exercised. The risk profile flips.",
         ],
         bullets: [
-          "Covered call — sell a call against 100 shares you already own. Max profit: premium + (strike - cost basis). Risk: capped upside if stock rallies past strike.",
-          "Cash-secured put — sell a put and hold cash equal to 100 × strike. Max profit: premium. Risk: forced to buy 100 shares at strike if assigned.",
-          "Naked call — sell a call without owning shares. Unlimited loss potential. Requires high-tier options approval and significant margin.",
-          "Naked put — sell a put without cash to buy shares. Loss capped at strike × 100 - premium (stock can only go to zero).",
-          "Assignment — if the option goes in-the-money at expiration, the buyer exercises and the writer must deliver shares (call) or buy them (put) at the strike price.",
+          "Covered call: sell a call against 100 shares you already own. Max profit: premium + (strike - cost basis). Risk: capped upside if stock rallies past strike.",
+          "Cash-secured put: sell a put and hold cash equal to 100 × strike. Max profit: premium. Risk: forced to buy 100 shares at strike if assigned.",
+          "Naked call: sell a call without owning shares. Unlimited loss potential. Requires high-tier options approval and significant margin.",
+          "Naked put: sell a put without cash to buy shares. Loss capped at strike × 100 - premium (stock can only go to zero).",
+          "Assignment: if the option goes in-the-money at expiration, the buyer exercises and the writer must deliver shares (call) or buy them (put) at the strike price.",
         ],
         callout: {
           title: "Why Most Retail Traders Lose",
-          body: "Buying OTM calls and puts with 0-7 days to expiration is the retail default. Theta (time decay) accelerates exponentially in the last week, so even a stock moving in the right direction can lose you money. Sellers of those same contracts are the structural winners — at the cost of defined max-profit and unlimited (or large) max-loss.",
+          body: "Buying OTM calls and puts with 0-7 days to expiration is the retail default. Theta (time decay) accelerates exponentially in the last week, so even a stock moving in the right direction can lose you money. Sellers of those same contracts are the structural winners. At the cost of defined max-profit and unlimited (or large) max-loss.",
         },
       },
       {
         heading: "Assignment, Exercise, and Settlement",
         bullets: [
-          "Exercise — the option buyer elects to convert the contract into shares. Usually happens at or near expiration when ITM.",
-          "Assignment — the writer is randomly selected by the Options Clearing Corporation to fulfill the exercise. You cannot predict or prevent it beyond closing the contract.",
-          "Early assignment — American-style options (most single-name stocks) can be assigned any time before expiration. European-style (index options like SPX) can only be assigned at expiration.",
-          "Automatic exercise — brokers auto-exercise any option $0.01+ ITM at expiration unless you instruct otherwise.",
-          "Pin risk — when stock closes very near the strike at expiration, assignment can be unpredictable. Close positions before expiration to avoid it.",
-          "Dividends — call writers risk early assignment the day before an ex-dividend date if the call is deep ITM. Check ex-div calendars.",
+          "Exercise: the option buyer elects to convert the contract into shares. Usually happens at or near expiration when ITM.",
+          "Assignment: the writer is randomly selected by the Options Clearing Corporation to fulfill the exercise. You cannot predict or prevent it beyond closing the contract.",
+          "Early assignment: American-style options (most single-name stocks) can be assigned any time before expiration. European-style (index options like SPX) can only be assigned at expiration.",
+          "Automatic exercise: brokers auto-exercise any option $0.01+ ITM at expiration unless you instruct otherwise.",
+          "Pin risk: when stock closes very near the strike at expiration, assignment can be unpredictable. Close positions before expiration to avoid it.",
+          "Dividends: call writers risk early assignment the day before an ex-dividend date if the call is deep ITM. Check ex-div calendars.",
         ],
       },
       {
@@ -4420,44 +4420,44 @@ export const guides: GuideArticle[] = [
           "Option prices are set by five inputs. You don't need to do the math yourself (the Black-Scholes model handles it), but understanding the inputs tells you what moves your position.",
         ],
         bullets: [
-          "Stock price — drives intrinsic value. A $1 move in stock moves the option by delta (covered in the Greeks guide).",
-          "Strike price — fixed when you open the contract.",
-          "Time to expiration — longer = more extrinsic value, but more time decay exposure.",
-          "Implied volatility (IV) — the market's forecast of stock movement. Higher IV = more expensive options.",
-          "Risk-free rate — matters for LEAPS but negligibly for short-dated options.",
-          "Dividends — reduce call prices and increase put prices (ex-div drops the stock by the dividend amount).",
+          "Stock price: drives intrinsic value. A $1 move in stock moves the option by delta (covered in the Greeks guide).",
+          "Strike price: fixed when you open the contract.",
+          "Time to expiration: longer = more extrinsic value, but more time decay exposure.",
+          "Implied volatility (IV): the market's forecast of stock movement. Higher IV = more expensive options.",
+          "Risk-free rate: matters for LEAPS but negligibly for short-dated options.",
+          "Dividends: reduce call prices and increase put prices (ex-div drops the stock by the dividend amount).",
         ],
       },
       {
         heading: "Implied Volatility: The Input You'll Actually Trade",
         paragraphs: [
-          "IV is a percentage that expresses the market's expectation of how much the stock will move, annualized. Options get expensive before earnings, FDA decisions, and macro events — and cheaper after.",
+          "IV is a percentage that expresses the market's expectation of how much the stock will move, annualized. Options get expensive before earnings, FDA decisions, and macro events. And cheaper after.",
         ],
         bullets: [
           "IV of 30% implies a one-standard-deviation annual move of ±30%.",
-          "IV rank / IV percentile — tells you whether current IV is high or low vs the stock's own history. Sell premium when IV rank is above 50; buy premium when below 30.",
-          "Volatility crush — IV collapses after an earnings announcement. Buying straddles the day before earnings is usually a losing trade because the move must exceed the expected move priced in.",
-          "VIX — the 'fear index' is implied volatility on SPX options, 30-day forward. VIX above 30 = elevated fear, options are expensive. VIX below 15 = complacency, options are cheap.",
+          "IV rank / IV percentile: tells you whether current IV is high or low vs the stock's own history. Sell premium when IV rank is above 50; buy premium when below 30.",
+          "Volatility crush: IV collapses after an earnings announcement. Buying straddles the day before earnings is usually a losing trade because the move must exceed the expected move priced in.",
+          "VIX: the 'fear index' is implied volatility on SPX options, 30-day forward. VIX above 30 = elevated fear, options are expensive. VIX below 15 = complacency, options are cheap.",
         ],
       },
       {
-        heading: "Your First 10 Options Trades — Rules of the Road",
+        heading: "Your First 10 Options Trades: Rules of the Road",
         bullets: [
-          "Trade liquid underlyings only — SPY, QQQ, AAPL, MSFT. Bid-ask spreads under 3% of premium.",
+          "Trade liquid underlyings only: SPY, QQQ, AAPL, MSFT. Bid-ask spreads under 3% of premium.",
           "Start with single-leg defined-risk trades: long calls, long puts, covered calls, cash-secured puts.",
-          "30-60 days to expiration is the beginner sweet spot — enough time for the thesis to play out, less theta decay than weeklies.",
+          "30-60 days to expiration is the beginner sweet spot. Enough time for the thesis to play out, less theta decay than weeklies.",
           "Never risk more than 2-3% of account on any single contract. Options are leverage; sizing like stocks destroys accounts.",
-          "Close at 50% profit on premium-selling strategies. Sellers give up upside for probability — take the win.",
+          "Close at 50% profit on premium-selling strategies. Sellers give up upside for probability: take the win.",
           "Exit before expiration week unless you specifically want to be assigned. Gamma risk explodes in the last 5 days.",
           "Paper-trade for 30 days minimum before real money. The emotional sequence is the hardest part.",
         ],
       },
     ],
     keyTakeaways: [
-      "One options contract controls 100 shares — the dollar risk is always premium × 100.",
+      "One options contract controls 100 shares: the dollar risk is always premium × 100.",
       "Premium = intrinsic value + extrinsic (time) value. Extrinsic decays to zero at expiration.",
       "Buyers have defined risk but pay theta; sellers collect theta but face larger tail risk.",
-      "Implied volatility drives option prices as much as the stock itself — sell high IV, buy low IV.",
+      "Implied volatility drives option prices as much as the stock itself. Sell high IV, buy low IV.",
       "Stick to liquid underlyings, 30-60 DTE, and 2-3% per trade until you have 30+ live trades of experience.",
     ],
     faqs: [
@@ -4475,11 +4475,11 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Are options taxed differently than stocks?",
-        a: "Short-term by default — held under a year is ordinary income rates. Exception: Section 1256 contracts (SPX, futures options) get 60/40 treatment (60% long-term, 40% short-term) regardless of holding period, which is a meaningful tax advantage for active traders.",
+        a: "Short-term by default: held under a year is ordinary income rates. Exception: Section 1256 contracts (SPX, futures options) get 60/40 treatment (60% long-term, 40% short-term) regardless of holding period, which is a meaningful tax advantage for active traders.",
       },
       {
         q: "Is selling covered calls 'free money'?",
-        a: "No. The premium compensates you for capped upside. In a rally, you'll leave money on the table. Over the long run, covered-call strategies have underperformed buy-and-hold on the S&P 500 — but they smooth returns and generate income, which is valuable for certain portfolios.",
+        a: "No. The premium compensates you for capped upside. In a rally, you'll leave money on the table. Over the long run, covered-call strategies have underperformed buy-and-hold on the S&P 500. But they smooth returns and generate income, which is valuable for certain portfolios.",
       },
       {
         q: "What's the difference between American and European options?",
@@ -4499,7 +4499,7 @@ export const guides: GuideArticle[] = [
     relatedCategory: "/investing",
     relatedLabel: "Trading Platforms",
     intro:
-      "The Greeks are the sensitivity measures that explain why an option's price changes. Delta measures direction. Gamma measures how delta itself changes. Theta measures time decay. Vega measures volatility exposure. Rho measures interest-rate sensitivity. Every profitable options trader can tell you, in seconds, what each of their positions is exposed to — and they use the Greeks to do it.",
+      "The Greeks are the sensitivity measures that explain why an option's price changes. Delta measures direction. Gamma measures how delta itself changes. Theta measures time decay. Vega measures volatility exposure. Rho measures interest-rate sensitivity. Every profitable options trader can tell you, in seconds, what each of their positions is exposed to. And they use the Greeks to do it.",
     sections: [
       {
         heading: "Delta: Directional Exposure",
@@ -4507,9 +4507,9 @@ export const guides: GuideArticle[] = [
           "Delta is the change in option price for a $1 change in the underlying stock. It ranges from 0 to +1 for calls and 0 to -1 for puts.",
         ],
         bullets: [
-          "ATM call ≈ 0.50 delta — moves $0.50 for every $1 in the stock.",
-          "Deep ITM call → 1.00 delta — behaves like 100 shares of stock.",
-          "Deep OTM call → 0.00 delta — barely moves when stock moves.",
+          "ATM call ≈ 0.50 delta. Moves $0.50 for every $1 in the stock.",
+          "Deep ITM call → 1.00 delta. Behaves like 100 shares of stock.",
+          "Deep OTM call → 0.00 delta. Barely moves when stock moves.",
           "Put deltas are negative: ATM put ≈ -0.50.",
           "Delta also approximates probability of finishing ITM: a 0.30 delta call has roughly a 30% chance of expiring in-the-money.",
         ],
@@ -4521,18 +4521,18 @@ export const guides: GuideArticle[] = [
       {
         heading: "Gamma: The Rate of Change of Delta",
         paragraphs: [
-          "Gamma measures how much delta changes per $1 move in the stock. It is highest at-the-money and collapses for deep ITM or OTM options. Gamma is also highest near expiration — which is why 0DTE and weekly options behave so violently.",
+          "Gamma measures how much delta changes per $1 move in the stock. It is highest at-the-money and collapses for deep ITM or OTM options. Gamma is also highest near expiration: which is why 0DTE and weekly options behave so violently.",
         ],
         bullets: [
           "Gamma is always positive for long options, always negative for short options.",
-          "Short-dated ATM options have the highest gamma — a 1% move in the stock can flip the option from 40 delta to 60 delta overnight.",
-          "High gamma = large P&L swings — good if you're right about direction, painful if wrong.",
-          "Long options benefit from convexity — gains accelerate in your favor, losses decelerate.",
-          "Short options suffer negative gamma — losses accelerate against you, which is why selling 0DTE without a stop is catastrophic in tail events.",
+          "Short-dated ATM options have the highest gamma. A 1% move in the stock can flip the option from 40 delta to 60 delta overnight.",
+          "High gamma = large P&L swings. Good if you're right about direction, painful if wrong.",
+          "Long options benefit from convexity: gains accelerate in your favor, losses decelerate.",
+          "Short options suffer negative gamma: losses accelerate against you, which is why selling 0DTE without a stop is catastrophic in tail events.",
         ],
         callout: {
           title: "Gamma Example",
-          body: "Stock at $100. ATM call has 0.50 delta and 0.10 gamma. If stock moves to $102, delta becomes approximately 0.70 (0.50 + 2 × 0.10). The option gained $1 from the first dollar move (at delta 0.50) and $1.20 from the second (at delta closer to 0.60). Total gain ~$2.20 instead of the linear $1.00 — that is convexity in action.",
+          body: "Stock at $100. ATM call has 0.50 delta and 0.10 gamma. If stock moves to $102, delta becomes approximately 0.70 (0.50 + 2 × 0.10). The option gained $1 from the first dollar move (at delta 0.50) and $1.20 from the second (at delta closer to 0.60). Total gain ~$2.20 instead of the linear $1.00. That is convexity in action.",
         },
       },
       {
@@ -4542,7 +4542,7 @@ export const guides: GuideArticle[] = [
         ],
         bullets: [
           "ATM 30-day option: theta might be -$0.05 per share per day = -$5 per contract per day.",
-          "Theta accelerates as expiration approaches — last week can be -$0.20+ per day.",
+          "Theta accelerates as expiration approaches: last week can be -$0.20+ per day.",
           "Weekends count: Friday's theta decay includes Saturday and Sunday priced in.",
           "Long options = negative theta (paying time premium). Short options = positive theta (collecting).",
           "Theta is highest for ATM options because they have the most extrinsic value to decay.",
@@ -4555,14 +4555,14 @@ export const guides: GuideArticle[] = [
       {
         heading: "Vega: Volatility Exposure",
         paragraphs: [
-          "Vega is the dollar change in option price per 1 percentage-point change in implied volatility. Options expand and contract with IV — often independently of the stock moving.",
+          "Vega is the dollar change in option price per 1 percentage-point change in implied volatility. Options expand and contract with IV: often independently of the stock moving.",
         ],
         bullets: [
           "Long ATM 30-day option: vega ≈ $0.10 per 1% IV change per share = $10 per contract per 1% move.",
           "Vega is highest for ATM and longer-dated options; near-zero for deep ITM/OTM shorts.",
           "Long options = positive vega (benefit from IV expansion). Short options = negative vega (profit from IV crush).",
-          "Pre-earnings IV rise — stock-specific vega can add 20-40% to option prices in the two weeks before earnings.",
-          "Post-earnings IV crush — the day after earnings, IV often drops 30-50%. A +5% stock move with a -40% IV crush frequently leaves long calls unchanged or down.",
+          "Pre-earnings IV rise: stock-specific vega can add 20-40% to option prices in the two weeks before earnings.",
+          "Post-earnings IV crush: the day after earnings, IV often drops 30-50%. A +5% stock move with a -40% IV crush frequently leaves long calls unchanged or down.",
         ],
       },
       {
@@ -4571,14 +4571,14 @@ export const guides: GuideArticle[] = [
           "Rho measures option price change per 1 percentage-point change in the risk-free rate. For short-dated options it is usually negligible. For LEAPS (1-3 year options) and when rates are changing rapidly, rho becomes meaningful.",
         ],
         bullets: [
-          "Long calls = positive rho — higher rates slightly raise call prices (cost of carry).",
-          "Long puts = negative rho — higher rates slightly lower put prices.",
+          "Long calls = positive rho. Higher rates slightly raise call prices (cost of carry).",
+          "Long puts = negative rho. Higher rates slightly lower put prices.",
           "Rho becomes a 5-10% factor in 2-year LEAPS when the Fed shifts 200+ bps.",
           "Most traders safely ignore rho for options under 90 days.",
         ],
       },
       {
-        heading: "The Greeks Interact — You Are Never Exposed to Just One",
+        heading: "The Greeks Interact: You Are Never Exposed to Just One",
         paragraphs: [
           "Every option has all five Greeks simultaneously. A profitable trade requires the direction (delta), the velocity (gamma), the time frame (theta), and the volatility regime (vega) to align. Understanding the combination is what separates a trader from a gambler.",
         ],
@@ -4590,7 +4590,7 @@ export const guides: GuideArticle[] = [
         ],
         callout: {
           title: "The Greek Everyone Misses",
-          body: "Retail traders obsess over delta ('will the stock go up?') and ignore vega and theta. Earnings trades lose constantly because buyers pay for IV that collapses after the announcement — even when they correctly predict the direction. If you only learn two Greeks deeply, make them theta and vega. Delta is the obvious one; theta and vega are where profits are quietly made or lost.",
+          body: "Retail traders obsess over delta ('will the stock go up?') and ignore vega and theta. Earnings trades lose constantly because buyers pay for IV that collapses after the announcement. Even when they correctly predict the direction. If you only learn two Greeks deeply, make them theta and vega. Delta is the obvious one; theta and vega are where profits are quietly made or lost.",
         },
       },
       {
@@ -4599,10 +4599,10 @@ export const guides: GuideArticle[] = [
           "Every major broker displays Greeks for each option. Here's how to read the line quickly on a sample quote: AAPL Jan 17 $200 Call, Delta 0.42, Gamma 0.03, Theta -0.09, Vega 0.18.",
         ],
         bullets: [
-          "Delta 0.42 — if AAPL moves $1, this call gains ~$0.42 per share = $42 per contract.",
-          "Gamma 0.03 — if AAPL moves $1, delta rises to ~0.45.",
-          "Theta -0.09 — the option loses ~$9 per contract per day, all else equal.",
-          "Vega 0.18 — a 1% IV rise adds ~$18 per contract; a 1% IV drop removes ~$18.",
+          "Delta 0.42: if AAPL moves $1, this call gains ~$0.42 per share = $42 per contract.",
+          "Gamma 0.03: if AAPL moves $1, delta rises to ~0.45.",
+          "Theta -0.09: the option loses ~$9 per contract per day, all else equal.",
+          "Vega 0.18: a 1% IV rise adds ~$18 per contract; a 1% IV drop removes ~$18.",
           "Multiply each by contract count for position-level exposure. 10 contracts means 10× everything.",
         ],
       },
@@ -4610,8 +4610,8 @@ export const guides: GuideArticle[] = [
     keyTakeaways: [
       "Delta = directional exposure. Gamma = how fast delta changes.",
       "Theta eats long options daily; high-gamma short-dated positions are theta-poisoned.",
-      "Vega is why earnings plays lose even when direction is right — IV crush.",
-      "All five Greeks are active on every option — never focus on delta alone.",
+      "Vega is why earnings plays lose even when direction is right. IV crush.",
+      "All five Greeks are active on every option. Never focus on delta alone.",
       "Positive-theta strategies (covered calls, credit spreads, iron condors) win from sideways markets; long-option strategies win from fast moves.",
     ],
     faqs: [
@@ -4621,7 +4621,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What's a 'delta-neutral' trade?",
-        a: "A position with a net delta near zero — meaning it doesn't profit or lose from small directional moves. Iron condors, straddles, and strangles are common delta-neutral structures that profit from time decay or volatility changes rather than direction.",
+        a: "A position with a net delta near zero. Meaning it doesn't profit or lose from small directional moves. Iron condors, straddles, and strangles are common delta-neutral structures that profit from time decay or volatility changes rather than direction.",
       },
       {
         q: "How do dividends affect the Greeks?",
@@ -4633,7 +4633,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "Can I see Greeks for my overall portfolio?",
-        a: "Yes — platforms like Thinkorswim, Tastytrade, and Interactive Brokers show aggregated portfolio Greeks. This is the professional view: total delta tells you directional exposure; total theta shows daily decay income or cost; total vega shows volatility sensitivity.",
+        a: "Yes: platforms like Thinkorswim, Tastytrade, and Interactive Brokers show aggregated portfolio Greeks. This is the professional view: total delta tells you directional exposure; total theta shows daily decay income or cost; total vega shows volatility sensitivity.",
       },
     ],
   },
@@ -4645,11 +4645,11 @@ export const guides: GuideArticle[] = [
     category: "Trading",
     readTime: "13 min",
     description:
-      "The four defined-risk options strategies that cover 90% of what retail traders actually need — with break-even math, max profit/loss, and when each one shines.",
+      "The four defined-risk options strategies that cover 90% of what retail traders actually need. With break-even math, max profit/loss, and when each one shines.",
     relatedCategory: "/investing",
     relatedLabel: "Trading Platforms",
     intro:
-      "Once you understand calls, puts, and the Greeks, the next step is combining them into structured trades. Four strategies handle almost every market view a retail trader needs: covered calls for income on existing stock, cash-secured puts for entering stock at a discount, vertical spreads for directional bets with capped risk, and iron condors for neutral premium collection. Each has precise break-evens and max loss — which means you can size them correctly and know exactly what you're risking on every trade.",
+      "Once you understand calls, puts, and the Greeks, the next step is combining them into structured trades. Four strategies handle almost every market view a retail trader needs: covered calls for income on existing stock, cash-secured puts for entering stock at a discount, vertical spreads for directional bets with capped risk, and iron condors for neutral premium collection. Each has precise break-evens and max loss. Which means you can size them correctly and know exactly what you're risking on every trade.",
     sections: [
       {
         heading: "Strategy 1: The Covered Call",
@@ -4665,7 +4665,7 @@ export const guides: GuideArticle[] = [
         ],
         callout: {
           title: "Worked Example",
-          body: "You own 100 shares of AAPL at $220 cost basis. AAPL trades $235. You sell the 45 DTE $245 call for $3.50 ($350). Three outcomes at expiration: (1) AAPL at $240 — call expires worthless, keep $350 premium plus 100 shares still worth $24,000. (2) AAPL at $245 — call expires at zero, same as above. (3) AAPL at $260 — shares called away at $245. You made $25/share capital gain + $3.50 premium = $28.50/share total ($2,850). Total gain 13%, but you missed the rally from $245 to $260 ($1,500 left on the table).",
+          body: "You own 100 shares of AAPL at $220 cost basis. AAPL trades $235. You sell the 45 DTE $245 call for $3.50 ($350). Three outcomes at expiration: (1) AAPL at $240. Call expires worthless, keep $350 premium plus 100 shares still worth $24,000. (2) AAPL at $245. Call expires at zero, same as above. (3) AAPL at $260. Shares called away at $245. You made $25/share capital gain + $3.50 premium = $28.50/share total ($2,850). Total gain 13%, but you missed the rally from $245 to $260 ($1,500 left on the table).",
         },
       },
       {
@@ -4682,7 +4682,7 @@ export const guides: GuideArticle[] = [
         ],
         callout: {
           title: "Worked Example",
-          body: "You want to own MSFT but think $410 is too expensive. MSFT trades $410. You sell the 30 DTE $395 put for $4.20 ($420), holding $39,500 in cash. Outcomes: (1) MSFT stays above $395 — put expires worthless, you keep $420 (10.6% annualized return on the $39,500 reserved). (2) MSFT drops to $390 — assigned at $395; effective cost basis = $395 - $4.20 = $390.80. You now own 100 MSFT at a 4.7% discount to where it was when you opened the trade.",
+          body: "You want to own MSFT but think $410 is too expensive. MSFT trades $410. You sell the 30 DTE $395 put for $4.20 ($420), holding $39,500 in cash. Outcomes: (1) MSFT stays above $395. Put expires worthless, you keep $420 (10.6% annualized return on the $39,500 reserved). (2) MSFT drops to $390. Assigned at $395; effective cost basis = $395 - $4.20 = $390.80. You now own 100 MSFT at a 4.7% discount to where it was when you opened the trade.",
         },
       },
       {
@@ -4697,7 +4697,7 @@ export const guides: GuideArticle[] = [
           "Stage 3: Sell covered call at or above your effective cost basis. Collect premium.",
           "Stage 4a: If expires OTM, sell another covered call.",
           "Stage 4b: If called away, sell CSP on same or different stock. Cycle restarts.",
-          "Works best on stocks you'd happily own at the put strike — never wheel a stock you wouldn't want delivered.",
+          "Works best on stocks you'd happily own at the put strike. Never wheel a stock you wouldn't want delivered.",
         ],
       },
       {
@@ -4706,15 +4706,15 @@ export const guides: GuideArticle[] = [
           "A vertical spread is two options of the same type and same expiration at different strikes. Sell one, buy another. Four variations cover bullish, bearish, premium-collecting, and premium-paying views.",
         ],
         bullets: [
-          "Bull Call Spread (debit) — buy lower-strike call, sell higher-strike call. Bullish, pay premium, cap gain and loss.",
-          "Bear Put Spread (debit) — buy higher-strike put, sell lower-strike put. Bearish, pay premium, cap gain and loss.",
-          "Bull Put Spread (credit) — sell higher-strike put, buy lower-strike put. Bullish, collect premium, cap profit at credit.",
-          "Bear Call Spread (credit) — sell lower-strike call, buy higher-strike call. Bearish, collect premium, cap profit at credit.",
+          "Bull Call Spread (debit): buy lower-strike call, sell higher-strike call. Bullish, pay premium, cap gain and loss.",
+          "Bear Put Spread (debit): buy higher-strike put, sell lower-strike put. Bearish, pay premium, cap gain and loss.",
+          "Bull Put Spread (credit): sell higher-strike put, buy lower-strike put. Bullish, collect premium, cap profit at credit.",
+          "Bear Call Spread (credit): sell lower-strike call, buy higher-strike call. Bearish, collect premium, cap profit at credit.",
           "Width = distance between strikes. Max loss = width × 100 - credit (for credit spreads) or debit × 100 (for debit spreads).",
         ],
         callout: {
           title: "Bull Put Spread Example",
-          body: "SPY trades $560. You think it'll stay above $550 for 30 days. Sell the $550 put for $4.00, buy the $545 put for $2.80. Net credit: $1.20 ($120). Max profit: $120 if SPY is above $550 at expiration. Max loss: $5 width - $1.20 credit = $3.80 × 100 = $380 if SPY is below $545 at expiration. Break-even: $550 - $1.20 = $548.80. Risk/reward: $380 to make $120 — but the probability of winning is often 70-80%, which makes the math work out in your favor long-run.",
+          body: "SPY trades $560. You think it'll stay above $550 for 30 days. Sell the $550 put for $4.00, buy the $545 put for $2.80. Net credit: $1.20 ($120). Max profit: $120 if SPY is above $550 at expiration. Max loss: $5 width - $1.20 credit = $3.80 × 100 = $380 if SPY is below $545 at expiration. Break-even: $550 - $1.20 = $548.80. Risk/reward: $380 to make $120. But the probability of winning is often 70-80%, which makes the math work out in your favor long-run.",
         },
       },
       {
@@ -4727,8 +4727,8 @@ export const guides: GuideArticle[] = [
           "Max profit: total net credit received (sum of both spreads' credits).",
           "Max loss: wider spread width × 100 - credit.",
           "Two break-evens: lower strike - net credit, upper strike + net credit.",
-          "Best entered when IV rank is above 50 — high IV inflates credits, giving wider break-evens.",
-          "Manage at 50% of max profit — close early to free up buying power and lock in the win.",
+          "Best entered when IV rank is above 50. High IV inflates credits, giving wider break-evens.",
+          "Manage at 50% of max profit. Close early to free up buying power and lock in the win.",
         ],
         callout: {
           title: "Iron Condor Example",
@@ -4738,48 +4738,48 @@ export const guides: GuideArticle[] = [
       {
         heading: "Picking the Right Strategy for the Market",
         bullets: [
-          "Strongly bullish — long call or bull call spread (debit) if IV is low; bull put spread (credit) if IV is high.",
-          "Strongly bearish — long put or bear put spread (debit) if IV is low; bear call spread (credit) if IV is high.",
-          "Neutral with high IV — iron condor or short strangle.",
-          "Neutral with low IV — long straddle if you expect a volatility expansion (earnings, macro event).",
-          "Own 100 shares, slightly bullish — covered call.",
-          "Have cash, willing to buy dip — cash-secured put.",
-          "Binary event (earnings, FDA, Fed) — skip direction bets, consider calendar spreads to exploit IV skew.",
+          "Strongly bullish: long call or bull call spread (debit) if IV is low; bull put spread (credit) if IV is high.",
+          "Strongly bearish: long put or bear put spread (debit) if IV is low; bear call spread (credit) if IV is high.",
+          "Neutral with high IV: iron condor or short strangle.",
+          "Neutral with low IV: long straddle if you expect a volatility expansion (earnings, macro event).",
+          "Own 100 shares, slightly bullish. Covered call.",
+          "Have cash, willing to buy dip. Cash-secured put.",
+          "Binary event (earnings, FDA, Fed). Skip direction bets, consider calendar spreads to exploit IV skew.",
         ],
       },
       {
         heading: "Position Management Rules",
         bullets: [
-          "50% rule — close credit trades at 50% of max profit. Captures most of the edge with less time risk.",
-          "21 DTE rule — roll or close short options with 21 days or less to expiration. Gamma risk accelerates past this point.",
+          "50% rule. Close credit trades at 50% of max profit. Captures most of the edge with less time risk.",
+          "21 DTE rule. Roll or close short options with 21 days or less to expiration. Gamma risk accelerates past this point.",
           "Never hold short options through earnings unless explicitly selling the IV crush.",
-          "Sizing — no single trade should risk more than 2-3% of account buying power.",
-          "Diversify by underlying and direction — 10 short put spreads on tech stocks during a sector selloff is 10 correlated losses, not diversification.",
-          "Keep a trade journal — strike selection, credit received, days held, outcome, and IV environment. Review monthly.",
+          "Sizing: no single trade should risk more than 2-3% of account buying power.",
+          "Diversify by underlying and direction: 10 short put spreads on tech stocks during a sector selloff is 10 correlated losses, not diversification.",
+          "Keep a trade journal: strike selection, credit received, days held, outcome, and IV environment. Review monthly.",
         ],
       },
       {
         heading: "Tax Treatment of Options Strategies",
         bullets: [
-          "Equity options — short-term (ordinary income) unless held over a year. Spreads treated per leg.",
-          "Section 1256 contracts (SPX, RUT, NDX index options) — 60% long-term / 40% short-term regardless of holding period. Huge advantage for active traders.",
-          "Covered calls on stock held long-term — special rules can reset holding period if the call is too deep ITM. Stick to ≤0.30 delta to stay safe.",
-          "Assigned CSPs — cost basis of new stock = strike - premium. Premium is no longer taxable income in the year collected; it's folded into basis.",
-          "Wash-sale interactions — closing a losing spread and opening a similar one within 30 days can trigger wash sales on individual legs.",
+          "Equity options: short-term (ordinary income) unless held over a year. Spreads treated per leg.",
+          "Section 1256 contracts (SPX, RUT, NDX index options), 60% long-term / 40% short-term regardless of holding period. Huge advantage for active traders.",
+          "Covered calls on stock held long-term: special rules can reset holding period if the call is too deep ITM. Stick to ≤0.30 delta to stay safe.",
+          "Assigned CSPs: cost basis of new stock = strike - premium. Premium is no longer taxable income in the year collected; it's folded into basis.",
+          "Wash-sale interactions: closing a losing spread and opening a similar one within 30 days can trigger wash sales on individual legs.",
         ],
       },
     ],
     keyTakeaways: [
-      "Covered calls and CSPs generate income with defined risk — the backbone of retail options.",
-      "Vertical spreads cap both profit and loss — sizing is simple and risk is known going in.",
-      "Iron condors shine in high-IV, neutral markets — close at 50% of max profit.",
+      "Covered calls and CSPs generate income with defined risk. The backbone of retail options.",
+      "Vertical spreads cap both profit and loss. Sizing is simple and risk is known going in.",
+      "Iron condors shine in high-IV, neutral markets. Close at 50% of max profit.",
       "Manage at 21 DTE to avoid gamma risk in the final weeks.",
-      "Index options (SPX, XSP) get 60/40 tax treatment — meaningful edge for active traders.",
+      "Index options (SPX, XSP) get 60/40 tax treatment. Meaningful edge for active traders.",
     ],
     faqs: [
       {
         q: "Are these strategies actually profitable long-term?",
-        a: "Credit-premium strategies (CSP, covered call, credit spreads, iron condors) have a positive long-run expectancy because IV is typically higher than realized volatility. But the edge is small — 3-10% annually on capital deployed — and a single bad tail event can erase months of gains if sized incorrectly.",
+        a: "Credit-premium strategies (CSP, covered call, credit spreads, iron condors) have a positive long-run expectancy because IV is typically higher than realized volatility. But the edge is small: 3-10% annually on capital deployed. And a single bad tail event can erase months of gains if sized incorrectly.",
       },
       {
         q: "How much capital do I need?",
@@ -4799,7 +4799,7 @@ export const guides: GuideArticle[] = [
       },
       {
         q: "What's the biggest mistake new options traders make?",
-        a: "Selling naked premium on meme stocks or low-liquidity names — a single gap move can take out weeks of collected credits. Stick to liquid underlyings (SPY, QQQ, IWM, mega-cap tech) and defined-risk structures until you have 100+ completed trades.",
+        a: "Selling naked premium on meme stocks or low-liquidity names. A single gap move can take out weeks of collected credits. Stick to liquid underlyings (SPY, QQQ, IWM, mega-cap tech) and defined-risk structures until you have 100+ completed trades.",
       },
     ],
   },

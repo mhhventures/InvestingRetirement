@@ -59,7 +59,7 @@ function Reviews() {
       ]}
     >
       <p className="mb-5 text-sm text-[#1a1a1a] leading-relaxed">
-        Every financial product our editors have tested — bank accounts, brokerages, robo-advisors, crypto exchanges, and money apps. Filter by category below, or scroll for how we rank.
+        Every financial product our editors have tested, including bank accounts, brokerages, robo-advisors, crypto exchanges, and money apps. Filter by category below, or scroll for how we rank.
       </p>
       <div className="flex flex-wrap gap-1.5 mb-4">
         {categories.map((cat) => (
@@ -100,7 +100,7 @@ function Reviews() {
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">Editorial Process</div>
           <h2 className="font-serif text-2xl font-bold text-black mb-2">How this page is built</h2>
           <p>
-            This directory lists every product our editors have reviewed. Each listing links to a full hands-on review with the current APY or fee schedule, our editorial grade, the specific saver or investor the product is best suited for, and the closest alternatives to consider. Inside each category, products are ranked by a weighted rubric — APY, fees, platform quality, asset selection, customer service, and trust and safety — with the exact weights published on each review.
+            This directory lists every product our editors have reviewed. Each listing links to a full hands-on review with the current APY or fee schedule, our editorial grade, the specific saver or investor the product is best suited for, and the closest alternatives to consider. Inside each category, products are ranked by a weighted rubric (APY, fees, platform quality, asset selection, customer service, and trust and safety), with the exact weights published on each review.
           </p>
         </div>
         <div>
@@ -112,7 +112,7 @@ function Reviews() {
         <div>
           <h3 className="font-serif text-lg font-bold text-black mb-1.5">Update cadence</h3>
           <p>
-            Rates and promotional offers change often. APYs and bonuses are re-verified weekly, fee schedules monthly, and full reviews at least twice a year — or immediately whenever a product meaningfully changes. Every review is stamped with the date of its most recent check. If you spot a number that looks stale, the <a href="/contact" className="underline text-[#0e4d45]">contact form</a> goes straight to an editor.
+            Rates and promotional offers change often. APYs and bonuses are re-verified weekly, fee schedules monthly, and full reviews at least twice a year, or immediately whenever a product meaningfully changes. Every review is stamped with the date of its most recent check. If you spot a number that looks stale, the <a href="/contact" className="underline text-[#0e4d45]">contact form</a> goes straight to an editor.
           </p>
         </div>
       </section>

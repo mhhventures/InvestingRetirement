@@ -272,7 +272,7 @@ function Home() {
             </div>
             <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm p-5 sm:p-6 text-sm text-[#1a1a1a] leading-relaxed">
               <p>
-                Investing and Retirement is an independent personal-finance publication. An editor opens, funds, and uses every product before we publish a ranking — real deposits at the banks we recommend, funded trades at the brokerages we score, and months of daily use on the apps we compare. APY, fees, and bonus terms are re-verified weekly so stale numbers don&rsquo;t linger in our rankings.
+                Investing and Retirement is an independent personal-finance publication. An editor opens, funds, and uses every product before we publish a ranking: real deposits at the banks we recommend, funded trades at the brokerages we score, and months of daily use on the apps we compare. APY, fees, and bonus terms are re-verified weekly so stale numbers don&rsquo;t linger in our rankings.
               </p>
               <div className="mt-5 grid sm:grid-cols-3 gap-3">
                 {[
@@ -317,7 +317,7 @@ function Home() {
             <div className="bg-white border border-[#d4c5b8] rounded-sm p-4">
               <h3 className="font-serif font-bold text-base text-black mb-1">How do you make money?</h3>
               <p className="text-[12.5px] text-[#1a1a1a]">
-                Some links are affiliate links — we may earn a commission if you open an account. Partners cannot pay for a higher ranking, and advertising revenue never bends the copy. When a product gets worse, its ranking drops.
+                Some links are affiliate links. We may earn a commission if you open an account. Partners cannot pay for a higher ranking, and advertising revenue never bends the copy. When a product gets worse, its ranking drops.
               </p>
             </div>
             <div className="bg-white border border-[#d4c5b8] rounded-sm p-4">

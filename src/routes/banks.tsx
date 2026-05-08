@@ -141,7 +141,7 @@ function BanksIndex() {
   const visibleComing = filteredStates.filter((s) => !s.available);
 
   useSeo({
-    title: `Best Banks & Credit Unions by State ${new Date().getFullYear()} — Local Rates Directory`,
+    title: `Best Banks & Credit Unions by State ${new Date().getFullYear()}: Local Rates Directory`,
     description:
       topSavingsRange.max > 0
         ? `Compare the best local credit unions and community banks in every state. Top savings APYs from ${topSavingsRange.min.toFixed(
@@ -467,7 +467,7 @@ function BanksIndex() {
           />
           <MethodologyCard
             title="Membership made clear"
-            body="Credit union eligibility varies. We call out who qualifies — residency, employer groups, or a small one-time association fee — so you can skip the ones you can't join."
+            body="Credit union eligibility varies. We call out who qualifies (residency, employer groups, or a small one-time association fee) so you can skip the ones you can't join."
           />
         </section>
 
@@ -477,8 +477,8 @@ function BanksIndex() {
           </h2>
           <p>
             A state banking directory lists the banks, credit unions, and
-            regional providers licensed to serve residents of a specific state
-            — plus the deposit products (savings, checking, money-market, CDs)
+            regional providers licensed to serve residents of a specific state,
+            plus the deposit products (savings, checking, money-market, CDs)
             each institution actually markets locally. Unlike a national
             best-of list, a state directory surfaces small community banks and
             state-chartered credit unions that often publish the highest APYs
@@ -497,7 +497,7 @@ function BanksIndex() {
             3–5% on the first $10–25k in balances), CD specials, relationship
             pricing for members with a mortgage or auto loan at the same
             institution, and in-branch service for anyone who prefers to talk
-            to a person. The right answer for most households is both — a
+            to a person. The right answer for most households is both: a
             national HYSA for the bulk of savings, plus a local rewards-
             checking account for everyday spending.
           </p>
@@ -507,7 +507,7 @@ function BanksIndex() {
           <p>
             FDIC insurance (for banks) and NCUA insurance (for credit unions)
             both cover $250,000 per depositor, per ownership category, per
-            institution — the protection is identical regardless of whether
+            institution. The protection is identical regardless of whether
             the charter is state or federal. A state-chartered bank in
             California and a national bank headquartered in Delaware carry the
             same $250k backstop on the same account. What varies by state is
@@ -524,8 +524,8 @@ function BanksIndex() {
             banks and credit unions by APY after fees, documents the
             field-of-membership rule for every CU, and calls out the
             institution's FDIC or NCUA ID. Expand any row for the verified
-            rate, minimum opening deposit, monthly-fee structure, and — where
-            available — the editorial summary of who each institution is the
+            rate, minimum opening deposit, monthly-fee structure, and (where
+            available) the editorial summary of who each institution is the
             best fit for. Every number on every page is re-verified against
             the institution's own rate page at least monthly, and stamped
             with the date of the most recent check.
@@ -533,7 +533,7 @@ function BanksIndex() {
           <p className="text-xs text-[#5a5a5a] italic">
             This page is informational and does not constitute personalized
             financial advice. Rates, fees, and membership rules change
-            frequently — confirm current figures directly with each
+            frequently. Confirm current figures directly with each
             institution before opening an account. FDIC or NCUA insurance
             applies to the institution, not the product tier.
           </p>

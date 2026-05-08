@@ -8,7 +8,7 @@ const methodology = [
   {
     step: "01",
     title: "Independent Testing",
-    description: "We open real accounts at every institution we review. Accounts are funded, trades are run, and customer service is tested firsthand — no exceptions.",
+    description: "We open real accounts at every institution we review. Accounts are funded, trades are run, and customer service is tested firsthand, with no exceptions.",
   },
   {
     step: "02",
@@ -23,7 +23,7 @@ const methodology = [
   {
     step: "04",
     title: "Quarterly Re-Review",
-    description: "Every review is re-evaluated quarterly — or immediately whenever a product changes its fees, rates, or core features.",
+    description: "Every review is re-evaluated quarterly, or immediately whenever a product changes its fees, rates, or core features.",
   },
 ];
 
@@ -82,7 +82,7 @@ function About() {
           </h2>
           <div className="space-y-4 text-[15px] text-[#1a1a1a] leading-relaxed">
             <p>
-              Every year, Americans pay billions in unnecessary fees, miss out on higher yields, and choose financial products that don't fit their needs — largely because comparison information is fragmented, biased, or buried behind marketing copy.
+              Every year, Americans pay billions in unnecessary fees, miss out on higher yields, and choose financial products that don't fit their needs, largely because comparison information is fragmented, biased, or buried behind marketing copy.
             </p>
             <p>
               We started Investing &amp; Retirement in 2025 to fix that. We open real accounts, test real products, and publish side-by-side comparisons that treat readers like adults.
@@ -104,10 +104,10 @@ function About() {
             </h2>
             <div className="space-y-3 text-[14px] text-[#1a1a1a] leading-relaxed">
               <p>
-                Our team's experience comes from working at some of the largest, most recognized consumer finance apps in the space — shipping product, building features used by millions, and learning how the fee structures, incentives, and onboarding flows really work behind the scenes.
+                Our team's experience comes from working at some of the largest, most recognized consumer finance apps in the space: shipping product, building features used by millions, and learning how the fee structures, incentives, and onboarding flows really work behind the scenes.
               </p>
               <p>
-                That context is why our reviews go beyond marketing copy. We know which features get buried, which fees get quietly added, and which "rewards" aren't worth the fine print. Every review, rating, and article here is researched, written, and edited in-house — nothing goes live until we've personally opened the account and used the product.
+                That context is why our reviews go beyond marketing copy. We know which features get buried, which fees get quietly added, and which "rewards" aren't worth the fine print. Every review, rating, and article here is researched, written, and edited in-house. Nothing goes live until we've personally opened the account and used the product.
               </p>
               <p className="text-[13px] text-gray-600 italic">
                 Have industry experience and want to contribute? <a href="mailto:Michael@mhhventures.com" className="text-[#0e4d45] font-semibold not-italic underline hover:no-underline">Get in touch</a>.
@@ -155,7 +155,7 @@ function About() {
           </h2>
           <div className="space-y-3 text-[14px] text-[#1a1a1a] leading-relaxed">
             <p>
-              This site earns revenue through affiliate partnerships — when you click through to a partner and open an account, we may receive a commission. This keeps the content free for readers.
+              This site earns revenue through affiliate partnerships. When you click through to a partner and open an account, we may receive a commission. This keeps the content free for readers.
             </p>
             <p>
               <span className="font-semibold">Commission rates do not influence our rankings.</span> We score products using the same published methodology regardless of partnership status. Products are ranked on their merits, full stop.

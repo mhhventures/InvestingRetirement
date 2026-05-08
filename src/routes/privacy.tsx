@@ -45,7 +45,7 @@ function Privacy() {
               This page covers what <span className="font-semibold">Investing and Retirement Media LLC</span> (us) does with data whenever someone reads a review, opens the newsletter, or clicks through to a bank or broker partner.
             </p>
             <p className="mt-3">
-              Sticking around on the site counts as agreeing to this. If any of it rubs you the wrong way, please don't use the site — and feel free to tell us why so we can improve.
+              Sticking around on the site counts as agreeing to this. If any of it rubs you the wrong way, please don't use the site, and feel free to tell us why so we can improve.
             </p>
           </section>
 
@@ -108,10 +108,10 @@ function Privacy() {
                 <span className="font-semibold">Affiliate partners</span> receive click and conversion data (typically a referral ID) when you click an affiliate link and complete a signup. We do not share your email, name, or browsing history with them.
               </li>
               <li>
-                <span className="font-semibold">Legal and safety</span> situations — we may disclose information if required by law, subpoena, or to protect the rights, property, or safety of our readers, the public, or our company.
+                <span className="font-semibold">Legal and safety</span> situations. We may disclose information if required by law, subpoena, or to protect the rights, property, or safety of our readers, the public, or our company.
               </li>
               <li>
-                <span className="font-semibold">Business transfers</span> — if our company is acquired or merged, user information may transfer as part of that transaction, subject to the protections of this Privacy Policy.
+                <span className="font-semibold">Business transfers</span>: if our company is acquired or merged, user information may transfer as part of that transaction, subject to the protections of this Privacy Policy.
               </li>
             </ul>
           </section>
@@ -123,12 +123,12 @@ function Privacy() {
               We use cookies and similar technologies for the following purposes:
             </p>
             <ul className="list-disc pl-5 mt-3 space-y-1.5">
-              <li><span className="font-semibold">Essential cookies</span> — required for the site to function (e.g., remembering your cookie preferences)</li>
-              <li><span className="font-semibold">Analytics cookies</span> — help us understand aggregate site usage</li>
-              <li><span className="font-semibold">Affiliate tracking cookies</span> — allow partner companies to attribute signups to our site</li>
+              <li><span className="font-semibold">Essential cookies</span>: required for the site to function (e.g., remembering your cookie preferences)</li>
+              <li><span className="font-semibold">Analytics cookies</span>: help us understand aggregate site usage</li>
+              <li><span className="font-semibold">Affiliate tracking cookies</span>: allow partner companies to attribute signups to our site</li>
             </ul>
             <p className="mt-4">
-              Your browser's cookie settings are the easy kill switch — Chrome, Safari, and Firefox all let you block or clear cookies per-site. The trade-off is that a few things (like saved preferences) will reset each visit. If you only want to mute analytics specifically, Google publishes a browser add-on for that.
+              Your browser's cookie settings are the easy kill switch. Chrome, Safari, and Firefox all let you block or clear cookies per-site. The trade-off is that a few things (like saved preferences) will reset each visit. If you only want to mute analytics specifically, Google publishes a browser add-on for that.
             </p>
           </section>
 
@@ -172,7 +172,7 @@ function Privacy() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-black mb-3">9. Security</h2>
             <p>
-              Behind the scenes: everything runs over HTTPS, access to our email platform and analytics is limited to a handful of people (with two-factor turned on), and we review vendors periodically. That said, nobody who's honest will promise 100% security on the internet — so we won't either.
+              Behind the scenes: everything runs over HTTPS, access to our email platform and analytics is limited to a handful of people (with two-factor turned on), and we review vendors periodically. That said, nobody who's honest will promise 100% security on the internet, so we won't either.
             </p>
           </section>
 

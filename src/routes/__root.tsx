@@ -238,7 +238,7 @@ function NotFound() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-14 sm:py-20 text-center">
       <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-3">
-        404 — Page Not Found
+        404: Page Not Found
       </div>
       <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black mb-3 leading-tight">
         We could not find that page

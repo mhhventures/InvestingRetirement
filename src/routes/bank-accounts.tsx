@@ -526,7 +526,7 @@ function EditorialFooter() {
     { step: "01", title: "Data Collection", desc: "We gather rate, fee, and feature data from bank websites, FDIC filings, and direct bank contacts." },
     { step: "02", title: "Scoring", desc: "Each account is scored across APY, fees, minimums, FDIC coverage, mobile app quality, and customer service." },
     { step: "03", title: "Editorial Review", desc: "Our finance editors weigh scores against real-world usability, bonus terms, and actual user reviews." },
-    { step: "04", title: "Regular Updates", desc: "Rankings are reviewed weekly. Rates change — we track them so you don\u2019t have to." },
+    { step: "04", title: "Regular Updates", desc: "Rankings are reviewed weekly. Rates change. We track them so you don\u2019t have to." },
   ];
 
   const checklist = [
@@ -541,7 +541,7 @@ function EditorialFooter() {
   const faqs = [
     {
       q: "Is my money safe in an online savings account?",
-      a: "Yes — all accounts on this page are FDIC-insured up to $250,000 per depositor. Some, like SoFi, partner with multiple banks to provide up to $2M in coverage. Online banks follow the same federal regulations as traditional banks.",
+      a: "Yes. All accounts on this page are FDIC-insured up to $250,000 per depositor. Some, like SoFi, partner with multiple banks to provide up to $2M in coverage. Online banks follow the same federal regulations as traditional banks.",
     },
     {
       q: "Can I have multiple high-yield savings accounts?",
@@ -557,7 +557,7 @@ function EditorialFooter() {
     },
     {
       q: "What is the difference between APY and APR?",
-      a: "APY (Annual Percentage Yield) includes the effect of compounding interest, while APR (Annual Percentage Rate) does not. For savings accounts, APY is the more meaningful number — it tells you exactly what you\u2019ll earn over a year.",
+      a: "APY (Annual Percentage Yield) includes the effect of compounding interest, while APR (Annual Percentage Rate) does not. For savings accounts, APY is the more meaningful number. It tells you exactly what you\u2019ll earn over a year.",
     },
   ];
 
@@ -594,7 +594,7 @@ function EditorialFooter() {
           <h3 className="font-serif font-bold text-2xl text-black">How We Rank Bank Accounts</h3>
         </div>
         <p className="text-sm text-[#5a5a5a] mt-1 mb-5 leading-relaxed">
-          Our rankings are independent and editorially driven. We never accept payment for rankings — only standard display advertising and affiliate partnerships disclosed in our footer.
+          Our rankings are independent and editorially driven. We never accept payment for rankings, only standard display advertising and affiliate partnerships disclosed in our footer.
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {methodology.map((m) => (
@@ -694,7 +694,7 @@ function EditorialFooter() {
 function BankAccounts() {
   const all = getByCategory("bank");
   useSeo({
-    title: "Best Bank Accounts 2026 — High-Yield Savings & Checking",
+    title: "Best Bank Accounts 2026: High-Yield Savings & Checking",
     description: "Compare the best high-yield savings, checking accounts, and CDs. Top APYs, no-fee picks, expert reviews of SoFi, Ally, Marcus, and more.",
     path: "/bank-accounts",
     jsonLd: [

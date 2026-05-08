@@ -19,9 +19,9 @@ const handTunedCommentary: Record<string, string> = {
   "mint":
     "Mint's automatic transaction categorization and bill tracking give users a clear picture of their finances with minimal effort, making it the most widely adopted budgeting app for good reason.",
   "credit-karma":
-    "Credit Karma remains the default free credit monitoring app for good reason: weekly VantageScore 3.0 updates from both TransUnion and Equifax, an Approval Odds engine that reduces wasted hard inquiries, and a credit score simulator that quantifies the impact of major financial decisions before you make them. The Intuit acquisition added free tax filing via Cash App Taxes and Credit Karma Money (a free checking and 3.00% APY savings account). The recommendation engine is aggressive — expect frequent credit card and personal loan suggestions — but the core monitoring product is genuinely free with no upsell to a paid tier. The main caveat is that VantageScore differs from FICO, which is what most lenders actually use; pair Credit Karma with a free FICO source like Experian or your card issuer's FICO benefit for the complete picture.",
+    "Credit Karma remains the default free credit monitoring app for good reason: weekly VantageScore 3.0 updates from both TransUnion and Equifax, an Approval Odds engine that reduces wasted hard inquiries, and a credit score simulator that quantifies the impact of major financial decisions before you make them. The Intuit acquisition added free tax filing via Cash App Taxes and Credit Karma Money (a free checking and 3.00% APY savings account). The recommendation engine is aggressive (expect frequent credit card and personal loan suggestions), but the core monitoring product is genuinely free with no upsell to a paid tier. The main caveat is that VantageScore differs from FICO, which is what most lenders actually use; pair Credit Karma with a free FICO source like Experian or your card issuer's FICO benefit for the complete picture.",
   "experian":
-    "Experian is the only mainstream app that delivers a free FICO Score 8 directly from a credit bureau — the same score used in 90% of lending decisions. Its standout feature is Experian Boost, which adds on-time utility, phone, streaming, and rent payments to your credit file; typical users see a 13-point lift, which is meaningful if you're on the qualification edge for a mortgage or auto loan. The free tier covers Experian data only, with weekly score refreshes and dark web surveillance. The $24.99/month IdentityWorks Premium tier unlocks 3-bureau FICO monitoring, $1 million in identity theft insurance, and lost wallet assistance — priced higher than Aura or IdentityGuard but tightly integrated with Boost and CreditLock. Experian is best paired with Credit Karma to get FICO + VantageScore visibility across all three bureaus for free.",
+    "Experian is the only mainstream app that delivers a free FICO Score 8 directly from a credit bureau, the same score used in 90% of lending decisions. Its standout feature is Experian Boost, which adds on-time utility, phone, streaming, and rent payments to your credit file; typical users see a 13-point lift, which is meaningful if you're on the qualification edge for a mortgage or auto loan. The free tier covers Experian data only, with weekly score refreshes and dark web surveillance. The $24.99/month IdentityWorks Premium tier unlocks 3-bureau FICO monitoring, $1 million in identity theft insurance, and lost wallet assistance. It is priced higher than Aura or IdentityGuard but tightly integrated with Boost and CreditLock. Experian is best paired with Credit Karma to get FICO + VantageScore visibility across all three bureaus for free.",
 };
 
 function buildDynamicCommentary(product: Product): string {
@@ -42,7 +42,7 @@ function buildDynamicCommentary(product: Product): string {
     return opener + middle + closer;
   }
 
-  // Brokerage-specific commentary path — reference assets, account types, and platform features
+  // Brokerage-specific commentary path: reference assets, account types, and platform features
   if (product.subcategory === "Brokerage" && (product.accountTypes?.length || product.assetsAvailable?.length || product.platformFeatures?.length)) {
     const assets = product.assetsAvailable ?? [];
     const features = product.platformFeatures ?? [];
@@ -62,7 +62,7 @@ function buildDynamicCommentary(product: Product): string {
     return opener + featureLine + middle + closer;
   }
 
-  // Crypto-specific commentary path — reference assets, account types, and platform features
+  // Crypto-specific commentary path: reference assets, account types, and platform features
   if (product.subcategory === "Crypto") {
     const coins = product.numCryptoAssets ? `${product.numCryptoAssets} cryptocurrencies` : "a deep coin selection";
     const otherAssets = (product.assetsAvailable ?? []).filter((a) => !/crypto|stablecoin/i.test(a));
@@ -92,7 +92,7 @@ function buildDynamicCommentary(product: Product): string {
     return opener + middle + closer;
   }
 
-  // Opening sentence — anchor on the headline number (APY or bonus) when available
+  // Opening sentence: anchor on the headline number (APY or bonus) when available
   if (product.apy && product.bonus) {
     parts.push(
       `${product.name} pairs ${product.apy} APY with ${product.bonus}, positioning it as a competitive option in the ${product.subcategory.toLowerCase()} category.`
@@ -111,7 +111,7 @@ function buildDynamicCommentary(product: Product): string {
     );
   }
 
-  // Middle sentence — fees + minimum + top strength
+  // Middle sentence: fees + minimum + top strength
   const feeMin: string[] = [];
   if (product.fees && product.fees !== "$0/month") {
     feeMin.push(`a ${product.fees} fee structure`);
@@ -132,7 +132,7 @@ function buildDynamicCommentary(product: Product): string {
     parts.push(`Its strongest attribute is ${topPro.charAt(0).toLowerCase()}${topPro.slice(1)}.`);
   }
 
-  // Closing sentence — best-for + a measured caveat from cons
+  // Closing sentence: best-for + a measured caveat from cons
   const topCon = product.cons[0];
   if (topCon) {
     parts.push(

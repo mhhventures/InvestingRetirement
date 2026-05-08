@@ -16,7 +16,7 @@ function AuthorPage() {
   const { author } = Route.useLoaderData();
 
   useSeo({
-    title: `${author.name} — ${author.title} | Investing and Retirement`,
+    title: `${author.name}, ${author.title} | Investing and Retirement`,
     description: `${author.name} is ${author.title} at Investing and Retirement, personally researching and writing every review and guide on the site.`,
     path: `/authors/${author.slug}`,
     jsonLd: [

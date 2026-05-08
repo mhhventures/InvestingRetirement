@@ -1,5 +1,5 @@
 /**
- * SEO helper — dynamically sets <title>, <meta>, canonical, OG tags, and JSON-LD.
+ * SEO helper: dynamically sets <title>, <meta>, canonical, OG tags, and JSON-LD.
  * Zero visual impact. Purely additive to document.head.
  */
 import { useEffect } from "react";
@@ -11,7 +11,7 @@ const DEFAULT_OG_IMAGE = `${SITE_URL}/images/share-image.png`;
 export type SeoConfig = {
   title: string;
   description: string;
-  path?: string; // e.g. "/investing" — used for canonical + og:url
+  path?: string; // e.g. "/investing", used for canonical + og:url
   image?: string;
   type?: "website" | "article" | "product";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];

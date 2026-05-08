@@ -262,7 +262,7 @@ function Investing() {
       ]}
     >
       <p className="mb-5 text-sm text-[#1a1a1a] leading-relaxed">
-        Compare the brokerages, robo-advisors, and retirement platforms most Americans actually use. Each ranking is based on a funded account and real trades — not a marketing-page read-through.
+        Compare the brokerages, robo-advisors, and retirement platforms most Americans actually use. Each ranking is based on a funded account and real trades, not a marketing-page read-through.
       </p>
       <div className="mb-4 flex items-center gap-2">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0e4d45]" />
@@ -301,13 +301,13 @@ function Investing() {
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">Methodology</div>
           <h2 className="font-serif text-2xl font-bold text-black mb-2">How we rank investing apps</h2>
           <p>
-            Our rubric weights costs and fees (25%), platform and tools (20%), asset selection (15%), account types (10%), education and research (10%), customer support (10%), and trust and safety (10%). Editors open real accounts, place real trades, and fund IRAs before publishing a score — partners cannot pay for better rankings or preview coverage before it goes live.
+            Our rubric weights costs and fees (25%), platform and tools (20%), asset selection (15%), account types (10%), education and research (10%), customer support (10%), and trust and safety (10%). Editors open real accounts, place real trades, and fund IRAs before publishing a score. Partners cannot pay for better rankings or preview coverage before it goes live.
           </p>
         </div>
         <div>
           <h3 className="font-serif text-lg font-bold text-black mb-1.5">Which broker fits which investor</h3>
           <p>
-            If you are new to investing, start with a broker that offers <strong>commission-free stock and ETF trades</strong>, <strong>fractional shares</strong>, and both <strong>Roth and Traditional IRAs</strong>. Charles Schwab and Fidelity score highest for all-around use. If you want hands-off investing, <strong>robo-advisors</strong> like Betterment and Wealthfront automate asset allocation, rebalancing, and tax-loss harvesting for a small annual fee. Active traders should compare platform depth, options-contract fees, and margin rates — Interactive Brokers, thinkorswim (via Schwab), and Webull lead that category.
+            If you are new to investing, start with a broker that offers <strong>commission-free stock and ETF trades</strong>, <strong>fractional shares</strong>, and both <strong>Roth and Traditional IRAs</strong>. Charles Schwab and Fidelity score highest for all-around use. If you want hands-off investing, <strong>robo-advisors</strong> like Betterment and Wealthfront automate asset allocation, rebalancing, and tax-loss harvesting for a small annual fee. Active traders should compare platform depth, options-contract fees, and margin rates. Interactive Brokers, thinkorswim (via Schwab), and Webull lead that category.
           </p>
         </div>
         <div>

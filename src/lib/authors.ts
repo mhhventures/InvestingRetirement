@@ -14,14 +14,14 @@ export type Author = {
   yearsExperience: number;
 };
 
-// Single contributor — Michael Hewitt, Founder & Editor-in-Chief.
+// Single contributor: Michael Hewitt, Founder & Editor-in-Chief.
 // All content on the site is written and edited by Michael.
 const michael: Author = {
   slug: "michael-hewitt",
   name: "Michael Hewitt",
   title: "Founder & Editor-in-Chief",
   credentials: "Founder & Editor-in-Chief",
-  bio: "Michael Hewitt is the founder and editor-in-chief of Investing and Retirement. He personally researches, tests, and writes every review and guide on the site — opening accounts, running numbers, and comparing disclosures so readers get a clear, honest, and independent take on the financial products they're considering.",
+  bio: "Michael Hewitt is the founder and editor-in-chief of Investing and Retirement. He personally researches, tests, and writes every review and guide on the site, opening accounts, running numbers, and comparing disclosures so readers get a clear, honest, and independent take on the financial products they're considering.",
   avatarInitials: "MH",
   avatarColor: "#0e4d45",
   linkedin: "https://www.linkedin.com/in/michaelhhewitt/",
@@ -38,7 +38,7 @@ export const authors: Record<string, Author> = {
   "priya-patel": michael,
 };
 
-// Every category currently maps to Michael — he's the sole contributor.
+// Every category currently maps to Michael, the sole contributor.
 export function getAuthorForCategory(_category: string): Author {
   return michael;
 }

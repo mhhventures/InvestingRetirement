@@ -39,7 +39,7 @@ function CalculatorsIndex() {
             Financial Calculators
           </h1>
           <p className="text-sm text-[#1a1a1a] leading-relaxed max-w-2xl">
-            Free, no-signup calculators to run the numbers on your biggest financial decisions — compound interest, retirement, mortgages, debt payoff, and emergency-fund targets. Everything runs in your browser; nothing you type is saved or transmitted.
+            Free, no-signup calculators to run the numbers on your biggest financial decisions: compound interest, retirement, mortgages, debt payoff, and emergency-fund targets. Everything runs in your browser; nothing you type is saved or transmitted.
           </p>
         </div>
       </section>
@@ -92,19 +92,19 @@ function CalculatorsIndex() {
           </div>
           <ul className="space-y-2 border border-[#e4d9cf] bg-white rounded-sm p-4 divide-y divide-[#e4d9cf]">
             <li className="pt-0 first:pt-0 pb-2">
-              <strong>Compound interest calculator</strong> — how a lump sum plus monthly contributions grows over 10, 20, or 30 years at a given return.
+              <strong>Compound interest calculator.</strong> How a lump sum plus monthly contributions grows over 10, 20, or 30 years at a given return.
             </li>
             <li className="pt-2 pb-2">
-              <strong>Retirement calculator</strong> — whether your current savings rate is on track to replace the income you want after you stop working.
+              <strong>Retirement calculator.</strong> Whether your current savings rate is on track to replace the income you want after you stop working.
             </li>
             <li className="pt-2 pb-2">
-              <strong>Mortgage calculator</strong> — the true monthly cost of a home loan across principal, interest, taxes, and insurance.
+              <strong>Mortgage calculator.</strong> The true monthly cost of a home loan across principal, interest, taxes, and insurance.
             </li>
             <li className="pt-2 pb-2">
-              <strong>Debt payoff calculator</strong> — avalanche vs. snowball methods compared side-by-side on your actual balances.
+              <strong>Debt payoff calculator.</strong> Avalanche vs. snowball methods compared side-by-side on your actual balances.
             </li>
             <li className="pt-2">
-              <strong>Emergency-fund calculator</strong> — a recommended target based on your monthly expenses and job stability.
+              <strong>Emergency-fund calculator.</strong> A recommended target based on your monthly expenses and job stability.
             </li>
           </ul>
           <p className="text-xs text-[#5a5a5a] italic">

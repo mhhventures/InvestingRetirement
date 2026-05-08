@@ -126,7 +126,7 @@ function ProductDetail() {
                   name: `Can I withdraw money out of ${p.name} easily?`,
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: `Yes. ACH transfers to linked external accounts are typically free and settle in 1–3 business days. Wire transfers and account transfers may incur fees — check the current fee schedule before initiating.`,
+                    text: `Yes. ACH transfers to linked external accounts are typically free and settle in 1 to 3 business days. Wire transfers and account transfers may incur fees, so check the current fee schedule before initiating.`,
                   },
                 },
                 {
@@ -134,7 +134,7 @@ function ProductDetail() {
                   name: `Are there hidden fees with ${p.name}?`,
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: `${p.name} charges ${p.fees}. Additional fees can apply for specific actions — for example, wire transfers, expedited card replacement, margin interest, or outbound transfer fees. Always read the full fee schedule on the provider's site before funding.`,
+                    text: `${p.name} charges ${p.fees}. Additional fees can apply for specific actions (for example, wire transfers, expedited card replacement, margin interest, or outbound transfer fees). Always read the full fee schedule on the provider's site before funding.`,
                   },
                 },
                 {
@@ -218,7 +218,7 @@ function ProductDetail() {
       q: `What are the fees for ${p.name}?`,
       a: `${p.name} charges ${p.fees}. Minimum deposit: ${p.minDeposit}.${
         p.apy ? ` Current APY: ${p.apy}.` : ""
-      }${p.bonus ? ` Welcome offer: ${p.bonus}.` : ""} Always review the provider's full disclosure before opening an account — rates and terms change.`,
+      }${p.bonus ? ` Welcome offer: ${p.bonus}.` : ""} Always review the provider's full disclosure before opening an account, as rates and terms change.`,
     },
     {
       q: `Who is ${p.name} best for?`,
@@ -240,12 +240,12 @@ function ProductDetail() {
       q: `Can I withdraw or transfer money out of ${p.name} easily?`,
       a: `${
         p.category === "bank"
-          ? `Yes — outbound ACH transfers to external linked accounts are free and typically settle in 1–3 business days. Wire transfers are usually available for a fee. ${/savings|money market/i.test(p.subcategory) ? "Savings accounts may cap outbound transfers at six per month." : ""}`
+          ? `Yes. Outbound ACH transfers to external linked accounts are free and typically settle in 1 to 3 business days. Wire transfers are usually available for a fee. ${/savings|money market/i.test(p.subcategory) ? "Savings accounts may cap outbound transfers at six per month." : ""}`
           : p.category === "investing"
           ? "Selling positions settles T+1 for stocks and ETFs, T+0 for options. Once cash is settled, ACH withdrawals take 1–3 business days. Full account transfers out (ACATS) typically cost $75."
           : p.subcategory === "Crypto"
           ? "Yes. USD withdrawals go via ACH (free, 3–5 days) or wire (fee, same-day). Crypto withdrawals are near-instant but subject to daily limits that scale with your verification tier and network fees."
-          : "Cancel anytime in the app settings. If you stored data in the app, export it before cancelling — some providers delete user data on cancellation."
+          : "Cancel anytime in the app settings. If you stored data in the app, export it before cancelling, as some providers delete user data on cancellation."
       }`,
     },
     {
@@ -262,7 +262,7 @@ function ProductDetail() {
     },
     {
       q: `How does ${p.name} compare to competitors?`,
-      a: `In our side-by-side comparison table above, ${p.name} scores ${p.rating}/5 against the top ${competitors.length} alternatives in the ${p.subcategory} category. The main trade-off is typically between ${p.pros[0]?.toLowerCase() ?? "headline features"} and ${p.cons[0]?.toLowerCase() ?? "specific limitations"} — which matters more depends on how you'll actually use the account.`,
+      a: `In our side-by-side comparison table above, ${p.name} scores ${p.rating}/5 against the top ${competitors.length} alternatives in the ${p.subcategory} category. The main trade-off is typically between ${p.pros[0]?.toLowerCase() ?? "headline features"} and ${p.cons[0]?.toLowerCase() ?? "specific limitations"}. Which matters more depends on how you'll actually use the account.`,
     },
   ];
 
