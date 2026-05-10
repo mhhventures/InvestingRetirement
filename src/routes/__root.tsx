@@ -32,7 +32,7 @@ function Header() {
               className="h-6 sm:h-7 md:h-8 w-auto"
               width="200"
               height="32"
-              fetchPriority="high"
+              loading="eager"
               decoding="async"
             />
           </Link>

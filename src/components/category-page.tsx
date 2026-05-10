@@ -32,7 +32,7 @@ export function CategoryPage({ eyebrow, title, subtitle, stats, crumbLabel, chil
               {stats.map((s) => (
                 <div key={s.label} className="bg-white border border-[#e4d9cf] rounded-sm p-3">
                   <div className="font-serif text-xl font-bold text-black">{s.value}</div>
-                  <div className="text-[10px] text-[#5a5a5a] uppercase tracking-wider mt-0.5">{s.label}</div>
+                  <div className="text-[10px] text-[#3f3f3f] uppercase tracking-wider mt-0.5">{s.label}</div>
                 </div>
               ))}
             </div>

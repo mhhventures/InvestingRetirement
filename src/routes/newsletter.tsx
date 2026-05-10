@@ -244,7 +244,7 @@ function NewsletterPage() {
           <NewsletterSignup source="newsletter-page-footer" variant="page" />
         </div>
 
-        <p className="text-[11px] text-[#5a5a5a] text-center mt-4">
+        <p className="text-[11px] text-[#3f3f3f] text-center mt-4">
           Already subscribed? Thank you. Forward any Thursday edition to a
           friend who&apos;d find it useful.
         </p>

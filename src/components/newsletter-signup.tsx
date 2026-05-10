@@ -125,7 +125,7 @@ export function NewsletterSignup({
             {loading ? "Subscribing…" : "Subscribe"}
           </button>
         </div>
-        <p className="mt-3 text-[11px] text-[#5a5a5a]">
+        <p className="mt-3 text-[11px] text-[#3f3f3f]">
           Double opt-in. We&apos;ll send a confirmation link. You&apos;re not subscribed until you click it. Unsubscribe anytime.
         </p>
         {message && (
@@ -161,7 +161,7 @@ export function NewsletterSignup({
           <div className="font-serif text-sm sm:text-base font-bold leading-tight text-black mb-1">
             {headline}
           </div>
-          <p className="text-[11px] text-[#5a5a5a] leading-snug">{sub}</p>
+          <p className="text-[11px] text-[#3f3f3f] leading-snug">{sub}</p>
         </div>
         <form onSubmit={submit} className="space-y-2 relative">
           <input
@@ -204,7 +204,7 @@ export function NewsletterSignup({
             {message.text}
           </p>
         )}
-        <p className="mt-2 text-[9px] text-[#5a5a5a] leading-snug">
+        <p className="mt-2 text-[9px] text-[#3f3f3f] leading-snug">
           Double opt-in. Confirm via email. Unsubscribe anytime.
         </p>
       </div>

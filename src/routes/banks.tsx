@@ -248,7 +248,7 @@ function BanksIndex() {
                   Best APYs across our directory
                 </h2>
               </div>
-              <div className="text-[10px] text-[#5a5a5a] font-medium">
+              <div className="text-[10px] text-[#3f3f3f] font-medium">
                 Verified {formatDate(new Date().toISOString())}
               </div>
             </div>
@@ -261,7 +261,7 @@ function BanksIndex() {
                 )?.slug;
                 const content = (
                   <>
-                    <div className="w-6 text-center font-serif font-bold text-[#5a5a5a] text-sm">
+                    <div className="w-6 text-center font-serif font-bold text-[#3f3f3f] text-sm">
                       {i + 1}
                     </div>
                     <div className="w-10 h-10 shrink-0 border border-[#e4d9cf] rounded-sm bg-white flex items-center justify-center overflow-hidden">
@@ -279,14 +279,14 @@ function BanksIndex() {
                             const parent = img.parentElement;
                             img.remove();
                             if (parent) {
-                              parent.innerHTML = `<span class="text-[10px] font-bold text-[#5a5a5a]">${r.institution_name
+                              parent.innerHTML = `<span class="text-[10px] font-bold text-[#3f3f3f]">${r.institution_name
                                 .slice(0, 2)
                                 .toUpperCase()}</span>`;
                             }
                           }}
                         />
                       ) : (
-                        <span className="text-[10px] font-bold text-[#5a5a5a]">
+                        <span className="text-[10px] font-bold text-[#3f3f3f]">
                           {r.institution_name.slice(0, 2).toUpperCase()}
                         </span>
                       )}
@@ -295,7 +295,7 @@ function BanksIndex() {
                       <div className="font-serif font-bold text-black text-sm leading-tight truncate group-hover:text-[#0e4d45]">
                         {r.institution_name}
                       </div>
-                      <div className="text-[10px] text-[#5a5a5a] uppercase tracking-wider">
+                      <div className="text-[10px] text-[#3f3f3f] uppercase tracking-wider">
                         {PRODUCT_LABEL[r.product_type] || r.product_type} ·{" "}
                         {r.state_name}
                       </div>
@@ -304,7 +304,7 @@ function BanksIndex() {
                       <div className="font-serif font-bold text-[#0e4d45] text-lg leading-none">
                         {Number(r.apy).toFixed(2)}%
                       </div>
-                      <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                      <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                         APY
                       </div>
                     </div>
@@ -341,7 +341,7 @@ function BanksIndex() {
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="mb-5 flex flex-col md:flex-row md:items-center gap-3">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-[#5a5a5a] absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#3f3f3f] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="search"
               value={query}
@@ -374,7 +374,7 @@ function BanksIndex() {
               <h2 className="font-serif text-xl font-bold text-black">
                 Available states
               </h2>
-              <div className="text-[11px] text-[#5a5a5a] font-medium">
+              <div className="text-[11px] text-[#3f3f3f] font-medium">
                 {visibleAvailable.length} of {available.length}
               </div>
             </div>
@@ -402,13 +402,13 @@ function BanksIndex() {
                           <div className="font-serif font-bold text-[#0e4d45] text-lg leading-none">
                             {Number(stat.top_savings_apy).toFixed(2)}%
                           </div>
-                          <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                          <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                             Top APY
                           </div>
                         </div>
                       )}
                     </div>
-                    <div className="flex items-center justify-between text-[10px] text-[#5a5a5a] uppercase tracking-wider">
+                    <div className="flex items-center justify-between text-[10px] text-[#3f3f3f] uppercase tracking-wider">
                       <span className="inline-flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
                         {stat
@@ -438,7 +438,7 @@ function BanksIndex() {
               {visibleComing.map((s) => (
                 <span
                   key={s.code}
-                  className="inline-flex items-center gap-1.5 bg-white border border-[#e4d9cf] text-[#5a5a5a] text-xs px-2.5 py-1 rounded-sm"
+                  className="inline-flex items-center gap-1.5 bg-white border border-[#e4d9cf] text-[#3f3f3f] text-xs px-2.5 py-1 rounded-sm"
                 >
                   <span className="font-bold text-[10px] tracking-wider text-[#0e4d45]">
                     {s.code}
@@ -451,7 +451,7 @@ function BanksIndex() {
         )}
 
         {!visibleAvailable.length && !visibleComing.length && (
-          <div className="bg-white border border-[#d4c5b8] rounded-sm py-10 text-center text-sm text-[#5a5a5a]">
+          <div className="bg-white border border-[#d4c5b8] rounded-sm py-10 text-center text-sm text-[#3f3f3f]">
             No states match "{query}" in the selected region.
           </div>
         )}
@@ -530,7 +530,7 @@ function BanksIndex() {
             the institution's own rate page at least monthly, and stamped
             with the date of the most recent check.
           </p>
-          <p className="text-xs text-[#5a5a5a] italic">
+          <p className="text-xs text-[#3f3f3f] italic">
             This page is informational and does not constitute personalized
             financial advice. Rates, fees, and membership rules change
             frequently. Confirm current figures directly with each
@@ -549,7 +549,7 @@ function Stat({ label, value }: { label: string; value: string }) {
       <div className="font-serif text-xl md:text-2xl font-bold text-[#0e4d45] leading-tight">
         {value}
       </div>
-      <div className="text-[9px] md:text-[10px] text-[#5a5a5a] uppercase tracking-wider font-bold">
+      <div className="text-[9px] md:text-[10px] text-[#3f3f3f] uppercase tracking-wider font-bold">
         {label}
       </div>
     </div>

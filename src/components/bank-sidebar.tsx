@@ -68,7 +68,7 @@ function SidebarBlock({
         {action && actionTo && (
           <Link
             to={actionTo}
-            className="text-[9px] text-[#5a5a5a] hover:text-[#0e4d45] transition-colors whitespace-nowrap uppercase tracking-wider font-semibold"
+            className="text-[9px] text-[#3f3f3f] hover:text-[#0e4d45] transition-colors whitespace-nowrap uppercase tracking-wider font-semibold"
           >
             {action} &rarr;
           </Link>
@@ -102,13 +102,13 @@ export function BankSidebar() {
                   {r.value}
                 </span>
               </div>
-              <div className="text-[9px] text-[#5a5a5a] tracking-wide">
+              <div className="text-[9px] text-[#3f3f3f] tracking-wide">
                 Nat&apos;l avg: <span className="font-semibold">{r.avg}</span>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-2 pt-2 border-t border-[#e4d9cf] text-[9px] text-[#5a5a5a] italic">
+        <div className="mt-2 pt-2 border-t border-[#e4d9cf] text-[9px] text-[#3f3f3f] italic">
           Fed funds rate: 4.50% &mdash; Updated April 2025
         </div>
       </SidebarBlock>
@@ -117,7 +117,7 @@ export function BankSidebar() {
       <SidebarBlock title="FDIC Coverage">
         <div className="border-l-[3px] border-[#0e4d45] pl-3">
           <div className="font-serif font-bold text-xl text-black mb-0.5">$250,000</div>
-          <div className="text-[10px] text-[#5a5a5a] uppercase tracking-wider mb-2">Per depositor, per bank</div>
+          <div className="text-[10px] text-[#3f3f3f] uppercase tracking-wider mb-2">Per depositor, per bank</div>
           <p className="text-[11px] text-[#1a1a1a] leading-snug">
             All accounts on this page are FDIC-insured. Some, like SoFi, offer up to $2M through partner banks.
           </p>
@@ -140,11 +140,11 @@ export function BankSidebar() {
                 <div className="flex items-start gap-2">
                   <ProductLogo p={p} size={30} />
                   <div className="flex-1 min-w-0">
-                    <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">{p.provider}</div>
+                    <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">{p.provider}</div>
                     <div className="font-serif text-sm font-bold text-black leading-tight group-hover:text-[#0e4d45] transition-colors">
                       {o.headline}
                     </div>
-                    <div className="text-[10px] text-[#5a5a5a] mt-0.5 leading-snug">{o.sub}</div>
+                    <div className="text-[10px] text-[#3f3f3f] mt-0.5 leading-snug">{o.sub}</div>
                     <div className="mt-1.5">
                       <span className="inline-block text-[9px] font-semibold uppercase tracking-wider text-[#0e4d45] group-hover:underline">
                         {o.cta} &rarr;
@@ -217,7 +217,7 @@ export function BankSidebar() {
         </ul>
       </SidebarBlock>
 
-      <div className="text-[9px] text-[#5a5a5a] leading-snug px-1 italic">
+      <div className="text-[9px] text-[#3f3f3f] leading-snug px-1 italic">
         Advertiser Disclosure: We may be compensated when you click on offer links. This does not influence our editorial rankings.
       </div>
     </aside>

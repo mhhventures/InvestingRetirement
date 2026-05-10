@@ -646,7 +646,7 @@ function BankDepositMatcher() {
           </ul>
         </section>
 
-        <p className="text-[11px] text-[#5a5a5a] italic leading-relaxed">
+        <p className="text-[11px] text-[#3f3f3f] italic leading-relaxed">
           For educational comparison only &mdash; not personalized financial
           advice. Offers shown are provided by a partner network and may not
           include every account available in your state. See our{" "}
