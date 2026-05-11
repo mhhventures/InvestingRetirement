@@ -975,7 +975,7 @@ export const products: Product[] = [
     logoText: "E*TR",
     color: "#6c2fb3",
     bestFor: "Investors who want banking + brokerage in one place",
-    url: "https://us.etrade.com/bank/max-rate-checking",
+    url: "https://us.etrade.com/bank",
   },
   {
     slug: "axos-rewards-checking",
@@ -1157,7 +1157,7 @@ export const products: Product[] = [
     logoText: "ET",
     color: "#6e26a8",
     bestFor: "Active traders and options traders",
-    url: "https://us.etrade.com/bank",
+    url: "https://us.etrade.com/what-we-offer/our-accounts",
     accountTypes: ["Individual", "Joint", "Traditional IRA", "Roth IRA", "Rollover IRA", "SEP IRA", "SIMPLE IRA", "Solo 401(k)", "Custodial", "Trust"],
     assetsAvailable: ["Stocks", "ETFs", "Options", "Mutual Funds", "Bonds", "Futures"],
     platformFeatures: ["Power E*TRADE Platform", "Morgan Stanley Research", "Checking & Savings (Morgan Stanley Private Bank)", "Debit Card", "Robo-Advisor (Core Portfolios)", "Margin"],
