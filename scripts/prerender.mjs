@@ -1172,56 +1172,65 @@ function contextualLinks(meta, data) {
   return [["/", "Home"]];
 }
 
+// Rebuild sitemap.xml completely from the live data sources so new products,
+// guides, calculators, and state pages are discovered automatically.
 function updateSitemapLastmod(data) {
   const sitemapPath = join(distDir, "sitemap.xml");
-  if (!existsSync(sitemapPath)) return;
-  let xml = readFileSync(sitemapPath, "utf8");
   const today = new Date().toISOString().slice(0, 10);
 
-  // Build per-state lastmod map from Supabase verification dates.
-  const stateLastmod = {};
-  for (const s of data.US_STATES) {
-    const sd = data.stateByCode[s.code];
-    if (sd?.lastVerified) {
-      stateLastmod[`/banks/${s.slug}`] = new Date(sd.lastVerified)
-        .toISOString()
-        .slice(0, 10);
-    }
-  }
+  const u = (path, { changefreq = "weekly", priority = "0.7", lastmod = today } = {}) =>
+    `  <url><loc>${SITE_URL}${path}</loc><lastmod>${lastmod}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
 
-  // Remove any existing /banks/* URL blocks (state + city), we'll regenerate.
-  xml = xml.replace(
-    /\s*<url>\s*<loc>[^<]*\/banks\/[^<]*<\/loc>[\s\S]*?<\/url>/g,
-    "",
-  );
-
-  // Build fresh state URL blocks. City URLs are intentionally excluded from
-  // the sitemap: the prior deployment canonicalised cities up to their state
-  // page, which triggered Ahrefs "non-canonical page in sitemap" warnings.
-  // City HTML still ships (with self-referential canonicals) so direct hits
-  // and internal links resolve, but they are not advertised for indexing.
   const blocks = [];
+
+  // Primary pages
+  blocks.push(u("/", { changefreq: "daily", priority: "1.0" }));
+  blocks.push(u("/bank-accounts", { changefreq: "weekly", priority: "0.9" }));
+  blocks.push(u("/investing", { changefreq: "weekly", priority: "0.9" }));
+  blocks.push(u("/financial-apps", { changefreq: "weekly", priority: "0.9" }));
+  blocks.push(u("/reviews", { changefreq: "weekly", priority: "0.9" }));
+  blocks.push(u("/guides", { changefreq: "weekly", priority: "0.9" }));
+  blocks.push(u("/calculators", { changefreq: "weekly", priority: "0.8" }));
+  blocks.push(u("/banks", { changefreq: "weekly", priority: "0.9" }));
+
+  // State directory pages (only those flagged available)
   for (const s of data.US_STATES.filter((x) => x.available)) {
-    const lastmod = stateLastmod[`/banks/${s.slug}`] || today;
+    const sd = data.stateByCode[s.code];
+    const lastmod = sd?.lastVerified
+      ? new Date(sd.lastVerified).toISOString().slice(0, 10)
+      : today;
     blocks.push(
-      `  <url><loc>${SITE_URL}/banks/${s.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`,
+      u(`/banks/${s.slug}`, { changefreq: "weekly", priority: "0.8", lastmod }),
     );
   }
 
-  // Insert the new blocks right after the /banks index URL.
-  const insertAfter = /(<url><loc>https:\/\/www\.investingandretirement\.com\/banks<\/loc>[\s\S]*?<\/url>)/;
-  if (insertAfter.test(xml)) {
-    xml = xml.replace(insertAfter, `$1\n${blocks.join("\n")}`);
-  } else {
-    xml = xml.replace(/<\/urlset>/, `${blocks.join("\n")}\n</urlset>`);
+  // Product review pages
+  for (const p of data.products) {
+    blocks.push(u(`/product/${p.slug}`, { changefreq: "weekly", priority: "0.8" }));
   }
 
-  // Fill in today for any remaining <url> blocks without <lastmod>.
-  xml = xml.replace(/<url>((?:(?!<\/url>)[\s\S])*?)<\/url>/g, (match, inner) => {
-    if (/<lastmod>/.test(inner)) return match;
-    return `<url>${inner}<lastmod>${today}</lastmod></url>`;
-  });
+  // Guide pages
+  for (const g of data.guides) {
+    blocks.push(u(`/guides/${g.slug}`, { changefreq: "monthly", priority: "0.7" }));
+  }
 
+  // Calculator pages
+  for (const c of data.calculators) {
+    blocks.push(u(`/calculators/${c.slug}`, { changefreq: "monthly", priority: "0.7" }));
+  }
+
+  // Editorial + legal
+  blocks.push(u("/about", { changefreq: "monthly", priority: "0.5" }));
+  blocks.push(u("/authors/michael-hewitt", { changefreq: "monthly", priority: "0.5" }));
+  blocks.push(u("/contact", { changefreq: "monthly", priority: "0.4" }));
+  blocks.push(u("/disclosure", { changefreq: "monthly", priority: "0.4" }));
+  blocks.push(u("/privacy", { changefreq: "monthly", priority: "0.3" }));
+  blocks.push(u("/faq", { changefreq: "monthly", priority: "0.5" }));
+  blocks.push(u("/newsletter", { changefreq: "monthly", priority: "0.4" }));
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${blocks.join(
+    "\n",
+  )}\n</urlset>\n`;
   writeFileSync(sitemapPath, xml);
 }
 

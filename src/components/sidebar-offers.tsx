@@ -5,6 +5,7 @@ import { ProductLogo, StarRating } from "@/components/product-card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { productPartnerLink } from "@/lib/affiliate";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { useAllProductOffers, formatVerified } from "@/lib/product-offers";
 
 const TRUSTED = products.filter((p) => p.editorsPick).slice(0, 4);
 
@@ -120,6 +121,7 @@ function SidebarBlock({
 export function Sidebar() {
   const navigate = useNavigate();
   const { rates, offers, savings, investing } = useSidebarData();
+  const productOffers = useAllProductOffers();
   const goToProduct = (slug: string) => () =>
     navigate({ to: "/product/$slug", params: { slug } });
   const onRowKey = (slug: string) => (e: React.KeyboardEvent<HTMLTableRowElement>) => {
@@ -161,6 +163,13 @@ export function Sidebar() {
           {offers.map((o, idx) => {
             const p = products.find((x) => x.slug === o.slug);
             if (!p) return null;
+            // Prefer fresh editorial copy from product_offers when present.
+            const po = productOffers?.get(o.slug) ?? null;
+            const headline = po?.headline ?? o.headline;
+            const sub = po?.sub ?? o.sub;
+            const cta = po?.ctaLabel ?? o.cta;
+            const verifiedLabel = formatVerified(po?.verifiedAt ?? null);
+            const variant = po?.variant ?? "default";
             const affiliateUrl = productPartnerLink(p.slug, p.url, {
               placement: "sidebar-featured-offers",
               term: o.slug,
@@ -172,6 +181,8 @@ export function Sidebar() {
                 href={affiliateUrl}
                 target="_blank"
                 rel="nofollow noopener sponsored"
+                data-placement="sidebar-featured-offers"
+                data-variant={variant}
                 className={`block group pl-2.5 border-l-[3px] border-[#0e4d45] ${
                   idx !== 0 ? "pt-2.5 border-t border-t-[#e4d9cf]" : ""
                 }`}
@@ -183,14 +194,17 @@ export function Sidebar() {
                       {p.provider}
                     </div>
                     <div className="font-serif text-[13px] sm:text-sm font-bold text-black leading-tight group-hover:text-[#0e4d45] transition-colors">
-                      {o.headline}
+                      {headline}
                     </div>
                     <div className="text-[10px] sm:text-[11px] text-[#3f3f3f] mt-0.5 leading-snug">
-                      {o.sub}
+                      {sub}
                     </div>
+                    {verifiedLabel && (
+                      <div className="text-[9px] text-black/40 mt-0.5">Verified {verifiedLabel}</div>
+                    )}
                     <div className="mt-1.5">
                       <span className="inline-block text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-[#0e4d45] group-hover:underline">
-                        {o.cta} &rarr;
+                        {cta} &rarr;
                       </span>
                     </div>
                   </div>

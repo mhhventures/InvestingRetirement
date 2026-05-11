@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { getBySlug, products, type Product } from "@/data/products";
+import { useProductOffer, formatVerified } from "@/lib/product-offers";
 import { productPartnerLink } from "@/lib/affiliate";
 import { trackEvent } from "@/lib/pixel";
 import { StarRating, ProductLogo, DisclosureIcon } from "@/components/product-card";
@@ -11,6 +12,8 @@ import { RubricScorecard, BenchmarkContext, HowWeTested, CompetitorComparison, K
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { AuthorByline, FtcDisclosure, HowWeReview, EditorialStandardsBadge } from "@/components/eeat";
 import { RelatedGuidesForProduct } from "@/components/related-guides";
+import { LocalAlternatives } from "@/components/local-alternatives";
+import { ReviewFeedback } from "@/components/review-feedback";
 import { getAuthorForCategory, authors } from "@/lib/authors";
 
 const RATES_VERIFIED_DATE = "Apr 22, 2026";
@@ -191,6 +194,9 @@ function ProductDetail() {
     );
   }
 
+  const heroOffer = useProductOffer(p.slug);
+  const verifiedLabel = formatVerified(heroOffer?.verifiedAt ?? null) || RATES_VERIFIED_DATE;
+
   const sameSubcategory = products.filter(
     (x) => x.subcategory === p.subcategory && x.slug !== p.slug
   );
@@ -354,14 +360,14 @@ function ProductDetail() {
                     <div>
                       <div className="flex items-center gap-1 text-black/40 uppercase tracking-wide text-[10px]">APY {disc && attachTo === "apy" && <DisclosureIcon text={disc} label={`${p.name} APY disclosure`} />}</div>
                       <div className="font-bold text-[#0e4d45] text-sm">{p.apy}</div>
-                      <div className="text-[9px] text-black/40 mt-0.5">Verified {RATES_VERIFIED_DATE}</div>
+                      <div className="text-[9px] text-black/40 mt-0.5">Verified {verifiedLabel}</div>
                     </div>
                   )}
                   {p.bonus && (
                     <div>
                       <div className="flex items-center gap-1 text-black/40 uppercase tracking-wide text-[10px]">Bonus {disc && attachTo === "bonus" && <DisclosureIcon text={disc} label={`${p.name} bonus disclosure`} />}</div>
                       <div className="font-bold text-black text-sm">{p.bonus}</div>
-                      <div className="text-[9px] text-black/40 mt-0.5">Verified {RATES_VERIFIED_DATE}</div>
+                      <div className="text-[9px] text-black/40 mt-0.5">Verified {verifiedLabel}</div>
                     </div>
                   )}
                   <div>
@@ -452,6 +458,9 @@ function ProductDetail() {
             {/* Operational limits / fine print */}
             <OperationalLimits product={p} />
 
+            {/* Local alternatives — surfaces state directories for bank products */}
+            <LocalAlternatives product={p} />
+
             {/* General editorial methodology */}
             <HowWeReview category={p.category} />
 
@@ -475,6 +484,9 @@ function ProductDetail() {
 
             {/* How to sign up — step-by-step */}
             <HowToSignUp product={p} />
+
+            {/* Reader helpfulness feedback */}
+            <ReviewFeedback productSlug={p.slug} />
 
             {/* Related Guides — internal linking to editorial content */}
             <RelatedGuidesForProduct product={p} />
@@ -543,10 +555,14 @@ function ProductDetail() {
 }
 
 function StickyCta({ product: p }: { product: Product }) {
+  const offer = useProductOffer(p.slug);
   const headline =
-    p.apy ? `${p.apy} APY` : p.bonus ? `${p.bonus} bonus` : `${p.rating}/5 editor rating`;
+    offer?.headline ||
+    (p.apy ? `${p.apy} APY` : p.bonus ? `${p.bonus} bonus` : `${p.rating}/5 editor rating`);
   const ctaLabel =
-    p.category === "investing" ? "Open Account" : p.category === "app" ? "Get App" : "Open Account";
+    offer?.ctaLabel ||
+    (p.category === "investing" ? "Open Account" : p.category === "app" ? "Get App" : "Open Account");
+  const variant = offer?.variant ?? "default";
   return (
     <div
       className="fixed inset-x-0 bottom-0 z-40 border-t border-[#e4d9cf] bg-[#fef6f1]/95 backdrop-blur supports-[backdrop-filter]:bg-[#fef6f1]/85 shadow-[0_-4px_12px_rgba(0,0,0,0.06)]"
@@ -574,6 +590,7 @@ function StickyCta({ product: p }: { product: Product }) {
           target="_blank"
           rel="nofollow noopener noreferrer sponsored"
           data-placement="product-review-sticky"
+          data-variant={variant}
           className="shrink-0 inline-flex items-center whitespace-nowrap px-3 sm:px-4 py-2 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] text-[11px] sm:text-xs font-semibold transition-colors uppercase tracking-wide"
         >
           {ctaLabel}
