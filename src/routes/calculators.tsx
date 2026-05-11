@@ -107,7 +107,7 @@ function CalculatorsIndex() {
               <strong>Emergency-fund calculator.</strong> A recommended target based on your monthly expenses and job stability.
             </li>
           </ul>
-          <p className="text-xs text-[#5a5a5a] italic">
+          <p className="text-xs text-[#3f3f3f] italic">
             These tools are for planning and education only. They are not personalized financial advice. Actual returns, rates, and outcomes will vary based on markets, fees, taxes, and your individual situation.
           </p>
         </section>
@@ -121,21 +121,21 @@ function CalculatorsIndex() {
             <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
               <div className="font-serif text-xl font-bold text-[#0e4d45] leading-none mb-1">01</div>
               <div className="font-semibold text-sm text-black mb-1">Run three scenarios</div>
-              <p className="text-[11.5px] text-[#5a5a5a] leading-relaxed">
+              <p className="text-[11.5px] text-[#3f3f3f] leading-relaxed">
                 For return assumptions, try conservative (5%), moderate (7%), and optimistic (9%). Plan to the conservative case while saving toward the moderate.
               </p>
             </div>
             <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
               <div className="font-serif text-xl font-bold text-[#0e4d45] leading-none mb-1">02</div>
               <div className="font-semibold text-sm text-black mb-1">Include every cost</div>
-              <p className="text-[11.5px] text-[#5a5a5a] leading-relaxed">
+              <p className="text-[11.5px] text-[#3f3f3f] leading-relaxed">
                 On the mortgage tool, add property taxes, insurance, and HOA fees. True all-in housing cost is typically 20&ndash;40% above principal and interest.
               </p>
             </div>
             <div className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
               <div className="font-serif text-xl font-bold text-[#0e4d45] leading-none mb-1">03</div>
               <div className="font-semibold text-sm text-black mb-1">Pick the right method</div>
-              <p className="text-[11.5px] text-[#5a5a5a] leading-relaxed">
+              <p className="text-[11.5px] text-[#3f3f3f] leading-relaxed">
                 On debt payoff, avalanche (highest rate first) saves more money; snowball (smallest balance first) builds psychological wins that help you finish.
               </p>
             </div>

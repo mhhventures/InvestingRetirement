@@ -73,7 +73,7 @@ function HeroPick({ p }: { p: Product }) {
         <div className="flex items-center gap-2">
           <StarRating rating={p.rating} size="md" />
           {p.grade && <GradeBadge grade={p.grade} size="md" />}
-          <span className="text-[10px] text-[#5a5a5a] hidden sm:inline">Ranked by APY, fees, minimums, and FDIC coverage.</span>
+          <span className="text-[10px] text-[#3f3f3f] hidden sm:inline">Ranked by APY, fees, minimums, and FDIC coverage.</span>
         </div>
       </div>
       <div className="p-5 sm:p-6">
@@ -82,13 +82,13 @@ function HeroPick({ p }: { p: Product }) {
             <ProductLogo p={p} size={40} />
             <div className="min-w-0">
               <h2 className="font-serif font-bold text-base sm:text-xl text-black leading-tight truncate">{p.name}</h2>
-              <div className="text-xs text-[#5a5a5a] mt-0.5 truncate">{p.provider}</div>
+              <div className="text-xs text-[#3f3f3f] mt-0.5 truncate">{p.provider}</div>
             </div>
           </div>
           <div className="sm:ml-auto grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-5 text-center w-full sm:w-auto">
             {p.apy && (
               <div className="flex-shrink-0">
-                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider flex items-center justify-center gap-1">
+                <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider flex items-center justify-center gap-1">
                   APY
                   <DisclosureIcon text={p.disclosure || getDisclosure(p.slug) || "Rates and terms subject to change. See provider site for full disclosures."} label={`${p.name} disclosure`} />
                 </div>
@@ -97,7 +97,7 @@ function HeroPick({ p }: { p: Product }) {
             )}
             {!p.apy && (
               <div className="flex-shrink-0">
-                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider flex items-center justify-center gap-1">
+                <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider flex items-center justify-center gap-1">
                   Details
                   <DisclosureIcon text={p.disclosure || getDisclosure(p.slug) || "Rates and terms subject to change. See provider site for full disclosures."} label={`${p.name} disclosure`} />
                 </div>
@@ -106,16 +106,16 @@ function HeroPick({ p }: { p: Product }) {
             )}
             {p.bonus && (
               <div className="flex-shrink-0">
-                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Bonus</div>
+                <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">Bonus</div>
                 <div className="font-serif font-bold text-lg sm:text-2xl text-black">{p.bonus}</div>
               </div>
             )}
             <div className="flex-shrink-0">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Fees</div>
+              <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">Fees</div>
               <div className="font-serif font-bold text-lg sm:text-2xl text-black">{p.fees}</div>
             </div>
             <div className="flex-shrink-0">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Min</div>
+              <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">Min</div>
               <div className="font-serif font-bold text-lg sm:text-2xl text-black">{p.minDeposit}</div>
             </div>
           </div>
@@ -140,13 +140,13 @@ function HeroPick({ p }: { p: Product }) {
             </ul>
           </div>
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#5a5a5a] mb-1.5">
+            <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#3f3f3f] mb-1.5">
               Things to know
             </div>
             <ul className="space-y-1">
               {p.cons.map((c) => (
-                <li key={c} className="flex items-start gap-1.5 text-xs text-[#5a5a5a]">
-                  <span className="text-[#5a5a5a] mt-0.5 shrink-0">–</span>
+                <li key={c} className="flex items-start gap-1.5 text-xs text-[#3f3f3f]">
+                  <span className="text-[#3f3f3f] mt-0.5 shrink-0">–</span>
                   {c}
                 </li>
               ))}
@@ -191,16 +191,16 @@ function ApyCalculator({ products }: { products: Product[] }) {
     <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm mb-5">
       <div className="px-4 pt-4 pb-3 border-b border-[#0e4d45]/20">
         <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">APY Earnings Calculator</div>
-        <p className="text-[11px] text-[#5a5a5a] mt-0.5">See how much you&apos;d earn at today&apos;s top rates.</p>
+        <p className="text-[11px] text-[#3f3f3f] mt-0.5">See how much you&apos;d earn at today&apos;s top rates.</p>
       </div>
       <div className="p-4">
         <div className="grid sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <label className="text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a] block mb-1">
+            <label className="text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f] block mb-1">
               Deposit Amount
             </label>
             <div className="relative">
-              <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-[#5a5a5a] font-semibold">$</span>
+              <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-[#3f3f3f] font-semibold">$</span>
               <input
                 type="number"
                 value={deposit}
@@ -212,7 +212,7 @@ function ApyCalculator({ products }: { products: Product[] }) {
             </div>
           </div>
           <div>
-            <label className="text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a] block mb-1">
+            <label className="text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f] block mb-1">
               Time Period
             </label>
             <select
@@ -266,7 +266,7 @@ function ApyCalculator({ products }: { products: Product[] }) {
           </div>
         )}
 
-        <p className="text-[9px] text-[#5a5a5a] mt-2 italic">
+        <p className="text-[9px] text-[#3f3f3f] mt-2 italic">
           Estimates based on stated APY. Actual earnings may vary. Does not include compounding.
         </p>
       </div>
@@ -303,7 +303,7 @@ function CompareBar({
               <span className="text-[11px] font-medium text-black">{p.name.split(" ")[0]}</span>
               <button
                 onClick={() => onRemove(p.slug)}
-                className="text-[#5a5a5a] hover:text-black ml-1 text-xs leading-none"
+                className="text-[#3f3f3f] hover:text-black ml-1 text-xs leading-none"
               >
                 ✕
               </button>
@@ -312,7 +312,7 @@ function CompareBar({
         </div>
         <button
           onClick={onClear}
-          className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 border border-[#d4c5b8] text-[#5a5a5a] rounded-sm hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors shrink-0"
+          className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 border border-[#d4c5b8] text-[#3f3f3f] rounded-sm hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors shrink-0"
         >
           Clear
         </button>
@@ -343,7 +343,7 @@ function CompareModal({ products, onClose }: { products: Product[]; onClose: () 
       <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-xl w-full max-w-3xl max-h-[85vh] sm:max-h-[90vh] overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-4 border-b border-[#e4d9cf] shrink-0">
           <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">Side-by-Side Comparison</div>
-          <button onClick={onClose} className="text-[#5a5a5a] hover:text-black text-lg ml-3 shrink-0">✕</button>
+          <button onClick={onClose} className="text-[#3f3f3f] hover:text-black text-lg ml-3 shrink-0">✕</button>
         </div>
         <div className="overflow-y-auto flex-1">
           {isMobile ? (
@@ -355,13 +355,13 @@ function CompareModal({ products, onClose }: { products: Product[]; onClose: () 
                     <ProductLogo p={p} size={28} />
                     <div className="flex-1 min-w-0">
                       <div className="font-serif font-bold text-sm text-black truncate">{p.name}</div>
-                      <div className="text-[9px] text-[#5a5a5a] mt-0.5"><StarRating rating={p.rating} size="sm" /></div>
+                      <div className="text-[9px] text-[#3f3f3f] mt-0.5"><StarRating rating={p.rating} size="sm" /></div>
                     </div>
                   </div>
                   <div className="divide-y divide-[#e4d9cf]">
                     {fields.map((f) => (
                       <div key={f.key} className="flex items-center justify-between px-3 py-2">
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-[#5a5a5a]">{f.label}</span>
+                        <span className="text-[9px] font-bold uppercase tracking-wider text-[#3f3f3f]">{f.label}</span>
                         <span className="font-serif font-bold text-sm text-black text-right">{(p[f.key] as string) || "—"}</span>
                       </div>
                     ))}
@@ -385,7 +385,7 @@ function CompareModal({ products, onClose }: { products: Product[]; onClose: () 
               <table className="w-full text-sm">
                 <thead>
                   <tr>
-                    <th className="text-left py-2 pr-4 text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a] w-28"></th>
+                    <th className="text-left py-2 pr-4 text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f] w-28"></th>
                     {products.map((p) => (
                       <th key={p.slug} className="text-center pb-3 px-3">
                         <div className="flex flex-col items-center gap-1.5">
@@ -400,7 +400,7 @@ function CompareModal({ products, onClose }: { products: Product[]; onClose: () 
                 <tbody className="divide-y divide-[#e4d9cf]">
                   {fields.map((f) => (
                     <tr key={f.key} className="hover:bg-[#fef6f1]">
-                      <td className="py-2.5 pr-4 text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a]">{f.label}</td>
+                      <td className="py-2.5 pr-4 text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f]">{f.label}</td>
                       {products.map((p) => (
                         <td key={p.slug} className="text-center py-2.5 px-3 font-serif font-bold text-sm text-black">
                           {(p[f.key] as string) || "—"}
@@ -470,7 +470,7 @@ function ComparableCard({
           >
             {isSelected && "✓"}
           </div>
-          <span className="text-[9px] text-[#5a5a5a] group-hover:text-[#0e4d45] font-medium uppercase tracking-wider">
+          <span className="text-[9px] text-[#3f3f3f] group-hover:text-[#0e4d45] font-medium uppercase tracking-wider">
             Compare
           </span>
         </label>
@@ -500,7 +500,7 @@ function SubcategorySection({
     <div className="mb-8">
       <div className="mb-3 pb-2 border-b border-[#e4d9cf]">
         <h2 className="font-serif font-bold text-xl text-black">{title}</h2>
-        <p className="text-[11px] text-[#5a5a5a] mt-0.5">{description}</p>
+        <p className="text-[11px] text-[#3f3f3f] mt-0.5">{description}</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 min-w-0">
         {products.map((p, i) => (
@@ -593,7 +593,7 @@ function EditorialFooter() {
           <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45] mb-1">Methodology</div>
           <h3 className="font-serif font-bold text-2xl text-black">How We Rank Bank Accounts</h3>
         </div>
-        <p className="text-sm text-[#5a5a5a] mt-1 mb-5 leading-relaxed">
+        <p className="text-sm text-[#3f3f3f] mt-1 mb-5 leading-relaxed">
           Our rankings are independent and editorially driven. We never accept payment for rankings, only standard display advertising and affiliate partnerships disclosed in our footer.
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
@@ -601,7 +601,7 @@ function EditorialFooter() {
             <div key={m.step} className="bg-white border border-[#d4c5b8] rounded-sm p-4 shadow-sm">
               <div className="font-serif text-2xl font-bold text-[#0e4d45] mb-1">{m.step}</div>
               <div className="font-semibold text-sm text-black mb-1">{m.title}</div>
-              <p className="text-[11px] text-[#5a5a5a] leading-snug">{m.desc}</p>
+              <p className="text-[11px] text-[#3f3f3f] leading-snug">{m.desc}</p>
             </div>
           ))}
         </div>
@@ -619,7 +619,7 @@ function EditorialFooter() {
               <span className="text-[#0e4d45] shrink-0 mt-0.5 font-bold text-sm">✓</span>
               <div>
                 <div className="text-sm font-semibold text-black">{item.label}</div>
-                <div className="text-[11px] text-[#5a5a5a] mt-0.5 leading-snug">{item.desc}</div>
+                <div className="text-[11px] text-[#3f3f3f] mt-0.5 leading-snug">{item.desc}</div>
               </div>
             </div>
           ))}
@@ -663,10 +663,10 @@ function EditorialFooter() {
             <div key={g.slug} className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm p-4 flex flex-col">
               <div className="flex items-center justify-between mb-3">
                 <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">{g.category}</div>
-                <div className="text-[10px] text-[#5a5a5a]">{g.time}</div>
+                <div className="text-[10px] text-[#3f3f3f]">{g.time}</div>
               </div>
               <h4 className="font-serif font-bold text-sm text-black leading-snug mb-2">{g.title}</h4>
-              <p className="text-[11px] text-[#5a5a5a] leading-snug flex-1">{g.desc}</p>
+              <p className="text-[11px] text-[#3f3f3f] leading-snug flex-1">{g.desc}</p>
               <div className="mt-4 grid grid-cols-2 gap-1.5">
                 <Link
                   to="/guides/$articleId"
@@ -786,7 +786,7 @@ function BankAccounts() {
           <p className="text-sm text-[#1a1a1a] max-w-3xl leading-relaxed">
             Compare high-yield savings, checking, and money market accounts from top online banks. Independent rankings updated weekly.
           </p>
-          <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#5a5a5a]">
+          <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#3f3f3f]">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#0e4d45]"></span>
             Rates as of January 2026 · Refreshed quarterly
           </div>
@@ -800,7 +800,7 @@ function BankAccounts() {
             ].map((s) => (
               <div key={s.label} className="bg-white border border-[#e4d9cf] rounded-sm p-3">
                 <div className="font-serif text-xl font-bold text-black">{s.value}</div>
-                <div className="text-[10px] text-[#5a5a5a] uppercase tracking-wider mt-0.5">{s.label}</div>
+                <div className="text-[10px] text-[#3f3f3f] uppercase tracking-wider mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -808,26 +808,26 @@ function BankAccounts() {
           {/* Rate Context Banner */}
           <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-[11px] border border-[#e4d9cf] rounded-sm bg-white px-3 sm:px-4 py-2.5 max-w-2xl">
             <div className="flex items-center gap-1.5">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#5a5a5a]">Fed Rate</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#3f3f3f]">Fed Rate</span>
               <span className="font-serif font-bold text-black">3.50%&ndash;3.75%</span>
             </div>
             <div className="w-px bg-[#e4d9cf]" />
             <div className="flex items-center gap-1.5">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#5a5a5a]">Nat&apos;l Avg Savings</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#3f3f3f]">Nat&apos;l Avg Savings</span>
               <span className="font-serif font-bold text-[#540f04]">0.45%</span>
             </div>
             <div className="w-px bg-[#e4d9cf]" />
             <div className="flex items-center gap-1.5">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#5a5a5a]">Top Rate Here</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#3f3f3f]">Top Rate Here</span>
               <span className="font-serif font-bold text-[#0e4d45]">4.10%</span>
             </div>
             <div className="w-px bg-[#e4d9cf]" />
             <div className="flex items-center gap-1.5">
-              <span className="text-[9px] text-[#5a5a5a] italic">Updated April 2026</span>
+              <span className="text-[9px] text-[#3f3f3f] italic">Updated April 2026</span>
             </div>
           </div>
 
-          <p className="mt-2 text-[10px] text-[#5a5a5a] italic">
+          <p className="mt-2 text-[10px] text-[#3f3f3f] italic">
             Ranked by APY, fees, minimums, and FDIC coverage. Editorial independence guaranteed &mdash; we never accept payment for rankings.
           </p>
           <p className="mt-4 max-w-3xl text-sm text-[#1a1a1a] leading-relaxed">
@@ -888,7 +888,7 @@ function BankAccounts() {
               {/* Sort + Filters row */}
               <div className="flex flex-wrap items-center gap-3">
                 <div className="flex items-center gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a]">Sort</label>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f]">Sort</label>
                   <select
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
@@ -923,7 +923,7 @@ function BankAccounts() {
                   <span className="text-[11px] text-[#1a1a1a] font-medium">No minimum</span>
                 </label>
 
-                <div className="sm:ml-auto text-[10px] text-[#5a5a5a] font-medium">
+                <div className="sm:ml-auto text-[10px] text-[#3f3f3f] font-medium">
                   Showing <span className="font-bold text-black">{filtered.length}</span> of {all.length} accounts
                 </div>
               </div>

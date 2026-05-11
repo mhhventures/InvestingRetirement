@@ -72,7 +72,7 @@ function HeroPick({ p }: { p: Product }) {
         <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
           <StarRating rating={p.rating} size="md" />
           {p.grade && <GradeBadge grade={p.grade} size="md" />}
-          <span className="text-[8px] sm:text-[10px] text-[#5a5a5a] hidden sm:inline">
+          <span className="text-[8px] sm:text-[10px] text-[#3f3f3f] hidden sm:inline">
             ({p.reviews.toLocaleString()} reviews)
           </span>
         </div>
@@ -85,12 +85,12 @@ function HeroPick({ p }: { p: Product }) {
               <h2 className="font-serif font-bold text-sm sm:text-xl text-black leading-tight truncate">
                 {p.name}
               </h2>
-              <div className="text-[11px] sm:text-xs text-[#5a5a5a] mt-0.5 truncate">{p.provider}</div>
+              <div className="text-[11px] sm:text-xs text-[#3f3f3f] mt-0.5 truncate">{p.provider}</div>
             </div>
           </div>
           <div className="sm:ml-auto flex flex-wrap gap-2 sm:gap-5 text-center">
             <div className="flex-shrink-0">
-              <div className="text-[8px] sm:text-[9px] text-[#5a5a5a] uppercase tracking-wider flex items-center justify-center gap-1">
+              <div className="text-[8px] sm:text-[9px] text-[#3f3f3f] uppercase tracking-wider flex items-center justify-center gap-1">
                 Commissions
                 <DisclosureIcon text={p.disclosure || getDisclosure(p.slug) || "Commissions, fees, and promotional offers are subject to change. See provider site for full terms and disclosures."} label={`${p.name} disclosure`} />
               </div>
@@ -98,12 +98,12 @@ function HeroPick({ p }: { p: Product }) {
             </div>
             {p.bonus && (
               <div className="flex-shrink-0">
-                <div className="text-[8px] sm:text-[9px] text-[#5a5a5a] uppercase tracking-wider">Bonus</div>
+                <div className="text-[8px] sm:text-[9px] text-[#3f3f3f] uppercase tracking-wider">Bonus</div>
                 <div className="font-serif font-bold text-base sm:text-2xl text-black">{p.bonus}</div>
               </div>
             )}
             <div className="flex-shrink-0">
-              <div className="text-[8px] sm:text-[9px] text-[#5a5a5a] uppercase tracking-wider">Min</div>
+              <div className="text-[8px] sm:text-[9px] text-[#3f3f3f] uppercase tracking-wider">Min</div>
               <div className="font-serif font-bold text-base sm:text-2xl text-black">{p.minDeposit}</div>
             </div>
           </div>
@@ -128,13 +128,13 @@ function HeroPick({ p }: { p: Product }) {
             </ul>
           </div>
           <div>
-            <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.12em] text-[#5a5a5a] mb-1.5">
+            <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.12em] text-[#3f3f3f] mb-1.5">
               Things to know
             </div>
             <ul className="space-y-1">
               {p.cons.map((c) => (
-                <li key={c} className="flex items-start gap-1.5 text-[11px] sm:text-xs text-[#5a5a5a]">
-                  <span className="text-[#5a5a5a] mt-0.5 shrink-0">–</span>
+                <li key={c} className="flex items-start gap-1.5 text-[11px] sm:text-xs text-[#3f3f3f]">
+                  <span className="text-[#3f3f3f] mt-0.5 shrink-0">–</span>
                   {c}
                 </li>
               ))}
@@ -181,7 +181,7 @@ function BestForAwards({ products }: { products: Product[] }) {
         <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">
           2025 Editor&apos;s Awards
         </div>
-        <p className="text-[10px] sm:text-[11px] text-[#5a5a5a] mt-0.5">
+        <p className="text-[10px] sm:text-[11px] text-[#3f3f3f] mt-0.5">
           Our top pick in each category, chosen by our investing editors.
         </p>
       </div>
@@ -198,7 +198,7 @@ function BestForAwards({ products }: { products: Product[] }) {
               <div className="font-serif font-bold text-xs sm:text-sm text-black truncate mt-0.5">
                 {a.product!.name}
               </div>
-              <div className="text-[9px] sm:text-[10px] text-[#5a5a5a] mt-0.5 line-clamp-2">
+              <div className="text-[9px] sm:text-[10px] text-[#3f3f3f] mt-0.5 line-clamp-2">
                 {a.product!.tagline}
               </div>
               <Link
@@ -318,7 +318,7 @@ function Investing() {
             <li>Research quality, charting depth, and screener flexibility for active decision-making.</li>
             <li>Fractional shares, dividend reinvestment, tax-loss harvesting, and automated portfolio tools.</li>
           </ul>
-          <p className="mt-2 text-xs text-[#5a5a5a]">
+          <p className="mt-2 text-xs text-[#3f3f3f]">
             Read our <a href="/about" className="underline text-[#0e4d45]">editorial methodology</a> and <a href="/disclosure" className="underline text-[#0e4d45]">advertiser disclosure</a> for more on how we test products and fund our independence.
           </p>
         </div>
@@ -328,7 +328,7 @@ function Investing() {
         <div className="mb-3 border-b border-[#e4d9cf] pb-1.5">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">Getting Started</div>
           <h2 className="font-serif text-2xl font-bold text-black">Three models, one decision</h2>
-          <p className="text-[12px] text-[#5a5a5a] mt-0.5">Which style of brokerage fits which kind of investor.</p>
+          <p className="text-[12px] text-[#3f3f3f] mt-0.5">Which style of brokerage fits which kind of investor.</p>
         </div>
         <div className="grid sm:grid-cols-3 gap-3">
           {[
@@ -358,7 +358,7 @@ function Investing() {
               </div>
               <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#540f04] mt-1 mb-1.5">Best for</div>
               <div className="text-[12px] text-[#1a1a1a] mb-2 leading-snug">{m.who}</div>
-              <p className="text-[11.5px] text-[#5a5a5a] leading-relaxed">{m.desc}</p>
+              <p className="text-[11.5px] text-[#3f3f3f] leading-relaxed">{m.desc}</p>
             </div>
           ))}
         </div>

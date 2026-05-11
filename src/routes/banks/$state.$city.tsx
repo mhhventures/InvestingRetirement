@@ -166,11 +166,11 @@ function CityBanksPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-8">
         {loading ? (
-          <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#5a5a5a]">
+          <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#3f3f3f]">
             Loading {city} institutions…
           </div>
         ) : !providers.length ? (
-          <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#5a5a5a]">
+          <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#3f3f3f]">
             No institutions available for {city} yet.
           </div>
         ) : (
@@ -202,7 +202,7 @@ function CityBanksPage() {
                           loading="lazy"
                         />
                       ) : (
-                        <span className="text-[10px] font-bold text-[#5a5a5a]">
+                        <span className="text-[10px] font-bold text-[#3f3f3f]">
                           {p.institution_name.slice(0, 2).toUpperCase()}
                         </span>
                       )}
@@ -211,7 +211,7 @@ function CityBanksPage() {
                       <div className="font-serif font-bold text-black text-sm leading-tight">
                         {p.institution_name}
                       </div>
-                      <div className="mt-0.5 flex items-center flex-wrap gap-x-1.5 text-[10px] text-[#5a5a5a]">
+                      <div className="mt-0.5 flex items-center flex-wrap gap-x-1.5 text-[10px] text-[#3f3f3f]">
                         <StarRating rating={rating} size="sm" />
                         <span>·</span>
                         <span>
@@ -223,7 +223,7 @@ function CityBanksPage() {
                   </div>
                   <div className="mt-3 grid grid-cols-3 gap-2 border-t border-[#e4d9cf] pt-3">
                     <div>
-                      <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                      <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                         APY
                       </div>
                       <div className="font-serif font-bold text-[#0e4d45] text-base">
@@ -231,7 +231,7 @@ function CityBanksPage() {
                       </div>
                     </div>
                     <div>
-                      <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                      <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                         Type
                       </div>
                       <div className="font-semibold text-black text-[11px] mt-0.5 uppercase tracking-wider">
@@ -239,13 +239,13 @@ function CityBanksPage() {
                       </div>
                     </div>
                     <div>
-                      <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                      <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                         Min. Deposit
                       </div>
                       <div className="font-serif font-bold text-black text-base">
                         {min}
                       </div>
-                      <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                      <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                         {fee}
                       </div>
                     </div>
@@ -266,7 +266,7 @@ function CityBanksPage() {
           </div>
         )}
 
-        <div className="mt-6 text-[11px] text-[#5a5a5a] leading-relaxed">
+        <div className="mt-6 text-[11px] text-[#3f3f3f] leading-relaxed">
           All institutions shown accept applications from {city} residents.
           Membership-based credit unions may have additional eligibility
           requirements. See individual listings for details.

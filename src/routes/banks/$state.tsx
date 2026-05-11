@@ -460,13 +460,13 @@ function StateBanksPage() {
             </p>
           )}
           {intro?.regulator && (
-            <p className="mt-2 text-[11px] text-[#5a5a5a]">
+            <p className="mt-2 text-[11px] text-[#3f3f3f]">
               State regulator: <strong className="text-[#1a1a1a]">{intro.regulator}</strong>.
               Every institution below is FDIC- or NCUA-insured to $250,000.
             </p>
           )}
 
-          <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#5a5a5a]">
+          <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#3f3f3f]">
             <MapPin className="w-3 h-3 text-[#0e4d45]" />
             {info.name} · Updated {new Date().toLocaleDateString(undefined, {
               month: "long",
@@ -501,14 +501,14 @@ function StateBanksPage() {
                 >
                   {s.value}
                 </div>
-                <div className="text-[10px] text-[#5a5a5a] uppercase tracking-wider mt-0.5">
+                <div className="text-[10px] text-[#3f3f3f] uppercase tracking-wider mt-0.5">
                   {s.label}
                 </div>
               </div>
             ))}
           </div>
 
-          <p className="mt-4 text-[10px] text-[#5a5a5a] italic">
+          <p className="mt-4 text-[10px] text-[#3f3f3f] italic">
             Ranked by effective APY, fees, minimums, and FDIC/NCUA coverage.
             Editorial independence guaranteed. We never accept payment for
             rankings.
@@ -573,7 +573,7 @@ function StateBanksPage() {
                     className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1.5 flex items-center gap-1 ${
                       view === "table"
                         ? "bg-[#0e4d45] text-[#fef6f1]"
-                        : "bg-white text-[#5a5a5a] hover:text-[#0e4d45]"
+                        : "bg-white text-[#3f3f3f] hover:text-[#0e4d45]"
                     }`}
                   >
                     <TableIcon className="w-3 h-3" />
@@ -585,7 +585,7 @@ function StateBanksPage() {
                     className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1.5 flex items-center gap-1 ${
                       view === "cards"
                         ? "bg-[#0e4d45] text-[#fef6f1]"
-                        : "bg-white text-[#5a5a5a] hover:text-[#0e4d45]"
+                        : "bg-white text-[#3f3f3f] hover:text-[#0e4d45]"
                     }`}
                   >
                     <Grid2x2 className="w-3 h-3" />
@@ -595,7 +595,7 @@ function StateBanksPage() {
               </div>
 
               <div className="mb-3 relative">
-                <Search className="w-4 h-4 text-[#5a5a5a] absolute left-3 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-[#3f3f3f] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="search"
                   value={query}
@@ -608,7 +608,7 @@ function StateBanksPage() {
 
               {popularSearches.length > 0 && (
                 <div className="mb-3 flex items-center flex-wrap gap-1.5">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f]">
                     Popular in {info.name}
                   </span>
                   {popularSearches.map((s) => (
@@ -644,7 +644,7 @@ function StateBanksPage() {
 
                 <div className="flex flex-wrap items-center gap-3">
                   <div className="flex items-center gap-2">
-                    <label className="text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a]">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f]">
                       Sort
                     </label>
                     <select
@@ -671,7 +671,7 @@ function StateBanksPage() {
                     onToggle={() => setMembersOnlyOff(!membersOnlyOff)}
                     label="Open to all"
                   />
-                  <div className="sm:ml-auto text-[10px] text-[#5a5a5a] font-medium">
+                  <div className="sm:ml-auto text-[10px] text-[#3f3f3f] font-medium">
                     Showing <span className="font-bold text-black">{filtered.length}</span> of{" "}
                     {providers.length} institutions
                   </div>
@@ -679,7 +679,7 @@ function StateBanksPage() {
               </div>
 
               {loading ? (
-                <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#5a5a5a]">
+                <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#3f3f3f]">
                   Loading {info.name} institutions…
                 </div>
               ) : error ? (
@@ -687,7 +687,7 @@ function StateBanksPage() {
                   We couldn't load the {info.name} directory. Please refresh the page.
                 </div>
               ) : !filtered.length ? (
-                <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#5a5a5a]">
+                <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm py-10 text-center text-sm text-[#3f3f3f]">
                   No institutions match "{query}" with the current filters.
                 </div>
               ) : view === "table" ? (
@@ -741,7 +741,7 @@ function StateBanksPage() {
                 <table className="w-full text-sm border-collapse">
                   <thead>
                     <tr className="border-b border-[#e4d9cf] text-left">
-                      <th className="py-2 pr-3 text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a]">
+                      <th className="py-2 pr-3 text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f]">
                         Factor
                       </th>
                       <th className="py-2 px-3 text-[10px] font-bold uppercase tracking-wider text-[#0e4d45]">
@@ -886,7 +886,7 @@ function StateBanksPage() {
                       <div className="font-serif font-bold text-black text-base">
                         Best Banks in {s.name}
                       </div>
-                      <div className="text-[11px] text-[#5a5a5a] mt-0.5">
+                      <div className="text-[11px] text-[#3f3f3f] mt-0.5">
                         Local rates, credit unions, and branches →
                       </div>
                     </Link>
@@ -933,7 +933,7 @@ function StateBanksPage() {
                     <div className="font-serif font-bold text-black text-base leading-tight">
                       {g.title}
                     </div>
-                    <div className="text-[12px] text-[#5a5a5a] mt-1">{g.blurb}</div>
+                    <div className="text-[12px] text-[#3f3f3f] mt-1">{g.blurb}</div>
                   </a>
                 ))}
               </div>
@@ -954,7 +954,7 @@ function StateBanksPage() {
                 regional providers so residents see every competitive option
                 near them.
               </p>
-              <p className="text-xs text-[#5a5a5a] italic">
+              <p className="text-xs text-[#3f3f3f] italic">
                 Rates, fees, and membership rules change frequently. Always
                 confirm figures directly with each institution before applying.
                 This page is informational and is not personalized financial
@@ -1010,7 +1010,7 @@ function BestForCard({ label, why, p }: { label: string; why: string; p: StatePr
           <div className="font-serif font-bold text-sm text-black leading-tight truncate">
             {p.institution_name}
           </div>
-          <div className="text-[10px] text-[#5a5a5a] uppercase tracking-wider">
+          <div className="text-[10px] text-[#3f3f3f] uppercase tracking-wider">
             {INSTITUTION_TYPE_LABEL[p.institution_type] || p.institution_type}
           </div>
         </div>
@@ -1050,7 +1050,7 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
   };
   return (
     <div className="bg-white border border-[#d4c5b8] rounded-sm shadow-sm overflow-hidden">
-      <div className="hidden md:grid grid-cols-[minmax(0,1.6fr)_96px_110px_120px_120px] gap-3 bg-[#f7ebe2] px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a]">
+      <div className="hidden md:grid grid-cols-[minmax(0,1.6fr)_96px_110px_120px_120px] gap-3 bg-[#f7ebe2] px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f]">
         <div>Financial Institution</div>
         <div className="text-center">APY</div>
         <div className="text-center">Type</div>
@@ -1094,7 +1094,7 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
                   <div className="font-serif font-bold text-black text-sm leading-tight">
                     {p.institution_name}
                   </div>
-                  <div className="mt-0.5 flex items-center flex-wrap gap-x-1.5 gap-y-0.5 text-[10px] text-[#5a5a5a]">
+                  <div className="mt-0.5 flex items-center flex-wrap gap-x-1.5 gap-y-0.5 text-[10px] text-[#3f3f3f]">
                     <StarRating rating={rating} size="sm" />
                     <span className="hidden sm:inline">·</span>
                     <span>Updated {updated}</span>
@@ -1105,7 +1105,7 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
               {/* Mobile: labeled stat grid. Desktop: individual aligned cells. */}
               <div className="md:hidden mt-3 grid grid-cols-3 gap-2 border-t border-[#e4d9cf] pt-3">
                 <div>
-                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                  <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                     APY
                   </div>
                   <div className="font-serif font-bold text-[#0e4d45] text-base leading-tight">
@@ -1113,7 +1113,7 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
                   </div>
                 </div>
                 <div>
-                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                  <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                     Type
                   </div>
                   <div className="font-semibold text-black text-[11px] leading-tight mt-0.5 uppercase tracking-wider">
@@ -1121,13 +1121,13 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
                   </div>
                 </div>
                 <div>
-                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                  <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                     Min. Deposit
                   </div>
                   <div className="font-serif font-bold text-black text-base leading-tight">
                     {formattedMin}
                   </div>
-                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                  <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                     {feeText}
                   </div>
                 </div>
@@ -1144,7 +1144,7 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
                 <div className="font-serif font-bold text-black text-sm">
                   {formattedMin}
                 </div>
-                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">
+                <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">
                   {feeText}
                 </div>
               </div>
@@ -1161,7 +1161,7 @@ function RateTable({ rows, stateCode }: { rows: StateProvider[]; stateCode: stri
                     Open Now
                   </a>
                 ) : (
-                  <span className="block text-center px-3 py-2.5 md:py-2 rounded-sm bg-[#f7ebe2] text-[#5a5a5a] text-[11px] font-semibold uppercase tracking-wider">
+                  <span className="block text-center px-3 py-2.5 md:py-2 rounded-sm bg-[#f7ebe2] text-[#3f3f3f] text-[11px] font-semibold uppercase tracking-wider">
                     Unavailable
                   </span>
                 )}
@@ -1202,18 +1202,18 @@ function ApyCalculator({
         <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0e4d45]">
           {stateName} APY Earnings Calculator
         </div>
-        <p className="text-[11px] text-[#5a5a5a] mt-0.5">
+        <p className="text-[11px] text-[#3f3f3f] mt-0.5">
           See how much you'd earn at today's top {stateName} rates.
         </p>
       </div>
       <div className="p-4">
         <div className="grid sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <label className="text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a] block mb-1">
+            <label className="text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f] block mb-1">
               Deposit Amount
             </label>
             <div className="relative">
-              <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-[#5a5a5a] font-semibold">
+              <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-[#3f3f3f] font-semibold">
                 $
               </span>
               <input
@@ -1227,7 +1227,7 @@ function ApyCalculator({
             </div>
           </div>
           <div>
-            <label className="text-[10px] font-bold uppercase tracking-wider text-[#5a5a5a] block mb-1">
+            <label className="text-[10px] font-bold uppercase tracking-wider text-[#3f3f3f] block mb-1">
               Time Period
             </label>
             <select
@@ -1260,7 +1260,7 @@ function ApyCalculator({
                   <div className="text-[11px] font-medium text-black truncate">
                     {p.institution_name}
                   </div>
-                  <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider truncate">
+                  <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider truncate">
                     {PRODUCT_TYPE_LABEL[p.product_type] || p.product_type}
                   </div>
                 </div>
@@ -1283,7 +1283,7 @@ function ApyCalculator({
                     Visit
                   </a>
                 ) : (
-                  <span className="text-center px-2 py-1 rounded-sm bg-[#f7ebe2] text-[#5a5a5a] text-[9px] font-semibold uppercase tracking-wider">
+                  <span className="text-center px-2 py-1 rounded-sm bg-[#f7ebe2] text-[#3f3f3f] text-[9px] font-semibold uppercase tracking-wider">
                     —
                   </span>
                 )}
@@ -1291,12 +1291,12 @@ function ApyCalculator({
             ))}
           </div>
         ) : (
-          <div className="text-[11px] text-[#5a5a5a] italic">
+          <div className="text-[11px] text-[#3f3f3f] italic">
             No APY-bearing products match the current filters.
           </div>
         )}
 
-        <p className="text-[9px] text-[#5a5a5a] mt-2 italic">
+        <p className="text-[9px] text-[#3f3f3f] mt-2 italic">
           Estimates based on stated APY. Actual earnings may vary. Does not
           include compounding.
         </p>
@@ -1335,26 +1335,26 @@ function HeroPick({ p, rank }: { p: StateProvider; rank: number }) {
               <h2 className="font-serif font-bold text-base sm:text-xl text-black leading-tight truncate">
                 {p.institution_name}
               </h2>
-              <div className="text-xs text-[#5a5a5a] mt-0.5 truncate">
+              <div className="text-xs text-[#3f3f3f] mt-0.5 truncate">
                 {INSTITUTION_TYPE_LABEL[p.institution_type] || p.institution_type}
               </div>
             </div>
           </div>
           <div className="sm:ml-auto grid grid-cols-3 sm:flex sm:flex-wrap gap-3 sm:gap-5 text-center w-full sm:w-auto">
             <div className="flex-shrink-0">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">APY</div>
+              <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">APY</div>
               <div className="font-serif font-bold text-xl sm:text-2xl text-[#0e4d45]">
                 {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
               </div>
             </div>
             <div className="flex-shrink-0">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Fees</div>
+              <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">Fees</div>
               <div className="font-serif font-bold text-lg sm:text-2xl text-black">
                 {p.monthly_fee > 0 ? `$${p.monthly_fee.toFixed(0)}/mo` : "$0"}
               </div>
             </div>
             <div className="flex-shrink-0">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Min</div>
+              <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">Min</div>
               <div className="font-serif font-bold text-lg sm:text-2xl text-black">
                 {formatMin(p.min_deposit)}
               </div>
@@ -1399,7 +1399,7 @@ function SubcategorySection({
     <div className="mb-8">
       <div className="mb-3 pb-2 border-b border-[#e4d9cf]">
         <h3 className="font-serif font-bold text-xl text-black">{title}</h3>
-        <p className="text-[11px] text-[#5a5a5a] mt-0.5">{description}</p>
+        <p className="text-[11px] text-[#3f3f3f] mt-0.5">{description}</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 min-w-0">
         {items.map((p, i) => (
@@ -1442,7 +1442,7 @@ function ProviderCard({ p, rank }: { p: StateProvider; rank: number }) {
             <div className="mt-1 flex items-center gap-1.5 sm:gap-2 flex-wrap">
               <StarRating rating={rating} />
               <GradeBadge grade={grade} />
-              <span className="text-[9px] sm:text-[10px] text-[#5a5a5a]">
+              <span className="text-[9px] sm:text-[10px] text-[#3f3f3f]">
                 ({reviewCount.toLocaleString()})
               </span>
             </div>
@@ -1454,13 +1454,13 @@ function ProviderCard({ p, rank }: { p: StateProvider; rank: number }) {
         </p>
         <div className="mt-2.5 sm:mt-3 grid grid-cols-2 gap-2 text-[10px] sm:text-[11px] border-t border-[#e4d9cf] pt-2.5">
           <div>
-            <div className="text-[#5a5a5a] uppercase tracking-wider text-[9px] sm:text-[10px]">APY</div>
+            <div className="text-[#3f3f3f] uppercase tracking-wider text-[9px] sm:text-[10px]">APY</div>
             <div className="font-serif font-bold text-[#0e4d45] text-sm sm:text-base">
               {p.apy > 0 ? `${p.apy.toFixed(2)}%` : "—"}
             </div>
           </div>
           <div>
-            <div className="text-[#5a5a5a] uppercase tracking-wider text-[9px] sm:text-[10px]">Min</div>
+            <div className="text-[#3f3f3f] uppercase tracking-wider text-[9px] sm:text-[10px]">Min</div>
             <div className="font-serif font-bold text-black text-sm sm:text-base">
               {formatMin(p.min_deposit)}
             </div>
@@ -1477,7 +1477,7 @@ function ProviderCard({ p, rank }: { p: StateProvider; rank: number }) {
               Visit Site
             </a>
           ) : (
-            <span className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-[#f7ebe2] text-[#5a5a5a] text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
+            <span className="text-center px-2 py-1.5 sm:py-2 rounded-sm bg-[#f7ebe2] text-[#3f3f3f] text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
               Unavailable
             </span>
           )}

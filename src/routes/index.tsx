@@ -208,7 +208,7 @@ function Home() {
                           <td className="px-3 py-2.5 font-serif font-bold text-[#0e4d45]">{String(i + 1).padStart(2, '0')}</td>
                           <td className="px-3 py-2.5 font-semibold text-black group-hover:text-[#0e4d45]">{p.name}</td>
                           <td className="px-3 py-2.5 font-serif font-bold text-[#0e4d45]">{p.apy}</td>
-                          <td className="px-3 py-2.5 text-[#5a5a5a]">{p.minDeposit}</td>
+                          <td className="px-3 py-2.5 text-[#3f3f3f]">{p.minDeposit}</td>
                           <td className="px-3 py-2.5 font-semibold text-black">{p.bonus || "—"}</td>
                         </tr>
                       ))}
@@ -244,7 +244,7 @@ function Home() {
                         <h3 className="font-serif font-bold text-sm sm:text-base text-black group-hover:text-[#0e4d45] transition-colors leading-snug">
                           {g.title}
                         </h3>
-                        <div className="text-[9px] sm:text-[10px] text-[#5a5a5a] mt-1.5">
+                        <div className="text-[9px] sm:text-[10px] text-[#3f3f3f] mt-1.5">
                           <span className="font-semibold">{g.cat}</span> • <span>{g.read} read</span>
                         </div>
                       </div>
@@ -283,7 +283,7 @@ function Home() {
                   <div key={c.step} className="border border-[#e4d9cf] rounded-sm p-3">
                     <div className="font-serif text-xl font-bold text-[#0e4d45] leading-none mb-1">{c.step}</div>
                     <div className="font-semibold text-sm text-black mb-0.5">{c.title}</div>
-                    <div className="text-[11px] text-[#5a5a5a] leading-snug">{c.desc}</div>
+                    <div className="text-[11px] text-[#3f3f3f] leading-snug">{c.desc}</div>
                   </div>
                 ))}
               </div>

@@ -35,13 +35,19 @@ export function GradeBadge({ grade, size = "sm" }: { grade: string; size?: "sm" 
 
 export function StarRating({ rating, size = "sm" }: { rating: number; size?: "sm" | "md" }) {
   const textClass = size === "md" ? "text-sm" : "text-xs";
+  const label = `Rated ${rating.toFixed(1)} out of 5 stars`;
   return (
-    <span className={`inline-flex items-center gap-1 ${textClass}`}>
-      <span className="text-[#c9a882] tracking-tight">
+    <span
+      className={`inline-flex items-center gap-1 ${textClass}`}
+      role="img"
+      aria-label={label}
+      title={label}
+    >
+      <span className="text-[#c9a882] tracking-tight" aria-hidden="true">
         {"\u2605".repeat(Math.floor(rating))}
         {rating % 1 >= 0.5 ? "\u2605" : ""}
       </span>
-      <span className="text-[#5a5a5a] font-medium">{rating.toFixed(1)}</span>
+      <span className="text-[#3f3f3f] font-medium" aria-hidden="true">{rating.toFixed(1)}</span>
     </span>
   );
 }
@@ -108,7 +114,7 @@ export function DisclosureIcon({ text, label }: { text: string; label?: string }
         onClick={(e) => { e.preventDefault(); e.stopPropagation(); open ? hide() : show(); }}
         aria-label={label || "View disclosure"}
         aria-expanded={open}
-        className="inline-flex items-center justify-center w-4 h-4 rounded-full border border-[#c9a882] text-[#5a5a5a] hover:text-[#0e4d45] hover:border-[#0e4d45] bg-white text-[9px] font-bold leading-none transition-colors cursor-help"
+        className="inline-flex items-center justify-center w-4 h-4 rounded-full border border-[#c9a882] text-[#3f3f3f] hover:text-[#0e4d45] hover:border-[#0e4d45] bg-white text-[9px] font-bold leading-none transition-colors cursor-help"
       >
         ?
       </button>
@@ -261,7 +267,7 @@ export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; 
             <div className="mt-1 flex items-center gap-1.5 sm:gap-2 flex-wrap">
               <StarRating rating={p.rating} />
               {p.grade && <GradeBadge grade={p.grade} />}
-              <span className="text-[9px] sm:text-[10px] text-[#5a5a5a]">({p.reviews.toLocaleString()})</span>
+              <span className="text-[9px] sm:text-[10px] text-[#3f3f3f]">({p.reviews.toLocaleString()})</span>
             </div>
           </div>
         </div>
@@ -271,23 +277,23 @@ export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; 
         <div className="mt-2.5 sm:mt-3 grid grid-cols-2 gap-2 text-[10px] sm:text-[11px] border-t border-[#e4d9cf] pt-2.5">
           {p.apy ? (
             <div>
-              <div className="text-[#5a5a5a] uppercase tracking-wider text-[9px] sm:text-[10px] flex items-center gap-1">APY{disclosure && (<DisclosureIcon text={disclosure} label={`${p.name} APY disclosure`} />)}</div>
+              <div className="text-[#3f3f3f] uppercase tracking-wider text-[9px] sm:text-[10px] flex items-center gap-1">APY{disclosure && (<DisclosureIcon text={disclosure} label={`${p.name} APY disclosure`} />)}</div>
               <div className="font-serif font-bold text-[#0e4d45] text-sm sm:text-base">{p.apy}</div>
             </div>
           ) : (
             <div>
-              <div className="text-[#5a5a5a] uppercase tracking-wider text-[9px] sm:text-[10px] flex items-center gap-1">Fees{disclosure && (<DisclosureIcon text={disclosure} label={`${p.name} disclosure`} />)}</div>
+              <div className="text-[#3f3f3f] uppercase tracking-wider text-[9px] sm:text-[10px] flex items-center gap-1">Fees{disclosure && (<DisclosureIcon text={disclosure} label={`${p.name} disclosure`} />)}</div>
               <div className="font-serif font-bold text-black text-sm sm:text-base">{p.fees}</div>
             </div>
           )}
           {p.bonus ? (
             <div>
-              <div className="text-[#5a5a5a] uppercase tracking-wider text-[9px] sm:text-[10px]">Bonus</div>
+              <div className="text-[#3f3f3f] uppercase tracking-wider text-[9px] sm:text-[10px]">Bonus</div>
               <div className="font-serif font-bold text-black text-sm sm:text-base">{p.bonus}</div>
             </div>
           ) : (
             <div>
-              <div className="text-[#5a5a5a] uppercase tracking-wider text-[9px] sm:text-[10px]">Min</div>
+              <div className="text-[#3f3f3f] uppercase tracking-wider text-[9px] sm:text-[10px]">Min</div>
               <div className="font-serif font-bold text-black text-sm sm:text-base">{p.minDeposit}</div>
             </div>
           )}
@@ -318,7 +324,7 @@ export function ProductCard({ p, rank, listName }: { p: Product; rank?: number; 
           </a>
         </div>
 
-        <div className="mt-2 text-center text-[9px] sm:text-[10px] text-[#5a5a5a] uppercase tracking-wider">
+        <div className="mt-2 text-center text-[9px] sm:text-[10px] text-[#3f3f3f] uppercase tracking-wider">
           Tap card for quick look
         </div>
       </div>
@@ -427,14 +433,14 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
               <div className="mt-0.5 flex items-center gap-2 flex-wrap">
                 <StarRating rating={p.rating} />
                 {p.grade && <GradeBadge grade={p.grade} />}
-                <span className="text-[10px] text-[#5a5a5a]">({p.reviews.toLocaleString()} reviews)</span>
+                <span className="text-[10px] text-[#3f3f3f]">({p.reviews.toLocaleString()} reviews)</span>
               </div>
             </div>
           </div>
           <button
             onClick={onClose}
             aria-label="Close preview"
-            className="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-full text-[#5a5a5a] text-lg leading-none hover:bg-[#f7ebe2] hover:text-black hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#0e4d45]/40 transition-all duration-150 -mr-1 -mt-0.5"
+            className="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-full text-[#3f3f3f] text-lg leading-none hover:bg-[#f7ebe2] hover:text-black hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#0e4d45]/40 transition-all duration-150 -mr-1 -mt-0.5"
           >
             ✕
           </button>
@@ -448,21 +454,21 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
           <div className="mt-3 grid grid-cols-3 gap-2">
             {p.apy && (
               <div className="bg-[#fef6f1] border border-[#e4d9cf] rounded-sm px-2 py-1.5 text-center">
-                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">APY</div>
+                <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">APY</div>
                 <div className="font-serif font-bold text-[#0e4d45] text-sm">{p.apy}</div>
               </div>
             )}
             <div className="bg-[#fef6f1] border border-[#e4d9cf] rounded-sm px-2 py-1.5 text-center">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Fees</div>
+              <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">Fees</div>
               <div className="font-serif font-bold text-black text-sm">{p.fees}</div>
             </div>
             <div className="bg-[#fef6f1] border border-[#e4d9cf] rounded-sm px-2 py-1.5 text-center">
-              <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Min</div>
+              <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">Min</div>
               <div className="font-serif font-bold text-black text-sm">{p.minDeposit}</div>
             </div>
             {p.bonus && (
               <div className="bg-[#fef6f1] border border-[#e4d9cf] rounded-sm px-2 py-1.5 text-center col-span-3">
-                <div className="text-[9px] text-[#5a5a5a] uppercase tracking-wider">Bonus</div>
+                <div className="text-[9px] text-[#3f3f3f] uppercase tracking-wider">Bonus</div>
                 <div className="font-serif font-bold text-black text-sm">{p.bonus}</div>
               </div>
             )}
@@ -486,11 +492,11 @@ export function ProductPreviewModal({ p, listName, onClose }: { p: Product; list
               </ul>
             </div>
             <div>
-              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#5a5a5a] mb-1">Things to know</div>
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#3f3f3f] mb-1">Things to know</div>
               <ul className="space-y-1">
                 {p.cons.slice(0, 3).map((c) => (
-                  <li key={c} className="flex items-start gap-1.5 text-[11.5px] text-[#5a5a5a] leading-snug">
-                    <span className="text-[#5a5a5a] mt-0.5 shrink-0">–</span>
+                  <li key={c} className="flex items-start gap-1.5 text-[11.5px] text-[#3f3f3f] leading-snug">
+                    <span className="text-[#3f3f3f] mt-0.5 shrink-0">–</span>
                     {c}
                   </li>
                 ))}

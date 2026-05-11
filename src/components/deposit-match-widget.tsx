@@ -167,7 +167,7 @@ export function DepositMatchWidget({
     <div className="w-full">
       {status === "loading" && (
         <div
-          className="flex items-center justify-center text-[11px] text-[#5a5a5a]"
+          className="flex items-center justify-center text-[11px] text-[#3f3f3f]"
           style={{ minHeight: "clamp(420px, 70vw, 560px)" }}
           aria-live="polite"
         >

@@ -49,7 +49,7 @@
   --color-market-red: #540f04;
   --color-ink: #000000;
   --color-ink-soft: #1a1a1a;
-  --color-ink-muted: #5a5a5a;
+  --color-ink-muted: #3f3f3f;
   --color-line: #e4d9cf;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -89,7 +89,7 @@
   --secondary: #f7ebe2;
   --secondary-foreground: #000000;
   --muted: #f7ebe2;
-  --muted-foreground: #5a5a5a;
+  --muted-foreground: #3f3f3f;
   --accent: #0e4d45;
   --accent-foreground: #fef6f1;
   --destructive: #540f04;
@@ -99,7 +99,7 @@
   --chart-1: #0e4d45;
   --chart-2: #540f04;
   --chart-3: #000000;
-  --chart-4: #5a5a5a;
+  --chart-4: #3f3f3f;
   --chart-5: #c9a882;
   --sidebar: #fef6f1;
   --sidebar-foreground: #000000;
@@ -216,7 +216,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #5a5a5a;
+  color: #3f3f3f;
 }
 
 .ticker-track {

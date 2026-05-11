@@ -1,52 +1,88 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { products } from "@/data/products";
 import { ProductLogo, StarRating } from "@/components/product-card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { productPartnerLink } from "@/lib/affiliate";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
 const TRUSTED = products.filter((p) => p.editorsPick).slice(0, 4);
 
-const TOP_OFFERS = [
-  {
-    slug: "sofi-checking-savings",
-    headline: "Earn 4.00% APY",
-    sub: "No monthly fees. FDIC insured.",
-    cta: "Open Account",
-  },
-  {
-    slug: "fidelity",
-    headline: "$0 Commission Trades",
-    sub: "Plus industry-best research.",
-    cta: "Start Investing",
-  },
-  {
-    slug: "chase-total-checking",
-    headline: "$300 Welcome Bonus",
-    sub: "With qualifying direct deposit.",
-    cta: "See Offer",
-  },
-];
+type FeaturedOffer = { slug: string; headline: string; sub: string; cta: string };
+type RateRow = { label: string; value: string; up: boolean };
+type CompareRow = { slug: string; name: string; value: string; bonus: string };
 
-const CURRENT_RATES = [
+// Fallback values mirror the Supabase seed; used during SSR/prerender and when
+// Supabase is unconfigured so the sidebar never renders empty.
+const TOP_OFFERS_FALLBACK: FeaturedOffer[] = [
+  { slug: "sofi-checking-savings", headline: "Earn 4.00% APY", sub: "No monthly fees. FDIC insured.", cta: "Open Account" },
+  { slug: "fidelity", headline: "$0 Commission Trades", sub: "Plus industry-best research.", cta: "Start Investing" },
+  { slug: "chase-total-checking", headline: "$300 Welcome Bonus", sub: "With qualifying direct deposit.", cta: "See Offer" },
+];
+const CURRENT_RATES_FALLBACK: RateRow[] = [
   { label: "High-Yield Savings", value: "4.15%", up: true },
   { label: "12-Month CD", value: "3.75%", up: true },
   { label: "24-Month CD", value: "3.75%", up: false },
   { label: "30-Year Mortgage", value: "7.22%", up: false },
 ];
-
-const SAVINGS_COMPARE = [
-  { slug: "sofi-checking-savings", name: "SoFi Savings", apy: "4.00%", bonus: "$400" },
-  { slug: "marcus-high-yield", name: "Marcus", apy: "3.50%", bonus: "None" },
-  { slug: "ally-online-savings", name: "Ally Savings", apy: "3.10%", bonus: "None" },
-  { slug: "chase-savings", name: "Chase Savings", apy: "0.01%", bonus: "$300" },
+const SAVINGS_COMPARE_FALLBACK: CompareRow[] = [
+  { slug: "sofi-checking-savings", name: "SoFi Savings", value: "4.00%", bonus: "$400" },
+  { slug: "marcus-high-yield", name: "Marcus", value: "3.50%", bonus: "None" },
+  { slug: "ally-online-savings", name: "Ally Savings", value: "3.10%", bonus: "None" },
+  { slug: "chase-savings", name: "Chase Savings", value: "0.01%", bonus: "$300" },
+];
+const INVESTING_COMPARE_FALLBACK: CompareRow[] = [
+  { slug: "fidelity", name: "Fidelity", value: "$0", bonus: "None" },
+  { slug: "robinhood", name: "Robinhood", value: "$0", bonus: "1% Match" },
+  { slug: "betterment", name: "Betterment", value: "0.25%", bonus: "None" },
+  { slug: "charles-schwab", name: "Schwab", value: "$0", bonus: "None" },
 ];
 
-const INVESTING_COMPARE = [
-  { slug: "fidelity", name: "Fidelity", fees: "$0", bonus: "None" },
-  { slug: "robinhood", name: "Robinhood", fees: "$0", bonus: "1% Match" },
-  { slug: "betterment", name: "Betterment", fees: "0.25%", bonus: "None" },
-  { slug: "charles-schwab", name: "Schwab", fees: "$0", bonus: "None" },
-];
+function useSidebarData() {
+  const [rates, setRates] = useState<RateRow[]>(CURRENT_RATES_FALLBACK);
+  const [offers, setOffers] = useState<FeaturedOffer[]>(TOP_OFFERS_FALLBACK);
+  const [savings, setSavings] = useState<CompareRow[]>(SAVINGS_COMPARE_FALLBACK);
+  const [investing, setInvesting] = useState<CompareRow[]>(INVESTING_COMPARE_FALLBACK);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+    let cancelled = false;
+
+    (async () => {
+      const [r, o, c] = await Promise.all([
+        supabase.from("sidebar_rates").select("label, value, trend_up, display_order").order("display_order"),
+        supabase.from("sidebar_featured_offers").select("product_slug, headline, sub, cta, display_order").order("display_order"),
+        supabase.from("sidebar_compare_rows").select("category, product_slug, display_name, primary_value, bonus, display_order").order("display_order"),
+      ]);
+      if (cancelled) return;
+
+      if (r.data?.length) {
+        setRates(r.data.map((row: any) => ({ label: row.label, value: row.value, up: row.trend_up })));
+      }
+      if (o.data?.length) {
+        setOffers(o.data.map((row: any) => ({ slug: row.product_slug, headline: row.headline, sub: row.sub, cta: row.cta })));
+      }
+      if (c.data?.length) {
+        const toRow = (row: any): CompareRow => ({
+          slug: row.product_slug,
+          name: row.display_name,
+          value: row.primary_value,
+          bonus: row.bonus,
+        });
+        const sv = c.data.filter((row: any) => row.category === "savings").map(toRow);
+        const iv = c.data.filter((row: any) => row.category === "investing").map(toRow);
+        if (sv.length) setSavings(sv);
+        if (iv.length) setInvesting(iv);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return { rates, offers, savings, investing };
+}
 
 // Editorial sidebar block: white card, green uppercase label at top, thin green rule, content below.
 // Mirrors the clean Guides card aesthetic: no black/green header fills.
@@ -70,7 +106,7 @@ function SidebarBlock({
         {action && actionTo && (
           <Link
             to={actionTo}
-            className="text-[9px] sm:text-[10px] text-[#5a5a5a] hover:text-[#0e4d45] transition-colors whitespace-nowrap uppercase tracking-wider font-semibold"
+            className="text-[9px] sm:text-[10px] text-[#3f3f3f] hover:text-[#0e4d45] transition-colors whitespace-nowrap uppercase tracking-wider font-semibold"
           >
             {action} &rarr;
           </Link>
@@ -83,6 +119,7 @@ function SidebarBlock({
 
 export function Sidebar() {
   const navigate = useNavigate();
+  const { rates, offers, savings, investing } = useSidebarData();
   const goToProduct = (slug: string) => () =>
     navigate({ to: "/product/$slug", params: { slug } });
   const onRowKey = (slug: string) => (e: React.KeyboardEvent<HTMLTableRowElement>) => {
@@ -96,7 +133,7 @@ export function Sidebar() {
       {/* Current Rates */}
       <SidebarBlock title="Current Rates" action="Compare" actionTo="/bank-accounts">
         <div className="divide-y divide-[#e4d9cf]">
-          {CURRENT_RATES.map((r) => (
+          {rates.map((r) => (
             <div
               key={r.label}
               className="flex items-center justify-between text-[11px] sm:text-[12px] py-1.5 first:pt-0 last:pb-0"
@@ -121,7 +158,7 @@ export function Sidebar() {
       {/* Featured Offers */}
       <SidebarBlock title="Featured Offers">
         <div className="space-y-2.5 sm:space-y-3">
-          {TOP_OFFERS.map((o, idx) => {
+          {offers.map((o, idx) => {
             const p = products.find((x) => x.slug === o.slug);
             if (!p) return null;
             const affiliateUrl = productPartnerLink(p.slug, p.url, {
@@ -142,13 +179,13 @@ export function Sidebar() {
                 <div className="flex items-start gap-2">
                   <ProductLogo p={p} size={30} />
                   <div className="flex-1 min-w-0">
-                    <div className="text-[9px] sm:text-[10px] text-[#5a5a5a] uppercase tracking-wider">
+                    <div className="text-[9px] sm:text-[10px] text-[#3f3f3f] uppercase tracking-wider">
                       {p.provider}
                     </div>
                     <div className="font-serif text-[13px] sm:text-sm font-bold text-black leading-tight group-hover:text-[#0e4d45] transition-colors">
                       {o.headline}
                     </div>
-                    <div className="text-[10px] sm:text-[11px] text-[#5a5a5a] mt-0.5 leading-snug">
+                    <div className="text-[10px] sm:text-[11px] text-[#3f3f3f] mt-0.5 leading-snug">
                       {o.sub}
                     </div>
                     <div className="mt-1.5">
@@ -182,7 +219,7 @@ export function Sidebar() {
               </tr>
             </thead>
             <tbody>
-              {SAVINGS_COMPARE.map((row) => (
+              {savings.map((row) => (
                 <tr
                   key={row.name}
                   role="link"
@@ -193,7 +230,7 @@ export function Sidebar() {
                 >
                   <td className="py-1.5 text-black font-medium pl-3 pr-1 group-hover:text-[#0e4d45] group-active:text-[#0e4d45]">{row.name}</td>
                   <td className="py-1.5 text-right font-serif font-bold text-[#0e4d45] px-1">
-                    {row.apy}
+                    {row.value}
                   </td>
                   <td className="py-1.5 text-right text-[#1a1a1a] pl-1 pr-3">{row.bonus}</td>
                 </tr>
@@ -221,7 +258,7 @@ export function Sidebar() {
               </tr>
             </thead>
             <tbody>
-              {INVESTING_COMPARE.map((row) => (
+              {investing.map((row) => (
                 <tr
                   key={row.name}
                   role="link"
@@ -232,7 +269,7 @@ export function Sidebar() {
                 >
                   <td className="py-1.5 text-black font-medium pl-3 pr-1 group-hover:text-[#0e4d45] group-active:text-[#0e4d45]">{row.name}</td>
                   <td className="py-1.5 text-right font-serif font-bold text-[#0e4d45] px-1">
-                    {row.fees}
+                    {row.value}
                   </td>
                   <td className="py-1.5 text-right text-[#1a1a1a] pl-1 pr-3">{row.bonus}</td>
                 </tr>
@@ -264,7 +301,7 @@ export function Sidebar() {
               <div className="font-serif text-sm sm:text-base font-bold leading-tight mb-1.5 text-black group-hover:text-[#0e4d45] transition-colors">
                 Get up to $300 when you open a SoFi account
               </div>
-              <p className="text-[10px] sm:text-[11px] text-[#5a5a5a] leading-snug mb-2.5">
+              <p className="text-[10px] sm:text-[11px] text-[#3f3f3f] leading-snug mb-2.5">
                 Open a new SoFi Checking and Savings account with qualifying direct deposits.
               </p>
               <span className="inline-block w-full text-center text-[10px] sm:text-[11px] font-semibold bg-[#0e4d45] group-hover:bg-[#0a3832] text-[#fef6f1] rounded-sm px-3 py-2 transition-colors uppercase tracking-wider">
@@ -319,7 +356,7 @@ export function Sidebar() {
         </ul>
       </SidebarBlock>
 
-      <div className="text-[9px] sm:text-[10px] text-[#5a5a5a] leading-snug px-1 italic">
+      <div className="text-[9px] sm:text-[10px] text-[#3f3f3f] leading-snug px-1 italic">
         Advertiser Disclosure: We may be compensated when you click on offer links. This does not
         influence our editorial rankings.
       </div>

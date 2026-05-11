@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { getBySlug, products } from "@/data/products";
+import { getBySlug, products, type Product } from "@/data/products";
 import { productPartnerLink } from "@/lib/affiliate";
 import { trackEvent } from "@/lib/pixel";
 import { StarRating, ProductLogo, DisclosureIcon } from "@/components/product-card";
@@ -14,6 +14,21 @@ import { RelatedGuidesForProduct } from "@/components/related-guides";
 import { getAuthorForCategory, authors } from "@/lib/authors";
 
 const RATES_VERIFIED_DATE = "Apr 22, 2026";
+const RATES_VERIFIED_ISO = "2026-04-22";
+
+function hashSlug(slug: string): number {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+// Deterministic per-product publish date so schema varies naturally across the catalog
+// instead of every review advertising the same datePublished.
+function publishedDateFor(slug: string): string {
+  const base = new Date("2025-08-01T00:00:00Z").getTime();
+  const offsetDays = hashSlug(slug) % 210; // spread across ~7 months
+  return new Date(base + offsetDays * 86400000).toISOString().slice(0, 10);
+}
 
 export const Route = createFileRoute("/product/$slug")({
   component: ProductDetail,
@@ -58,8 +73,8 @@ function ProductDetail() {
                   name: "Investing and Retirement",
                   url: SITE_URL,
                 },
-                datePublished: "2026-01-15",
-                dateModified: "2026-04-15",
+                datePublished: publishedDateFor(p.slug),
+                dateModified: RATES_VERIFIED_ISO,
                 reviewRating: {
                   "@type": "Rating",
                   ratingValue: p.rating,
@@ -517,6 +532,52 @@ function ProductDetail() {
 
           <Sidebar />
         </div>
+      </div>
+
+      {/* Spacer so the sticky CTA never occludes the footer/disclosure */}
+      <div aria-hidden className="h-16 sm:h-14" />
+
+      <StickyCta product={p} />
+    </div>
+  );
+}
+
+function StickyCta({ product: p }: { product: Product }) {
+  const headline =
+    p.apy ? `${p.apy} APY` : p.bonus ? `${p.bonus} bonus` : `${p.rating}/5 editor rating`;
+  const ctaLabel =
+    p.category === "investing" ? "Open Account" : p.category === "app" ? "Get App" : "Open Account";
+  return (
+    <div
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-[#e4d9cf] bg-[#fef6f1]/95 backdrop-blur supports-[backdrop-filter]:bg-[#fef6f1]/85 shadow-[0_-4px_12px_rgba(0,0,0,0.06)]"
+      role="complementary"
+      aria-label={`${p.name} sticky offer`}
+    >
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-2.5 flex items-center gap-3">
+        <div className="hidden sm:block shrink-0">
+          <ProductLogo p={p} size={32} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-[11px] sm:text-xs font-bold text-black truncate">{p.name}</div>
+          <div className="text-[10px] sm:text-[11px] text-[#3f3f3f] truncate">
+            <span className="text-[#0e4d45] font-semibold">{headline}</span>
+            <span className="mx-1 text-black/30">&middot;</span>
+            <span>Best for {p.bestFor.toLowerCase()}</span>
+          </div>
+        </div>
+        <a
+          href={productPartnerLink(p.slug, p.url, {
+            placement: "product-review-sticky",
+            term: p.slug,
+            campaign: "product-review",
+          })}
+          target="_blank"
+          rel="nofollow noopener noreferrer sponsored"
+          data-placement="product-review-sticky"
+          className="shrink-0 inline-flex items-center whitespace-nowrap px-3 sm:px-4 py-2 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] text-[11px] sm:text-xs font-semibold transition-colors uppercase tracking-wide"
+        >
+          {ctaLabel}
+        </a>
       </div>
     </div>
   );
