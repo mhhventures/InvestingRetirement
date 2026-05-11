@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getGuideBySlug, guides, guideHowTos, type GuideProductRow, type GuideSection } from "@/lib/guides-data";
+import { guides, guideHowTos, type GuideProductRow, type GuideSection } from "@/lib/guides-data";
 import { Sidebar } from "@/components/sidebar-offers";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { FtcDisclosure, EditorialStandardsBadge, AuthorByline } from "@/components/eeat";
@@ -24,6 +24,7 @@ function slugifyHeading(s: string) {
 
 export const Route = createFileRoute("/guides/$articleId")({
   loader: async ({ params }) => {
+    const { getGuideBySlug } = await import("@/lib/guides-data");
     const article = getGuideBySlug(params.articleId);
     if (!article) throw notFound();
     return { article };
