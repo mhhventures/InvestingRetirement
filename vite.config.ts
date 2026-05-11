@@ -39,6 +39,7 @@ export default defineConfig({
   build: {
     target: "es2022",
     cssTarget: "chrome111",
+    modulePreload: { polyfill: false },
     rollupOptions: {
       output: {
         manualChunks: (id) => {
