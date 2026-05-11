@@ -1,10 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useSeo, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 export const Route = createFileRoute("/disclosure")({
   component: Disclosure,
 });
 
 function Disclosure() {
+  useSeo({
+    title: "Advertiser Disclosure — How We Make Money | Investing and Retirement",
+    description:
+      "How Investing and Retirement is compensated, what affiliate relationships can and cannot influence, and how our editorial rankings stay independent.",
+    path: "/disclosure",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Advertiser Disclosure",
+      url: `${SITE_URL}/disclosure`,
+      description:
+        "Full advertiser disclosure for Investing and Retirement: affiliate compensation, editorial independence, and ranking methodology.",
+      inLanguage: "en-US",
+      isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+      lastReviewed: "2026-01-01",
+    },
+  });
   return (
     <div className="bg-[#fef6f1]">
       {/* Masthead */}

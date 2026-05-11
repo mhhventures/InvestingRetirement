@@ -1,10 +1,33 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useSeo, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
   component: Privacy,
 });
 
 function Privacy() {
+  useSeo({
+    title: "Privacy Policy — How We Handle Your Data | Investing and Retirement",
+    description:
+      "How Investing and Retirement Media LLC collects, uses, and protects your information. Newsletter data, cookies, affiliate tracking, CCPA and GDPR rights.",
+    path: "/privacy",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Privacy Policy",
+      url: `${SITE_URL}/privacy`,
+      description:
+        "Privacy policy for Investing and Retirement: what we collect, how we use it, third-party sharing, cookies, and your rights.",
+      inLanguage: "en-US",
+      isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+      lastReviewed: "2026-01-01",
+      publisher: {
+        "@type": "Organization",
+        name: "Investing and Retirement Media LLC",
+        url: SITE_URL,
+      },
+    },
+  });
   return (
     <div className="bg-[#fef6f1]">
       {/* Masthead */}
