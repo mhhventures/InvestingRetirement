@@ -6,12 +6,33 @@ export const Route = createFileRoute("/newsletter")({
   component: NewsletterPage,
 });
 
+const EDITIONS = [
+  {
+    day: "Tuesday",
+    sub: "r/Trading",
+    title: "The Trading Edition",
+    desc: "Risk frameworks, post-mortems from the week's tape, and honest takes on tools the self-directed crowd actually uses. Pulled from the questions and debates driving r/Trading that week.",
+  },
+  {
+    day: "Wednesday",
+    sub: "r/SavingMoney",
+    title: "The Saving Edition",
+    desc: "The week's APY movers, CD specials, checking bonuses, and budget thinking, sourced from bank rate sheets and the real-world questions on r/SavingMoney.",
+  },
+  {
+    day: "Thursday",
+    sub: "r/InvestingForBeginners",
+    title: "The Investing Edition",
+    desc: "Plain-English answers on Roth vs. Traditional, index vs. active, and how to think about your first portfolio. Driven by the questions newer investors are asking on r/InvestingForBeginners.",
+  },
+];
+
 const BLOCKS = [
   {
     n: "01",
     label: "Opening Insight",
     title: "Reddit Question Spotlight",
-    desc: "Each issue leads with a real question pulled from r/InvestingForBeginners, r/Trading, or r/SavingMoney (the kind of question thousands of readers are quietly Googling that week), answered in 150 to 200 words by the research desk.",
+    desc: "Each edition leads with a real question pulled from that day's featured community (the kind thousands of readers are quietly Googling that week), answered in 150 to 200 words by the research desk.",
   },
   {
     n: "02",
@@ -23,7 +44,7 @@ const BLOCKS = [
     n: "03",
     label: "Tool & App Spotlight",
     title: "Finance apps worth your attention",
-    desc: "A weekly discovery of the finance apps, brokerages, and bank accounts the desk believes are worth using to build wealth faster, surfaced in a side-by-side table with fees, minimums, and the one or two details that usually get buried.",
+    desc: "A discovery of the finance apps, brokerages, and bank accounts the desk believes are worth using to build wealth faster, surfaced in a side-by-side table with fees, minimums, and the one or two details that usually get buried.",
   },
   {
     n: "04",
@@ -35,7 +56,7 @@ const BLOCKS = [
     n: "05",
     label: "Community",
     title: "Join the conversation",
-    desc: "Every issue closes with a direct callout to the week's featured subreddit: a specific thread, prompt, or question the desk wants reader input on. The newsletter and the communities feed each other.",
+    desc: "Every edition closes with a direct callout to that day's featured subreddit: a specific thread, prompt, or question the desk wants reader input on. The newsletter and the communities feed each other.",
   },
 ];
 
@@ -65,19 +86,19 @@ const PROMISES: { head: string; body: React.ReactNode }[] = [
   },
   {
     head: "Built around the value of the read.",
-    body: "Every issue is written to be worth the two minutes it takes. If a block isn't useful that week, we cut it. Readers stay because the content earns it, not because we buried the unsubscribe link.",
+    body: "Every edition is written to be worth the two minutes it takes. If a block isn't useful that week, we cut it. Readers stay because the content earns it, not because we buried the unsubscribe link.",
   },
   {
     head: "Double opt-in, unsubscribe in one click.",
-    body: "You confirm by email before the first issue ever sends. One click from any issue removes you from the list permanently.",
+    body: "You confirm by email before the first edition ever sends. One click from any issue removes you from the list permanently.",
   },
 ];
 
 function NewsletterPage() {
   useSeo({
-    title: "The I&R Market Brief: Where Reddit's Best Finance Conversations Meet Curated Insights",
+    title: "The I&R Market Brief: Three Editions a Week from Reddit's Best Finance Conversations",
     description:
-      "A free Thursday newsletter from the Investing & Retirement Research Desk. Reddit community questions answered, weekly market data, tool comparisons, and headlines for savers, traders, and retirement-account holders.",
+      "A free newsletter from the Investing & Retirement Research Desk. Tuesdays for r/Trading, Wednesdays for r/SavingMoney, Thursdays for r/InvestingForBeginners. Community questions answered, weekly market data, tool comparisons, and headlines.",
     path: "/newsletter",
     jsonLd: {
       "@context": "https://schema.org",
@@ -92,19 +113,19 @@ function NewsletterPage() {
       <div className="max-w-3xl mx-auto px-4 py-10 sm:py-14">
         <div className="mb-8">
           <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-[#0e4d45] uppercase mb-3">
-            The I&amp;R Market Brief &middot; Every Thursday
+            The I&amp;R Market Brief &middot; Tuesday, Wednesday, Thursday
           </p>
           <h1 className="font-serif text-3xl sm:text-5xl leading-[1.1] text-black mb-4">
             Where the best finance conversations on Reddit meet the work of a research desk.
           </h1>
           <p className="text-base sm:text-lg text-[#1a1a1a] leading-relaxed">
-            One email every Thursday from the Investing &amp; Retirement
-            Research Desk. We pull the week&apos;s most useful question from
-            our three communities &mdash; r/InvestingForBeginners, r/Trading,
-            and r/SavingMoney &mdash; answer it with primary-source data, then
-            hand you the market numbers, tool comparisons, and headlines that
-            actually affect your money. Factual, bulleted, scannable. No stock
-            tips, no hype.
+            Three editions a week from the Investing &amp; Retirement Research
+            Desk. Tuesdays we cover r/Trading, Wednesdays r/SavingMoney, and
+            Thursdays r/InvestingForBeginners. Each edition pulls the week&apos;s
+            most useful question from its community, answers it with
+            primary-source data, then hands you the market numbers, tool
+            comparisons, and headlines that actually affect your money.
+            Factual, bulleted, scannable. No stock tips, no hype.
           </p>
         </div>
 
@@ -112,10 +133,40 @@ function NewsletterPage() {
 
         <section className="mt-12">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-2">
-            Inside every Thursday edition
+            Three editions, three communities
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black mb-5">
-            Five blocks. Same structure, every week.
+            A day of the week for each kind of reader.
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-3">
+            {EDITIONS.map((e) => (
+              <div
+                key={e.day}
+                className="bg-white border border-[#e4d9cf] border-t-[3px] border-t-[#0e4d45] rounded-sm p-4 sm:p-5"
+              >
+                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-1">
+                  {e.day}
+                </div>
+                <div className="font-serif text-lg font-bold text-black leading-tight mb-1">
+                  {e.title}
+                </div>
+                <div className="text-[12px] font-semibold text-[#1a1a1a] mb-2">
+                  Featuring {e.sub}
+                </div>
+                <p className="text-[13px] text-[#1a1a1a] leading-relaxed">
+                  {e.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0e4d45] mb-2">
+            Inside every edition
+          </div>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black mb-5">
+            Five blocks. Same structure, every edition.
           </h2>
           <div className="space-y-3">
             {BLOCKS.map((b) => (
@@ -153,9 +204,9 @@ function NewsletterPage() {
             The I&amp;R Research Desk is the editorial team behind this site
             and the three investing communities owned by our parent company,
             MHH Ventures. We grade the accounts, test the apps, and read the
-            Fed releases so you don&apos;t have to. Most issues are signed by
-            the desk collectively; roughly every sixth is a personal note from
-            our founder, Michael Hewitt.
+            Fed releases so you don&apos;t have to. Most editions are signed
+            by the desk collectively; roughly every sixth is a personal note
+            from our founder, Michael Hewitt.
           </p>
           <p className="text-[14px] sm:text-[15px] text-[#1a1a1a] leading-relaxed">
             The style is modeled on research publications &mdash; bulleted,
@@ -170,7 +221,7 @@ function NewsletterPage() {
             Who it&apos;s for
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black mb-5">
-            Three kinds of reader.
+            Three kinds of reader. One for each edition.
           </h2>
           <div className="grid sm:grid-cols-3 gap-3">
             {AUDIENCE.map((a) => (
@@ -215,27 +266,36 @@ function NewsletterPage() {
             The ecosystem
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold mb-3">
-            A newsletter, three communities, one research desk.
+            Three editions, three communities, one research desk.
           </h2>
           <p className="text-[14px] sm:text-[15px] leading-relaxed mb-4 text-[#fef6f1]/90">
-            The I&amp;R Market Brief is the Thursday voice of a larger
+            The I&amp;R Market Brief is the mid-week voice of a larger
             ecosystem: our investing site and three active subreddit
             communities where the questions, debates, and real experiences
-            happen. Every issue pulls from those communities and sends
-            readers back to them.
+            happen. Each edition pulls from its community and sends readers
+            back to it.
           </p>
           <div className="grid sm:grid-cols-3 gap-3 text-[13px]">
             <div className="bg-[#fef6f1]/10 rounded-sm p-3">
-              <div className="font-serif font-bold mb-0.5">r/InvestingForBeginners</div>
-              <div className="text-[#fef6f1]/70 text-[12px]">First portfolios, IRAs, index basics.</div>
-            </div>
-            <div className="bg-[#fef6f1]/10 rounded-sm p-3">
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#fef6f1]/70 mb-1">
+                Tuesday
+              </div>
               <div className="font-serif font-bold mb-0.5">r/Trading</div>
               <div className="text-[#fef6f1]/70 text-[12px]">Risk, psychology, and real post-mortems.</div>
             </div>
             <div className="bg-[#fef6f1]/10 rounded-sm p-3">
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#fef6f1]/70 mb-1">
+                Wednesday
+              </div>
               <div className="font-serif font-bold mb-0.5">r/SavingMoney</div>
               <div className="text-[#fef6f1]/70 text-[12px]">HYSAs, budgets, bills, and bonuses.</div>
+            </div>
+            <div className="bg-[#fef6f1]/10 rounded-sm p-3">
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#fef6f1]/70 mb-1">
+                Thursday
+              </div>
+              <div className="font-serif font-bold mb-0.5">r/InvestingForBeginners</div>
+              <div className="text-[#fef6f1]/70 text-[12px]">First portfolios, IRAs, index basics.</div>
             </div>
           </div>
         </section>
@@ -245,8 +305,8 @@ function NewsletterPage() {
         </div>
 
         <p className="text-[11px] text-[#3f3f3f] text-center mt-4">
-          Already subscribed? Thank you. Forward any Thursday edition to a
-          friend who&apos;d find it useful.
+          Already subscribed? Thank you. Forward any edition to a friend
+          who&apos;d find it useful.
         </p>
       </div>
     </div>
