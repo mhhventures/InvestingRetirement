@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { authors } from "@/lib/authors";
-import { guides } from "@/lib/guides-data";
+import { guidesIndex as guides } from "@/lib/guides-index.generated";
 import { useSeo, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/authors/$authorSlug")({

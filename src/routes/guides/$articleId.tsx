@@ -13,6 +13,7 @@ import {
   BackToTop,
   GuideFeedback,
 } from "@/components/guide-reading";
+import { linkifyProductNames, useLinkContext } from "@/components/inline-product-links";
 
 function slugifyHeading(s: string) {
   return s
@@ -31,6 +32,7 @@ export const Route = createFileRoute("/guides/$articleId")({
 });
 
 function GuideArticlePage() {
+  const linkContext = useLinkContext();
   const { article } = Route.useLoaderData();
   const articleAuthor = getAuthorForCategory(article.category);
   const GUIDE_PUBLISHED_ISO = "2026-01-15T00:00:00Z";
@@ -177,7 +179,7 @@ function GuideArticlePage() {
 
             <section className="bg-white border border-[#e4d9cf] rounded p-4 sm:p-6 mb-3">
               <p className="text-base sm:text-lg text-black leading-[1.75] font-serif first-letter:font-serif first-letter:font-bold first-letter:text-5xl sm:first-letter:text-6xl first-letter:leading-none first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:text-[#0e4d45]">
-                {article.intro}
+                {linkifyProductNames(article.intro, linkContext)}
               </p>
             </section>
 
@@ -220,7 +222,7 @@ function GuideArticlePage() {
             )}
 
             {article.sections.map((s, i) => (
-              <SectionBlock key={i} section={s} />
+              <SectionBlock key={i} section={s} linkContext={linkContext} />
             ))}
 
             {article.faqs.length > 0 && (
@@ -303,7 +305,13 @@ function GuideArticlePage() {
   );
 }
 
-function SectionBlock({ section }: { section: GuideSection }) {
+function SectionBlock({
+  section,
+  linkContext,
+}: {
+  section: GuideSection;
+  linkContext: ReturnType<typeof useLinkContext>;
+}) {
   const id = section.heading
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
@@ -322,7 +330,7 @@ function SectionBlock({ section }: { section: GuideSection }) {
           key={i}
           className="text-base sm:text-lg text-black leading-[1.75] mb-4 last:mb-0"
         >
-          {p}
+          {linkifyProductNames(p, linkContext)}
         </p>
       ))}
 

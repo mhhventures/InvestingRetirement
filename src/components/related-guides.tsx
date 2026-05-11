@@ -1,43 +1,13 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import type { Product } from "@/data/products";
-
-type GuideLite = {
-  slug: string;
-  title: string;
-  category: string;
-  readTime: string;
-  description: string;
-  relatedCategory: string;
-};
-
-function useGuides(): GuideLite[] | null {
-  const [guides, setGuides] = useState<GuideLite[] | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    const load = () =>
-      import("@/lib/guides-data").then((m) => {
-        if (!cancelled) setGuides(m.guides);
-      });
-    const w = window as unknown as {
-      requestIdleCallback?: (cb: () => void) => number;
-    };
-    const idle = w.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 200));
-    idle(load);
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-  return guides;
-}
+import { guidesIndex } from "@/lib/guides-index.generated";
 
 /**
  * Cross-links product reviews to relevant guides.
  * Boosts internal linking and helps readers go deeper on topics related to the product.
  */
 export function RelatedGuidesForProduct({ product }: { product: Product }) {
-  const guides = useGuides();
-  if (!guides) return null;
+  const guides = guidesIndex;
 
   const sub = product.subcategory.toLowerCase();
   const cat = product.category;
@@ -133,8 +103,7 @@ export function RelatedGuidesForCategory({
   categoryPath: "/bank-accounts" | "/investing" | "/financial-apps";
   limit?: number;
 }) {
-  const guides = useGuides();
-  if (!guides) return null;
+  const guides = guidesIndex;
 
   const related = guides
     .filter((g) => g.relatedCategory === categoryPath)

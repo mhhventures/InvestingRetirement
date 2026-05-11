@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useMatches } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { guides } from "@/lib/guides-data";
+import { guidesIndex as guides } from "@/lib/guides-index.generated";
 import { useSeo, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/guides")({

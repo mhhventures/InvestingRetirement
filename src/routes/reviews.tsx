@@ -1,21 +1,38 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useMemo } from "react";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/product-card";
 import { CategoryPage } from "@/components/category-page";
 import { RelatedGuidesForCategory } from "@/components/related-guides";
 import { useSeo, SITE_URL, buildItemListSchema } from "@/lib/seo";
 
+type ReviewsSearch = { q?: string; category?: string };
+
 export const Route = createFileRoute("/reviews")({
+  validateSearch: (s: Record<string, unknown>): ReviewsSearch => ({
+    q: typeof s.q === "string" && s.q.trim() ? s.q.trim().slice(0, 80) : undefined,
+    category:
+      typeof s.category === "string" && ["bank", "investing", "app"].includes(s.category)
+        ? s.category
+        : undefined,
+  }),
   component: Reviews,
 });
 
 function Reviews() {
+  const { q = "", category } = Route.useSearch();
+  const navigate = useNavigate({ from: "/reviews" });
+  const filter = category ?? "All";
+  const hasFilter = Boolean(q) || Boolean(category);
+
   useSeo({
     title: "All Financial Product Reviews 2026",
     description:
       "Complete reviews of every bank account, brokerage, and money app we cover. Ratings based on fees, features, and hands-on testing.",
     path: "/reviews",
+    // Filtered / searched variants share the canonical URL and are excluded
+    // from indexing so Google only ranks the clean /reviews page.
+    noindex: hasFilter,
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -35,7 +52,6 @@ function Reviews() {
       }),
     ],
   });
-  const [filter, setFilter] = useState<string>("All");
   const categories = ["All", ...Array.from(new Set(products.map((p) => p.category)))];
   const categoryLabels: Record<string, string> = {
     All: "All Products",
@@ -44,8 +60,20 @@ function Reviews() {
     app: "Financial Apps",
   };
 
-  const filtered =
-    filter === "All" ? products : products.filter((p) => p.category === filter);
+  const setFilter = (cat: string) =>
+    navigate({ search: (prev) => ({ ...prev, category: cat === "All" ? undefined : cat }) });
+  const setQuery = (value: string) =>
+    navigate({ search: (prev) => ({ ...prev, q: value.trim() ? value : undefined }) });
+
+  const filtered = useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    return products.filter((p) => {
+      if (category && p.category !== category) return false;
+      if (!needle) return true;
+      const hay = `${p.name} ${p.provider} ${p.subcategory} ${p.tagline} ${p.bestFor}`.toLowerCase();
+      return hay.includes(needle);
+    });
+  }, [q, category]);
 
   return (
     <CategoryPage
@@ -61,6 +89,17 @@ function Reviews() {
       <p className="mb-5 text-sm text-[#1a1a1a] leading-relaxed">
         Every financial product our editors have tested, including bank accounts, brokerages, robo-advisors, crypto exchanges, and money apps. Filter by category below, or scroll for how we rank.
       </p>
+      <div className="mb-3">
+        <label htmlFor="reviews-search" className="sr-only">Search reviews</label>
+        <input
+          id="reviews-search"
+          type="search"
+          value={q}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search reviews by name, provider, or category"
+          className="w-full sm:max-w-md px-3 py-2 text-sm rounded-sm border border-[#e4d9cf] bg-white text-black placeholder:text-[#3f3f3f] focus:border-[#0e4d45] focus:outline-none focus:ring-2 focus:ring-[#0e4d45]/20"
+        />
+      </div>
       <div className="flex flex-wrap gap-1.5 mb-4">
         {categories.map((cat) => (
           <button
@@ -76,11 +115,26 @@ function Reviews() {
           </button>
         ))}
       </div>
-      <div className="grid sm:grid-cols-2 gap-3">
-        {filtered.map((p, i) => (
-          <ProductCard key={p.slug} p={p} rank={i + 1} />
-        ))}
-      </div>
+      {filtered.length === 0 ? (
+        <div className="border border-[#e4d9cf] bg-white rounded-sm p-6 text-center">
+          <p className="text-sm text-[#1a1a1a]">
+            No reviews match <strong>&ldquo;{q}&rdquo;</strong>
+            {category ? ` in ${categoryLabels[category] || category}` : ""}.
+          </p>
+          <button
+            onClick={() => navigate({ search: {} })}
+            className="mt-2 text-xs font-semibold uppercase tracking-wider text-[#0e4d45] hover:underline"
+          >
+            Clear filters
+          </button>
+        </div>
+      ) : (
+        <div className="grid sm:grid-cols-2 gap-3">
+          {filtered.map((p, i) => (
+            <ProductCard key={p.slug} p={p} rank={i + 1} />
+          ))}
+        </div>
+      )}
       {filter !== "All" && (
         <div className="mt-6">
           <RelatedGuidesForCategory

@@ -24,6 +24,7 @@ export type GtmEventName =
   | "deposit_match_result_view"
   | "guide_read_milestone"
   | "guide_feedback"
+  | "review_feedback"
   | "faq_expand"
   | "state_selector_change"
   | "rate_table_sort"
@@ -71,6 +72,7 @@ const PERSISTED_EVENTS = new Set<GtmEventName>([
   "deposit_match_submit",
   "newsletter_signup_success",
   "guide_feedback",
+  "review_feedback",
   "share",
   "click_outbound",
 ]);
