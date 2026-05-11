@@ -975,7 +975,7 @@ export const products: Product[] = [
     logoText: "E*TR",
     color: "#6c2fb3",
     bestFor: "Investors who want banking + brokerage in one place",
-    url: "https://us.etrade.com/bank/max-rate-checking",
+    url: "https://us.etrade.com/bank",
   },
   {
     slug: "axos-rewards-checking",

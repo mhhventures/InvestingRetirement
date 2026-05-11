@@ -26,8 +26,9 @@ const PRODUCT_TO_PARTNER: Record<string, [string, string]> = {
   "amex-rewards-checking": ["amex", "amex-rewards-checking"],
   "axos-high-yield-savings": ["axos", "axos-one-savings"],
   "axos-rewards-checking": ["axos", "axos-rewards-checking"],
-  "etrade-checking": ["etrade", "etrade-max-rate-checking"],
-  "etrade-invest": ["etrade", "etrade-invest"],
+  // E*TRADE links skip the partner subdomain (see productPartnerLink below)
+  // because etrade.investingandretirement.com has been returning intermittent
+  // 403s from Vercel's edge for some visitors. Direct-link with UTMs instead.
   "upgrade-rewards-checking": ["upgrade", "upgrade-rewards-checking"],
   "upgrade-app": ["upgrade", "upgrade-credit"],
   "marcus-high-yield": ["marcus", "marcus-high-yield-savings"],
