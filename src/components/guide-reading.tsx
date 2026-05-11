@@ -8,11 +8,14 @@ export function ReadingProgressBar({ guideSlug }: { guideSlug?: string } = {}) {
   useEffect(() => {
     let ticking = false;
     let lastInt = -1;
+    let total = 0;
+    function recalcTotal() {
+      const h = document.documentElement;
+      total = h.scrollHeight - h.clientHeight;
+    }
     function measure() {
       ticking = false;
-      const h = document.documentElement;
-      const total = h.scrollHeight - h.clientHeight;
-      const p = total > 0 ? (h.scrollTop / total) * 100 : 0;
+      const p = total > 0 ? (window.scrollY / total) * 100 : 0;
       const rounded = Math.round(p);
       if (rounded !== lastInt) {
         lastInt = rounded;
@@ -35,12 +38,17 @@ export function ReadingProgressBar({ guideSlug }: { guideSlug?: string } = {}) {
       ticking = true;
       requestAnimationFrame(measure);
     }
+    function onResize() {
+      recalcTotal();
+      schedule();
+    }
+    recalcTotal();
     schedule();
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
     return () => {
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("resize", onResize);
     };
   }, [guideSlug]);
   return (

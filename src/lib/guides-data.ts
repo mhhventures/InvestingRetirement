@@ -1778,7 +1778,7 @@ export const guides: GuideArticle[] = [
           "Set autopay on every card and loan. At minimum the minimum payment.",
           "Keep all old cards open, even those with no balance (do not close them).",
           "Avoid applying for new credit for at least 90 days. Each hard pull costs 5-10 points short-term.",
-          "Check your score monthly via Credit Karma or your bank's free tool.",
+          "Check your score monthly with SoFi Free Credit Score Reporting, Credit Karma, or your bank's free tool. SoFi Free Credit Score Reporting bundles a weekly score refresh with spending and net-worth tracking; Credit Karma pulls VantageScore from two bureaus.",
         ],
       },
       {

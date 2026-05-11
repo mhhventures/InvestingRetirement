@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getGuideBySlug, guides, guideHowTos, type GuideProductRow, type GuideSection } from "@/lib/guides-data";
+import { type GuideProductRow, type GuideSection } from "@/lib/guides-data";
+import { guidesIndex } from "@/lib/guides-index.generated";
 import { Sidebar } from "@/components/sidebar-offers";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import { FtcDisclosure, EditorialStandardsBadge, AuthorByline } from "@/components/eeat";
@@ -24,20 +25,20 @@ function slugifyHeading(s: string) {
 
 export const Route = createFileRoute("/guides/$articleId")({
   loader: async ({ params }) => {
+    const { getGuideBySlug, guideHowTos } = await import("@/lib/guides-data");
     const article = getGuideBySlug(params.articleId);
     if (!article) throw notFound();
-    return { article };
+    return { article, howTo: guideHowTos[article.slug] ?? null };
   },
   component: GuideArticlePage,
 });
 
 function GuideArticlePage() {
   const linkContext = useLinkContext();
-  const { article } = Route.useLoaderData();
+  const { article, howTo } = Route.useLoaderData();
   const articleAuthor = getAuthorForCategory(article.category);
   const GUIDE_PUBLISHED_ISO = "2026-01-15T00:00:00Z";
   const GUIDE_MODIFIED_ISO = "2026-04-15T00:00:00Z";
-  const howTo = guideHowTos[article.slug];
 
   useSeo({
     title: article.title,
@@ -119,7 +120,7 @@ function GuideArticlePage() {
 
   const author = articleAuthor;
   const reviewer = authors["editorial-team"];
-  const related = guides.filter((g) => g.slug !== article.slug && g.category === article.category).slice(0, 4);
+  const related = guidesIndex.filter((g) => g.slug !== article.slug && g.category === article.category).slice(0, 4);
 
   const tocHeadings = [
     ...(howTo ? [{ id: "how-to", label: howTo.name }] : []),

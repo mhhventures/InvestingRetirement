@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useSeo, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   component: About,
@@ -35,6 +36,25 @@ const stats = [
 ];
 
 function About() {
+  useSeo({
+    title: "About Us — Investing and Retirement",
+    description:
+      "Meet the editorial team behind Investing and Retirement. How we test bank accounts, investing platforms, and money apps — and why our rankings stay independent.",
+    path: "/about",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: "About Investing and Retirement",
+      url: `${SITE_URL}/about`,
+      inLanguage: "en-US",
+      isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+      publisher: {
+        "@type": "Organization",
+        name: "Investing and Retirement Media LLC",
+        url: SITE_URL,
+      },
+    },
+  });
   return (
     <div className="bg-[#fef6f1]">
       {/* Masthead */}

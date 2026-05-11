@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { useSeo, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 const FAQS = [
   {
@@ -147,6 +148,26 @@ function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
 }
 
 function FaqPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    url: `${SITE_URL}/faq`,
+    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+    mainEntity: FAQS.flatMap((cat) =>
+      cat.items.map((it) => ({
+        "@type": "Question",
+        name: it.q,
+        acceptedAnswer: { "@type": "Answer", text: it.a },
+      })),
+    ),
+  };
+  useSeo({
+    title: "Frequently Asked Questions | Investing and Retirement",
+    description:
+      "Answers to common questions about Investing and Retirement: editorial independence, review methodology, affiliate tracking, and reader corrections.",
+    path: "/faq",
+    jsonLd: faqJsonLd,
+  });
   const [openId, setOpenId] = useState<string | null>("About the Site-0");
 
   const toggle = (id: string) => setOpenId((prev) => (prev === id ? null : id));

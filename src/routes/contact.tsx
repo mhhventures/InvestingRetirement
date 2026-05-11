@@ -1,11 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { useSeo, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
 function Contact() {
+  useSeo({
+    title: "Contact Us | Investing and Retirement",
+    description:
+      "Have a question about a product review, a correction to flag, or a press inquiry? Get in touch with the Investing and Retirement editorial team.",
+    path: "/contact",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: "Contact Investing and Retirement",
+      url: `${SITE_URL}/contact`,
+      inLanguage: "en-US",
+      isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+    },
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
