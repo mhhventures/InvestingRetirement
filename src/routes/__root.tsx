@@ -27,13 +27,16 @@ function Header() {
         <div className="max-w-6xl mx-auto px-2 sm:px-4 py-2.5 sm:py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img
-              src="https://cdn.shipper.now/image/users/cmo93re2q001fjo04arbwa90b/1776908612379-yjlz3q6frc-IandR_Horizontal_RGB_Transparent_Black_PNG.png"
+              src="/brand/logo-400.webp"
+              srcSet="/brand/logo-400.webp 400w, /brand/logo-800.webp 800w"
+              sizes="200px"
               alt="Investing and Retirement"
               className="h-6 sm:h-7 md:h-8 w-auto"
               width="200"
               height="32"
               loading="eager"
               decoding="async"
+              fetchPriority="high"
             />
           </Link>
           <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
@@ -91,7 +94,9 @@ function Footer() {
       <div className="max-w-6xl mx-auto px-3 sm:px-4 py-6 sm:py-10 grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-6 text-sm">
         <div className="col-span-2 md:col-span-2">
           <img
-            src="https://cdn.shipper.now/image/users/cmo93re2q001fjo04arbwa90b/1776908612379-yjlz3q6frc-IandR_Horizontal_RGB_Transparent_Black_PNG.png"
+            src="/brand/logo-400.webp"
+            srcSet="/brand/logo-400.webp 400w, /brand/logo-800.webp 800w"
+            sizes="200px"
             alt="Investing and Retirement"
             className="h-6 sm:h-7 w-auto mb-2 sm:mb-3 invert"
             width="200"
