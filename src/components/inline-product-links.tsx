@@ -1,7 +1,9 @@
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { products } from "@/data/products";
+import { products, type Product } from "@/data/products";
 import { guidesIndex } from "@/lib/guides-index.generated";
+import { ProductPreviewModal } from "@/components/product-card";
+import { pushEvent } from "@/lib/gtm";
 
 // Context tracks which product names / guide phrases have already been linked
 // on the page, so we don't hyperlink "SoFi" or "emergency fund" a dozen times.
@@ -52,6 +54,23 @@ const GUIDE_PHRASES: Array<{ phrase: string; slug: string }> = [
   { phrase: "Options 101", slug: "options-101" },
 ];
 
+// Product names that collide with common English words or first names.
+// For these we require the match to use the exact canonical casing so we
+// don't hyperlink "current" (the adjective) or "Albert" (a person's name).
+const CASE_SENSITIVE_PRODUCT_NAMES = new Set<string>([
+  "Current",
+  "Albert",
+  "Dave",
+  "Possible Finance",
+  "Gemini",
+  "Kraken",
+  "Chime Checking",
+  "Chime High Yield Savings",
+  "Chime MyPay",
+  "Acorns",
+  "Brigit",
+]);
+
 let cache: {
   pairs: Array<{ phrase: string; target: Target }>;
   regex: RegExp;
@@ -89,6 +108,11 @@ export function linkifyProductNames(
     pairs.map((p) => [p.phrase.toLowerCase(), p.target]),
   );
 
+  // Map from lowercase phrase to the canonical (original) phrase so we can
+  // enforce case-sensitive matching for ambiguous product names.
+  const canonicalByLower = new Map<string, string>();
+  for (const p of pairs) canonicalByLower.set(p.phrase.toLowerCase(), p.phrase);
+
   regex.lastIndex = 0;
   const out: React.ReactNode[] = [];
   let lastIndex = 0;
@@ -96,8 +120,20 @@ export function linkifyProductNames(
 
   while ((match = regex.exec(text)) !== null) {
     const matchedText = match[1];
-    const target = byPhrase.get(matchedText.toLowerCase());
+    const lower = matchedText.toLowerCase();
+    const target = byPhrase.get(lower);
     if (!target) continue;
+
+    const canonical = canonicalByLower.get(lower);
+    if (
+      canonical &&
+      CASE_SENSITIVE_PRODUCT_NAMES.has(canonical) &&
+      matchedText !== canonical
+    ) {
+      // Skip linking: the prose used a different casing (e.g. "current" the
+      // adjective vs the Current banking app), so we leave it as plain text.
+      continue;
+    }
 
     const dedupeKey = `${target.kind}:${target.slug}`;
 
@@ -113,14 +149,12 @@ export function linkifyProductNames(
         "!text-[#0e4d45] font-semibold underline !decoration-[#0e4d45] decoration-2 underline-offset-[3px] hover:!text-[#0a3832]";
       if (target.kind === "product") {
         out.push(
-          <Link
+          <ProductInlineLink
             key={`${dedupeKey}-${match.index}`}
-            to="/product/$slug"
-            params={{ slug: target.slug }}
+            slug={target.slug}
+            label={matchedText}
             className={className}
-          >
-            {matchedText}
-          </Link>,
+          />,
         );
       } else {
         out.push(
@@ -152,4 +186,65 @@ export function linkifyProductNames(
 
 export function useLinkContext(): LinkContext {
   return useMemo(() => ({ seen: new Set<string>() }), []);
+}
+
+// Inline product mention. Clicking opens a micro-review preview modal
+// (same modal used by ProductCard). Keeps the link-like appearance so
+// readers still perceive it as a jump-off point to learn more.
+function ProductInlineLink({
+  slug,
+  label,
+  className,
+}: {
+  slug: string;
+  label: string;
+  className: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const product = useMemo<Product | undefined>(
+    () => products.find((p) => p.slug === slug),
+    [slug],
+  );
+
+  if (!product) {
+    return (
+      <Link to="/product/$slug" params={{ slug }} className={className}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setOpen(true);
+          pushEvent("select_item", {
+            item_id: product.slug,
+            item_name: product.name,
+            item_category: product.category,
+            item_list_name: "guide-inline-link",
+            placement: "guide-inline-link",
+            action: "inline-preview-open",
+          });
+        }}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-label={`${product.name} quick look`}
+        className={`${className} bg-transparent border-0 p-0 m-0 cursor-pointer inline align-baseline`}
+      >
+        {label}
+      </button>
+      {open && (
+        <ProductPreviewModal
+          p={product}
+          listName="guide-inline-link"
+          onClose={() => setOpen(false)}
+        />
+      )}
+    </>
+  );
 }

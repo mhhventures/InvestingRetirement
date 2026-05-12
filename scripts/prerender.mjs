@@ -157,6 +157,23 @@ const GUIDE_PHRASE_MAP = [
   ["Options 101", "options-101"],
 ];
 
+// Product names that collide with common English words or first names.
+// Require exact canonical casing so we don't hyperlink "current" the
+// adjective or "Albert" the first name.
+const CASE_SENSITIVE_PRODUCT_NAMES = new Set([
+  "Current",
+  "Albert",
+  "Dave",
+  "Possible Finance",
+  "Gemini",
+  "Kraken",
+  "Chime Checking",
+  "Chime High Yield Savings",
+  "Chime MyPay",
+  "Acorns",
+  "Brigit",
+]);
+
 let LINKIFY_CATALOG = null;
 function buildLinkifyCatalog(data) {
   if (LINKIFY_CATALOG) return LINKIFY_CATALOG;
@@ -173,7 +190,8 @@ function buildLinkifyCatalog(data) {
   const escaped = pairs.map((p) => p.phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
   const regex = new RegExp(`\\b(${escaped.join("|")})\\b`, "gi");
   const lookup = new Map(pairs.map((p) => [p.phrase.toLowerCase(), p.href]));
-  LINKIFY_CATALOG = { regex, lookup, productNames };
+  const canonicalByLower = new Map(pairs.map((p) => [p.phrase.toLowerCase(), p.phrase]));
+  LINKIFY_CATALOG = { regex, lookup, productNames, canonicalByLower };
   return LINKIFY_CATALOG;
 }
 
@@ -181,17 +199,31 @@ function buildLinkifyCatalog(data) {
 // an HTML string with <a> anchors for the first occurrence of each target.
 // Respects a per-page `seen` set to avoid repeat-linking the same target.
 function linkifyText(text, data, seen, currentSlug) {
-  const { regex, lookup } = buildLinkifyCatalog(data);
+  const { regex, lookup, canonicalByLower } = buildLinkifyCatalog(data);
   regex.lastIndex = 0;
   let out = "";
   let last = 0;
   let m;
   while ((m = regex.exec(text)) !== null) {
     const matched = m[1];
-    const href = lookup.get(matched.toLowerCase());
+    const lower = matched.toLowerCase();
+    const href = lookup.get(lower);
     if (!href) continue;
     // Don't link a guide to itself.
     if (currentSlug && href === `/guides/${currentSlug}`) continue;
+    const canonical = canonicalByLower.get(lower);
+    if (
+      canonical &&
+      CASE_SENSITIVE_PRODUCT_NAMES.has(canonical) &&
+      matched !== canonical
+    ) {
+      // Different casing from the canonical product name — treat as ordinary
+      // English word (e.g. "current" adjective vs the Current banking app).
+      if (m.index > last) out += esc(text.slice(last, m.index));
+      out += esc(matched);
+      last = m.index + matched.length;
+      continue;
+    }
     if (m.index > last) out += esc(text.slice(last, m.index));
     if (seen.has(href)) {
       out += esc(matched);
