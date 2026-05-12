@@ -52,6 +52,23 @@ const GUIDE_PHRASES: Array<{ phrase: string; slug: string }> = [
   { phrase: "Options 101", slug: "options-101" },
 ];
 
+// Product names that collide with common English words or first names.
+// For these we require the match to use the exact canonical casing so we
+// don't hyperlink "current" (the adjective) or "Albert" (a person's name).
+const CASE_SENSITIVE_PRODUCT_NAMES = new Set<string>([
+  "Current",
+  "Albert",
+  "Dave",
+  "Possible Finance",
+  "Gemini",
+  "Kraken",
+  "Chime Checking",
+  "Chime High Yield Savings",
+  "Chime MyPay",
+  "Acorns",
+  "Brigit",
+]);
+
 let cache: {
   pairs: Array<{ phrase: string; target: Target }>;
   regex: RegExp;
@@ -89,6 +106,11 @@ export function linkifyProductNames(
     pairs.map((p) => [p.phrase.toLowerCase(), p.target]),
   );
 
+  // Map from lowercase phrase to the canonical (original) phrase so we can
+  // enforce case-sensitive matching for ambiguous product names.
+  const canonicalByLower = new Map<string, string>();
+  for (const p of pairs) canonicalByLower.set(p.phrase.toLowerCase(), p.phrase);
+
   regex.lastIndex = 0;
   const out: React.ReactNode[] = [];
   let lastIndex = 0;
@@ -96,8 +118,20 @@ export function linkifyProductNames(
 
   while ((match = regex.exec(text)) !== null) {
     const matchedText = match[1];
-    const target = byPhrase.get(matchedText.toLowerCase());
+    const lower = matchedText.toLowerCase();
+    const target = byPhrase.get(lower);
     if (!target) continue;
+
+    const canonical = canonicalByLower.get(lower);
+    if (
+      canonical &&
+      CASE_SENSITIVE_PRODUCT_NAMES.has(canonical) &&
+      matchedText !== canonical
+    ) {
+      // Skip linking: the prose used a different casing (e.g. "current" the
+      // adjective vs the Current banking app), so we leave it as plain text.
+      continue;
+    }
 
     const dedupeKey = `${target.kind}:${target.slug}`;
 
