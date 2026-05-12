@@ -308,11 +308,14 @@ function GuideArticlePage() {
 
 function SectionBlock({
   section,
-  linkContext,
 }: {
   section: GuideSection;
-  linkContext: ReturnType<typeof useLinkContext>;
+  linkContext?: ReturnType<typeof useLinkContext>;
 }) {
+  // Each section gets its own link dedupe scope so every major section can
+  // surface its own inline links rather than having them all consumed by the
+  // first mention at the top of the article.
+  const linkContext = useLinkContext();
   const id = section.heading
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
@@ -343,7 +346,7 @@ function SectionBlock({
               className="flex items-start gap-3 text-base sm:text-lg leading-[1.7]"
             >
               <span className="text-[#0e4d45] font-bold mt-1 shrink-0">&bull;</span>
-              <span className="text-black">{b}</span>
+              <span className="text-black">{linkifyProductNames(b, linkContext)}</span>
             </li>
           ))}
         </ul>
@@ -355,7 +358,7 @@ function SectionBlock({
             {section.callout.title}
           </div>
           <div className="text-base sm:text-lg text-black leading-[1.7] font-serif italic">
-            {section.callout.body}
+            {linkifyProductNames(section.callout.body, linkContext)}
           </div>
         </aside>
       )}

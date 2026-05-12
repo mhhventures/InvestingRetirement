@@ -118,6 +118,93 @@ function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+// Curated phrase -> guide slug map used by the linkifier below. Keep aligned
+// with src/components/inline-product-links.tsx.
+const GUIDE_PHRASE_MAP = [
+  ["emergency funds", "emergency-fund"],
+  ["emergency fund", "emergency-fund"],
+  ["50/30/20 rule", "budget-basics-50-30-20"],
+  ["50/30/20 budget", "budget-basics-50-30-20"],
+  ["Roth IRA", "roth-vs-traditional-ira"],
+  ["Traditional IRA", "roth-vs-traditional-ira"],
+  ["high-yield savings accounts", "best-high-yield-savings-accounts-may-2026"],
+  ["high-yield savings account", "how-to-pick-high-yield-savings"],
+  ["HYSA", "hysa-vs-money-market-vs-cds"],
+  ["money market accounts", "hysa-vs-money-market-vs-cds"],
+  ["money market account", "hysa-vs-money-market-vs-cds"],
+  ["certificates of deposit", "hysa-vs-money-market-vs-cds"],
+  ["index funds", "index-funds-vs-etfs-vs-mutual-funds"],
+  ["mutual funds", "index-funds-vs-etfs-vs-mutual-funds"],
+  ["ETFs", "index-funds-vs-etfs-vs-mutual-funds"],
+  ["portfolio diversification", "portfolio-building"],
+  ["asset allocation", "portfolio-building"],
+  ["rebalancing", "portfolio-improvements"],
+  ["retirement investing", "retirement-investing"],
+  ["20x rule", "retirement-investing"],
+  ["equities trading", "equities-trading"],
+  ["covered calls", "options-strategies"],
+  ["iron condors", "options-strategies"],
+  ["budgeting apps", "best-budgeting-apps-2026"],
+  ["cash advance apps", "best-cash-advance-loan-apps-may-2026"],
+  ["stock picking services", "best-stock-picking-services-may-2026"],
+  ["bank bonuses", "best-bank-bonuses-this-month"],
+  ["investing apps", "5-best-investing-apps-may-2026"],
+  ["crypto apps", "6-best-crypto-apps-2026"],
+  ["stock picking", "best-stock-picking-services-may-2026"],
+  ["subscription drain", "stop-subscription-drain"],
+  ["credit score", "improve-credit-90-days"],
+  ["Investing 101", "investing-101"],
+  ["Options 101", "options-101"],
+];
+
+let LINKIFY_CATALOG = null;
+function buildLinkifyCatalog(data) {
+  if (LINKIFY_CATALOG) return LINKIFY_CATALOG;
+  const guideSlugs = new Set((data.guides || []).map((g) => g.slug));
+  const productNames = new Set((data.products || []).map((p) => p.name));
+  const pairs = [];
+  for (const p of data.products || []) {
+    pairs.push({ phrase: p.name, href: `/product/${p.slug}` });
+  }
+  for (const [phrase, slug] of GUIDE_PHRASE_MAP) {
+    if (guideSlugs.has(slug)) pairs.push({ phrase, href: `/guides/${slug}` });
+  }
+  pairs.sort((a, b) => b.phrase.length - a.phrase.length);
+  const escaped = pairs.map((p) => p.phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const regex = new RegExp(`\\b(${escaped.join("|")})\\b`, "gi");
+  const lookup = new Map(pairs.map((p) => [p.phrase.toLowerCase(), p.href]));
+  LINKIFY_CATALOG = { regex, lookup, productNames };
+  return LINKIFY_CATALOG;
+}
+
+// Linkify a plain text string: find product names and guide phrases, emit
+// an HTML string with <a> anchors for the first occurrence of each target.
+// Respects a per-page `seen` set to avoid repeat-linking the same target.
+function linkifyText(text, data, seen, currentSlug) {
+  const { regex, lookup } = buildLinkifyCatalog(data);
+  regex.lastIndex = 0;
+  let out = "";
+  let last = 0;
+  let m;
+  while ((m = regex.exec(text)) !== null) {
+    const matched = m[1];
+    const href = lookup.get(matched.toLowerCase());
+    if (!href) continue;
+    // Don't link a guide to itself.
+    if (currentSlug && href === `/guides/${currentSlug}`) continue;
+    if (m.index > last) out += esc(text.slice(last, m.index));
+    if (seen.has(href)) {
+      out += esc(matched);
+    } else {
+      seen.add(href);
+      out += `<a href="${href}" class="!text-[#0e4d45] font-semibold underline !decoration-[#0e4d45] decoration-2 underline-offset-[3px] hover:!text-[#0a3832]">${esc(matched)}</a>`;
+    }
+    last = m.index + matched.length;
+  }
+  if (last < text.length) out += esc(text.slice(last));
+  return out || esc(text);
+}
+
 // Clamp a meta description to under 155 chars at a word boundary so
 // Google does not truncate it in search snippets.
 function clampDescription(desc, max = 154) {
@@ -642,13 +729,22 @@ function bodyCopy(meta, data) {
   if (guideMatch) {
     const g = data.guides.find((x) => x.slug === guideMatch[1]);
     if (g) {
-      const intro = g.intro ? `<p>${esc(g.intro)}</p>` : "";
-      const takeaways = (g.keyTakeaways || []).map((x) => `<li>${esc(x)}</li>`).join("");
+      const introSeen = new Set();
+      const intro = g.intro
+        ? `<p>${linkifyText(g.intro, data, introSeen, g.slug)}</p>`
+        : "";
+      const takeawaysSeen = new Set();
+      const takeaways = (g.keyTakeaways || [])
+        .map((x) => `<li>${linkifyText(x, data, takeawaysSeen, g.slug)}</li>`)
+        .join("");
       const sections = (g.sections || [])
         .slice(0, 6)
         .map((s) => {
-          const paras = (s.paragraphs || []).map((x) => `<p>${esc(x)}</p>`).join("");
-          const bullets = (s.bullets || []).map((x) => `<li>${esc(x)}</li>`).join("");
+          // Fresh dedupe per section so each section surfaces its own links.
+          const seen = new Set();
+          const lx = (t) => linkifyText(t, data, seen, g.slug);
+          const paras = (s.paragraphs || []).map((x) => `<p>${lx(x)}</p>`).join("");
+          const bullets = (s.bullets || []).map((x) => `<li>${lx(x)}</li>`).join("");
           return `<h2>${esc(s.heading)}</h2>${paras}${bullets ? `<ul>${bullets}</ul>` : ""}`;
         })
         .join("");
