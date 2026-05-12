@@ -343,7 +343,7 @@ function SectionBlock({
               className="flex items-start gap-3 text-base sm:text-lg leading-[1.7]"
             >
               <span className="text-[#0e4d45] font-bold mt-1 shrink-0">&bull;</span>
-              <span className="text-black">{b}</span>
+              <span className="text-black">{linkifyProductNames(b, linkContext)}</span>
             </li>
           ))}
         </ul>
@@ -355,7 +355,7 @@ function SectionBlock({
             {section.callout.title}
           </div>
           <div className="text-base sm:text-lg text-black leading-[1.7] font-serif italic">
-            {section.callout.body}
+            {linkifyProductNames(section.callout.body, linkContext)}
           </div>
         </aside>
       )}
