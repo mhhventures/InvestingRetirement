@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet, useMatches } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useMatches, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { guidesIndex as guides } from "@/lib/guides-index.generated";
 import { useSeo, SITE_URL } from "@/lib/seo";
@@ -38,6 +38,7 @@ function GuidesIndex() {
   }, []);
 
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const navigate = useNavigate();
 
   const filteredGuides = useMemo(() => {
     if (activeCategory === "All") return guides;
@@ -97,36 +98,53 @@ function GuidesIndex() {
           </div>
         ) : (
           <div className="grid sm:grid-cols-2 gap-4">
-            {filteredGuides.map((g) => (
-              <div
-                key={g.slug}
-                className="bg-white border border-[#e4d9cf] rounded p-5 hover:shadow-md transition-shadow flex flex-col"
-              >
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#0e4d45]">
-                    {g.category}
-                  </span>
-                  <span className="text-[10px] text-gray-500 flex-shrink-0">{g.readTime}</span>
+            {filteredGuides.map((g) => {
+              const goToGuide = () =>
+                navigate({ to: "/guides/$articleId", params: { articleId: g.slug } });
+              return (
+                <div
+                  key={g.slug}
+                  role="link"
+                  tabIndex={0}
+                  onClick={goToGuide}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      goToGuide();
+                    }
+                  }}
+                  className="group bg-white border border-[#e4d9cf] rounded p-5 hover:shadow-md hover:border-[#0e4d45] focus:outline-none focus:ring-2 focus:ring-[#0e4d45]/40 transition-all flex flex-col cursor-pointer"
+                >
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#0e4d45]">
+                      {g.category}
+                    </span>
+                    <span className="text-[10px] text-gray-500 flex-shrink-0">{g.readTime}</span>
+                  </div>
+                  <h3 className="font-serif text-lg font-bold text-black mb-2 group-hover:text-[#0e4d45] transition-colors">
+                    {g.title}
+                  </h3>
+                  <p className="text-xs text-gray-700 leading-relaxed mb-4 flex-1">{g.description}</p>
+                  <div className="flex gap-2">
+                    <Link
+                      to="/guides/$articleId"
+                      params={{ articleId: g.slug }}
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex-1 px-3 py-1.5 rounded bg-[#0e4d45] text-white text-[11px] font-semibold hover:bg-[#0a3832] transition-colors uppercase tracking-wider text-center"
+                    >
+                      Read Guide
+                    </Link>
+                    <Link
+                      to={g.relatedCategory as any}
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex-1 px-3 py-1.5 rounded border border-[#e4d9cf] bg-white text-black text-[11px] font-semibold hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors uppercase tracking-wider text-center"
+                    >
+                      See Products
+                    </Link>
+                  </div>
                 </div>
-                <h3 className="font-serif text-lg font-bold text-black mb-2">{g.title}</h3>
-                <p className="text-xs text-gray-700 leading-relaxed mb-4 flex-1">{g.description}</p>
-                <div className="flex gap-2">
-                  <Link
-                    to="/guides/$articleId"
-                    params={{ articleId: g.slug }}
-                    className="flex-1 px-3 py-1.5 rounded bg-[#0e4d45] text-white text-[11px] font-semibold hover:bg-[#0a3832] transition-colors uppercase tracking-wider text-center"
-                  >
-                    Read Guide
-                  </Link>
-                  <Link
-                    to={g.relatedCategory as any}
-                    className="flex-1 px-3 py-1.5 rounded border border-[#e4d9cf] text-black text-[11px] font-semibold hover:border-[#0e4d45] hover:text-[#0e4d45] transition-colors uppercase tracking-wider text-center"
-                  >
-                    See Products
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
