@@ -101,8 +101,10 @@ function getCatalog() {
 export function linkifyProductNames(
   text: string,
   context: LinkContext,
+  opts?: { currentGuideSlug?: string },
 ): React.ReactNode {
   const { pairs, regex } = getCatalog();
+  const currentGuideSlug = opts?.currentGuideSlug;
   // Match map is case-insensitive, keyed on lowercased phrase.
   const byPhrase = new Map(
     pairs.map((p) => [p.phrase.toLowerCase(), p.target]),
@@ -132,6 +134,30 @@ export function linkifyProductNames(
     ) {
       // Skip linking: the prose used a different casing (e.g. "current" the
       // adjective vs the Current banking app), so we leave it as plain text.
+      continue;
+    }
+
+    // Heuristic: skip "Albert" (and similar single-word personal-name brands)
+    // when the very next token is another capitalized word, which almost
+    // always means it's a proper name like "Albert Einstein", not the app.
+    if (
+      target.kind === "product" &&
+      canonical &&
+      /^[A-Z][a-z]+$/.test(canonical) &&
+      CASE_SENSITIVE_PRODUCT_NAMES.has(canonical)
+    ) {
+      const after = text.slice(match.index + matchedText.length);
+      if (/^\s+[A-Z][a-z]/.test(after)) {
+        continue;
+      }
+    }
+
+    // Don't link to the guide we're currently on.
+    if (
+      target.kind === "guide" &&
+      currentGuideSlug &&
+      target.slug === currentGuideSlug
+    ) {
       continue;
     }
 

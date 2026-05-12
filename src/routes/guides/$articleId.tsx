@@ -180,7 +180,7 @@ function GuideArticlePage() {
 
             <section className="bg-white border border-[#e4d9cf] rounded p-4 sm:p-6 mb-3">
               <p className="text-base sm:text-lg text-black leading-[1.75] font-serif first-letter:font-serif first-letter:font-bold first-letter:text-5xl sm:first-letter:text-6xl first-letter:leading-none first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:text-[#0e4d45]">
-                {linkifyProductNames(article.intro, linkContext)}
+                {linkifyProductNames(article.intro, linkContext, { currentGuideSlug: article.slug })}
               </p>
             </section>
 
@@ -223,7 +223,7 @@ function GuideArticlePage() {
             )}
 
             {article.sections.map((s, i) => (
-              <SectionBlock key={i} section={s} linkContext={linkContext} />
+              <SectionBlock key={i} section={s} currentGuideSlug={article.slug} />
             ))}
 
             {article.faqs.length > 0 && (
@@ -308,14 +308,16 @@ function GuideArticlePage() {
 
 function SectionBlock({
   section,
+  currentGuideSlug,
 }: {
   section: GuideSection;
-  linkContext?: ReturnType<typeof useLinkContext>;
+  currentGuideSlug?: string;
 }) {
   // Each section gets its own link dedupe scope so every major section can
   // surface its own inline links rather than having them all consumed by the
   // first mention at the top of the article.
   const linkContext = useLinkContext();
+  const opts = { currentGuideSlug };
   const id = section.heading
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
@@ -334,7 +336,7 @@ function SectionBlock({
           key={i}
           className="text-base sm:text-lg text-black leading-[1.75] mb-4 last:mb-0"
         >
-          {linkifyProductNames(p, linkContext)}
+          {linkifyProductNames(p, linkContext, opts)}
         </p>
       ))}
 
@@ -346,7 +348,7 @@ function SectionBlock({
               className="flex items-start gap-3 text-base sm:text-lg leading-[1.7]"
             >
               <span className="text-[#0e4d45] font-bold mt-1 shrink-0">&bull;</span>
-              <span className="text-black">{linkifyProductNames(b, linkContext)}</span>
+              <span className="text-black">{linkifyProductNames(b, linkContext, opts)}</span>
             </li>
           ))}
         </ul>
@@ -358,7 +360,7 @@ function SectionBlock({
             {section.callout.title}
           </div>
           <div className="text-base sm:text-lg text-black leading-[1.7] font-serif italic">
-            {linkifyProductNames(section.callout.body, linkContext)}
+            {linkifyProductNames(section.callout.body, linkContext, opts)}
           </div>
         </aside>
       )}
