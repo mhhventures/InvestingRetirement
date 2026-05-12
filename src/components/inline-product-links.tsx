@@ -152,6 +152,21 @@ export function linkifyProductNames(
       }
     }
 
+    // Heuristic: skip "Current" when it's being used as an adjective,
+    // e.g. "Current 12% / Future 22%", "Current yield", "Current APY".
+    // When capitalized at the start of a bullet/sentence the canonical-case
+    // guard isn't enough — look at what follows.
+    if (target.kind === "product" && canonical === "Current") {
+      const after = text.slice(match.index + matchedText.length);
+      if (
+        /^[\s,:;.]*(\d|[A-Z]{2,}|bracket|tax|yield|rate|APY|year|price|market|income|balance|trend|value|level)/.test(
+          after,
+        )
+      ) {
+        continue;
+      }
+    }
+
     // Don't link to the guide we're currently on.
     if (
       target.kind === "guide" &&

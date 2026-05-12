@@ -245,6 +245,20 @@ function linkifyText(text, data, seen, currentSlug) {
         continue;
       }
     }
+    // Skip "Current" when used as an adjective ("Current 12%", "Current yield").
+    if (href.startsWith("/product/") && canonical === "Current") {
+      const after = text.slice(m.index + matched.length);
+      if (
+        /^[\s,:;.]*(\d|[A-Z]{2,}|bracket|tax|yield|rate|APY|year|price|market|income|balance|trend|value|level)/.test(
+          after,
+        )
+      ) {
+        if (m.index > last) out += esc(text.slice(last, m.index));
+        out += esc(matched);
+        last = m.index + matched.length;
+        continue;
+      }
+    }
     if (m.index > last) out += esc(text.slice(last, m.index));
     if (seen.has(href)) {
       out += esc(matched);
