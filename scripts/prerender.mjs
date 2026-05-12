@@ -163,6 +163,8 @@ const GUIDE_PHRASE_MAP = [
 const CASE_SENSITIVE_PRODUCT_NAMES = new Set([
   "Current",
   "Albert",
+  "Upgrade",
+  "Empower",
   "Dave",
   "Possible Finance",
   "Gemini",

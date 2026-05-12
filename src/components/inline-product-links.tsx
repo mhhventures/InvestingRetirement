@@ -60,6 +60,8 @@ const GUIDE_PHRASES: Array<{ phrase: string; slug: string }> = [
 const CASE_SENSITIVE_PRODUCT_NAMES = new Set<string>([
   "Current",
   "Albert",
+  "Upgrade",
+  "Empower",
   "Dave",
   "Possible Finance",
   "Gemini",
