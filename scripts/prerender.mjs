@@ -197,7 +197,7 @@ function linkifyText(text, data, seen, currentSlug) {
       out += esc(matched);
     } else {
       seen.add(href);
-      out += `<a href="${href}" class="text-[#0e4d45] underline decoration-[#0e4d45]/40 hover:decoration-[#0e4d45] underline-offset-2">${esc(matched)}</a>`;
+      out += `<a href="${href}" class="text-[#0e4d45] font-semibold underline decoration-[#0e4d45] decoration-2 underline-offset-2 hover:text-[#0a3832] hover:decoration-[#0a3832]">${esc(matched)}</a>`;
     }
     last = m.index + matched.length;
   }

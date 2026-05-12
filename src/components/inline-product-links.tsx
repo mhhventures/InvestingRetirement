@@ -110,7 +110,7 @@ export function linkifyProductNames(
     } else {
       context.seen.add(dedupeKey);
       const className =
-        "text-[#0e4d45] underline decoration-[#0e4d45]/40 hover:decoration-[#0e4d45] underline-offset-2";
+        "text-[#0e4d45] font-semibold underline decoration-[#0e4d45] decoration-2 underline-offset-2 hover:text-[#0a3832] hover:decoration-[#0a3832]";
       if (target.kind === "product") {
         out.push(
           <Link
