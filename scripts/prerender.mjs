@@ -209,9 +209,14 @@ function linkifyText(text, data, seen, currentSlug) {
     const lower = matched.toLowerCase();
     const href = lookup.get(lower);
     if (!href) continue;
-    // Don't link a guide to itself.
-    if (currentSlug && href === `/guides/${currentSlug}`) continue;
     const canonical = canonicalByLower.get(lower);
+    // Don't link a guide to itself (leave text in place).
+    if (currentSlug && href === `/guides/${currentSlug}`) {
+      if (m.index > last) out += esc(text.slice(last, m.index));
+      out += esc(matched);
+      last = m.index + matched.length;
+      continue;
+    }
     if (
       canonical &&
       CASE_SENSITIVE_PRODUCT_NAMES.has(canonical) &&
@@ -223,6 +228,22 @@ function linkifyText(text, data, seen, currentSlug) {
       out += esc(matched);
       last = m.index + matched.length;
       continue;
+    }
+    // "Albert Einstein" / "Dave Ramsey" style: skip single-word personal-name
+    // brands when immediately followed by another capitalized word.
+    if (
+      href.startsWith("/product/") &&
+      canonical &&
+      /^[A-Z][a-z]+$/.test(canonical) &&
+      CASE_SENSITIVE_PRODUCT_NAMES.has(canonical)
+    ) {
+      const after = text.slice(m.index + matched.length);
+      if (/^\s+[A-Z][a-z]/.test(after)) {
+        if (m.index > last) out += esc(text.slice(last, m.index));
+        out += esc(matched);
+        last = m.index + matched.length;
+        continue;
+      }
     }
     if (m.index > last) out += esc(text.slice(last, m.index));
     if (seen.has(href)) {
