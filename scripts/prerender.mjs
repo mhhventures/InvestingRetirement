@@ -729,13 +729,20 @@ function bodyCopy(meta, data) {
   if (guideMatch) {
     const g = data.guides.find((x) => x.slug === guideMatch[1]);
     if (g) {
-      const seen = new Set();
-      const lx = (s) => linkifyText(s, data, seen, g.slug);
-      const intro = g.intro ? `<p>${lx(g.intro)}</p>` : "";
-      const takeaways = (g.keyTakeaways || []).map((x) => `<li>${lx(x)}</li>`).join("");
+      const introSeen = new Set();
+      const intro = g.intro
+        ? `<p>${linkifyText(g.intro, data, introSeen, g.slug)}</p>`
+        : "";
+      const takeawaysSeen = new Set();
+      const takeaways = (g.keyTakeaways || [])
+        .map((x) => `<li>${linkifyText(x, data, takeawaysSeen, g.slug)}</li>`)
+        .join("");
       const sections = (g.sections || [])
         .slice(0, 6)
         .map((s) => {
+          // Fresh dedupe per section so each section surfaces its own links.
+          const seen = new Set();
+          const lx = (t) => linkifyText(t, data, seen, g.slug);
           const paras = (s.paragraphs || []).map((x) => `<p>${lx(x)}</p>`).join("");
           const bullets = (s.bullets || []).map((x) => `<li>${lx(x)}</li>`).join("");
           return `<h2>${esc(s.heading)}</h2>${paras}${bullets ? `<ul>${bullets}</ul>` : ""}`;

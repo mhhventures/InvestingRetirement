@@ -308,11 +308,14 @@ function GuideArticlePage() {
 
 function SectionBlock({
   section,
-  linkContext,
 }: {
   section: GuideSection;
-  linkContext: ReturnType<typeof useLinkContext>;
+  linkContext?: ReturnType<typeof useLinkContext>;
 }) {
+  // Each section gets its own link dedupe scope so every major section can
+  // surface its own inline links rather than having them all consumed by the
+  // first mention at the top of the article.
+  const linkContext = useLinkContext();
   const id = section.heading
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
