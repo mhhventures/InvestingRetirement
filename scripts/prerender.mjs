@@ -163,6 +163,8 @@ const GUIDE_PHRASE_MAP = [
 const CASE_SENSITIVE_PRODUCT_NAMES = new Set([
   "Current",
   "Albert",
+  "Upgrade",
+  "Empower",
   "Dave",
   "Possible Finance",
   "Gemini",
@@ -239,6 +241,20 @@ function linkifyText(text, data, seen, currentSlug) {
     ) {
       const after = text.slice(m.index + matched.length);
       if (/^\s+[A-Z][a-z]/.test(after)) {
+        if (m.index > last) out += esc(text.slice(last, m.index));
+        out += esc(matched);
+        last = m.index + matched.length;
+        continue;
+      }
+    }
+    // Skip "Current" when used as an adjective ("Current 12%", "Current yield").
+    if (href.startsWith("/product/") && canonical === "Current") {
+      const after = text.slice(m.index + matched.length);
+      if (
+        /^[\s,:;.]*(\d|[A-Z]{2,}|bracket|tax|yield|rate|APY|year|price|market|income|balance|trend|value|level)/.test(
+          after,
+        )
+      ) {
         if (m.index > last) out += esc(text.slice(last, m.index));
         out += esc(matched);
         last = m.index + matched.length;

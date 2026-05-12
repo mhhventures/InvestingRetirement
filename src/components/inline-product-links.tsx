@@ -60,6 +60,8 @@ const GUIDE_PHRASES: Array<{ phrase: string; slug: string }> = [
 const CASE_SENSITIVE_PRODUCT_NAMES = new Set<string>([
   "Current",
   "Albert",
+  "Upgrade",
+  "Empower",
   "Dave",
   "Possible Finance",
   "Gemini",
@@ -148,6 +150,21 @@ export function linkifyProductNames(
     ) {
       const after = text.slice(match.index + matchedText.length);
       if (/^\s+[A-Z][a-z]/.test(after)) {
+        continue;
+      }
+    }
+
+    // Heuristic: skip "Current" when it's being used as an adjective,
+    // e.g. "Current 12% / Future 22%", "Current yield", "Current APY".
+    // When capitalized at the start of a bullet/sentence the canonical-case
+    // guard isn't enough — look at what follows.
+    if (target.kind === "product" && canonical === "Current") {
+      const after = text.slice(match.index + matchedText.length);
+      if (
+        /^[\s,:;.]*(\d|[A-Z]{2,}|bracket|tax|yield|rate|APY|year|price|market|income|balance|trend|value|level)/.test(
+          after,
+        )
+      ) {
         continue;
       }
     }
