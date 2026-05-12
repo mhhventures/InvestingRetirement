@@ -1,7 +1,9 @@
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { products } from "@/data/products";
+import { products, type Product } from "@/data/products";
 import { guidesIndex } from "@/lib/guides-index.generated";
+import { ProductPreviewModal } from "@/components/product-card";
+import { pushEvent } from "@/lib/gtm";
 
 // Context tracks which product names / guide phrases have already been linked
 // on the page, so we don't hyperlink "SoFi" or "emergency fund" a dozen times.
@@ -147,14 +149,12 @@ export function linkifyProductNames(
         "!text-[#0e4d45] font-semibold underline !decoration-[#0e4d45] decoration-2 underline-offset-[3px] hover:!text-[#0a3832]";
       if (target.kind === "product") {
         out.push(
-          <Link
+          <ProductInlineLink
             key={`${dedupeKey}-${match.index}`}
-            to="/product/$slug"
-            params={{ slug: target.slug }}
+            slug={target.slug}
+            label={matchedText}
             className={className}
-          >
-            {matchedText}
-          </Link>,
+          />,
         );
       } else {
         out.push(
@@ -186,4 +186,65 @@ export function linkifyProductNames(
 
 export function useLinkContext(): LinkContext {
   return useMemo(() => ({ seen: new Set<string>() }), []);
+}
+
+// Inline product mention. Clicking opens a micro-review preview modal
+// (same modal used by ProductCard). Keeps the link-like appearance so
+// readers still perceive it as a jump-off point to learn more.
+function ProductInlineLink({
+  slug,
+  label,
+  className,
+}: {
+  slug: string;
+  label: string;
+  className: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const product = useMemo<Product | undefined>(
+    () => products.find((p) => p.slug === slug),
+    [slug],
+  );
+
+  if (!product) {
+    return (
+      <Link to="/product/$slug" params={{ slug }} className={className}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setOpen(true);
+          pushEvent("select_item", {
+            item_id: product.slug,
+            item_name: product.name,
+            item_category: product.category,
+            item_list_name: "guide-inline-link",
+            placement: "guide-inline-link",
+            action: "inline-preview-open",
+          });
+        }}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-label={`${product.name} quick look`}
+        className={`${className} bg-transparent border-0 p-0 m-0 cursor-pointer inline align-baseline`}
+      >
+        {label}
+      </button>
+      {open && (
+        <ProductPreviewModal
+          p={product}
+          listName="guide-inline-link"
+          onClose={() => setOpen(false)}
+        />
+      )}
+    </>
+  );
 }
