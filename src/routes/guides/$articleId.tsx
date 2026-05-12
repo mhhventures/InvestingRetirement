@@ -439,7 +439,14 @@ function ProductRow({ row }: { row: GuideProductRow }) {
     campaign: "guide-product-table",
   });
   return (
-    <li className="border-b border-[#e4d9cf] last:border-b-0 px-3 py-3 sm:flex sm:items-start sm:gap-3">
+    <li className="border-b border-[#e4d9cf] last:border-b-0">
+      <a
+        href={href}
+        target="_blank"
+        rel="nofollow noopener noreferrer sponsored"
+        className="group block px-3 py-3 sm:flex sm:items-start sm:gap-3 hover:bg-[#fef6f1] focus-visible:bg-[#fef6f1] focus-visible:outline-2 focus-visible:outline-[#0e4d45] transition-colors cursor-pointer"
+        aria-label={`${row.ctaLabel} - ${row.name}`}
+      >
       <div className="flex items-start gap-3 mb-3 sm:mb-0 sm:flex-1 sm:min-w-0">
         <RowLogo row={row} />
         <div className="flex-1 min-w-0">
@@ -517,13 +524,11 @@ function ProductRow({ row }: { row: GuideProductRow }) {
           </dl>
         </div>
       </div>
-      <a
-        href={href}
-        target="_blank"
-        rel="nofollow noopener noreferrer sponsored"
-        className="block text-center w-full sm:w-auto px-3 py-2 sm:py-1.5 rounded-sm bg-[#0e4d45] hover:bg-[#0a3832] text-[#fef6f1] text-[12px] sm:text-[11px] font-semibold uppercase tracking-wide transition-colors shrink-0"
+      <span
+        className="block text-center w-full sm:w-auto px-3 py-2 sm:py-1.5 rounded-sm bg-[#0e4d45] group-hover:bg-[#0a3832] text-[#fef6f1] text-[12px] sm:text-[11px] font-semibold uppercase tracking-wide transition-colors shrink-0"
       >
         {row.ctaLabel}
+      </span>
       </a>
     </li>
   );
