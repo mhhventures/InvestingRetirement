@@ -657,12 +657,13 @@ function rewriteHtml(template, meta, data) {
     );
   }
 
-  // Static nav + H1 snippet before #root — gives crawlers real outlinks
-  // Hidden visually; React still owns the visible UI inside #root.
+  // Static nav + content before #root — gives crawlers visible outlinks.
+  // Hidden once React hydrates via a MutationObserver on #root.
   const snippet = buildSeoSnippet(meta, data);
+  const hideScript = `<script>!function(){var r=document.getElementById("root"),f=document.getElementById("seo-fallback");if(!r||!f)return;if(r.children.length>0){f.style.display="none";return}new MutationObserver(function(m,o){if(r.children.length>0){f.style.display="none";o.disconnect()}}).observe(r,{childList:true})}()</script>`;
   html = html.replace(
     /<div id="root"><\/div>/,
-    `${snippet}\n    <div id="root"></div>`
+    `${snippet}\n    <div id="root"></div>\n    ${hideScript}`
   );
 
   return html;
@@ -746,13 +747,14 @@ function buildSeoSnippet(meta, data) {
 
   const breadcrumb = buildBreadcrumb(meta, data);
 
-  return `<div id="seo-fallback" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">
+  return `<div id="seo-fallback" style="max-width:960px;margin:0 auto;padding:24px 16px;font-family:system-ui,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a">
+      <nav aria-label="Main" style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e4d9cf">${nav}</nav>
       ${breadcrumb}
-      <h1>${esc(meta.h1 || meta.title)}</h1>
+      <h1 style="font-size:1.75rem;line-height:1.2;margin:12px 0">${esc(meta.h1 || meta.title)}</h1>
       <p>${esc(meta.description)}</p>
       ${body}
-      <nav aria-label="Main">${nav}</nav>
-      <nav aria-label="Related">${ctx}</nav>
+      <nav aria-label="Related" style="margin-top:24px;padding-top:16px;border-top:1px solid #e4d9cf;display:flex;flex-wrap:wrap;gap:8px 16px">${ctx}</nav>
+      <footer style="margin-top:24px;padding-top:16px;border-top:1px solid #e4d9cf;font-size:13px;color:#666"><a href="/">Home</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/disclosure">Disclosure</a> · <a href="/privacy">Privacy</a> · <a href="/newsletter">Newsletter</a></footer>
     </div>`;
 }
 
@@ -1332,6 +1334,13 @@ function contextualLinks(meta, data) {
         ["/banks", "All state directories"],
       ];
     }
+  }
+
+  if (path === "/newsletter") {
+    const links = data.guides.slice(0, 6).map((g) => [`/guides/${g.slug}`, g.title]);
+    links.push(["/guides", "All guides"]);
+    links.push(["/reviews", "All reviews"]);
+    return links;
   }
 
   return [["/", "Home"]];
